@@ -1,15 +1,14 @@
-***********************************************
-NumPy: creating and manipulating numerical data
-***********************************************
+*************************************************
+NumPy: creación y manipulación de datos numéricos
+*************************************************
 
-:authors: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and Pauli Virtanen
+:Autores: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and Pauli Virtanen
 
 .. .. contents:: Chapters contents
    :local:
    :depth: 4
 
-This chapter gives an overview of Numpy, the core tool for performant
-numerical computing with Python.
+En este capítulo se ofrece una visión general de Numpy, la herramienta fundamental para cálculo numérico de alto rendimiento con Python.
 
 ____
 

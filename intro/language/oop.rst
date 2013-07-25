@@ -1,58 +1,42 @@
-Object-oriented programming (OOP)
-=================================
+Programación Orientada a Objetos (POO)
+======================================
 
-Python supports object-oriented programming (OOP). The goals of OOP are:
+Python soporta la programación orientada a objetos (POO). Los objetivos de la programación orientada a objetos son:
 
-    * to organize the code, and
+    * organizar el código, y
 
-    * to re-use code in similar contexts.
+    * volver a utilizar el código en contextos similares.
 
+He aquí un pequeño ejemplo: creamos la *clase* Estudiante, es un objeto
+que reune varias funciones personalizadas (*métodos*) y variables (*atributos*), que pueden usarse::
 
-Here is a small example: we create a Student *class*, which is an object
-gathering several custom functions (*methods*) and variables (*attributes*),
-we will be able to use::
+    >>> class Estudiante(objecto):
+    ...     def __init__(self, nombre):
+    ...         self.nombre = nombre
+    ...     def establece_edad(self, edad):
+    ...         self.edad = edad
+    ...     def establece_licenciatura(self, licenciatura): 
+    ...         self.licenciatura = licenciatura
+    ...  
+    >>> anna = Estudiante('anna')
+    >>> anna.establece_edad(21)
+    >>> anna.establece_licenciatura('fisica')
 
-    >>> class Student(object):
-    ...     def __init__(self, name):
-    ...         self.name = name
-    ...     def set_age(self, age):
-    ...         self.age = age
-    ...     def set_major(self, major):
-    ...         self.major = major
-    ...
-    >>> anna = Student('anna')
-    >>> anna.set_age(21)
-    >>> anna.set_major('physics')
+En el ejemplo anterior, la clase Estudiante tiene los métodos ``__init__``, ``establece_edad`` y ``establece_licenciatura``. Sus atributos son ``nombre``, ``edad`` y ``licenciatura``. Nosotros podemos llamar a estos métodos y atributos con la siguiente notación: ``classinstance.método`` o ``classinstance.atributo``. El constructor ``__init__`` es un método especial que llamamos con: ``MiClase(parámetros de inicio cualquiera)``.
 
-In the previous example, the Student class has ``__init__``, ``set_age`` and
-``set_major`` methods. Its attributes are ``name``, ``age`` and ``major``. We
-can call these methods and attributes with the following notation:
-``classinstance.method`` or  ``classinstance.attribute``.  The ``__init__``
-constructor is a special method we call with: ``MyClass(init parameters if
-any)``.
+Ahora, supongamos que queremos crear una nueva clase EstudianteMaestria con los mismos métodos y atributos que el anterior, pero con un atributo adicional ``practicas``. No copiaremos la clase anterior, pero si **heredarlos** de ella::
 
-Now, suppose we want to create a new class MasterStudent with the same
-methods and attributes as the previous one, but with an additional
-``internship`` attribute. We won't copy the previous class, but
-**inherit** from it::
+    >>> class EstudianteMaestria(Estudiante):
+    ...     practicas = 'obligatorias, de marzo a junio'
+    ...   
 
-    >>> class MasterStudent(Student):
-    ...     internship = 'mandatory, from March to June'
-    ...
-    >>> james = MasterStudent('james')
-    >>> james.internship
-    'mandatory, from March to June'
-    >>> james.set_age(23)
-    >>> james.age
+    >>> james = EstudianteMaestria('james')
+    >>> james.practicas
+    'obligatorias, de marzo a junio'
+    >>> james.establece_edad(23)
+    >>> james.edad
     23
 
-The MasterStudent class inherited from the Student attributes and methods.
+La clase EstudianteMaestria hereda los atributos y métodos de la clase Estudiante.
 
-Thanks to classes and object-oriented programming, we can organize code
-with different classes corresponding to different objects we encounter
-(an Experiment class, an Image class, a Flow class, etc.), with their own
-methods and attributes. Then we can use inheritance to consider
-variations around a base class and **re-use** code. Ex : from a Flow
-base class, we can create derived StokesFlow, TurbulentFlow,
-PotentialFlow, etc.
-
+Gracias a las clases y a la programación orientada a objetos, podemos organizar el código en distintas clases correspondientes a diferentes objetos que nos encontramos (clase Experimento, clase Imagen, clase Flujo, etc), con sus propios métodos y atributos. También podemos utilizar la herencia para considerar variaciones en torno a una clase base y **reutilizar** código. Ejemplo: a partir de la clase Flujo, podemos crear sus derivados FlujoStokes, FlujoTurbulento, FlujoPotencial, etc.

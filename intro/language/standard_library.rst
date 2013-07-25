@@ -1,29 +1,31 @@
-Standard Library
-================
+Biblioteca estándar
+===================
 
-.. note:: Reference document for this section:
+.. note:: Documentos de referencia para esta sección:
 
  * The Python Standard Library documentation:
    http://docs.python.org/library/index.html
 
  * Python Essential Reference, David Beazley, Addison-Wesley Professional
 
-``os`` module: operating system functionality
------------------------------------------------
+``os`` módulo: funciones del sistema operativo
+----------------------------------------------
 
-*"A portable way of using operating system dependent functionality."*
+*La manera portátil de usar el sistema operativo depende de sus funciones.* 
 
-Directory and file manipulation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Manipulación de directorios y archivos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Current directory:
+Carpeta actual:
 
 .. sourcecode:: ipython
+
+    In [16]: import os
 
     In [17]: os.getcwd()
     Out[17]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source'
 
-List a directory:
+Lista de carpetas:
 
 .. sourcecode:: ipython
 
@@ -40,7 +42,7 @@ List a directory:
      'debugging.rst',
      ...
 
-Make a directory:
+Creando una carpeta:
 
 .. sourcecode:: ipython
 
@@ -49,7 +51,7 @@ Make a directory:
     In [33]: 'junkdir' in os.listdir(os.curdir)
     Out[33]: True
 
-Rename the directory:
+Renombrando una carpeta:
 
 .. sourcecode:: ipython
 
@@ -61,12 +63,16 @@ Rename the directory:
     In [38]: 'foodir' in os.listdir(os.curdir)
     Out[38]: True
 
+Borrando una carpeta:
+
+.. sourcecode:: ipython
+
     In [41]: os.rmdir('foodir')
 
     In [42]: 'foodir' in os.listdir(os.curdir)
     Out[42]: False
 
-Delete a file:
+Creando un archivo:
 
 .. sourcecode:: ipython
 
@@ -77,15 +83,19 @@ Delete a file:
     In [46]: 'junk.txt' in os.listdir(os.curdir)
     Out[46]: True
 
+Borrando un archivo:
+
+.. sourcecode:: ipython
+
     In [47]: os.remove('junk.txt')
 
     In [48]: 'junk.txt' in os.listdir(os.curdir)
     Out[48]: False
 
-``os.path``: path manipulations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+``os.path``: manipulanado el path
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-``os.path`` provides common operations on pathnames.
+``os.path`` proporciona operaciones comunes con el path.
 
 .. sourcecode:: ipython
 
@@ -126,8 +136,8 @@ Delete a file:
     In [92]: os.path.join(os.path.expanduser('~'), 'local', 'bin')
     Out[92]: '/Users/cburns/local/bin'
 
-Running an external command
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejecutando un comando externo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. sourcecode:: ipython
 
@@ -136,11 +146,9 @@ Running an external command
   control_flow.rst  exceptions.rst   io.rst         python-logo.png
   demo2.py          first_steps.rst  oop.rst        reusing_code.rst
 
-.. note:: Alternative to ``os.system``
+.. note:: Alternativa a ``os.system``
 
-    A noteworthy alternative to ``os.system`` is the `sh module
-    <http://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
-    obtain the output, error stream and exit code of the external command.
+    Una notable alternativa a ``os.system`` es el `módulo sh <http://amoffat.github.com/sh/>`_. Que proporciona una manera mucho más conveniente obtener la salida, flujo de errores y código a la salida de un comando externo.
 
     .. sourcecode:: ipython
 
@@ -158,11 +166,10 @@ Running an external command
         In [23]: type(com)
         Out[23]: sh.RunningCommand
 
-
-Walking a directory
+Recorrer una carpeta
 ~~~~~~~~~~~~~~~~~~~~
 
-``os.path.walk`` generates a list of filenames in a directory tree.
+``os.path.walk`` genera una lista de nombres de archivos en un árbol de carpetas.
 
 .. sourcecode:: ipython
 
@@ -178,8 +185,8 @@ Walking a directory
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/control_flow.rst
     ...
 
-Environment variables:
-~~~~~~~~~~~~~~~~~~~~~~
+Variables de entorno:
+~~~~~~~~~~~~~~~~~~~~~
 
 .. sourcecode:: ipython
 
@@ -213,22 +220,21 @@ Environment variables:
     /usr/local/lib/python2.5/site-packages/:
     /Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5'
 
+``shutil``: Operaciones de alto nivel con archivos
+--------------------------------------------------
 
-``shutil``: high-level file operations
----------------------------------------
-
-The ``shutil`` provides useful file operations:
+El módulo ``shutil`` proporciona operaciones útiles con archivos:
 
     * ``shutil.rmtree``: Recursively delete a directory tree.
     * ``shutil.move``: Recursively move a file or directory to another location.
     * ``shutil.copy``: Copy files or directories.
 
-``glob``: Pattern matching on files
--------------------------------------
+``glob``: Coincidencia de patrones en archivos
+----------------------------------------------
 
-The ``glob`` module provides convenient file pattern matching.
+El módulo ``glob`` provee búsqueda por coincidencia de patrones en archivos.
 
-Find all files ending in ``.txt``:
+Buscar todos los archivos que terminen en ``.txt``:
 
 .. sourcecode:: ipython
 
@@ -237,37 +243,35 @@ Find all files ending in ``.txt``:
     In [19]: glob.glob('*.txt')
     Out[19]: ['holy_grail.txt', 'junk.txt', 'newfile.txt']
 
+``sys``: Información específica del sistema
+-------------------------------------------
 
+Sistema de información específica relacionada con el intérprete de Python.
 
-``sys`` module: system-specific information
---------------------------------------------
-
-System-specific information related to the Python interpreter.
-
-* Which version of python are you running and where is it installed:
+* Qué versión de Python estás ejecutando y donde está instalado:
 
   .. sourcecode:: ipython
+
+    In [116]: import sys
 
     In [117]: sys.platform
-    Out[117]: 'darwin'
+    Out[117]: 'linux2'
 
     In [118]: sys.version
-    Out[118]: '2.5.2 (r252:60911, Feb 22 2008, 07:57:53) \n
-              [GCC 4.0.1 (Apple Computer, Inc. build 5363)]'
+    Out[118]: '2.7.3 (default, Apr 10 2013, 05:46:21) \n[GCC 4.6.3]'
 
     In [119]: sys.prefix
-    Out[119]: '/Library/Frameworks/Python.framework/Versions/2.5'
+    Out[119]: '/usr'
 
-* List of command line arguments passed to a Python script:
+* Lista de argumentos de la línea de comandos pasados ​​a un script Python:
 
   .. sourcecode:: ipython
 
-   In [100]: sys.argv
-   Out[100]: ['/Users/cburns/local/bin/ipython']
+   In [120]: sys.argv
+   Out[120]: ['/usr/bin/ipython']
 
-
-``sys.path`` is a list of strings that specifies the search path for
-modules.  Initialized from PYTHONPATH:
+``sys.path`` es una lista de cadenas que especifica la ruta de búsqueda de
+módulos. Iniciada desde PYTHONPATH:
 
 .. sourcecode:: ipython
 
@@ -282,10 +286,10 @@ modules.  Initialized from PYTHONPATH:
      '/Users/cburns/local/lib/python2.5/site-packages/virtualenv-1.2-py2.5.egg',
      ...
 
-``pickle``: easy persistence
--------------------------------
+``pickle``: fácil persistencia
+------------------------------
 
-Useful to store arbitrary objects to a file. Not safe or fast!
+Útil para almacenar objetos arbitrarios a un archivo. No es seguro o rápido!
 
 .. sourcecode:: ipython
 
@@ -299,8 +303,8 @@ Useful to store arbitrary objects to a file. Not safe or fast!
   Out[4]: [1, None, 'Stan']
 
 
-.. topic:: Exercise
+.. topic:: Ejercicio
 
-    Write a program to search your ``PYTHONPATH`` for the module ``site.py``.
+    Escriba un programa para buscar su ``PYTHONPATH`` para el módulo ``site.py`` .
 
 :ref:`path_site`

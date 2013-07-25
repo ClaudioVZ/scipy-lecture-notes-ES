@@ -1,20 +1,14 @@
-Exception handling in Python
-============================
+Manejo de excepciones en Python
+===============================
 
-It is highly unlikely that you haven't yet raised Exceptions if you have
-typed all the previous commands of the tutorial. For example, you may
-have raised an exception if you entered a command with a typo.
+Es muy poco probable que se hayan producido excepciones si tiene escrito todos los comandos anteriores del tutorial. Por ejemplo, es posible que se haya producido una excepción si introdujo un comando con un error tipográfico.
 
-Exceptions are raised by different kinds of errors arising when executing
-Python code. In your own code, you may also catch errors, or define custom
-error types. You may want to look at the descriptions of the `the built-in
-Exceptions <http://docs.python.org/2/library/exceptions.html>`_ when looking
-for the right exception type.
+Las excepciones se producen por diferentes tipos de errores que surgen al ejecutar código Python. En su propio código, también puede detectar errores o definir tipos personalizados de errores. Es posible que desee ver las descripciones en `the built-in Exceptions <http://docs.python.org/2/library/exceptions.html>`_.
 
-Exceptions
+Excepciones
 -----------
 
-Exceptions are raised by errors in Python:
+Excepciones producidas por errores en Python:
 
 .. sourcecode:: ipython
 
@@ -42,10 +36,10 @@ Exceptions are raised by errors in Python:
     ---------------------------------------------------------------------------
     AttributeError: 'list' object has no attribute 'foobar'
 
-As you can see, there are **different types** of exceptions for different errors.
+Como puede ver, hay **diferentes tipos** de excepciones para diferentes errores.
 
-Catching exceptions
---------------------
+Atrapando excepciones
+---------------------
 
 try/except
 ~~~~~~~~~~~
@@ -53,16 +47,15 @@ try/except
 .. sourcecode:: ipython
 
     In [8]: while True:
-     ....:     try:
-     ....:         x = int(raw_input('Please enter a number: '))
-     ....:         break
-     ....:     except ValueError:
-     ....:         print('That was no valid number.  Try again...')
-     ....:
-     ....:
-    Please enter a number: a
-    That was no valid number.  Try again...
-    Please enter a number: 1
+       ...:     try:
+       ...:         x = int(raw_input('Digite un numero: '))
+       ...:         break
+       ...:     except ValueError:
+       ...:         print('No es un numero valido.  Pruebe de nuevo...')
+       ...:         
+    Digite un numero: a
+    No es un numero valido.  Pruebe de nuevo...
+    Digite un numero: 1
 
     In [9]: x
     Out[9]: 1
@@ -73,96 +66,88 @@ try/finally
 .. sourcecode:: ipython
 
     In [10]: try:
-     ....:    x = int(raw_input('Please enter a number: '))
-     ....: finally:
-     ....:    print('Thank you for your input')
-     ....:
-     ....:
-    Please enter a number: a
-    Thank you for your input
-    ---------------------------------------------------------------------------
+       ....:     x = int(raw_input('Digite un numero: '))
+       ....: finally:
+       ....:     print('Gracias')
+       ....:     
+    Digite un numero: a
+    Gracias
+
+ ---------------------------------------------------------------------------
     ValueError: invalid literal for int() with base 10: 'a'
 
-Important for resource management (e.g. closing a file)
+Importante para gestión de recursos (por ejemplo, cerrar un archivo)
 
-Easier to ask for forgiveness than for permission
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+Es más fácil pedir perdón que permiso
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. sourcecode:: ipython
 
-    In [11]: def print_sorted(collection):
+    In [11]: def imprime_ordenado(coleccion):
        ....:     try:
-       ....:         collection.sort()
+       ....:         coleccion.sort()
        ....:     except AttributeError:
        ....:         pass
-       ....:     print(collection)
-       ....:
-       ....:
+       ....:     print coleccion
+       ....:  
 
-    In [12]: print_sorted([1, 3, 2])
+    In [12]: imprime_ordenado([1, 3, 2])
     [1, 2, 3]
 
-    In [13]: print_sorted(set((1, 3, 2)))
+    In [13]: imprime_ordenado(set((1, 3, 2)))
     set([1, 2, 3])
 
-    In [14]: print_sorted('132')
+    In [14]: imprime_ordenado('132')
     132
 
+Agregando excepciones
+---------------------
 
-Raising exceptions
-------------------
-
-* Capturing and reraising an exception:
+* Capturando y agregando una excepción:
 
   .. sourcecode:: ipython
 
-    In [15]: def filter_name(name):
-       ....:	try:
-       ....:	    name = name.encode('ascii')
-       ....:	except UnicodeError, e:
-       ....:	    if name == 'Gaël':
-       ....:		print('OK, Gaël')
-       ....:	    else:
-       ....:		raise e
-       ....:	return name
-       ....:
+    In [15]: def filtro_nombre(nombre):
+       ....:     try:
+       ....:         nombre = nombre.encode('ascii')
+       ....:     except UnicodeError, e:
+       ....:         if nombre == 'Gaël':
+       ....:             print('OK, Gaël')
+       ....:         else:
+       ....:             raise e
+       ....:     return nombre
+       ....: 
 
-    In [16]: filter_name('Gaël')
+    In [16]: filtro_nombre('Gaël')
     OK, Gaël
     Out[16]: 'Ga\xc3\xabl'
 
-    In [17]: filter_name('Stéfan')
+    In [17]: filtro_nombre('Stéfan')
     ---------------------------------------------------------------------------
     UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 2: ordinal not in range(128)
 
-
-* Exceptions to pass messages between parts of the code:
+* Excepciones para pasar mensajes entre las partes del código:
 
   .. sourcecode:: ipython
 
-    In [17]: def achilles_arrow(x):
-       ....:    if abs(x - 1) < 1e-3:
-       ....:        raise StopIteration
-       ....:    x = 1 - (1-x)/2.
-       ....:    return x
+    In [18]: def tendon_de_aquiles(x):
+       ....:     if abs(x - 1) < 1e-3:
+       ....:         raise StopIteration
+       ....:     x = 1 - (1 - x)/2.0
+       ....:     return x
        ....:
 
-    In [18]: x = 0
+    In [19]: x = 0
 
-    In [19]: while True:
+    In [20]: while True:
        ....:     try:
-       ....:         x = achilles_arrow(x)
+       ....:         x = tendon_de_aquiles(x)
        ....:     except StopIteration:
        ....:         break
        ....:
        ....:
 
-    In [20]: x
-    Out[20]: 0.9990234375
+    In [21]: x
+    Out[21]: 0.9990234375
 
-
-Use exceptions to notify certain conditions are met (e.g.
-StopIteration) or not (e.g. custom error raising)
-
-
+Utilice excepciones para notificar determinadas condiciones que se cumplen (por ejemplo, StopIteration) o no se cumplen (por ejemplo, agregar errores personalizado)

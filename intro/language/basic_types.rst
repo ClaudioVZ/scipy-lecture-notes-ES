@@ -1,10 +1,12 @@
-Basic types
+Tipos básicos
 ============
 
-Numerical types
+Tipos numéricos
 ----------------
 
-Python supports the following numerical, scalar types:
+.. tip::
+
+    Python soporta los siguientes tipos escalares:
 
 :Integer:
 
@@ -40,9 +42,11 @@ Python supports the following numerical, scalar types:
     >>> type(test)
     <type 'bool'>
 
-A Python shell can therefore replace your pocket calculator, with the
-basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
-natively implemented::
+.. tip::
+
+    El shell Python puede reemplazar a una calculadora, las operaciones arítmeticas básicas ``+``, ``-``, ``*``, ``/``, ``%`` (módulo) estan implementadas nativamente.
+
+::
 
     >>> 7 * 3.
     21.0
@@ -51,190 +55,188 @@ natively implemented::
     >>> 8 % 3
     2
 
-Type conversion (casting)::
+Conversión de tipos (casting)::
 
     >>> float(1)
     1.0
 
-.. warning:: Integer division
+.. warning:: División de enteros
 
     ::
 
-    >>> 3 / 2
-    1
+        >>> 3 / 2
+        1
 
-    **Trick**: use floats::
+    **Trick**: Use floats::
 
-    >>> 3 / 2.
-    1.5
+        >>> 3 / 2.
+        1.5
 
-    >>> a = 3
-    >>> b = 2
-    >>> a / b
-    1
-    >>> a / float(b)
-    1.5
+        >>> a = 3
+        >>> b = 2
+        >>> a / b
+        1
+        >>> a / float(b)
+        1.5
 
-    If you explicitly want integer division use ``//``
+    .. tip::
 
-    >>> 3.0//2
-    1.0
+      Si requiere la parte entera de una division use ``//``::
 
-    .. note::
+        >>> 3.0 // 2
+        1.0
 
-        The behaviour of the division operator has changed in Python 3. Please
-        look at the `python3porting
-        <http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers>`_
-        website for details.
+      .. note::
 
-Containers
+      El comportamiento del operador división fue cambiado en Python 3. Por favor visite `python3porting <http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers>`_ para más detalles.
+
+Contenedores
 ------------
 
-Python provides many efficient types of containers, in which collections of
-objects can be stored.
+.. tip::
 
-Lists
+    Python proporciona muchos tipos eficazes de contenedores, en la que colecciones de objetos pueden ser almacenados.
+
+Listas
 ~~~~~
 
-A list is an ordered collection of objects, that may have different
-types. For example ::
+.. tip::
+ 
+    Una lista es una colección ordenada de objetos, que puede contener diferentes tipos. Por ejemplo:
 
-    >>> l = ['red', 'blue', 'green', 'black', 'white']
-    >>> type(l)
+::
+
+    >>> L = ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> type(L)
     <type 'list'>
 
-Indexing: accessing individual objects contained in the list::
+Indexado: acceso individual a objectos contenidos en la lista::
 
-    >>> l[2]
-    'green'
+    >>> L[2]
+    'verde'
 
-Counting from the end with negative indices::
+Conteo de elementos desde el final con indices negativos::
 
-    >>> l[-1]
-    'white'
-    >>> l[-2]
-    'black'
+    >>> L[-1]
+    'blanco'
+    >>> L[-2]
+    'negro'
 
 .. warning::
 
-    **Indexing starts at 0** (as in C), not at 1 (as in Fortran or Matlab)!
+    **El indexado empieza en 0** (como en C), no en 1 (como en Fortran o Matlab)!
 
-Slicing: obtaining sublists of regularly-spaced elements::
+Segmentación: Obtener sublistas con elementos espaciadamente regularmente elements::
 
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white']
-    >>> l[2:4]
-    ['green', 'black']
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> L[2:4]
+    ['verde', 'negro']
 
 .. Warning::
 
-    Note that ``l[start:stop]`` contains the elements with indices ``i``
-    such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
-    ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop-start)`` elements.
+    Note que ``L[inicio:final]`` contiene los elementos con indices ``i``
+    que pertenecen al intervalo ``inicio<= i < final`` (``i`` es el rango de valores enteros desde ``inicio`` a ``final-1``). Therefore, ``L[inicio:final]`` has ``(stop-start)`` elements.
 
-**Slicing syntax**: ``l[start:stop:stride]``
+**Sintaxis de segmentación**: ``L[start:stop:salto]``
 
-All slicing parameters are optional::
+.. tip::
 
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white']
-    >>> l[3:]
-    ['black', 'white']
-    >>> l[:3]
-    ['red', 'blue', 'green']
-    >>> l[::2]
-    ['red', 'green', 'white']
+  Los parámetros de segmentación son opcionales::
 
-Lists are *mutable* objects and can be modified::
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> L[3:]
+    ['negro', 'blanco']
+    >>> L[:3]
+    ['rojo', 'azul', 'verde']
+    >>> L[::2]
+    ['rojo', 'verde', 'blanco']
 
-    >>> l[0] = 'yellow'
-    >>> l
-    ['yellow', 'blue', 'green', 'black', 'white']
-    >>> l[2:4] = ['gray', 'purple']
-    >>> l
-    ['yellow', 'blue', 'gray', 'purple', 'white']
+Las listas son objectos *mutables* y pueden modificarse::
+
+    >>> L[0] = 'amarillo'
+    >>> L
+    ['amarillo', 'azul', 'verde', 'negro', 'blanco']
+    >>> L[2:4] = ['gris', 'púrpura']
+    >>> L
+    ['amarillo', 'azul', 'gris', 'púrpura', 'blanco']
 
 .. Note::
 
-    The elements of a list may have different types::
+   Los elementos de una lista pueden ser de tipos diferentes::
 
-        >>> l = [3, -200, 'hello']
-        >>> l
-        [3, -200, 'hello']
-        >>> l[1], l[2]
-        (-200, 'hello')
+        >>> L = [3, -200, 'hola']
+        >>> L
+        [3, -200, 'hola']
+        >>> L[1], L[2]
+        (-200, 'hola')
 
-    For collections of numerical data that all have the same type, it
-    is often **more efficient** to use the ``array`` type provided by
-    the ``numpy`` module. A NumPy array is a chunk of memory
-    containing fixed-sized items.  With NumPy arrays, operations on
-    elements can be faster because elements are regularly spaced in
-    memory and more operations are performed through specialized C
-    functions instead of Python loops.
+   .. tip::
 
+    Para las colecciones de datos numéricos que tienen el mismo tipo, a menudo es **más eficiente** utilizar el tipo ``array`` proporcionado por el módulo ``numpy``. Un array NumPy es un trozo de memoria que contiene elementos de tamaño fijo. Con arrays NumPy, las operaciones con elementos son más rápidos porque los elementos están espaciados regularmente en memoria y otras operaciones se realizan a través funciones C especializadas en lugar de bucles Python.
 
-Python offers a large panel of functions to modify lists,
-or query them. Here are a few examples; for more details, see
-http://docs.python.org/tutorial/datastructures.html#more-on-lists
+.. tip::
 
-Add and remove elements::
+    Python ofrece un gran panel de funciones para modificar las listas, o la consulta a ellos. Éstos son algunos ejemplos; para obtener más detalles, consulte http://docs.python.org/tutorial/datastructures.html#more-on-lists
 
-    >>> l = ['red', 'blue', 'green', 'black', 'white']
-    >>> l.append('pink')
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white', 'pink']
-    >>> l.pop() # removes and returns the last item
-    'pink'
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white']
-    >>> l.extend(['pink', 'purple']) # extend l, in-place
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white', 'pink', 'purple']
-    >>> l = l[:-2]
-    >>> l
-    ['red', 'blue', 'green', 'black', 'white']
+Agregar y remover elementos::
 
-Reverse::
+    >>> L = ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> L.append('rosado')
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco', 'rosado']
+    >>> L.pop() # remover y devolver el último item
+    'rosado'
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> L.extend(['rosado', 'violeta']) # extender L, sobre la marcha
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco', 'rosado', 'violeta']
+    >>> L = L[:-2]
+    >>> L
+    ['rojo', 'azul', 'verde', 'negro', 'blanco']
 
-    >>> r = l[::-1]
+Invertir el orden de los elementos::
+
+    >>> r = L[::-1]
     >>> r
-    ['white', 'black', 'green', 'blue', 'red']
-    >>> r2 = list(l)
+    ['blanco', 'negro', 'verde', 'azul', 'rojo']
+    >>> r2 = list(L)
     >>> r2
-    ['red', 'blue', 'green', 'black', 'white']
-    >>> r2.reverse() # in-place
+    ['rojo', 'azul', 'verde', 'negro', 'blanco']
+    >>> r2.reverse() # reasignando valores
     >>> r2
-    ['white', 'black', 'green', 'blue', 'red']
+    ['blanco', 'negro', 'verde', 'azul', 'rojo']
 
-Concatenate and repeat lists::
+Concatenar y repetir listas::
 
-    >>> r + l
-    ['white', 'black', 'green', 'blue', 'red', 'red', 'blue', 'green', 'black', 'white']
+    >>> r + L
+    ['blanco', 'negro', 'verde', 'azul', 'rojo', 'rojo', 'azul', 'verde', 'negro', 'blanco']
     >>> r * 2
-    ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
+    ['blanco', 'negro', 'verde', 'azul', 'rojo', 'blanco', 'negro', 'verde', 'azul', 'rojo']
 
-Sort::
 
-    >>> sorted(r) # new object
-    ['black', 'blue', 'green', 'red', 'white']
+
+.. tip::
+   
+  Ordenar en forma ascendente::
+
+    >>> sorted(r) # nuevo objecto
+    ['azul', 'blanco', 'negro', 'rojo', 'verde']
     >>> r
-    ['white', 'black', 'green', 'blue', 'red']
-    >>> r.sort()  # in-place
+    ['blanco', 'negro', 'verde', 'azul', 'rojo']
+    >>> r.sort()  # reasignando elementos
     >>> r
-    ['black', 'blue', 'green', 'red', 'white']
+    ['azul', 'blanco', 'negro', 'rojo', 'verde']
 
-.. Note:: **Methods and Object-Oriented Programming**
+.. note:: **Métodos y Programación Orientada a Objectos**
 
-    The notation ``r.method()`` (``r.sort(), r.append(3), l.pop()``) is our
-    first example of object-oriented programming (OOP). Being a ``list``, the
-    object `r` owns the *method* `function` that is called using the notation
-    **.**. No further knowledge of OOP than understanding the notation **.** is
-    necessary for going through this tutorial.
+    La notación ``r.method()`` (``r.append(3)``, ``L.pop()``) es el primer ejemplo de Programación Orientada a Objectos (POO). Para una ``lista``, el objecto es `r` posee el *método* `función` que es llamado usando la notación **.**. Sin profundizar en el conocimiento de la Programación Orientada a Objetos la comprensión de la notación **.** es necesaria para recorrer este tutorial.
 
+.. note:: **Descubriendo métodos:**
 
-.. note:: **Discovering methods:**
-
-    Reminder: in Ipython: tab-completion (press tab)
+    Recuerde: en IPython: autocompletado tabular (presione tab)
 
     .. sourcecode:: ipython
 
@@ -255,69 +257,68 @@ Sort::
         r.__gt__            r.__reversed__      r.reverse
         r.__hash__          r.__rmul__          r.sort
 
-Strings
+Cadenas
 ~~~~~~~
 
-Different string syntaxes (simple, double or triple quotes)::
+Diferentes sintaxis de cadena (simple, double o comilla triple)::
 
-    s = 'Hello, how are you?'
-    s = "Hi, what's up"
-    s = '''Hello,                 # tripling the quotes allows the
-           how are you'''         # the string to span more than one line
-    s = """Hi,
-    what's up?"""
+    s = 'Hola, cómo estás'
+    s = "Hola, qué tal"
+    s = '''Hola,                  # triplicando las comillas permite a
+           cómo estás'''          # la cadena ocupar más de una línea
+    s = """Hola,
+    qué tal"""
 
 .. sourcecode:: ipython
 
-    In [1]: 'Hi, what's up?'
+    In [1]: 'Hola, qué tal'
     ------------------------------------------------------------
        File "<ipython console>", line 1
-        'Hi, what's up?'
+        'Hola, qué tal'
                ^
     SyntaxError: invalid syntax
 
+El carácter nueva línea es ``\n``, y el carácter tabulación es ``\t``.
 
-The newline character is ``\n``, and the tab character is
-``\t``.
+.. tip::
 
-Strings are collections like lists. Hence they can be indexed and sliced,
-using the same syntax and rules.
+    Las cadenas son colecciones como las listas. Por lo tanto pueden ser indexados y segmentados, utilizando la mismas reglas de sintaxis.
 
-Indexing::
+Indexado::
 
-    >>> a = "hello"
+    >>> a = "hola"
     >>> a[0]
     'h'
     >>> a[1]
-    'e'
-    >>> a[-1]
     'o'
+    >>> a[-1]
+    'a'
+
+.. tip::
+
+    (Recuerde que los valores negativos corresponden a un conteo desde la derecha.)
+
+Segmentación::
 
 
-(Remember that negative indices correspond to counting from the right
-end.)
+    >>> a = "hola, mundo!"
+    >>> a[2:5] # elementos 2do al 5to (excluido): elementos 2, 3, 4
+    'la,'
+    >>> a[2:11:2] # sintaxis: a[inicio:final:paso]
+    'l,mno'
+    >>> a[::3] # cada tres caracteres, del inicio al final
+    'hamd'
 
-Slicing::
-
-
-    >>> a = "hello, world!"
-    >>> a[3:6] # 3rd to 6th (excluded) elements: elements 3, 4, 5
-    'lo,'
-    >>> a[2:10:2] # Syntax: a[start:stop:step]
-    'lo o'
-    >>> a[::3] # every three characters, from beginning to end
-    'hl r!'
-
-Accents and special characters can also be handled in Unicode strings (see
-http://docs.python.org/tutorial/introduction.html#unicode-strings).
+.. tip::
+   
+    Acentos y caracteres especiales también pueden ser manejados en cadenas Unicode (véase http://docs.python.org/tutorial/introduction.html#unicode-strings).
 
 
-A string is an **immutable object** and it is not possible to modify its
-contents. One may however create new strings from the original one.
+Una cadena es un **objeto inmutable** y no es posible modificar su contenido. Sin embargo, se puede crear nuevas cadenas desde el original.
 
 .. sourcecode:: ipython
 
-    In [53]: a = "hello, world!"
+    In [53]: a = "hola, mundo!"
     In [54]: a[2] = 'z'
     ---------------------------------------------------------------------------
     Traceback (most recent call last):
@@ -325,37 +326,36 @@ contents. One may however create new strings from the original one.
     TypeError: 'str' object does not support item assignment
 
     In [55]: a.replace('l', 'z', 1)
-    Out[55]: 'hezlo, world!'
+    Out[55]: 'hoza, mundo!'
     In [56]: a.replace('l', 'z')
-    Out[56]: 'hezzo, worzd!'
+    Out[56]: 'hzla, mundz!'
 
-Strings have many useful methods, such as ``a.replace`` as seen above.
-Remember the ``a.`` object-oriented notation and use tab completion or
-``help(str)`` to search for new methods.
+.. tip::
 
-.. Note::
+    Las cadenas tienen muchos métodos útiles, como ``a.replace`` como se vio anteriormente. Recuerde lanotación orientada a objetos ``a.`` y el autocompletado tabular o ``help(str)`` para buscar nuevos métodos.
 
-    Python offers advanced possibilities for manipulating strings,
-    looking for patterns or formatting. The interested reader is referred to
-    http://docs.python.org/library/stdtypes.html#string-methods and
-    http://docs.python.org/library/string.html#new-string-formatting
+.. seealso::
 
-String substitution::
+    Python ofrece posibilidades avanzadas para la manipulación de cadenas, busqueda por patrones o formateado. El lector interesado puede consultar http://docs.python.org/library/stdtypes.html#string-methods y http://docs.python.org/library/string.html#new-string-formatting
 
-    >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string')
-    'An integer: 1; a float: 0.100000; another string: string'
+Sustitutión de cadenas::
+
+    >>> 'Un integer: %i; un float: %f; otra cadena: %s' % (1, 0.1, 'cadena')
+    'Un integer: 1; un float: 0.100000; otra cadena: cadena'
 
     >>> i = 102
-    >>> filename = 'processing_of_dataset_%d.txt' % i
-    >>> filename
-    'processing_of_dataset_102.txt'
+    >>> nombre_archivo = 'procesamiento_de_conjunto_de_datos_%d.txt' % i
+    >>> nombre_archivo
+    'procesamiento_de_conjunto_de_datos_102.txt'
 
-Dictionaries
+Diccionarios
 ~~~~~~~~~~~~~
 
-A dictionary is basically an efficient table that **maps keys to
-values**. It is an **unordered** container::
+.. tip::
 
+    Un diccionario es básicamente una tabla eficiente que **mapea claves a valores**. Es un contenedor **sin orden** 
+
+::
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
     >>> tel['francis'] = 5915
@@ -370,33 +370,33 @@ values**. It is an **unordered** container::
     >>> 'francis' in tel
     True
 
-It can be used to conveniently store and retrieve values
-associated with a name (a string for a date, a name, etc.). See
-http://docs.python.org/tutorial/datastructures.html#dictionaries
-for more information.
+.. tip::
 
-A dictionary can have keys (resp. values) with different types::
+  Se puede utilizar para almacenar y recuperar valores convenientemente asociados a un nombre (una cadena de una fecha, un nombre, etc.) ver http://docs.python.org/tutorial/datastructures.html#dictionaries para más información.
 
-    >>> d = {'a':1, 'b':2, 3:'hello'}
+  Un diccionario puede tener claves (respuesta valores) con diferentes tipos::
+
+    >>> d = {'a':1, 'b':2, 3:'hola'}
     >>> d
-    {'a': 1, 3: 'hello', 'b': 2}
+    {'a': 1, 3: 'hola', 'b': 2}
 
-More container types
-~~~~~~~~~~~~~~~~~~~~
+Más contenedores de tipos
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Tuples**
+**Tuplas**
 
-Tuples are basically immutable lists. The elements of a tuple are written
-between parentheses, or just separated by commas::
+Las tuplas son basicamente listas immutables. Los elementos de una tupla se escriben entre paréntesis y separados por comas, o solamente separados por comas::
 
-    >>> t = 12345, 54321, 'hello!'
+    >>> t = 12345, 54321, 'hola!'
     >>> t[0]
     12345
     >>> t
-    (12345, 54321, 'hello!')
+    (12345, 54321, 'hola!')
     >>> u = (0, 2)
+    >>> u
+    (0, 2)
 
-**Sets:** unordered, unique items::
+**Conjuntos:** sin orden, items únicos::
 
     >>> s = set(('a', 'b', 'c', 'a'))
     >>> s
@@ -404,26 +404,26 @@ between parentheses, or just separated by commas::
     >>> s.difference(('a', 'b'))
     set(['c'])
 
-Assignment operator
--------------------
+Operador de asignación
+----------------------
 
-`Python library reference
-<http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
-says:
+.. tip::
 
-  Assignment statements are used to (re)bind names to values and to
-  modify attributes or items of mutable objects.
+ `Python referencia de bibliotecas
+ <http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
+ dice:
 
-In short, it works as follows (simple assignment):
+  Las sentencias de asignación se utilizan para (re)vincular nombres a valores y modificar los atributos o elementos de los objetos mutables.
 
-#. an expression on the right hand side is evaluated, the corresponding
-   object is created/obtained
-#. a **name** on the left hand side is assigned, or bound, to the
-   r.h.s. object
+ En pocas palabras, funciona de la siguiente manera (asignación simple):
 
-Things to note:
+ #. una expresión en el lado derecho es evaluada, el correspondiente objeto se crea/obtiene
 
-* a single object can have several names bound to it:
+ #. un **nombre** en el lado izquierdo es asignado, o vinculado, a el objeto r.h.s.
+
+Cosas a tener en cuenta:
+
+* un objeto puede estar vinculado a varios nombres:
 
     .. sourcecode:: ipython
 
@@ -435,33 +435,31 @@ Things to note:
         Out[4]: [1, 2, 3]
         In [5]: a is b
         Out[5]: True
-	In [6]: b[1] = 'hi!'
-	In [7]: a
-	Out[7]: [1, 'hi!', 3]
+        In [6]: b[1] = 'hi!'
+        In [7]: a
+        Out[7]: [1, 'hi!', 3]
 
-* to change a list *in place*, use indexing/slices:
+* para cambiar una lista *sobre la marcha*, use indexado/segmentado:
 
     .. sourcecode:: ipython
 
         In [1]: a = [1, 2, 3]
         In [3]: a
         Out[3]: [1, 2, 3]
-        In [4]: a = ['a', 'b', 'c'] # Creates another object.
+        In [4]: a = ['a', 'b', 'c'] # Creando otro objeto.
         In [5]: a
         Out[5]: ['a', 'b', 'c']
         In [6]: id(a)
         Out[6]: 138641676
-        In [7]: a[:] = [1, 2, 3] # Modifies object in place.
+        In [7]: a[:] = [1, 2, 3] # Modificando objetos sobre la marcha.
         In [8]: a
         Out[8]: [1, 2, 3]
         In [9]: id(a)
-        Out[9]: 138641676 # Same as in Out[6], yours will differ...
+        Out[9]: 138641676 # Lo mismo esta en Out[6], el tuyo puede ser diferente...
 
-* the key concept here is **mutable vs. immutable**
+* el concepto clave aqui es **mutable vs. immutable**
 
-    * mutable objects can be changed in place
-    * immutable objects cannot be modified once created
+    * mutable, objecto que puede cambiar sobre sobre la marcha
+    * immutable, objecto que no puede modificarse despues de su creación
 
-A very good and detailed explanation of the above issues can be found
-in David M. Beazley's article `Types and Objects in Python
-<http://www.informit.com/articles/article.aspx?p=453682>`_.
+.. seealso:: Una explicación muy buena y detallada de los aspectos mencionados anteriormente se encuentra en el artículo `Types and Objects in Python <http://www.informit.com/articles/article.aspx?p=453682>`_ de David M. Beazley's.

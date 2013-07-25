@@ -1,96 +1,82 @@
-Reusing code: scripts and modules
-=================================
+Reusando código: scripts y módulos
+==================================
 
-For now, we have typed all instructions in the interpreter. For longer
-sets of instructions we need to change tack and write the code in text
-files (using a text editor), that we will call either *scripts* or
-*modules*. Use your favorite text editor (provided it offers syntax
-highlighting for Python), or the editor that comes with the Scientific
-Python Suite you may be using (e.g., Scite with Python(x,y)).
+Por ahora, hemos escrito todas las instrucciones en un intérprete. Para un mayor número de instrucciones debemos cambiar de rumbo y escribir código en archivos de texto (utilizando un editor de texto), que vamos a llamar a *scripts* o *módulos*. Utilice su editor de texto favorito (siempre que ofrezca un coloreado de sintaxis para Python) o el editor que viene con el con la distribución científica de Python que utiliza (por ejemplo, Scite en Python(x,y)).
 
 Scripts
 -------
 
-Let us first write a *script*, that is a file with a sequence of
-instructions that are executed each time the script is called.
+.. tip::
 
-Instructions may be e.g. copied-and-pasted from the interpreter
-(but take care to respect indentation rules!). The extension for Python
-files is ``.py``. Write or copy-and-paste the following lines in a file
-called ``test.py`` ::
+    Primero vamos a escribir un *script*, que es un archivo con una secuencia de instrucciones que se ejecutan cada vez que el script se llama. Las instrucciones pueden ser, por ejemplo copiado y pegado desde el intérprete (pero tenga cuidado con las reglas de indentado!).
 
-    message = "Hello how are you?"
-    for word in message.split():
-        print word
+La extensión de los archivos Python son ``.py``. Escriba o copie y pegue las
+siguientes líneas en un archivo llamado ``prueba.py`` ::
 
-Let us now execute the script interactively, that is inside the Ipython
-interpreter. This is maybe the most common use of scripts in scientific
-computing.
+    mensaje = "Hola como estas?"
+    for palabras in mensaje.split():
+        print palabras
+
+.. tip::
+
+    Ahora vamos a ejecutar el script de una forma interactiva, es decir, dentro del intérprete IPython. Este es quizás el uso más común de scripts en cálculo científica.
 
 .. note::
 
-    in Ipython, the syntax to execute a script is ``%run script.py``. For
-    example,
+    en IPython, la sintaxis para ejecutar un script es ``%run script.py``. Por ejemplo,
 
 .. sourcecode:: ipython
 
-    In [1]: %run test.py
-    Hello
-    how
-    are
-    you?
+    In [1]: %run prueba.py
+    Hola
+    como
+    estas?
 
-    In [2]: message
-    Out[2]: 'Hello how are you?'
+    In [2]: mensaje
+    Out[2]: 'Hola como estas?'
 
+El script ha sido ejecutado. Por otra parte las variables definidas en el script (como ``mensaje``) están disponibles en el intérprete.
 
-The script has been executed. Moreover the variables defined in the
-script (such as ``message``) are now available inside the interpeter's
-namespace.
+.. tip::
 
-Other interpreters also offer the possibility to execute scripts (e.g.,
-``execfile`` in the plain Python interpreter, etc.).
+    Otros intérpretes también ofrecen la posibilidad de ejecutar scripts(por ejemplo, ``execfile`` en el intérprete de Python estandar, etc.)
 
-It is also possible In order to execute this script as a *standalone
-program*, by executing the script inside a shell terminal (Linux/Mac
-console or cmd Windows console). For example, if we are in the same
-directory as the test.py file, we can execute this in a console:
+También es posible ejecutar este script como un *programa independiente*, mediante la ejecución de la secuencia de comandos en una terminal (Linux/Mac consola o la consola cmd de Windows). Por ejemplo, si estamos en la mismo directorio que el archivo prueba.py, se puede ejecutar esto en una consola:
 
 .. sourcecode:: bash
 
-    $ python test.py
-    Hello
-    how
-    are
-    you?
+    $ python prueba.py
+    Hola
+    como
+    estas?
 
-Standalone scripts may also take command-line arguments
+.. tip::
 
-In ``file.py``::
+    Los scripts independientes también pueden tener argumentos.
 
-    import sys
-    print sys.argv
+    En ``archivo.py``::
 
-.. sourcecode:: bash
+        import sys
+        print sys.argv
 
-    $ python file.py test arguments
-    ['file.py', 'test', 'arguments']
+    .. sourcecode:: bash
 
-.. note::
+        $ python archivo.py argumento1 argumento2
+        ['archivo.py', 'argumento1', 'argumento2']
 
-    Don't implement option parsing yourself. Use modules such as
-    ``optparse`` or ``argparse`` .
+    .. note::
 
+        No implemente una opción de parseado usted mismo. Utilice módulos como ``optparse`` o ``argparse``.
 
-Importing objects from modules
-------------------------------
+Importando objectos desde módulos
+---------------------------------
 
 .. sourcecode:: ipython
 
     In [1]: import os
 
     In [2]: os
-    Out[2]: <module 'os' from '/usr/lib/python2.6/os.pyc'>
+    Out[2]: <module 'os' from '/usr/lib/python2.7/os.pyc'>
 
     In [3]: os.listdir('.')
     Out[3]:
@@ -105,17 +91,29 @@ Importing objects from modules
      'workflow.rst',
      'index.rst']
 
-And also:
+O también:
 
 .. sourcecode:: ipython
 
     In [4]: from os import listdir
+    In [5]: listdir('.')
+    Out[5]:
+    ['conf.py',
+     'basic_types.rst',
+     'control_flow.rst',
+     'functions.rst',
+     'python_language.rst',
+     'reusing.rst',
+     'file_io.rst',
+     'exceptions.rst',
+     'workflow.rst',
+     'index.rst']
 
-Importing shorthands:
+Importando con abreviaturas:
 
 .. sourcecode:: ipython
 
-    In [5]: import numpy as np
+    In [6]: import numpy as np
 
 .. warning::
 
@@ -123,65 +121,55 @@ Importing shorthands:
 
         from os import *
 
-    This is called the *star import* and please, **Use it with caution**
+    Esto se conoce como *importar una estrella* y por favor, **Debe usarlo con precaución**
 
-    * Makes the code harder to read and understand: where do symbols come
-      from?
+     * Hace que el código sea más difícil de leer y entender: de dónde vienen estas variables?
 
-    * Makes it impossible to guess the functionality by the context and
-      the name (hint: `os.name` is the name of the OS), and to profit
-      usefully from tab completion.
+     * Hace que sea imposible adivinar su funcionalidad por contexto y nombre (pista: `os.name` es el nombre del sistema operativo), y utilizar el autocompletado tabulador.
 
-    * Restricts the variable names you can use: `os.name` might override
-      `name`, or vise-versa.
+     * Limita los nombres de las variables que se pueden utilizar: `os.name` podría anular `name`, o vice-versa.
 
-    * Creates possible name clashes between modules.
+     * Crea posibles conflictos de nombres entre módulos.
 
-    * Makes the code impossible to statically check for undefined
-      symbols.
+     * Hace que el código sea imposible de comprobar estáticamente para variables indefinidas.
 
-Modules are thus a good way to organize code in a hierarchical way. Actually,
-all the scientific computing tools we are going to use are modules::
+.. tip::
 
-    >>> import numpy as np # data arrays
+  Los módulos son una buena forma de organizar el código de una manera jerárquica. En realidad, todas las herramientas de cálculo científico que utilizamos son módulos ::
+
+    >>> import numpy as np # arreglos optimizados
     >>> np.linspace(0, 10, 6)
     array([  0.,   2.,   4.,   6.,   8.,  10.])
-    >>> import scipy # scientific computing
+    >>> import scipy # cálculo científico 
 
-
-In Python(x,y), Ipython(x,y) executes the following imports at startup::
+En Python(x,y), Ipython(x,y) estos módulos se importan automaticamente al inicio:
 
     >>> import numpy
     >>> import numpy as np
     >>> from pylab import *
     >>> import scipy
 
-and it is not necessary to re-import these modules.
+y no es necesario volver a importar estos módulos.
 
+Creando módulos
+---------------
 
-Creating modules
------------------
+.. tip::
 
-If we want to write larger and better organized programs (compared to
-simple scripts), where some objects are defined, (variables, functions,
-classes) and that we want to reuse several times, we have to create our
-own *modules*.
+    Si queremos escribir programas organizados más grandes y mejores (comparados con scripts simples), donde se definen algunos objetos, (variables, funciones, clases) y queremos volver a utilizar varias veces, tenemos crear nuestros propios *módulos*.
 
-Let us create a module ``demo`` contained in the file ``demo.py``:
+Vamos a crear el módulo ``demo`` contenido en el archivo ``demo.py``:
 
   .. literalinclude:: demo.py
 
-In this file, we defined two functions ``print_a`` and ``print_b``. Suppose
-we want to call the ``print_a`` function from the interpreter. We could
-execute the file as a script, but since we just want to have access to
-the function ``print_a``, we are rather going to **import it as a module**.
-The syntax is as follows.
+.. tip::
 
+    En este archivo, definimos dos funciones ``print_a`` y ``print_b``. Si queremos llamar a la función ``print_a`` desde el intérprete. Podríamos ejecutar el archivo como un script, pero ya que sólo se quiere tener acceso a la función ``print_a``, es mejor **importarlo como un módulo**.
+    La sintaxis es la siguiente.
 
 .. sourcecode:: ipython
 
     In [1]: import demo
-
 
     In [2]: demo.print_a()
     a
@@ -189,23 +177,18 @@ The syntax is as follows.
     In [3]: demo.print_b()
     b
 
-Importing the module gives access to its objects, using the
-``module.object`` syntax. Don't forget to put the module's name before the
-object's name, otherwise Python won't recognize the instruction.
+Importar un módulo permite el acceso a sus objetos, utilizando la sintaxis
+``módulo.objecto``. No se olvide de poner el nombre del módulo antes del nombre del objeto, de lo contrario Python no reconocerá la instrucción.
 
-
-Introspection
+Introspección
 
 .. sourcecode:: ipython
 
     In [4]: demo?
-    Type:               module
-    Base Class: <type 'module'>
-    String Form:        <module 'demo' from 'demo.py'>
-    Namespace:  Interactive
-    File:               /home/varoquau/Projects/Python_talks/scipy_2009_tutorial/source/demo.py
-    Docstring:
-        A demo module.
+    Type:       module
+    String Form:<module 'demo' from 'demo.py'>
+    File:       /home/varoquau/Projects/Python_talks/scipy_2009_tutorial/source/demo.py
+    Docstring:  Módulo demo.
 
 
     In [5]: who
@@ -240,8 +223,7 @@ Introspection
     demo.__getattribute__  demo.__setattr__       demo.pyc
     demo.__hash__          demo.__sizeof__
 
-
-Importing objects from modules into the main namespace
+Importando objetos a partir de módulos en el espacio de nombres principal
 
 .. sourcecode:: ipython
 
@@ -259,26 +241,25 @@ Importing objects from modules into the main namespace
 
 .. warning::
 
-    **Module caching**
+    **Módulos almacenados en caché**
 
-     Modules are cached: if you modify ``demo.py`` and re-import it in the
-     old session, you will get the old one.
+     Los módulos se almacenan en caché: si modifica ``demo.py`` y lo vuelve a importar, obtendrá el módulo antiguo.
 
-    Solution:
+    Solución:
 
      .. sourcecode :: ipython
 
         In [10]: reload(demo)
+        Out[10]: <module 'demo' from 'demo.pyc'>
 
+'__main__' y cargando módulos
+-----------------------------
 
-'__main__' and module loading
-------------------------------
-
-File ``demo2.py``:
+Archivo ``demo2.py``:
 
   .. literalinclude:: demo2.py
 
-Importing it:
+Importando:
 
 .. sourcecode:: ipython
 
@@ -287,7 +268,7 @@ Importing it:
 
     In [12]: import demo2
 
-Running it:
+Ejecutando:
 
 .. sourcecode:: ipython
 
@@ -295,100 +276,74 @@ Running it:
     b
     a
 
+Scripts o módulos? Cómo organizar su código
+-------------------------------------------
 
-Scripts or modules? How to organize your code
----------------------------------------------
+.. note:: Regla de oro
 
-.. Note:: Rule of thumb
+    * Los conjuntos de instrucciones que se llaman varias veces deben estar escritos dentro de **funciones** para una mejor reutilización del código.
 
-    * Sets of instructions that are called several times should be
-      written inside **functions** for better code reusability.
+    * Funciones (u otras partes de código) que se llaman varias veces desde scripts deben ser escritos dentro de un **módulo**, de modo que el módulo es importado en los demás scripts (no copie y pegue sus funciones en los demás scripts!).
 
-    * Functions (or other bits of code) that are called from several
-      scripts should be written inside a **module**, so that only the
-      module is imported in the different scripts (do not copy-and-paste
-      your functions in the different scripts!).
+Cómo encontrar módulos e importarlos
+....................................
 
-.. Note:: How to import a module from a remote directory?
+Cuando se ejecuta ``import mimodulo``, el módulo ``mimodulo`` se busca en una lista de directorios. Esta lista incluye por defecto una lista de la ruta de instalación (por ejemplo, ``/usr/lib/python``) así como la lista de los directorios especificados por la variable de entorno ``PYTHONPATH``.
 
-    ..
+La lista de directorios en los que busca Python viene dada por la variable ``sys.path`` 
 
-    Many solutions exist, depending mainly on your operating system. When
-    the ``import mymodule`` statement is executed, the module ``mymodule``
-    is searched in a given list of directories. This list includes a list
-    of installation-dependent default path (e.g., ``/usr/lib/python``) as
-    well as the list of directories specified by the environment variable
-    ``PYTHONPATH``.
+.. sourcecode:: ipython
 
-    The list of directories searched by Python is given by the ``sys.path``
-    variable
+    In [1]: import sys
 
-    .. sourcecode:: ipython
+    In [2]: sys.path
+    Out[2]: 
+    ['',
+     '/home/varoquau/.local/bin',
+     '/usr/lib/python2.7',
+     '/home/varoquau/.local/lib/python2.7/site-packages',
+     '/usr/lib/python2.7/dist-packages',
+     '/usr/local/lib/python2.7/dist-packages',
+     ...]
 
-        In [1]: import sys
+Los módulos deben estar ubicados en la ruta de búsqueda, por lo tanto, se puede:
 
-        In [2]: sys.path
-        Out[2]:
-        ['',
-         '/usr/bin',
-         '/usr/local/include/enthought.traits-1.1.0',
-         '/usr/lib/python2.6',
-         '/usr/lib/python2.6/plat-linux2',
-         '/usr/lib/python2.6/lib-tk',
-         '/usr/lib/python2.6/lib-old',
-         '/usr/lib/python2.6/lib-dynload',
-         '/usr/lib/python2.6/dist-packages',
-         '/usr/lib/pymodules/python2.6',
-         '/usr/lib/pymodules/python2.6/gtk-2.0',
-         '/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
-         '/usr/local/lib/python2.6/dist-packages',
-         '/usr/lib/python2.6/dist-packages',
-         '/usr/lib/pymodules/python2.6/IPython/Extensions',
-         u'/home/gouillar/.ipython']
+* Escribir sus propios módulos dentro de los directorios que ya están definidas en el ruta de búsqueda (por ejemplo, ``$HOME/.local/lib/python2.7/dist-packages``). También puede usar enlaces simbólicos (en Linux) para mantener el código de otro sitio.
 
-    Modules must be located in the search path, therefore you can:
+* Modificar la variable de entorno ``PYTHONPATH`` para incluir el directorios que contienen los módulos definidos por el usuario.
 
-    * write your own modules within directories already defined in the
-      search path (e.g. ``/usr/local/lib/python2.6/dist-packages``). You
-      may use symbolic links (on Linux) to keep the code somewhere else.
-
-    * modify the environment variable ``PYTHONPATH`` to include the
-      directories containing the user-defined modules. On Linux/Unix, add
-      the following line to a file read by the shell at startup (e.g.
-      /etc/profile, .profile)
+  .. tip::
+  
+    En Linux/Unix, agregue la siguiente línea en un archivo para que sea leido por el shell al inicio (por ejemplo, /etc/profile, . profile)
 
     ::
 
-        export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
+      export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
 
-    On Windows, http://support.microsoft.com/kb/310519 explains how to
-    handle environment variables.
+    En Windows, http://support.microsoft.com/kb/310519 explica cómo manejar las variables de entorno.
 
-    * or modify the ``sys.path`` variable itself within a Python script.
+* o modifique la variable ``sys.path`` con un script Python.
+
+  .. tip::
 
     ::
 
-	import sys
-	new_path = '/home/emma/user_defined_modules'
-	if new_path not in sys.path:
-	    sys.path.append(new_path)
+        import sys
+        nuevo_path = '/home/emma/user_defined_modules'
+        if nuevo_path not in sys.path:
+            sys.path.append(nuevo_path)
 
-    This method is not very robust, however, because it makes the code
-    less portable (user-dependent path) and because you have to add the
-    directory to your sys.path each time you want to import from a module in
-    this directory.
+    Este método no es muy robusto, sin embargo, hace que el código menos portable (la ruta depende del usuario) y porque hay que añadir el directorio a su sys.path cada vez que desee importar un módulo en este directorio.
 
-See http://docs.python.org/tutorial/modules.html for more information
-about modules.
+Vea http://docs.python.org/tutorial/modules.html para más información
+acerca de los módulos.
 
-Packages
+Paquetes
 --------
 
-A directory that contains many modules is called a *package*. A package
-is a module with submodules (which can have submodules themselves, etc.).
-A special file called ``__init__.py`` (which may be empty) tells Python
-that the directory is a Python package, from which modules can be
-imported.
+Un directorio que contiene muchos módulos se llama un *paquete*. Un paquete
+es un módulo con submódulos (submódulos con submódulos, etc).
+Un archivo especial llamado ``__init__.py`` (que puede estar vacío) le dice a Python que el directorio es un paquete Python, del cual los módulos pueden ser importados.
 
 .. sourcecode:: bash
 
@@ -414,107 +369,63 @@ imported.
     fourier.py@  __init__.pyc  morphology.py@     setup.py@
 
 
-From Ipython:
+Desde Ipython:
 
 .. sourcecode:: ipython
 
     In [1]: import scipy
 
     In [2]: scipy.__file__
-    Out[2]: '/usr/lib/python2.6/dist-packages/scipy/__init__.pyc'
+    Out[2]: '/usr/lib/python2.7/dist-packages/scipy/__init__.pyc'
 
-    In [3]: import scipy.version
+    In [3]: scipy.__version__
+    Out[3]: '0.9.0'
 
-    In [4]: scipy.version.version
-    Out[4]: '0.7.0'
+    In [4]: import scipy.ndimage.morphology
 
-    In [5]: import scipy.ndimage.morphology
+    In [5]: from scipy.ndimage import morphology
 
-    In [6]: from scipy.ndimage import morphology
+    In [6]: morphology.binary_dilation?
+    Type:       function
+    String Form:<function binary_dilation at 0x9646294>
+    File:       /usr/lib/python2.7/dist-packages/scipy/ndimage/morphology.py
+    Definition: morphology.binary_dilation(input, structure=None, iterations=1, mask=None, output=None, border_value=0, origin=0, brute_force=False)
 
-    In [17]: morphology.binary_dilation?
-    Type:           function
-    Base Class:     <type 'function'>
-    String Form:    <function binary_dilation at 0x9bedd84>
-    Namespace:      Interactive
-    File:           /usr/lib/python2.6/dist-packages/scipy/ndimage/morphology.py
-    Definition:     morphology.binary_dilation(input, structure=None,
-    iterations=1, mask=None, output=None, border_value=0, origin=0,
-    brute_force=False)
-    Docstring:
-        Multi-dimensional binary dilation with the given structure.
+Buenas practicas
+----------------
 
-        An output array can optionally be provided. The origin parameter
-        controls the placement of the filter. If no structuring element is
-        provided an element is generated with a squared connectivity equal
-        to one. The dilation operation is repeated iterations times.  If
-        iterations is less than 1, the dilation is repeated until the
-        result does not change anymore.  If a mask is given, only those
-        elements with a true value at the corresponding mask element are
-        modified at each iteration.
+* Use **nombres significativos** para los objetos
 
+* **Indentado: no es opcional!**
 
+  .. tip::
 
+    El indentado es obligatorio en Python! Cada bloque de comandos después de un ``:`` aumenta un nivel de indentado adicional con respecto a la línea anterior. Como también, después de ``def f():`` o ``while:``. Al final de tales bloques lógicos, se debera disminuir la profundidad de indentado (o aumentar si se introduce un nuevo bloque, etc)
 
-Good practices
---------------
-
-.. Note:: **Good practices**
-
-    * **Indentation: no choice!**
-
-    Indenting is compulsory in Python! Every command block following a
-    colon bears an additional indentation level with respect to the
-    previous line with a colon. One must therefore indent after
-    ``def f():`` or ``while:``. At the end of such logical blocks, one
-    decreases the indentation depth (and re-increases it if a new block
-    is entered, etc.)
-
-    Strict respect of indentation is the price to pay for getting rid of
-    ``{`` or ``;`` characters that delineate logical blocks in other
-    languages. Improper indentation leads to errors such as
+    El uso estricto del indentado es el precio a pagar por deshacerse de ``{`` or ``;`` caracteres que delimitan bloques lógicos en otros lenguajes. La indentación inadecuada produce errores tales como:
 
     .. sourcecode:: ipython
 
         ------------------------------------------------------------
-        IndentationError: unexpected indent (test.py, line 2)
+        IndentationError: unexpected indent (prueba.py, line 2)
 
-    All this indentation business can be a bit confusing in the
-    beginning. However, with the clear indentation, and in the absence of
-    extra characters, the resulting code is very nice to read compared to
-    other languages.
+    El indentado puede ser un poco confuso al principio. Sin embargo, con la una indentación clara, y en ausencia de caracteres extra, el código es muy agradable de leer en comparación con otros lenguajes.
 
-    * **Indentation depth**:
+* **Profundidad de indentado**: En un editor de texto, el indentado puede ser cualquier número positivo de espacios (1, 2, 3, 4, ...). Sin embargo, se considera una buena práctica **indentar con 4 espacios**. Usted puede configurar el editor para asignar a la tecla ``tab`` un indentado de 4 espacio. En Python(x,y), el editor es ya configurado de esa manera.
 
-    Inside your text editor, you may choose to
-    indent with any positive number of spaces (1, 2, 3, 4, ...). However,
-    it is considered good practice to **indent with 4 spaces**. You may
-    configure your editor to map the ``Tab`` key to a 4-space
-    indentation. In Python(x,y), the editor ``Scite`` is already
-    configured this way.
+* **Normas de estilo**
 
-    * **Style guidelines**
+  **Líneas Largas**: no se debe escribir líneas muy largas que se extiendan por más de (por ejemplo) 80 caracteres. Las líneas largas se pueden dividir con el carácter ``\``::
 
-    **Long lines**: you should not write very long lines that span over more
-    than (e.g.) 80 characters. Long lines can be broken with the ``\``
-    character ::
+      >>> linea_larga = "Esta una línea muy muy larga \
+      ... que se divide en dos partes."
 
-        >>> long_line = "Here is a very very long line \
-        ... that we break in two parts."
+  **Espacios**
 
-    **Spaces**
+  Escriba código bien espaciado: ponga espacios en blanco después de las comas, ponga espacios en blanco antes y después de los operadores aritméticos, etc.::
 
-    Write well-spaced code: put whitespaces after commas, around arithmetic
-    operators, etc.::
+      >>> a = 1 # si
+      >>> a=1 # demasiado estrecho
 
-        >>> a = 1 # yes
-        >>> a=1 # too cramped
-
-    A certain number of rules
-    for writing "beautiful" code (and more importantly using the same
-    conventions as anybody else!) are given in the `Style Guide for Python
-    Code <http://www.python.org/dev/peps/pep-0008>`_.
-
-    * Use **meaningful** object **names**
-
+  Un cierto número de normas para escribir código ``hermoso`` (y lo más importante el uso de la misma convención para cualquier persona!) se dan en `Style Guide for Python Code <http://www.python.org/dev/peps/pep-0008>`_.
 

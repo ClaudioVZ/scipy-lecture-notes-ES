@@ -1,48 +1,53 @@
-Control Flow
-============
+Control de flujo
+================
 
-Controls the order in which the code is executed.
+Controla el orden en el que se ejecuta el código.
 
 if/elif/else
 ------------
 
-.. sourcecode:: ipython
+.. sourcecode:: python
 
     >>> if 2**2 == 4:
-    ...     print 'Obvious!'
+    ...     print 'Obvio!'
     ...
-    Obvious!
+    Obvio!
 
+.. sourcecode:: python
 
-**Blocks are delimited by indentation**
+    >>> a = -1
+    >>> if a > 0:
+    ...     print 'Número positivo'
+    ... else:
+    ...     print 'Número negativo'
+    ...
+    Número negativo
 
-Type the following lines in your Python interpreter, and be careful to
-**respect the indentation depth**. The Ipython shell automatically
-increases the indentation depth after a column ``:`` sign; to
-decrease the indentation depth, go four spaces to the left with the
-Backspace key. Press the Enter key twice to leave the logical block.
+**Los bloques de código son delimitados por indentación**
+
+.. tip::
+   
+    Escriba las siguientes líneas en el intérprete de Python, y tenga cuidado **respecto a la profundidad de indentación**. El shell IPython automáticamente aumenta la profundidad de indentado una columna después del signo ``:``, para disminuir la profundidad de indentado, presione la tecla de retroceso o la flecha izquierda. Pulse la tecla Intro dos veces para salir del bloque lógico.
 
 .. sourcecode:: ipython
 
     In [1]: a = 10
 
     In [2]: if a == 1:
-       ...:     print(1)
+       ...:     print 1
        ...: elif a == 2:
-       ...:     print(2)
+       ...:     print 2
        ...: else:
-       ...:     print('A lot')
+       ...:     print('Diferente de 1 y 2')
        ...:
-    A lot
+    Diferente de 1 y 2
 
-Indentation is compulsory in scripts as well. As an exercise, re-type the
-previous lines with the same indentation in a script ``condition.py``, and
-execute the script with ``run condition.py`` in Ipython.
+La indentación es obligatoria en scripts. Como ejercicio, reescriba la líneas anteriores en el script ``indentado.py`` y ejecutelo en IPython usando ``run``.
 
 for/range
 ----------
 
-Iterating with an index::
+Iterando con indices::
 
     >>> for i in range(4):
     ...     print(i)
@@ -51,19 +56,19 @@ Iterating with an index::
     2
     3
 
-But most often, it is more readable to iterate over values::
+A menudo, el código es más legible si se itera sobre valores:
 
-    >>> for word in ('cool', 'powerful', 'readable'):
-    ...     print('Python is %s' % word)
-    Python is cool
-    Python is powerful
-    Python is readable
+    >>> for palabra in ('interesante', 'poderoso', 'legible'):
+    ...     print('Python es %s' % palabra)
+    Python es interesante
+    Python es poderoso
+    Python es legible
 
 
 while/break/continue
 ---------------------
 
-Typical C-style while loop (Mandelbrot problem)::
+Bucle while al estilo C (problema de Mandelbrot)::
 
     >>> z = 1 + 1j
     >>> while abs(z) < 100:
@@ -71,9 +76,9 @@ Typical C-style while loop (Mandelbrot problem)::
     >>> z
     (-134+352j)
 
-**More advanced features**
+**Características más avanzadas**
 
-``break`` out of enclosing for/while loop::
+``break`` sale del bucle encerrado por for/while::
 
     >>> z = 1 + 1j
 
@@ -83,7 +88,7 @@ Typical C-style while loop (Mandelbrot problem)::
     ...     z = z**2 + 1
 
 
-``continue`` the next iteration of a loop.::
+``continue`` la siguiente iteración de un bucle.::
 
     >>> a = [1, 0, 2, 4]
     >>> for element in a:
@@ -94,31 +99,29 @@ Typical C-style while loop (Mandelbrot problem)::
     0.5
     0.25
 
-
-
-Conditional Expressions
------------------------
+Expresiones condicionales
+-------------------------
 
 :``if <OBJECT>``:
 
-  Evaluates to False:
-    * any number equal to zero (0, 0.0, 0+0j)
-    * an empty container (list, tuple, set, dictionary, ...)
+  Se evalúa como False:
+    * Cualquier número igual a cero (0, 0.0, 0+0j)
+    * Un contenedor vacío (lista, tupla, conjunto, diccionario, ...)
     * ``False``, ``None``
 
-  Evaluates to True:
-    * everything else
+  Se evalúa como True:
+    * Todo lo demás
 
 :``a == b``:
 
-  Tests equality, with logics::
+  Prueba de igualdad, con operadores lógicos::
 
     >>> 1 == 1.
     True
 
 :``a is b``:
 
-  Tests identity: both sides are the same object::
+  Prueba de identidad: ambos lados son el mismo objeto::
 
     >>> 1 is 1.
     False
@@ -130,7 +133,7 @@ Conditional Expressions
 
 :``a in b``:
 
-  For any collection ``b``: ``b`` contains ``a`` ::
+  Para todas las colecciones ``b``: ``b`` contiene ``a`` ::
 
     >>> b = [1, 2, 3]
     >>> 2 in b
@@ -138,99 +141,91 @@ Conditional Expressions
     >>> 5 in b
     False
 
+  Si ``b`` es un diccionario, se prueba si ``a`` es un clave en ``b``.
 
-  If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
+Iteración avanzada
+------------------
 
-Advanced iteration
--------------------------
+Iterando sobre una *secuencia*
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Iterate over any *sequence*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Se puede iterar sobre una secuencia (cadenas, listas, claves en un diccionario, lineas en un archivo, ...)::
 
-You can iterate over any sequence (string, list, keys in a dictionary, lines in
-a file, ...)::
+    >>> vocales = 'aeiou'
 
-    >>> vowels = 'aeiouy'
-
-    >>> for i in 'powerful':
-    ...     if i in vowels:
-    ...         print(i),
-    o e u
+    >>> for i in 'poderoso':
+    ...     if i in vocales:
+    ...         print i,
+    o e o o
 
 ::
 
-    >>> message = "Hello how are you?"
-    >>> message.split() # returns a list
-    ['Hello', 'how', 'are', 'you?']
-    >>> for word in message.split():
-    ...     print word
+    >>> mensaje = "Hola como estas?"
+    >>> mensaje.split() # devuelve una lista
+    ['Hola', 'como', 'estas?']
+    >>> for palabra in mensaje.split():
+    ...     print palabra
     ...
-    Hello
-    how
-    are
-    you?
+    Hola
+    como
+    estas?
 
-Few languages (in particular, languages for scientific computing) allow to
-loop over anything but integers/indices. With Python it is possible to
-loop exactly over the objects of interest without bothering with indices
-you often don't care about.
+.. tip::
+
+    Pocos lenguajes (en particular, los lenguajes de computación científica) permiten bucles sobre cualquier cosa menos sobre enteros/índices. Con Python es posible hacer un bucle sobre los objetos de interés sin preocuparse por los índices que a menudo no importan. Esta característica hace al código más legible.
 
 
-.. warning:: Not safe to modify the sequence you are iterating over.
+.. warning:: No es seguro modificar la secuencia que se está iterando.
 
-Keeping track of enumeration number
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Seguimiento de una enumeración
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Common task is to iterate over a sequence while keeping track of the
-item number.
+Una tarea común es iterar sobre una secuencia mientras se enumera los elementos.
 
-* Could use while loop with a counter as above. Or a for loop::
+* Puede utilizarse un bucle while con un contador como el ejemplo anterior. O un bucle for::
 
-    >>> words = ('cool', 'powerful', 'readable')
-    >>> for i in range(0, len(words)):
-    ...     print i, words[i]
-    0 cool
-    1 powerful
-    2 readable
+    >>> palabras = ('interesante', 'poderoso', 'legible')
+    >>> for indice in range(0, len(palabras)):
+    ...     print indice, palabras[indice] 
+    0 interesante
+    1 poderoso
+    2 legible
 
-* But, Python provides ``enumerate`` keyword for this::
+* Pero, Python provee la palabra clave ``enumerate``::
 
-    >>> for index, item in enumerate(words):
-    ...     print index, item
-    0 cool
-    1 powerful
-    2 readable
+    >>> for indice, elemento in enumerate(palabras):
+    ...     print indice, elemento
+    0 estupendo
+    1 poderoso
+    2 legible
 
-
-
-Looping over a dictionary
+Bucle sobre un diccionario
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use **iteritems**::
 
     >>> d = {'a': 1, 'b':1.2, 'c':1j}
+    >>> for clave, valor in d.iteritems():
+    ...     print('Clave: %s con valor: %s' % (clave, valor))
+    Clave: a con valor: 1
+    Clave: c con valor: 1j
+    Clave: b con valor: 1.2
 
-    >>> for key, val in d.iteritems():
-    ...     print('Key: %s has value: %s' % (key, val))
-    Key: a has value: 1
-    Key: c has value: 1j
-    Key: b has value: 1.2
-
-List Comprehensions
--------------------
+Listas por comprensión
+----------------------
 
 ::
 
-    >>> [i**2 for i in range(4)]
+    >>> [elemento**2 for elemento in range(4)]
     [0, 1, 4, 9]
 
 _____
 
 
-.. topic:: Exercise
+.. topic:: Ejercicio
     :class: green
 
-    Compute the decimals of Pi using the Wallis formula:
+    Calcular los decimales de Pi usando la formula de Wallis:
 
     .. math::
         \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}

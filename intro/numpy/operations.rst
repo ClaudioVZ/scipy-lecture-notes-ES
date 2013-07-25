@@ -1,58 +1,61 @@
 
 ..  For doctests
-     
+
     >>> import numpy as np
     >>> np.random.seed(0)
 
 .. currentmodule:: numpy
 
-Numerical operations on arrays
+Operaciones numéricas en arreglos
 =================================
 
-.. contents:: Section contents
+.. contents:: Contenido de sección
     :local:
     :depth: 1
 
+Operaciones elemento a elemento
+-------------------------------
 
-Elementwise operations
-----------------------
+Con escalares::
 
-With scalars:
+    >>> a = np.array([1, 2, 3, 4])
+    >>> a + 1
+    array([2, 3, 4, 5])
+    >>> 2**a
+    array([ 2,  4,  8, 16])
 
->>> a = np.array([1, 2, 3, 4])
->>> a + 1
-array([2, 3, 4, 5])
->>> 2**a
-array([ 2,  4,  8, 16])
+Toda las operaciones aritméticas son elemento a elemento::
 
-All arithmetic operates elementwise:
+    >>> b = np.ones(4) + 1
+    >>> a - b
+    array([-1.,  0.,  1.,  2.])
+    >>> a * b
+    array([ 2.,  4.,  6.,  8.])
 
->>> b = np.ones(4) + 1
->>> a - b
-array([-1.,  0.,  1.,  2.])
->>> a * b
-array([ 2.,  4.,  6.,  8.])
+    >>> j = np.arange(5)
+    >>> 2**(j + 1) - j
+    array([ 2,  3,  6, 13, 28])
 
->>> j = np.arange(5)
->>> 2**(j + 1) - j
-array([ 2,  3,  6, 13, 28])
+.. warning:: **Multiplicación de arreglos no es multiplicación matricial:**
 
-.. warning:: **Array multiplication is not matrix multiplication:**
+    ::
 
-    >>> c = np.ones((3, 3))
-    >>> c * c                   # NOT matrix multiplication!
-    array([[ 1.,  1.,  1.],
-           [ 1.,  1.,  1.],
-           [ 1.,  1.,  1.]])
+        >>> c = np.ones((3, 3))
+        >>> c * c                   # no es multiplicación matricial!
+        array([[ 1.,  1.,  1.],
+            [ 1.,  1.,  1.],
+            [ 1.,  1.,  1.]])
 
-.. note:: **Matrix multiplication:**
+.. note:: **Multiplicación matricial:**
 
-   >>> c.dot(c)
-   array([[ 3.,  3.,  3.],
-          [ 3.,  3.,  3.],
-          [ 3.,  3.,  3.]])
+    ::
 
-Comparisons::
+        >>> c.dot(c)       # tambien, np.dot(c, c)
+        array([[ 3.,  3.,  3.],
+                [ 3.,  3.,  3.],
+                [ 3.,  3.,  3.]])
+
+Comparaciones::
 
     >>> a = np.array([1, 2, 3, 4])
     >>> b = np.array([4, 2, 2, 4])
@@ -61,7 +64,7 @@ Comparisons::
     >>> a > b
     array([False, False,  True, False], dtype=bool)
 
-Logical operations::
+Operaciones logicas::
 
     >>> a = np.array([1, 1, 0, 0], dtype=bool)
     >>> b = np.array([1, 0, 1, 0], dtype=bool)
@@ -70,180 +73,198 @@ Logical operations::
     >>> np.logical_and(a, b)
     array([ True, False, False, False], dtype=bool)
 
-Shape mismatches::
+Desajustes de forma
+
+.. sourcecode:: pycon
 
     >>> a = np.arange(4)
-    >>> a
-    array([0, 1, 2, 3])
-    >>> a + np.array([1, 2])    # doctest: +SKIP
+    >>> a + np.array([1, 2])
     Traceback (most recent call last):
-    File "<stdin>", line 1, in <module>
-    ValueError: shape mismatch: objects cannot be broadcast to a single shape
+      File "<stdin>", line 1, in <module>
+    ValueError: operands could not be broadcast together with shapes (4) (2)
 
-**'Broadcast'?** We'll return to that :ref:`later <broadcasting>`.
+**Broadcasting?** lo veremos :ref:`despues <broadcasting>`.
 
-**Transposition**::
+Transposición::
 
-    >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
+    >>> a = np.triu(np.ones((3, 3)), 1)   # ver help(np.triu)
     >>> a
     array([[ 0.,  1.,  1.],
            [ 0.,  0.,  1.],
            [ 0.,  0.,  0.]])
-    >>> a.T
+    >>> a.T   # tambien, a.transpose()
     array([[ 0.,  0.,  0.],
            [ 1.,  0.,  0.],
            [ 1.,  1.,  0.]])
 
-.. note:: **Linear algebra**
+.. note:: **Algebra linear**
 
-    The sub-module :mod:`np.linalg` implements basic linear algebra, such as
-    solving linear systems, singular value decomposition, etc. However, it is
-    not guaranteed to be compiled using efficient routines, and thus we
-    recommend the use of :mod:`scipy.linalg`, as detailed in section
-    :ref:`scipy_linalg`
+    El submódulo :mod:`numpy.linalg` implementa el álgebra lineal básico, como resolución de sistemas lineales, descomposición en valores singulares, etc. Sin embargo, esto no garantiza que sea compilado utilizando rutinas eficientes, y por lo tanto se recomienda el uso de :mod:`scipy.linalg`, como se detalla en la sección :ref:`scipy_linalg`
 
-.. topic:: Exercise
+.. topic:: Ejercicio
     :class: green
 
-    Generate arrays `[2**0, 2**1, 2**2, 2**3, 2**4]` and 
-    `a_j = 2^(3*j) - j`
+    Generar los arreglos ``[2**0, 2**1, 2**2, 2**3, 2**4]`` y ``a_j = 2^(3*j) - j``
 
+Reducciones básicas
+-------------------
 
-Basic reductions
-----------------
+Cálculando sumas::
 
-Computing sums:
-
->>> x = np.array([1, 2, 3, 4])
->>> np.sum(x)
-10
->>> x.sum()
-10
+    >>> x = np.array([1, 2, 3, 4])
+    >>> np.sum(x)
+    10
+    >>> x.sum()
+    10
 
 .. image:: reductions.png
     :align: right
 
-Sum by rows and by columns::
+Suma por filas y por columnas::
 
     >>> x = np.array([[1, 1], [2, 2]])
     >>> x
     array([[1, 1],
            [2, 2]])
-    >>> x.sum(axis=0)   # columns (first dimension)
+    >>> x.sum(axis=0)   # columna (primera dimensión)
     array([3, 3])
     >>> x[:, 0].sum(), x[:, 1].sum()
     (3, 3)
-    >>> x.sum(axis=1)   # rows (second dimension)
+    >>> x.sum(axis=1)   # fila (segunda dimensión)
     array([2, 4])
     >>> x[0, :].sum(), x[1, :].sum()
     (2, 4)
 
-Same idea in higher dimensions::
+.. tip::
+
+  El mismo procedimiento para arreglos multidimensionales::
 
     >>> x = np.random.rand(2, 2, 2)
-    >>> x.sum(axis=2)[0, 1]     # doctest: +ELLIPSIS
+    >>> x.sum(axis=2)[0, 1]
     1.14764...
-    >>> x[0, 1, :].sum()     # doctest: +ELLIPSIS
+    >>> x[0, 1, :].sum()
     1.14764...
 
-**Other reductions** --- works the same way (and take ``axis=``)
+**Otras reducciones** --- funcionan de la misma manera (también ``axis=``)
 
-- Statistics:
+- Estadística::
 
-  >>> x = np.array([1, 2, 3, 1])
-  >>> y = np.array([[1, 2, 3], [5, 6, 1]])
-  >>> x.mean()
-  1.75
-  >>> np.median(x)
-  1.5
-  >>> np.median(y, axis=-1) # last axis
-  array([ 2.,  5.])
+    >>> x = np.array([1, 2, 3, 1])
+    >>> y = np.array([[1, 2, 3], [5, 6, 1]])
+    >>> x.mean()
+    1.75
+    >>> np.median(x)
+    1.5
+    >>> np.median(y, axis=-1) # la ultima dimensión
+    array([ 2.,  5.])
+    >>> x.std()          # desviación estándar de población (no muestra).
+    0.82915619758884995
 
-  >>> x.std()          # full population standard dev.
-  0.82915619758884995
+- Valores extremos::
 
-- Extrema:
+    >>> x = np.array([1, 3, 2])
+    >>> x.min()
+    1
+    >>> x.max()
+    3
+    >>> x.argmin()  # índice del valor mínimo
+    0
+    >>> x.argmax()  # índice del valor máximo
+    1
 
-  >>> x = np.array([1, 3, 2])
-  >>> x.min()
-  1
-  >>> x.max()
-  3
+- Operaciones lógicas::
 
-  >>> x.argmin()  # index of minimum
-  0
-  >>> x.argmax()  # index of maximum
-  1
-
-- Logical operations:
-
-  >>> np.all([True, True, False])
-  False
-  >>> np.any([True, True, False])
-  True
+    >>> np.all([True, True, False])
+    False
+    >>> np.any([True, True, False])
+    True
 
   .. note::
 
-     Can be used for array comparisons:
+     Puede ser usado para comparar arreglos::
 
-     >>> a = np.zeros((100, 100))
-     >>> np.any(a != 0)
-     False
-     >>> np.all(a == a)
-     True
+        >>> a = np.zeros((100, 100))
+        >>> np.any(a != 0)
+        False
+        >>> np.all(a == a)
+        True
+        >>> a = np.array([1, 2, 3, 2])
+        >>> b = np.array([2, 2, 3, 2])
+        >>> c = np.array([6, 4, 4, 5])
+        >>> ((a <= b) & (b <= c)).all()
+        True
 
-     >>> a = np.array([1, 2, 3, 2])
-     >>> b = np.array([2, 2, 3, 2])
-     >>> c = np.array([6, 4, 4, 5])
-     >>> ((a <= b) & (b <= c)).all()
-     True
+- ... y muchos más (mejor para aprender sobre la marcha).
 
-- ... and many more (best to learn as you go).
+.. topic:: Ejemplo: datos estadísticos
 
-.. topic:: Example: data statistics
+  Datos en :download:`populations.txt <../../data/populations.txt>` 
+describe las poblaciones de liebres y linces (y zanahorias) en el norte de Canadá durante 20 años.
 
-  Data in :download:`populations.txt <../../data/populations.txt>`
-  describes the populations of hares and lynxes (and carrots) in northern
-  Canada during 20 years.
+  Primero graficamos los datos::
 
-  We can first plot the data::
-
-    >>> data = np.loadtxt('data/populations.txt')
-    >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
-
-    >>> from matplotlib import pyplot as plt
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
+    >>> datos = np.loadtxt('data/populations.txt')
+    >>> year, liebres, linces, zanahorias = datos.T  # truco: columnas a variables
+    >>> import matplotlib.pyplot as plt
+    >>> plt.axes([0.2, 0.1, 0.5, 0.8])
     <matplotlib.axes.Axes object at ...>
-    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+    >>> plt.plot(year, liebres, year, linces, year, zanahorias)
     [<matplotlib.lines.Line2D object at ...>, ...]
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+    >>> plt.legend(('Liebre', 'Lince', 'Zanahoria'), loc=(1.05, 0.5))
     <matplotlib.legend.Legend object at ...>
+    >>> plt.show()
 
   .. plot:: pyplots/numpy_intro_4.py
 
-  The mean populations over time::
+  La media de cada población son::
 
-    >>> populations = data[:, 1:]
-    >>> populations.mean(axis=0)
+    >>> poblaciones = datos[:, 1:]
+    >>> poblaciones.mean(axis=0)
     array([ 34080.95238095,  20166.66666667,  42400.        ])
 
-  The sample standard deviations::
+  Las desviaciones estándar son::
 
-    >>> populations.std(axis=0)
+    >>> poblaciones.std(axis=0)
     array([ 20897.90645809,  16254.59153691,   3322.50622558])
 
-  Which species has the highest population each year?
+  Qué especie tiene la mayor población cada año?::
 
-  >>> np.argmax(populations, axis=1)
-  array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
+    >>> np.argmax(poblaciones, axis=1)
+    array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
-.. topic:: Example: diffusion simulation using a random walk algorithm
+  Si no se comprende lo anterior imprimimos los índices:
+
+    >>> for fila, columna in enumerate(np.argmax(poblaciones, axis=1)):
+    ...     print fila, columna
+    ... 
+    0 2
+    1 2
+    2 0
+    3 0
+    4 1
+    5 1
+    6 2
+    7 2
+    8 2
+    9 2
+    10 2
+    11 2
+    12 0
+    13 0
+    14 0
+    15 1
+    16 2
+    17 2
+    18 2
+    19 2
+    20 2
+
+.. topic:: Ejemplo: simulación de difusión usando el algoritmo random walk
 
   .. image:: random_walk.png
      :align: center
 
-  What is the typical distance from the origin of a random walker after
-  ``t`` left or right jumps?
+  Cuál es la distancia típica al origen en un recorrido al azar después de ``t`` saltos a la derecha o izquierda?
 
   .. only:: latex
 
@@ -256,41 +277,40 @@ Same idea in higher dimensions::
         :align: center
         :width: 100%
 
-  >>> n_stories = 1000 # number of walkers
-  >>> t_max = 200      # time during which we follow the walker
+  >>> numero_recorridos = 1000 # número de recorridos
+  >>> tiempo_maximo = 200      # tiempo de duración de cada recorrido
 
-  We randomly choose all the steps 1 or -1 of the walk::
+  Elegimos al azar todos los pasos 1 o -1 del recorrido::
 
-   >>> t = np.arange(t_max)
-   >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-   >>> np.unique(steps) # Verification: all steps are 1 or -1
+   >>> tiempo = np.arange(tiempo_maximo)
+   >>> pasos = 2 * np.random.random_integers(0, 1, (numero_recorridos, tiempo_maximo)) - 1
+   >>> np.unique(pasos) # Verificación: todos los pasos son 1 o -1
    array([-1,  1])
 
-  We build the walks by summing steps along the time::
+  Construimos los recorridos como la suma de los pasos a lo largo del tiempo::
 
-   >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
-   >>> sq_distance = positions**2
+   >>> posiciones = np.cumsum(pasos, axis=1) # eje = 1: dimensión tiempo
+   >>> distancias_al_cuadrado = posiciones**2
 
-  We get the mean in the axis of the stories::
+  Obtenemos la media en el eje de los recorridos::
 
-   >>> mean_sq_distance = np.mean(sq_distance, axis=0)
+   >>> media_distancias_al_cuadrado = np.mean(distancias_al_cuadrado, axis=0)
 
   Plot the results::
 
-   >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
+   >>> plt.figure(figsize=(8, 6))
    <matplotlib.figure.Figure object at ...>
-   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
+   >>> plt.plot(tiempo, np.sqrt(media_distancias_al_cuadrado), 'g.', tiempo, np.sqrt(tiempo), 'y-')
    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-   >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
+   >>> plt.xlabel(r'$tiempo$')
    <matplotlib.text.Text object at ...>
-   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
+   >>> plt.ylabel(r'$\sqrt{\Delta x^{2}}$')
    <matplotlib.text.Text object at ...>
-  
+   >>> plt.show()
 
   .. plot:: pyplots/numpy_intro_5.py
 
 The RMS distance grows as the square root of the time!
-
 
 .. arithmetic: sum/prod/mean/std
 
@@ -347,7 +367,7 @@ Let's verify::
            [20, 21, 22],
            [30, 31, 32]])
 
-An useful trick:
+An useful trick::
 
     >>> a = np.arange(0, 40, 10)
     >>> a.shape
@@ -376,9 +396,11 @@ We have already used broadcasting without knowing it!::
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.]])
 
-Broadcasting seems a bit magical, but it is actually quite natural to use it
-when we want to solve a problem whose output data is an array with more
-dimensions than input data.
+.. tip::
+
+    Broadcasting seems a bit magical, but it is actually quite natural to
+    use it when we want to solve a problem whose output data is an array
+    with more dimensions than input data.
 
 .. topic:: Example
 
@@ -410,7 +432,9 @@ dimensions than input data.
 
 A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
-the origin of points on a 10x10 grid, we can do::
+the origin of points on a 10x10 grid, we can do
+
+.. sourcecode:: pycon
 
     >>> x, y = np.arange(5), np.arange(5)
     >>> distance = np.sqrt(x ** 2 + y[:, np.newaxis] ** 2)
@@ -421,7 +445,7 @@ the origin of points on a 10x10 grid, we can do::
            [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
            [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
- Or in color::
+Or in color::
 
     >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
     <matplotlib.collections.PolyCollection object at ...>
@@ -447,9 +471,12 @@ and y of the previous example, with two "significant dimensions"::
     ((5, 1), (1, 5))
     >>> distance = np.sqrt(x ** 2 + y ** 2)
 
-So, ``np.ogrid`` is very useful as soon as we have to handle computations on a
-grid. On the other hand, ``np.mgrid`` directly provides matrices full of
-indices for cases where we can't (or don't want to) benefit from broadcasting::
+.. tip::
+
+  So, ``np.ogrid`` is very useful as soon as we have to handle
+  computations on a grid. On the other hand, ``np.mgrid`` directly
+  provides matrices full of indices for cases where we can't (or don't
+  want to) benefit from broadcasting::
 
     >>> x, y = np.mgrid[0:4, 0:4]
     >>> x
@@ -463,7 +490,7 @@ indices for cases where we can't (or don't want to) benefit from broadcasting::
            [0, 1, 2, 3],
            [0, 1, 2, 3]])
 
-However, in practice, this is rarely needed!
+  However, in practice, this is rarely needed!
 
 .. rules
 
@@ -483,15 +510,17 @@ Array shape manipulation
 Flattening
 ...........
 
->>> a = np.array([[1, 2, 3], [4, 5, 6]])
->>> a.ravel()
-array([1, 2, 3, 4, 5, 6])
->>> a.T
-array([[1, 4],
-       [2, 5],
-       [3, 6]])
->>> a.T.ravel()
-array([1, 4, 2, 5, 3, 6])
+::
+
+    >>> a = np.array([[1, 2, 3], [4, 5, 6]])
+    >>> a.ravel()
+    array([1, 2, 3, 4, 5, 6])
+    >>> a.T
+    array([[1, 4],
+        [2, 5],
+        [3, 6]])
+    >>> a.T.ravel()
+    array([1, 4, 2, 5, 3, 6])
 
 Higher dimensions: last dimensions ravel out "first".
 
@@ -507,59 +536,71 @@ The inverse operation to flattening::
     array([[1, 2, 3],
            [4, 5, 6]])
 
-Creating an array with a different shape, from another array::
-
-    >>> a = np.arange(36)
-    >>> b = a.reshape((6, 6))
-    >>> b
-    array([[ 0,  1,  2,  3,  4,  5],
-           [ 6,  7,  8,  9, 10, 11],
-           [12, 13, 14, 15, 16, 17],
-           [18, 19, 20, 21, 22, 23],
-           [24, 25, 26, 27, 28, 29],
-           [30, 31, 32, 33, 34, 35]])
-
 Or, ::
 
-    >>> b = a.reshape((6, -1))    # unspecified (-1) value is inferred
+    >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
 
-Views and copies
-................
+.. warning:: 
+   
+   ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)), 
+   or copy
 
-``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)),
-not a copy:
+.. tip::
 
->>> b[0, 0] = 99
->>> a
-array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-       17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-       34, 35])
+  ::
 
-Beware: reshape may also return a copy!
+    >>> b[0, 0] = 99
+    >>> a
+    array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+        34, 35])
 
->>> a = np.zeros((3, 2))
->>> b = a.T.reshape(3*2)
->>> b[0] = 9
->>> a
-array([[ 0.,  0.],
-       [ 0.,  0.],
-       [ 0.,  0.]])
+  Beware: reshape may also return a copy!::
 
-To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
+    >>> a = np.zeros((3, 2))
+    >>> b = a.T.reshape(3*2)
+    >>> b[0] = 9
+    >>> a
+    array([[ 0.,  0.],
+        [ 0.,  0.],
+        [ 0.,  0.]])
+
+  To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
+
+Adding a dimension
+...................
+
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
+
+    >>> z = np.array([1, 2, 3])
+    >>> z
+    array([1, 2, 3])
+
+    >>> z[:, np.newaxis]
+    array([[1],
+        [2],
+        [3]])
+
+    >>> z[np.newaxis, :]
+    array([[1, 2, 3]])
+
+
 
 Dimension shuffling
 ....................
 
->>> a = np.arange(4*3*2).reshape(4, 3, 2)
->>> a.shape
-(4, 3, 2)
->>> a[0, 2, 1]
-5
->>> b = a.transpose(1, 2, 0)
->>> b.shape
-(3, 2, 4)
->>> b[2, 1, 0]
-5
+::
+
+    >>> a = np.arange(4*3*2).reshape(4, 3, 2)
+    >>> a.shape
+    (4, 3, 2)
+    >>> a[0, 2, 1]
+    5
+    >>> b = a.transpose(1, 2, 0)
+    >>> b.shape
+    (3, 2, 4)
+    >>> b[2, 1, 0]
+    5
 
 Also creates a view::
 
@@ -577,13 +618,16 @@ Size of an array can be changed with ``ndarray.resize``::
     >>> a
     array([0, 1, 2, 3, 0, 0, 0, 0])
 
-However, it must not be referred to somewhere else::
+However, it must not be referred to somewhere else:
+
+.. sourcecode:: pycon
 
     >>> b = a
     >>> a.resize((4,))   # doctest: +SKIP
-    ...
-    ValueError: cannot resize an array references or is referenced
-    by another array in this way.  Use the resize function
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ValueError: cannot resize an array that has been referenced or is
+    referencing another array in this way.  Use the resize function
 
 Some examples of real-world use cases
 ......................................
@@ -603,7 +647,7 @@ Some examples of real-world use cases
         b = a + 1
       end subroutine some_function
 
-   We can use f2py to wrap this fortran code in Python: 
+   We can use f2py to wrap this fortran code in Python:
    ``f2py -c -m fortran_module 2_a_fortran_module.f90``
 
    .. sourcecode:: python
@@ -756,7 +800,7 @@ Finding minima and maxima::
 
 
 .. XXX: need a frame for summaries
-   
+
     * Arithmetic etc. are elementwise operations
     * Basic linear algebra, ``.dot()``
     * Reductions: ``sum(axis=1)``, ``std()``, ``all()``, ``any()``
@@ -780,7 +824,7 @@ Some exercises
         >>> lena = misc.lena()
 
     **Note:** In older versions of scipy, you will find lena under
-    `scipy.lena()`
+    ``scipy.lena()``
 
     Here are a few images we will be able to obtain with our manipulations:
     use different colormaps, crop the image, change some parts of the image.
@@ -844,11 +888,11 @@ Some exercises
 
     1. Form the 2-D array (without typing it in explicitly)::
 
-        1  6 11
-        2  7 12
-        3  8 13
-        4  9 14
-        5 10 15
+        [[1,  6, 11],
+         [2,  7, 12],
+         [3,  8, 13],
+         [4,  9, 14],
+         [5, 10, 15]]
 
        and generate a new array containing its 2nd and 4th rows.
 
