@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,13 +25,90 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../index.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li> 
+        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -40,9 +117,9 @@
           <div class="body">
             
   <div class="section" id="soluciones">
-<h1>Soluciones<a class="headerlink" href="#soluciones" title="Permalink to this headline">¶</a></h1>
+<h1>Soluciones<a class="headerlink" href="#soluciones" title="Enlazar permanentemente con este título">¶</a></h1>
 <div class="section" id="la-solucion-pi-wallis">
-<span id="pi-wallis"></span><h2>La solución Pi Wallis<a class="headerlink" href="#la-solucion-pi-wallis" title="Permalink to this headline">¶</a></h2>
+<span id="pi-wallis"></span><h2>La solución Pi Wallis<a class="headerlink" href="#la-solucion-pi-wallis" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Calcula los decimales de Pi usando la fórmula de Wallis:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="sd">The correction for the calculation of pi using the Wallis formula.</span>
@@ -54,7 +131,7 @@
 <div class="newline"></div><span class="n">my_pi</span> <span class="o">=</span> <span class="mf">1.</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">):</span>
-<div class="newline"></div>    <span class="n">my_pi</span> <span class="o">*=</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
+<div class="newline"></div>    <span class="n">my_pi</span> <span class="o">*=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">i</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">i</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">my_pi</span> <span class="o">*=</span> <span class="mi">2</span>
 <div class="newline"></div>
@@ -62,30 +139,32 @@
 <div class="newline"></div><span class="k">print</span> <span class="n">my_pi</span>
 <div class="newline"></div><span class="k">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">my_pi</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">################################################################################</span>
+<div class="newline"></div><span class="c">###############################################################################</span>
 <div class="newline"></div><span class="n">num</span> <span class="o">=</span> <span class="mi">1</span>
 <div class="newline"></div><span class="n">den</span> <span class="o">=</span> <span class="mi">1</span>
 <div class="newline"></div><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">):</span>
-<div class="newline"></div>    <span class="n">tmp</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="o">*</span><span class="n">i</span>
+<div class="newline"></div>    <span class="n">tmp</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span>
 <div class="newline"></div>    <span class="n">num</span> <span class="o">*=</span> <span class="n">tmp</span>
-<div class="newline"></div>    <span class="n">den</span> <span class="o">*=</span> <span class="n">tmp</span><span class="o">-</span><span class="mi">1</span>
+<div class="newline"></div>    <span class="n">den</span> <span class="o">*=</span> <span class="n">tmp</span> <span class="o">-</span> <span class="mi">1</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="n">better_pi</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">num</span><span class="o">/</span><span class="n">den</span><span class="p">)</span>
+<div class="newline"></div><span class="n">better_pi</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">num</span> <span class="o">/</span> <span class="n">den</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="k">print</span> <span class="n">pi</span>
 <div class="newline"></div><span class="k">print</span> <span class="n">better_pi</span>
 <div class="newline"></div><span class="k">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">)</span>
 <div class="newline"></div><span class="k">print</span> <span class="nb">abs</span><span class="p">(</span><span class="n">my_pi</span> <span class="o">-</span> <span class="n">better_pi</span><span class="p">)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="c">################################################################################</span>
+<div class="newline"></div><span class="c">###############################################################################</span>
 <div class="newline"></div><span class="c"># Solution in a single line using more adcanved constructs (reduce, lambda,</span>
 <div class="newline"></div><span class="c"># list comprehensions</span>
-<div class="newline"></div><span class="k">print</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="nb">float</span><span class="p">((</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span><span class="o">/</span><span class="p">((</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">100000</span><span class="p">)])</span>
+<div class="newline"></div><span class="k">print</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span>
+<div class="newline"></div>                 <span class="p">[</span><span class="nb">float</span><span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span> <span class="o">/</span> <span class="p">((</span><span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">i</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<div class="newline"></div>                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)])</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="la-solucion-quicksort">
-<span id="quick-sort"></span><h2>La solución Quicksort<a class="headerlink" href="#la-solucion-quicksort" title="Permalink to this headline">¶</a></h2>
+<span id="quick-sort"></span><h2>La solución Quicksort<a class="headerlink" href="#la-solucion-quicksort" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Implementa el algoritmo quicksort tal como viene definido en la wikipedia:</p>
 <div class="highlight-python"><pre>function quicksort(array)
     var list less, greater
@@ -133,7 +212,7 @@
 </div>
 </div>
 <div class="section" id="secuencia-de-fibonacci">
-<span id="fibonacci"></span><h2>Secuencia de Fibonacci<a class="headerlink" href="#secuencia-de-fibonacci" title="Permalink to this headline">¶</a></h2>
+<span id="fibonacci"></span><h2>Secuencia de Fibonacci<a class="headerlink" href="#secuencia-de-fibonacci" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Escribe una función que muestre los <tt class="docutils literal"><span class="pre">n</span></tt> primeros términos de la secuencia
 de Fibonacci, definidad por:</p>
 <ul class="simple">
@@ -164,7 +243,7 @@ de Fibonacci, definidad por:</p>
 </div>
 </div>
 <div class="section" id="la-solucion-del-listado-de-un-directorio">
-<span id="dir-sort"></span><h2>La solución del listado de un directorio<a class="headerlink" href="#la-solucion-del-listado-de-un-directorio" title="Permalink to this headline">¶</a></h2>
+<span id="dir-sort"></span><h2>La solución del listado de un directorio<a class="headerlink" href="#la-solucion-del-listado-de-un-directorio" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Implementa un script que usa el nombre de un directorio como argumento
 y devuelva la lista de los ficheros &#8216;.py&#8217; files ordenados por la longitud del nombre.</p>
 <p><strong>Truco:</strong> intenta entender el docstring de list.sort</p>
@@ -199,7 +278,7 @@ y devuelva la lista de los ficheros &#8216;.py&#8217; files ordenados por la lon
 </div>
 </div>
 <div class="section" id="la-solucion-del-fichero-e-s-de-datos">
-<span id="data-file"></span><h2>La solución del fichero E/S de datos<a class="headerlink" href="#la-solucion-del-fichero-e-s-de-datos" title="Permalink to this headline">¶</a></h2>
+<span id="data-file"></span><h2>La solución del fichero E/S de datos<a class="headerlink" href="#la-solucion-del-fichero-e-s-de-datos" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Escribe una función que lea la columna de números en <tt class="docutils literal"><span class="pre">data.txt</span></tt>
 y calcule el máximo, el mínimo y la suma de los valores.</p>
 <p>Fichero de datos:</p>
@@ -241,7 +320,7 @@ y calcule el máximo, el mínimo y la suma de los valores.</p>
 </div>
 </div>
 <div class="section" id="la-solucion-de-busqueda-en-el-pythonpath">
-<span id="path-site"></span><h2>La solución de búsqueda en el PYTHONPATH<a class="headerlink" href="#la-solucion-de-busqueda-en-el-pythonpath" title="Permalink to this headline">¶</a></h2>
+<span id="path-site"></span><h2>La solución de búsqueda en el PYTHONPATH<a class="headerlink" href="#la-solucion-de-busqueda-en-el-pythonpath" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Escribe un programa que busque el módulo <tt class="docutils literal"><span class="pre">site.py</span></tt> en tu PYTHONPATH.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Script to search the PYTHONPATH for the module site.py&quot;&quot;&quot;</span>
 <div class="newline"></div>
@@ -279,14 +358,28 @@ y calcule el máximo, el mínimo y la suma de los valores.</p>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
-        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li> 
+        <li><a href="../index.html">Scipy lecture notes</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

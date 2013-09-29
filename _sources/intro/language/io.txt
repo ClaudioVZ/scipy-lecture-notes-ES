@@ -1,65 +1,59 @@
-Input and Output
+Entrada y Salida
 ================
 
-To be exhaustive, here are some information about input and output in Python.
-Since we will use the Numpy methods to read and write files, you may skip this
-chapter at first reading.
+Para ser exhaustivos, he aquí algo de información sobre la entrada y salida en Python.
 
-We write or read **strings** to/from files (other types must be converted to
-strings). To write in a file::
+Solamente las **cadenas** se escriben o leen a/desde archivos (otros tipos deben convertirse a cadenas). Para escribir en un archivo::
 
-
-    >>> f = open('workfile', 'w') # opens the workfile file
+    >>> f = open('archivo_ejemplo', 'w') # creo un archivo
     >>> type(f)
     <type 'file'>
-    >>> f.write('This is a test \nand another test')
+    >>> f.write('Esto es una prueba\ny otra prueba')
     >>> f.close()
 
-To read from a file
+Para leer un archivo
 
 .. sourcecode:: ipython
 
-    In [1]: f = open('workfile', 'r')
+    In [1]: f = open('archivo_ejemplo', 'r')
 
     In [2]: s = f.read()
 
-    In [3]: print(s)
-    This is a test 
-    and another test
+    In [3]: print s
+    Esto es una prueba 
+    y otra prueba
 
     In [4]: f.close()
 
+Para más detalles: http://docs.python.org/tutorial/inputoutput.html
 
-For more details: http://docs.python.org/tutorial/inputoutput.html
-
-Iterating over a file
-~~~~~~~~~~~~~~~~~~~~~
+Iterando sobre un archivo
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. sourcecode:: ipython
 
-    In [6]: f = open('workfile', 'r')
+    In [6]: f = open('archivo_ejemplo', 'r')
 
-    In [7]: for line in f:
-    ...:     print line
+    In [7]: for linea in f:
+    ...:     print linea
     ...:     
-    ...:     
-    This is a test 
+    Esto es una prueba
 
-    and another test
+    y otra prueba
 
     In [8]: f.close()
 
-File modes
-----------
+Modos de archivo
+----------------
 
-* Read-only: ``r``
-* Write-only: ``w``
+* Solamente lectura: ``r``
+* Solamente escritura: ``w``
 
-  * Note: Create a new file or *overwrite* existing file.
+  * Nota: Crear un nuevo archivo o *sobreescribir* el archivo existente.
 
-* Append a file: ``a``
-* Read and Write: ``r+``
-* Binary mode: ``b``
+* Agregar al archivo: ``a``
+* Leer y escribir: ``r+``
+* Modo binario: ``b``
 
-  * Note: Use for binary files, especially on Windows.
+  * Nota: Usar para archivos binarios, especialmente en Windows.
 

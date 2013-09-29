@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.1. First steps &mdash; Scipy lecture notes</title>
+    <title>1.2.1. Primeros pasos &mdash; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,24 +25,101 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="1.2. The Python language" href="python_language.html" />
-    <link rel="next" title="1.2.2. Basic types" href="basic_types.html" />
-    <link rel="prev" title="1.2. The Python language" href="python_language.html" /> 
+    <link rel="up" title="1.2. El lenguaje Python" href="python_language.html" />
+    <link rel="next" title="1.2.2. Tipos básicos" href="basic_types.html" />
+    <link rel="prev" title="1.2. El lenguaje Python" href="python_language.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="basic_types.html" title="1.2.2. Basic types"
-             accesskey="N">next</a></li>
+          <a href="basic_types.html" title="1.2.2. Tipos básicos"
+             accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="python_language.html" title="1.2. The Python language"
-             accesskey="P">previous</a> |</li>
+          <a href="python_language.html" title="1.2. El lenguaje Python"
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,27 +127,27 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="first-steps">
-<h1>1.2.1. First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h1>
-<p>Start the <strong>Ipython</strong> shell (an enhanced interactive Python shell):</p>
+  <div class="section" id="primeros-pasos">
+<h1>1.2.1. Primeros pasos<a class="headerlink" href="#primeros-pasos" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Inicie el shell <strong>IPython</strong> (shell Python interactivo mejorado):</p>
 <ul class="simple">
-<li>by typing &#8220;ipython&#8221; from a Linux/Mac terminal, or from the Windows cmd shell,</li>
-<li><strong>or</strong> by starting the program from a menu, e.g. in the <a class="reference external" href="http://www.pythonxy.com/">Python(x,y)</a> or
-<a class="reference external" href="http://www.enthought.com/products/epd.php">EPD</a> menu if you have installed one of these scientific-Python suites.</li>
+<li>escriba &#8220;ipython&#8221; en una terminal Linux/Mac, o desde el shell cmd de Windows,</li>
+<li><strong>o</strong> iniciando el programa desde un menú, por ejemplo, en <a class="reference external" href="http://www.pythonxy.com/">Python(x,y)</a> o <a class="reference external" href="http://www.enthought.com/products/epd.php">EPD</a> si ha instalado una distribución científica Python.</li>
 </ul>
-<p>If you don&#8217;t have Ipython installed on your computer, other Python shells
-are available, such as the plain Python shell started by typing &#8220;python&#8221;
-in a terminal, or the Idle interpreter. However, we advise to use the
-Ipython shell because of its enhanced features, especially for
-interactive scientific computing.</p>
-<p>Once you have started the interpreter, type</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Hello, world!&quot;</span>
-<div class="newline"></div><span class="go">Hello, world!</span>
+<div class="admonition tip">
+<p class="first admonition-title">Truco</p>
+<p class="last">Si usted no tiene IPython instalado en su equipo, otras shell Python están disponibles, como el shell python que se inicia escribiendo &#8220;python&#8221; en una terminal, o el intérprete Idle. Sin embargo, nos recomiendan usar el shell IPython debido a sus características mejoradas, especialmente para cálculo científico interactivo.</p>
+</div>
+<p>Después de iniciar el interprete, teclee:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Hola, mundo!&quot;</span>
+<div class="newline"></div><span class="go">Hola, mundo!</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The message &#8220;Hello, world!&#8221; is then displayed. You just executed your
-first Python instruction, congratulations!</p>
-<p>To get yourself started, type the following stack of instructions</p>
+<div class="admonition tip">
+<p class="first admonition-title">Truco</p>
+<p class="last">Si el mensaje &#8220;Hola, mundo!&#8221; fue mostrado. Usted acaba de ejecutar su primera instrucción Python, felicitaciones!</p>
+</div>
+<p>Para empezar, escriba las siguientes instrucciones:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -79,29 +156,23 @@ first Python instruction, congratulations!</p>
 <div class="newline"></div><span class="go">6</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">*</span><span class="n">b</span>
 <div class="newline"></div><span class="go">18</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s">&#39;hello&#39;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="s">&#39;hola&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 <div class="newline"></div><span class="go">&lt;type &#39;str&#39;&gt;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">+</span> <span class="n">b</span>
-<div class="newline"></div><span class="go">&#39;hellohello&#39;</span>
+<div class="newline"></div><span class="go">&#39;holahola&#39;</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span><span class="o">*</span><span class="n">b</span>
-<div class="newline"></div><span class="go">&#39;hellohello&#39;</span>
+<div class="newline"></div><span class="go">&#39;holahola&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Two variables <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> have been defined above. Note that one does
-not declare the type of an variable before assigning its value. In C,
-conversely, one should write:</p>
+<div class="admonition tip">
+<p class="first admonition-title">Truco</p>
+<p>Las variables <tt class="docutils literal"><span class="pre">a</span></tt> y <tt class="docutils literal"><span class="pre">b</span></tt> se han definidon anteriormente. Tenga en cuenta que no se declarar el tipo de una variable antes de asignarle un valor. Por el contrario en C, se debe escribir:</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>In addition, the type of a variable may change, in the sense that at
-one point in time it can be equal to a value of a certain type, and a
-second point in time, it can be equal to a value of a different
-type. <tt class="xref py py-obj docutils literal"><span class="pre">b</span></tt> was first equal to an integer, but it became equal to a
-string when it was assigned the value <tt class="xref py py-obj docutils literal"><span class="pre">'hello'</span></tt>. Operations on
-integers (<tt class="docutils literal"><span class="pre">b=2*a</span></tt>) are coded natively in Python, and so are some
-operations on strings such as additions and multiplications, which
-amount respectively to concatenation and repetition.</p>
+<p class="last">Además, el tipo de una variable puede cambiar, en el sentido de que en un punto del tiempo puede ser igual a un valor de un cierto tipo, y un segundo punto en el tiempo, puede ser igual a un valor de un tipo diferente. Primero <tt class="xref py py-obj docutils literal"><span class="pre">b</span></tt> fue igual a un número entero, pero se convirtio en cadena cuando se le asignó el valor <tt class="xref py py-obj docutils literal"><span class="pre">'hola'</span></tt>. Operaciones en enteros (<tt class="docutils literal"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">2*a</span></tt>) están codificados de forma nativa en Python, y también lo son algunas operaciones sobre cadenas, tales como adiciones y multiplicaciones, que son respectivamente, concatenación y repetición.</p>
+</div>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -111,22 +182,36 @@ amount respectively to concatenation and repetition.</p>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="basic_types.html" title="1.2.2. Basic types"
-             >next</a></li>
+          <a href="basic_types.html" title="1.2.2. Tipos básicos"
+             >siguiente</a></li>
         <li class="right" >
-          <a href="python_language.html" title="1.2. The Python language"
-             >previous</a> |</li>
+          <a href="python_language.html" title="1.2. El lenguaje Python"
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

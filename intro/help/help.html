@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,23 +25,100 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1. Para empezar con Python para fines científicos" href="../index.html" />
-    <link rel="next" title="1.5. Matplotlib: plotting" href="../matplotlib/matplotlib.html" />
-    <link rel="prev" title="1.3.4. Advanced operations" href="../numpy/advanced_operations.html" /> 
+    <link rel="next" title="1.5. Matplotlib: trazado" href="../matplotlib/matplotlib.html" />
+    <link rel="prev" title="1.3.5. Algunos ejercicios" href="../numpy/exercises.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../matplotlib/matplotlib.html" title="1.5. Matplotlib: plotting"
-             accesskey="N">next</a></li>
+          <a href="../matplotlib/matplotlib.html" title="1.5. Matplotlib: trazado"
+             accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="../numpy/advanced_operations.html" title="1.3.4. Advanced operations"
-             accesskey="P">previous</a> |</li>
+          <a href="../numpy/exercises.html" title="1.3.5. Algunos ejercicios"
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">1. Para empezar con Python para fines científicos</a> &raquo;</li> 
+          <li><a href="../index.html" accesskey="U">1. Para empezar con Python para fines científicos</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,7 +127,7 @@
           <div class="body">
             
   <div class="section" id="obteniendo-ayuda-y-buscando-en-la-documentacion">
-<span id="help"></span><h1>1.4. Obteniendo ayuda y buscando en la documentación<a class="headerlink" href="#obteniendo-ayuda-y-buscando-en-la-documentacion" title="Permalink to this headline">¶</a></h1>
+<span id="help"></span><h1>1.4. Obteniendo ayuda y buscando en la documentación<a class="headerlink" href="#obteniendo-ayuda-y-buscando-en-la-documentacion" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Mejor que conocer todas las funciones existentes en Numpy y en Scipy sería más importante
 e interesante encontrar de forma rápida a través de la documentación y de la ayuda
 disponible. Aquí encontrarás algunas formas de encontrar información:</p>
@@ -78,7 +155,7 @@ de ambos paquetes es muy útil
 <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/">http://docs.scipy.org/doc/scipy/reference/</a>).</p>
 <p>Tutoriales sobre varios temas además de la API completa con todos los
 <tt class="xref py py-obj docutils literal"><span class="pre">docstrings</span></tt> se puede encontrar en el siguiente sitio web.</p>
-<a class="reference internal image-reference" href="../../_images/scipy_doc.png"><img alt="../../_images/scipy_doc.png" class="align-center" src="../../_images/scipy_doc.png" /></a>
+<a class="reference internal image-reference" href="../../_images/scipy_doc.png"><img alt="../../_images/scipy_doc.png" class="align-center" src="../../_images/scipy_doc.png" style="width: 1024.0px; height: 640.0px;" /></a>
 </li>
 <li><p class="first">La socumentación de Numpy y de Scipy se completa y actualiza de forma regular por
 los usuarios en la wiki <a class="reference external" href="http://docs.scipy.org/numpy/">http://docs.scipy.org/numpy/</a>. Como resultado,
@@ -87,7 +164,7 @@ directamente la documentación en la wiki en lugar de usar la documentación ofi
 Hay que tener en cuenta que cualquiera puede crearuna cuenta en la wiki y escribir
 mejor documentación; ¡esta es una forma sencilla de contribuir a un proyecto
 de código libre y ayudar a mejorar las herramientas que usas!</p>
-<a class="reference internal image-reference" href="../../_images/docwiki.png"><img alt="../../_images/docwiki.png" class="align-center" src="../../_images/docwiki.png" /></a>
+<a class="reference internal image-reference" href="../../_images/docwiki.png"><img alt="../../_images/docwiki.png" class="align-center" src="../../_images/docwiki.png" style="width: 1024.0px; height: 640.0px;" /></a>
 </li>
 <li><p class="first">El recetario (<tt class="xref py py-obj docutils literal"><span class="pre">cookbook</span></tt>) de Scipy <a class="reference external" href="http://www.scipy.org/Cookbook">http://www.scipy.org/Cookbook</a> proporciona recetas
 para muchos de los problemas que nos encontramos a menudo, como el ajuste de datos,
@@ -97,14 +174,14 @@ resolver ecuaciones diferenciales ordinarias, etc.</p>
 <a href="#id1"><span class="problematic" id="id2">**</span></a>galeria* con un gran número de gráficos y ejemplos con el código fuente y el
 gráfico resultante. Esto es muy útil aprender mediante ejemplos. También se encuentra
 disponible la documentación estándar.</p>
-<a class="reference internal image-reference" href="../../_images/matplotlib.png"><img alt="../../_images/matplotlib.png" class="align-center" src="../../_images/matplotlib.png" /></a>
+<a class="reference internal image-reference" href="../../_images/matplotlib.png"><img alt="../../_images/matplotlib.png" class="align-center" src="../../_images/matplotlib.png" style="width: 1024.0px; height: 640.0px;" /></a>
 </li>
 <li><p class="first">El sitio web de Mayavi
 <a class="reference external" href="http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/">http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/</a>
 también dispone de una galería de ejemplos
 <a class="reference external" href="http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html">http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html</a>
 en la cual podemos navegar a través de diferentes soluciones de visualización.</p>
-<a class="reference internal image-reference" href="../../_images/mayavi_website.png"><img alt="../../_images/mayavi_website.png" class="align-center" src="../../_images/mayavi_website.png" /></a>
+<a class="reference internal image-reference" href="../../_images/mayavi_website.png"><img alt="../../_images/mayavi_website.png" class="align-center" src="../../_images/mayavi_website.png" style="width: 1024.0px; height: 640.0px;" /></a>
 </li>
 </ul>
 <p>Finalmente, también serían útiles dos posibilidades más &#8220;técnicas&#8221;:</p>
@@ -173,21 +250,35 @@ matplotlib.</li>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../matplotlib/matplotlib.html" title="1.5. Matplotlib: plotting"
-             >next</a></li>
+          <a href="../matplotlib/matplotlib.html" title="1.5. Matplotlib: trazado"
+             >siguiente</a></li>
         <li class="right" >
-          <a href="../numpy/advanced_operations.html" title="1.3.4. Advanced operations"
-             >previous</a> |</li>
+          <a href="../numpy/exercises.html" title="1.3.5. Algunos ejercicios"
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li> 
+          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

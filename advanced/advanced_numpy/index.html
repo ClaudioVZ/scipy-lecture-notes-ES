@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,23 +25,100 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="2. Temas avanzados" href="../index.html" />
+    <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.3. Debugging code / Código de depuración" href="../debugging/index.html" />
     <link rel="prev" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)" href="../advanced_python/index.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../debugging/index.html" title="2.3. Debugging code / Código de depuración"
-             accesskey="N">next</a></li>
+             accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="../advanced_python/index.html" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" accesskey="U">2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,7 +127,7 @@
           <div class="body">
             
   <div class="section" id="numpy-avanzado">
-<span id="advanced-numpy"></span><h1>2.2. Numpy avanzado<a class="headerlink" href="#numpy-avanzado" title="Permalink to this headline">¶</a></h1>
+<span id="advanced-numpy"></span><h1>2.2. Numpy avanzado<a class="headerlink" href="#numpy-avanzado" title="Enlazar permanentemente con este título">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -129,9 +206,9 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 </ul>
 </div>
 <div class="section" id="vida-de-un-ndarray">
-<h2><a class="toc-backref" href="#id3">2.2.1. Vida de un ndarray</a><a class="headerlink" href="#vida-de-un-ndarray" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">2.2.1. Vida de un ndarray</a><a class="headerlink" href="#vida-de-un-ndarray" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="esto-es">
-<h3><a class="toc-backref" href="#id4">2.2.1.1. Esto es...</a><a class="headerlink" href="#esto-es" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">2.2.1.1. Esto es...</a><a class="headerlink" href="#esto-es" title="Enlazar permanentemente con este título">¶</a></h3>
 <p><strong>ndarray</strong> =</p>
 <blockquote>
 <div><p>bloque de memoria + esquema de indexación + descriptor del tipo de dato</p>
@@ -165,7 +242,7 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 </div>
 </div>
 <div class="section" id="bloque-de-memoria">
-<h3><a class="toc-backref" href="#id5">2.2.1.2. Bloque de memoria</a><a class="headerlink" href="#bloque-de-memoria" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">2.2.1.2. Bloque de memoria</a><a class="headerlink" href="#bloque-de-memoria" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">data</span>      
 <div class="newline"></div><span class="go">&lt;read-write buffer for ..., size 16, offset 0 at ...&gt;</span>
@@ -206,9 +283,9 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 <p>Los flags <tt class="docutils literal"><span class="pre">owndata</span></tt> y <tt class="docutils literal"><span class="pre">writeable</span></tt> indican el estátus de la memoria.</p>
 </div>
 <div class="section" id="tipos-de-datos">
-<h3><a class="toc-backref" href="#id6">2.2.1.3. Tipos de datos</a><a class="headerlink" href="#tipos-de-datos" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">2.2.1.3. Tipos de datos</a><a class="headerlink" href="#tipos-de-datos" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="section" id="el-descriptor">
-<h4>2.2.1.3.1. El descriptor<a class="headerlink" href="#el-descriptor" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.1.3.1. El descriptor<a class="headerlink" href="#el-descriptor" title="Enlazar permanentemente con este título">¶</a></h4>
 <p><tt class="xref py py-class docutils literal"><span class="pre">dtype</span></tt> describe un único item en el array:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -246,7 +323,7 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 </div>
 </div>
 <div class="section" id="ejemplo-leyendo-ficheros-wav">
-<h4>2.2.1.3.2. Ejemplo: leyendo ficheros <tt class="docutils literal"><span class="pre">.wav</span></tt><a class="headerlink" href="#ejemplo-leyendo-ficheros-wav" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.1.3.2. Ejemplo: leyendo ficheros <tt class="docutils literal"><span class="pre">.wav</span></tt><a class="headerlink" href="#ejemplo-leyendo-ficheros-wav" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>El cabecero del fichero <tt class="docutils literal"><span class="pre">.wav</span></tt>:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -320,8 +397,8 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 <div class="newline"></div><span class="gp">... </span>   <span class="p">])</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">wavreader.py</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">wav_header_dtype</span><span class="p">[</span><span class="s">&#39;format&#39;</span><span class="p">]</span>
@@ -372,13 +449,13 @@ de los campos:</p>
 </div>
 <p>¡Cuando accedemos a sub-arrays las dimensiones se añaden al final!</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">Existen módulos como <tt class="docutils literal"><span class="pre">wavfile</span></tt>, <tt class="docutils literal"><span class="pre">audiolab</span></tt>,
 etc. para leer datos de sonido...</p>
 </div>
 </div>
 <div class="section" id="casting-y-re-interpretacion-vistas">
-<h4>2.2.1.3.3. Casting y re-interpretación/vistas<a class="headerlink" href="#casting-y-re-interpretacion-vistas" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.1.3.3. Casting y re-interpretación/vistas<a class="headerlink" href="#casting-y-re-interpretacion-vistas" title="Enlazar permanentemente con este título">¶</a></h4>
 <p><strong>casting (o transformación de tipo)</strong></p>
 <blockquote>
 <div><ul class="simple">
@@ -396,7 +473,7 @@ etc. para leer datos de sonido...</p>
 </ul>
 </div></blockquote>
 <div class="section" id="casting-o-transformacion-de-tipo">
-<h5>2.2.1.3.3.1. Casting (o transformación de tipo)<a class="headerlink" href="#casting-o-transformacion-de-tipo" title="Permalink to this headline">¶</a></h5>
+<h5>2.2.1.3.3.1. Casting (o transformación de tipo)<a class="headerlink" href="#casting-o-transformacion-de-tipo" title="Enlazar permanentemente con este título">¶</a></h5>
 <ul>
 <li><p class="first">Casting en aritmética, resumiendo:</p>
 <ul class="simple">
@@ -432,13 +509,13 @@ etc. para leer datos de sonido...</p>
 </li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">Para conocer las reglas exactas: ver la documentación:
 <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules">http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules</a></p>
 </div>
 </div>
 <div class="section" id="re-interpretacion-vistas">
-<h5>2.2.1.3.3.2. Re-interpretación / vistas<a class="headerlink" href="#re-interpretacion-vistas" title="Permalink to this headline">¶</a></h5>
+<h5>2.2.1.3.3.2. Re-interpretación / vistas<a class="headerlink" href="#re-interpretacion-vistas" title="Enlazar permanentemente con este título">¶</a></h5>
 <ul>
 <li><p class="first">Bloques de datos en memoria (4 bytes)</p>
 <table border="1" class="docutils">
@@ -512,7 +589,7 @@ etc. para leer datos de sonido...</p>
 </table>
 <blockquote>
 <div><div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">little-endian: el byte menos significativo se encuentra a la <em>izquierda</em> en memoria</p>
 </div>
 </div></blockquote>
@@ -546,7 +623,7 @@ etc. para leer datos de sonido...</p>
 </table>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <ul class="last">
 <li><p class="first"><tt class="docutils literal"><span class="pre">.view()</span></tt> crea <em>vistas</em>, no copia (o altera) el bloque de memoria</p>
 </li>
@@ -562,8 +639,8 @@ etc. para leer datos de sonido...</p>
 </ul>
 </div>
 <p class="rubric">Mini-ejercicio: re-interpretación de datos</p>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">view-colors.py</p>
 </div>
 <p>Tenemos datos RGBA en un array:</p>
@@ -597,7 +674,7 @@ sin crear una copia de los datos?</p>
 </div>
 </div></div></blockquote>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">Advertencia</p>
 <p>Otro array tomando, exactamente, 4 bytes de memoria:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -629,9 +706,9 @@ sin crear una copia de los datos?</p>
 </div>
 </div>
 <div class="section" id="esquema-de-indexacion-strides-pasos">
-<h3><a class="toc-backref" href="#id7">2.2.1.4. Esquema de indexación: strides (pasos)</a><a class="headerlink" href="#esquema-de-indexacion-strides-pasos" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">2.2.1.4. Esquema de indexación: strides (pasos)</a><a class="headerlink" href="#esquema-de-indexacion-strides-pasos" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="section" id="punto-principal">
-<h4>2.2.1.4.1. Punto principal<a class="headerlink" href="#punto-principal" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.1.4.1. Punto principal<a class="headerlink" href="#punto-principal" title="Enlazar permanentemente con este título">¶</a></h4>
 <p><strong>La pregunta</strong></p>
 <blockquote>
 <div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
@@ -663,7 +740,7 @@ sin crear una copia de los datos?</p>
 </ul>
 </div></blockquote>
 <div class="section" id="orden-c-y-fortran">
-<h5>2.2.1.4.1.1. Orden C y Fortran<a class="headerlink" href="#orden-c-y-fortran" title="Permalink to this headline">¶</a></h5>
+<h5>2.2.1.4.1.1. Orden C y Fortran<a class="headerlink" href="#orden-c-y-fortran" title="Enlazar permanentemente con este título">¶</a></h5>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
 <div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
 <div class="newline"></div><span class="gp">... </span>              <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s">&#39;C&#39;</span><span class="p">)</span>
@@ -705,7 +782,7 @@ s_j^F &amp;= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}"/></p>
 </div></li>
 </ul>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p>Ahora podemos entender el comportamiento de <tt class="docutils literal"><span class="pre">.view()</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -731,9 +808,9 @@ s_j^F &amp;= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}"/></p>
 </div>
 </div>
 <div class="section" id="slicing-con-enteros">
-<h5>2.2.1.4.1.2. Slicing con enteros<a class="headerlink" href="#slicing-con-enteros" title="Permalink to this headline">¶</a></h5>
+<h5>2.2.1.4.1.2. Slicing con enteros<a class="headerlink" href="#slicing-con-enteros" title="Enlazar permanentemente con este título">¶</a></h5>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">NdT: Slicing, traducido literalmente, significa rebanada, rodaja. Con este término nos referimos a
 tomar una porción/rodaja/rebanada de los datos, es decir, usar un subconjunto de los datos disponibles
 en el array</p>
@@ -766,7 +843,7 @@ and possibly adjusting the <tt class="docutils literal"><span class="pre">data</
 </div>
 </div>
 <div class="section" id="example-fake-dimensions-with-strides">
-<span id="stride-manipulation-label"></span><h4>2.2.1.4.2. Example: fake dimensions with strides<a class="headerlink" href="#example-fake-dimensions-with-strides" title="Permalink to this headline">¶</a></h4>
+<span id="stride-manipulation-label"></span><h4>2.2.1.4.2. Example: fake dimensions with strides<a class="headerlink" href="#example-fake-dimensions-with-strides" title="Enlazar permanentemente con este título">¶</a></h4>
 <p class="rubric">Stride manipulation</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">numpy.lib.stride_tricks</span> <span class="kn">import</span> <span class="n">as_strided</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">as_strided</span><span class="p">)</span>    
@@ -775,7 +852,7 @@ and possibly adjusting the <tt class="docutils literal"><span class="pre">data</
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">Advertencia</p>
 <p class="last"><tt class="docutils literal"><span class="pre">as_strided</span></tt> does <strong>not</strong> check that you stay inside the memory
 block bounds...</p>
 </div>
@@ -786,8 +863,8 @@ block bounds...</p>
 <div class="newline"></div><span class="go">array([1, 3], dtype=int16)</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">stride-fakedims.py</p>
 </div>
 <p><strong>Exercise</strong></p>
@@ -819,7 +896,7 @@ block bounds...</p>
 </div></div></blockquote>
 </div>
 <div class="section" id="broadcasting">
-<span id="id1"></span><h4>2.2.1.4.3. Broadcasting<a class="headerlink" href="#broadcasting" title="Permalink to this headline">¶</a></h4>
+<span id="id1"></span><h4>2.2.1.4.3. Broadcasting<a class="headerlink" href="#broadcasting" title="Enlazar permanentemente con este título">¶</a></h4>
 <ul class="simple">
 <li>Doing something useful with it: outer product
 of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></tt> and <tt class="docutils literal"><span class="pre">[5,</span> <span class="pre">6,</span> <span class="pre">7]</span></tt></li>
@@ -860,9 +937,9 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 </ul>
 </div>
 <div class="section" id="more-tricks-diagonals">
-<h4>2.2.1.4.4. More tricks: diagonals<a class="headerlink" href="#more-tricks-diagonals" title="Permalink to this headline">¶</a></h4>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<h4>2.2.1.4.4. More tricks: diagonals<a class="headerlink" href="#more-tricks-diagonals" title="Enlazar permanentemente con este título">¶</a></h4>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">stride-diagonals.py</p>
 </div>
 <p><strong>Challenge</strong></p>
@@ -904,7 +981,7 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span>
 <div class="newline"></div><span class="go">array([2, 6], dtype=int32)</span>
@@ -918,8 +995,8 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 <p class="last">It makes a copy?!</p>
 </div>
 </div></div></blockquote>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">stride-diagonals.py</p>
 </div>
 <p><strong>Challenge</strong></p>
@@ -950,7 +1027,7 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 </div></div></blockquote>
 </div>
 <div class="section" id="cpu-cache-effects">
-<span id="cache-effects"></span><h4>2.2.1.4.5. CPU cache effects<a class="headerlink" href="#cpu-cache-effects" title="Permalink to this headline">¶</a></h4>
+<span id="cache-effects"></span><h4>2.2.1.4.5. CPU cache effects<a class="headerlink" href="#cpu-cache-effects" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>Memory layout can affect performance:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">20000</span><span class="p">,))</span>
 <div class="newline"></div>
@@ -979,14 +1056,14 @@ of <tt class="docutils literal"><span class="pre">[1,</span> <span class="pre">2
 </ul>
 </li>
 </ul>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last"><a class="reference external" href="http://code.google.com/p/numexpr/">numexpr</a> is designed to mitigate
 cache effects in array computing.</p>
 </div>
 </div>
 <div class="section" id="example-inplace-operations-caveat-emptor">
-<h4>2.2.1.4.6. Example: inplace operations (caveat emptor)<a class="headerlink" href="#example-inplace-operations-caveat-emptor" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.1.4.6. Example: inplace operations (caveat emptor)<a class="headerlink" href="#example-inplace-operations-caveat-emptor" title="Enlazar permanentemente con este título">¶</a></h4>
 <ul>
 <li><p class="first">Sometimes,</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">-=</span> <span class="n">b</span>    
@@ -1021,7 +1098,7 @@ modified data re-appears on the RHS</li>
 </div>
 </div>
 <div class="section" id="findings-in-dissection">
-<h3><a class="toc-backref" href="#id8">2.2.1.5. Findings in dissection</a><a class="headerlink" href="#findings-in-dissection" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2.2.1.5. Findings in dissection</a><a class="headerlink" href="#findings-in-dissection" title="Enlazar permanentemente con este título">¶</a></h3>
 <img alt="../../_images/threefundamental.png" src="../../_images/threefundamental.png" />
 <ul class="simple">
 <li><em>memory block</em>: may be shared, <tt class="docutils literal"><span class="pre">.base</span></tt>, <tt class="docutils literal"><span class="pre">.data</span></tt></li>
@@ -1034,9 +1111,9 @@ coherence</li>
 </div>
 </div>
 <div class="section" id="universal-functions">
-<h2><a class="toc-backref" href="#id9">2.2.2. Universal functions</a><a class="headerlink" href="#universal-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">2.2.2. Universal functions</a><a class="headerlink" href="#universal-functions" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="what-they-are">
-<h3><a class="toc-backref" href="#id10">2.2.2.1. What they are?</a><a class="headerlink" href="#what-they-are" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">2.2.2.1. What they are?</a><a class="headerlink" href="#what-they-are" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul>
 <li><p class="first">Ufunc performs and elementwise operation on all elements of an array.</p>
 <p>Examples:</p>
@@ -1052,7 +1129,7 @@ Numpy takes care of the rest.</p>
 </li>
 </ul>
 <div class="section" id="parts-of-an-ufunc">
-<h4>2.2.2.1.1. Parts of an Ufunc<a class="headerlink" href="#parts-of-an-ufunc" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.2.1.1. Parts of an Ufunc<a class="headerlink" href="#parts-of-an-ufunc" title="Enlazar permanentemente con este título">¶</a></h4>
 <ol class="arabic">
 <li><p class="first">Provided by user</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">ufunc_loop</span><span class="p">(</span><span class="kt">void</span> <span class="o">**</span><span class="n">args</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">dimensions</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">steps</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
@@ -1106,7 +1183,7 @@ combinations.</li>
 </ol>
 </div>
 <div class="section" id="making-it-easier">
-<h4>2.2.2.1.2. Making it easier<a class="headerlink" href="#making-it-easier" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.2.1.2. Making it easier<a class="headerlink" href="#making-it-easier" title="Enlazar permanentemente con este título">¶</a></h4>
 <ol class="arabic" start="3">
 <li><p class="first"><tt class="docutils literal"><span class="pre">ufunc_loop</span></tt> is of very generic form, and Numpy provides
 pre-made ones</p>
@@ -1157,7 +1234,7 @@ pre-made ones</p>
 </div>
 </div>
 <div class="section" id="exercise-building-an-ufunc-from-scratch">
-<h3><a class="toc-backref" href="#id11">2.2.2.2. Exercise: building an ufunc from scratch</a><a class="headerlink" href="#exercise-building-an-ufunc-from-scratch" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">2.2.2.2. Exercise: building an ufunc from scratch</a><a class="headerlink" href="#exercise-building-an-ufunc-from-scratch" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>The Mandelbrot fractal is defined by the iteration</p>
 <div class="math">
 <p><img src="../../_images/math/12fd396985abde635f08bb3ec9c0cc9972a595e7.png" alt="z \leftarrow z^2 + c"/></p>
@@ -1179,8 +1256,8 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 <li><p class="first">Write it in Cython</p>
 </li>
 </ul>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">mandel.pyx, mandelplot.py</p>
 </div>
 <p>Reminder: some pre-made Ufunc loops:</p>
@@ -1219,109 +1296,109 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 </div>
 </div>
 <div class="section" id="solution-building-an-ufunc-from-scratch">
-<h3><a class="toc-backref" href="#id12">2.2.2.3. Solution: building an ufunc from scratch</a><a class="headerlink" href="#solution-building-an-ufunc-from-scratch" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># The elementwise function</span>
-<div class="newline"></div><span class="c"># ------------------------</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">void</span> <span class="n">mandel_single_point</span><span class="p">(</span><span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">z_in</span><span class="p">,</span> 
-<div class="newline"></div>                              <span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">c_in</span><span class="p">,</span>
-<div class="newline"></div>                              <span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">z_out</span><span class="p">)</span> <span class="n">nogil</span><span class="p">:</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c"># The Mandelbrot iteration</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c"># Some points of note:</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c"># - It&#39;s *NOT* allowed to call any Python functions here.</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c">#   The Ufunc loop runs with the Python Global Interpreter Lock released.</span>
-<div class="newline"></div>    <span class="c">#   Hence, the ``nogil``.</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c"># - And so all local variables must be declared with ``cdef``</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>    <span class="c"># - Note also that this function receives *pointers* to the data;</span>
-<div class="newline"></div>    <span class="c">#   the &quot;traditional&quot; solution to passing complex variables around</span>
-<div class="newline"></div>    <span class="c">#</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="n">cdef</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<div class="newline"></div>    <span class="n">cdef</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<div class="newline"></div>    <span class="n">cdef</span> <span class="nb">int</span> <span class="n">k</span>  <span class="c"># the integer we use in the for loop</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="c"># Straightforward iteration</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-<div class="newline"></div>        <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">c</span>
-<div class="newline"></div>        <span class="k">if</span> <span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span><span class="o">**</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
-<div class="newline"></div>            <span class="k">break</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="c"># Return the answer for this point</span>
-<div class="newline"></div>    <span class="n">z_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
-<div class="newline"></div>
-<div class="newline"></div>
-<div class="newline"></div><span class="c"># Boilerplate Cython definitions</span>
-<div class="newline"></div><span class="c">#</span>
-<div class="newline"></div><span class="c"># You don&#39;t really need to read this part, it just pulls in</span>
-<div class="newline"></div><span class="c"># stuff from the Numpy C headers.</span>
-<div class="newline"></div><span class="c"># ----------------------------------------------------------</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s">&quot;numpy/arrayobject.h&quot;</span><span class="p">:</span>
-<div class="newline"></div>    <span class="n">void</span> <span class="n">import_array</span><span class="p">()</span>
-<div class="newline"></div>    <span class="n">ctypedef</span> <span class="nb">int</span> <span class="n">npy_intp</span>
-<div class="newline"></div>    <span class="n">cdef</span> <span class="n">enum</span> <span class="n">NPY_TYPES</span><span class="p">:</span>
-<div class="newline"></div>        <span class="n">NPY_CDOUBLE</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s">&quot;numpy/ufuncobject.h&quot;</span><span class="p">:</span>
-<div class="newline"></div>    <span class="n">void</span> <span class="n">import_ufunc</span><span class="p">()</span>
-<div class="newline"></div>    <span class="n">ctypedef</span> <span class="n">void</span> <span class="p">(</span><span class="o">*</span><span class="n">PyUFuncGenericFunction</span><span class="p">)(</span><span class="n">char</span><span class="o">**</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span>
-<div class="newline"></div>    <span class="nb">object</span> <span class="n">PyUFunc_FromFuncAndData</span><span class="p">(</span><span class="n">PyUFuncGenericFunction</span><span class="o">*</span> <span class="n">func</span><span class="p">,</span> <span class="n">void</span><span class="o">**</span> <span class="n">data</span><span class="p">,</span>
-<div class="newline"></div>        <span class="n">char</span><span class="o">*</span> <span class="n">types</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ntypes</span><span class="p">,</span> <span class="nb">int</span> <span class="n">nin</span><span class="p">,</span> <span class="nb">int</span> <span class="n">nout</span><span class="p">,</span>
-<div class="newline"></div>        <span class="nb">int</span> <span class="n">identity</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">doc</span><span class="p">,</span> <span class="nb">int</span> <span class="n">c</span><span class="p">)</span>
-<div class="newline"></div>
-<div class="newline"></div>    <span class="n">void</span> <span class="n">PyUFunc_DD_D</span><span class="p">(</span><span class="n">char</span><span class="o">**</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span>
-<div class="newline"></div>
-<div class="newline"></div>
-<div class="newline"></div><span class="c"># Required module initialization</span>
-<div class="newline"></div><span class="c"># ------------------------------</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">import_array</span><span class="p">()</span>
-<div class="newline"></div><span class="n">import_ufunc</span><span class="p">()</span>
-<div class="newline"></div>
-<div class="newline"></div>
-<div class="newline"></div><span class="c"># The actual ufunc declaration</span>
-<div class="newline"></div><span class="c"># ----------------------------</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">PyUFuncGenericFunction</span> <span class="n">loop_func</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">char</span> <span class="n">input_output_types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-<div class="newline"></div><span class="n">cdef</span> <span class="n">void</span> <span class="o">*</span><span class="n">elementwise_funcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">loop_func</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">PyUFunc_DD_D</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
-<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
-<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">elementwise_funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">void</span><span class="o">*&gt;</span><span class="n">mandel_single_point</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="n">mandel</span> <span class="o">=</span> <span class="n">PyUFunc_FromFuncAndData</span><span class="p">(</span>
-<div class="newline"></div>    <span class="n">loop_func</span><span class="p">,</span>
-<div class="newline"></div>    <span class="n">elementwise_funcs</span><span class="p">,</span>
-<div class="newline"></div>    <span class="n">input_output_types</span><span class="p">,</span>
-<div class="newline"></div>    <span class="mi">1</span><span class="p">,</span> <span class="c"># number of supported input types</span>
-<div class="newline"></div>    <span class="mi">2</span><span class="p">,</span> <span class="c"># number of input args</span>
-<div class="newline"></div>    <span class="mi">1</span><span class="p">,</span> <span class="c"># number of output args</span>
-<div class="newline"></div>    <span class="mi">0</span><span class="p">,</span> <span class="c"># `identity` element, never mind this</span>
-<div class="newline"></div>    <span class="s">&quot;mandel&quot;</span><span class="p">,</span> <span class="c"># function name</span>
-<div class="newline"></div>    <span class="s">&quot;mandel(z, c) -&gt; computes iterated z*z + c&quot;</span><span class="p">,</span> <span class="c"># docstring</span>
-<div class="newline"></div>    <span class="mi">0</span> <span class="c"># unused</span>
-<div class="newline"></div>    <span class="p">)</span>
-<div class="newline"></div></pre></div>
+<h3><a class="toc-backref" href="#id12">2.2.2.3. Solution: building an ufunc from scratch</a><a class="headerlink" href="#solution-building-an-ufunc-from-scratch" title="Enlazar permanentemente con este título">¶</a></h3>
+<div class="highlight-python"><pre># The elementwise function
+# ------------------------
+
+cdef void mandel_single_point(double complex *z_in, 
+                              double complex *c_in,
+                              double complex *z_out) nogil:
+    #
+    # The Mandelbrot iteration
+    #
+
+    #
+    # Some points of note:
+    #
+    # - It's *NOT* allowed to call any Python functions here.
+    #
+    #   The Ufunc loop runs with the Python Global Interpreter Lock released.
+    #   Hence, the ``nogil``.
+    #
+    # - And so all local variables must be declared with ``cdef``
+    #
+    # - Note also that this function receives *pointers* to the data;
+    #   the "traditional" solution to passing complex variables around
+    #
+
+    cdef double complex z = z_in[0]
+    cdef double complex c = c_in[0]
+    cdef int k  # the integer we use in the for loop
+
+    # Straightforward iteration
+
+    for k in range(100):
+        z = z*z + c
+        if z.real**2 + z.imag**2 &gt; 1000:
+            break
+
+    # Return the answer for this point
+    z_out[0] = z
+
+
+# Boilerplate Cython definitions
+#
+# You don't really need to read this part, it just pulls in
+# stuff from the Numpy C headers.
+# ----------------------------------------------------------
+
+cdef extern from "numpy/arrayobject.h":
+    void import_array()
+    ctypedef int npy_intp
+    cdef enum NPY_TYPES:
+        NPY_CDOUBLE
+
+cdef extern from "numpy/ufuncobject.h":
+    void import_ufunc()
+    ctypedef void (*PyUFuncGenericFunction)(char**, npy_intp*, npy_intp*, void*)
+    object PyUFunc_FromFuncAndData(PyUFuncGenericFunction* func, void** data,
+        char* types, int ntypes, int nin, int nout,
+        int identity, char* name, char* doc, int c)
+
+    void PyUFunc_DD_D(char**, npy_intp*, npy_intp*, void*)
+
+
+# Required module initialization
+# ------------------------------
+
+import_array()
+import_ufunc()
+
+
+# The actual ufunc declaration
+# ----------------------------
+
+cdef PyUFuncGenericFunction loop_func[1]
+cdef char input_output_types[3]
+cdef void *elementwise_funcs[1]
+
+loop_func[0] = PyUFunc_DD_D
+
+input_output_types[0] = NPY_CDOUBLE
+input_output_types[1] = NPY_CDOUBLE
+input_output_types[2] = NPY_CDOUBLE
+
+elementwise_funcs[0] = &lt;void*&gt;mandel_single_point
+
+mandel = PyUFunc_FromFuncAndData(
+    loop_func,
+    elementwise_funcs,
+    input_output_types,
+    1, # number of supported input types
+    2, # number of input args
+    1, # number of output args
+    0, # `identity` element, never mind this
+    "mandel", # function name
+    "mandel(z, c) -&gt; computes iterated z*z + c", # docstring
+    0 # unused
+    )
+</pre>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">mandel</span>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <div class="newline"></div><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<div class="newline"></div><span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">y</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
+<div class="newline"></div><span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
 <div class="newline"></div><span class="n">z</span> <span class="o">=</span> <span class="n">mandel</span><span class="o">.</span><span class="n">mandel</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1332,7 +1409,7 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 </div>
 <img alt="../../_images/mandelbrot.png" src="../../_images/mandelbrot.png" />
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p>Most of the boilerplate could be automated by these Cython modules:</p>
 <p class="last"><a class="reference external" href="http://wiki.cython.org/MarkLodato/CreatingUfuncs">http://wiki.cython.org/MarkLodato/CreatingUfuncs</a></p>
 </div>
@@ -1379,7 +1456,7 @@ mandel = PyUFunc_FromFuncAndData(
 </div>
 </div>
 <div class="section" id="generalized-ufuncs">
-<h3><a class="toc-backref" href="#id13">2.2.2.4. Generalized ufuncs</a><a class="headerlink" href="#generalized-ufuncs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">2.2.2.4. Generalized ufuncs</a><a class="headerlink" href="#generalized-ufuncs" title="Enlazar permanentemente con este título">¶</a></h3>
 <p><strong>ufunc</strong></p>
 <blockquote>
 <div><p><tt class="docutils literal"><span class="pre">output</span> <span class="pre">=</span> <span class="pre">elementwise_function(input)</span></tt></p>
@@ -1465,9 +1542,9 @@ many small matrices at once</li>
 </div>
 </div>
 <div class="section" id="interoperability-features">
-<h2><a class="toc-backref" href="#id14">2.2.3. Interoperability features</a><a class="headerlink" href="#interoperability-features" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">2.2.3. Interoperability features</a><a class="headerlink" href="#interoperability-features" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="sharing-multidimensional-typed-data">
-<h3><a class="toc-backref" href="#id15">2.2.3.1. Sharing multidimensional, typed data</a><a class="headerlink" href="#sharing-multidimensional-typed-data" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">2.2.3.1. Sharing multidimensional, typed data</a><a class="headerlink" href="#sharing-multidimensional-typed-data" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Suppose you</p>
 <ol class="arabic simple">
 <li>Write a library than handles (multidimensional) binary data,</li>
@@ -1483,7 +1560,7 @@ other library,</li>
 </ol>
 </div>
 <div class="section" id="the-old-buffer-protocol">
-<h3><a class="toc-backref" href="#id16">2.2.3.2. The old buffer protocol</a><a class="headerlink" href="#the-old-buffer-protocol" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">2.2.3.2. The old buffer protocol</a><a class="headerlink" href="#the-old-buffer-protocol" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>Only 1-D buffers</li>
 <li>No data type information</li>
@@ -1491,8 +1568,8 @@ other library,</li>
 <li>But it&#8217;s integrated into Python  (e.g. strings support it)</li>
 </ul>
 <p>Mini-exercise using PIL (Python Imaging Library):</p>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">pilbuffer.py</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">Image</span>
@@ -1509,7 +1586,7 @@ other library,</li>
 <div>Check what happens if <tt class="docutils literal"><span class="pre">data</span></tt> is now modified, and <tt class="docutils literal"><span class="pre">img</span></tt> saved again.</div></blockquote>
 </div>
 <div class="section" id="id2">
-<h3><a class="toc-backref" href="#id17">2.2.3.3. The old buffer protocol</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">2.2.3.3. The old buffer protocol</a><a class="headerlink" href="#id2" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">Image</span>
 <div class="newline"></div>
@@ -1540,15 +1617,15 @@ other library,</li>
 <img alt="../../_images/test2.png" src="../../_images/test2.png" />
 </div>
 <div class="section" id="array-interface-protocol">
-<h3><a class="toc-backref" href="#id18">2.2.3.4. Array interface protocol</a><a class="headerlink" href="#array-interface-protocol" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">2.2.3.4. Array interface protocol</a><a class="headerlink" href="#array-interface-protocol" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>Multidimensional buffers</li>
 <li>Data type information present</li>
 <li>Numpy-specific approach; slowly deprecated (but not going away)</li>
 <li>Not integrated in Python otherwise</li>
 </ul>
-<div class="admonition-see-also admonition seealso">
-<p class="first admonition-title">See also</p>
+<div class="admonition-ver-tambien admonition seealso">
+<p class="first admonition-title">Ver también</p>
 <p class="last">Documentation:
 <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/arrays.interface.html">http://docs.scipy.org/doc/numpy/reference/arrays.interface.html</a></p>
 </div>
@@ -1577,15 +1654,15 @@ other library,</li>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">A more C-friendly variant of the array interface is also defined.</p>
 </div>
 </div>
 </div>
 <div class="section" id="array-siblings-chararray-maskedarray-matrix">
-<span id="array-siblings"></span><h2><a class="toc-backref" href="#id19">2.2.4. Array siblings: <tt class="xref py py-class docutils literal"><span class="pre">chararray</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">maskedarray</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">matrix</span></tt></a><a class="headerlink" href="#array-siblings-chararray-maskedarray-matrix" title="Permalink to this headline">¶</a></h2>
+<span id="array-siblings"></span><h2><a class="toc-backref" href="#id19">2.2.4. Array siblings: <tt class="xref py py-class docutils literal"><span class="pre">chararray</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">maskedarray</span></tt>, <tt class="xref py py-class docutils literal"><span class="pre">matrix</span></tt></a><a class="headerlink" href="#array-siblings-chararray-maskedarray-matrix" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="chararray-vectorized-string-operations">
-<h3><a class="toc-backref" href="#id20">2.2.4.1. <tt class="xref py py-class docutils literal"><span class="pre">chararray</span></tt>: vectorized string operations</a><a class="headerlink" href="#chararray-vectorized-string-operations" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">2.2.4.1. <tt class="xref py py-class docutils literal"><span class="pre">chararray</span></tt>: vectorized string operations</a><a class="headerlink" href="#chararray-vectorized-string-operations" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;  bbb&#39;</span><span class="p">,</span> <span class="s">&#39;  ccc&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">chararray</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="go">chararray([&#39;a&#39;, &#39;bbb&#39;, &#39;ccc&#39;],</span>
@@ -1596,13 +1673,13 @@ other library,</li>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last"><tt class="docutils literal"><span class="pre">.view()</span></tt> has a second meaning: it can make an ndarray an instance
 of a specialized ndarray subclass</p>
 </div>
 </div>
 <div class="section" id="masked-array-missing-data">
-<h3><a class="toc-backref" href="#id21">2.2.4.2. <tt class="xref py py-class docutils literal"><span class="pre">masked_array</span></tt> missing data</a><a class="headerlink" href="#masked-array-missing-data" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">2.2.4.2. <tt class="xref py py-class docutils literal"><span class="pre">masked_array</span></tt> missing data</a><a class="headerlink" href="#masked-array-missing-data" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Masked arrays are arrays that may have missing or invalid entries.</p>
 <p>For example, suppose we have an array where the fourth entry is invalid:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
@@ -1624,7 +1701,7 @@ of a specialized ndarray subclass</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="first admonition-title">Advertencia</p>
 <p class="last">Not all Numpy functions respect masks, for instance
 <tt class="docutils literal"><span class="pre">np.dot</span></tt>, so check the return types.</p>
 </div>
@@ -1635,7 +1712,7 @@ of a specialized ndarray subclass</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="section" id="the-mask">
-<h4>2.2.4.2.1. The mask<a class="headerlink" href="#the-mask" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.4.2.1. The mask<a class="headerlink" href="#the-mask" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>You can modify the mask by assigning:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">mx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">mx</span>
@@ -1674,7 +1751,7 @@ array back:</p>
 </div>
 </div>
 <div class="section" id="domain-aware-functions">
-<h4>2.2.4.2.2. Domain-aware functions<a class="headerlink" href="#domain-aware-functions" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.4.2.2. Domain-aware functions<a class="headerlink" href="#domain-aware-functions" title="Enlazar permanentemente con este título">¶</a></h4>
 <p>The masked array package also contains domain-aware functions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">]))</span>
 <div class="newline"></div><span class="go">masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],</span>
@@ -1683,7 +1760,7 @@ array back:</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">Streamlined and more seamless support for dealing with missing data
 in arrays is making its way into Numpy 1.7.  Stay tuned!</p>
 </div>
@@ -1725,7 +1802,7 @@ time, ignoring the invalid numbers.</p>
 </div>
 </div>
 <div class="section" id="recarray-purely-convenience">
-<h3><a class="toc-backref" href="#id22">2.2.4.3. <tt class="xref py py-class docutils literal"><span class="pre">recarray</span></tt>: purely convenience</a><a class="headerlink" href="#recarray-purely-convenience" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">2.2.4.3. <tt class="xref py py-class docutils literal"><span class="pre">recarray</span></tt>: purely convenience</a><a class="headerlink" href="#recarray-purely-convenience" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)],</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s">&#39;x&#39;</span><span class="p">,</span> <span class="s">&#39;S1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">recarray</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">arr2</span><span class="o">.</span><span class="n">x</span>
@@ -1737,7 +1814,7 @@ time, ignoring the invalid numbers.</p>
 </div>
 </div>
 <div class="section" id="matrix-convenience">
-<h3><a class="toc-backref" href="#id23">2.2.4.4. <tt class="xref py py-class docutils literal"><span class="pre">matrix</span></tt>: convenience?</a><a class="headerlink" href="#matrix-convenience" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id23">2.2.4.4. <tt class="xref py py-class docutils literal"><span class="pre">matrix</span></tt>: convenience?</a><a class="headerlink" href="#matrix-convenience" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>always 2-D</li>
 <li><tt class="docutils literal"><span class="pre">*</span></tt> is the matrix product, not the elementwise one</li>
@@ -1750,7 +1827,7 @@ time, ignoring the invalid numbers.</p>
 </div>
 </div>
 <div class="section" id="summary">
-<h2><a class="toc-backref" href="#id24">2.2.5. Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id24">2.2.5. Summary</a><a class="headerlink" href="#summary" title="Enlazar permanentemente con este título">¶</a></h2>
 <ul class="simple">
 <li>Anatomy of the ndarray: data, dtype, strides.</li>
 <li>Universal functions: elementwise operations, how to make new ones</li>
@@ -1760,11 +1837,11 @@ time, ignoring the invalid numbers.</p>
 </ul>
 </div>
 <div class="section" id="contributing-to-numpy-scipy">
-<h2><a class="toc-backref" href="#id25">2.2.6. Contributing to Numpy/Scipy</a><a class="headerlink" href="#contributing-to-numpy-scipy" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id25">2.2.6. Contributing to Numpy/Scipy</a><a class="headerlink" href="#contributing-to-numpy-scipy" title="Enlazar permanentemente con este título">¶</a></h2>
 <blockquote>
 <div>Get this tutorial: <a class="reference external" href="http://www.euroscipy.org/talk/882">http://www.euroscipy.org/talk/882</a></div></blockquote>
 <div class="section" id="why">
-<h3><a class="toc-backref" href="#id26">2.2.6.1. Why</a><a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id26">2.2.6.1. Why</a><a class="headerlink" href="#why" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>&#8220;There&#8217;s a bug?&#8221;</li>
 <li>&#8220;I don&#8217;t understand what this is supposed to do?&#8221;</li>
@@ -1773,7 +1850,7 @@ time, ignoring the invalid numbers.</p>
 </ul>
 </div>
 <div class="section" id="reporting-bugs">
-<h3><a class="toc-backref" href="#id27">2.2.6.2. Reporting bugs</a><a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id27">2.2.6.2. Reporting bugs</a><a class="headerlink" href="#reporting-bugs" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>Bug tracker (prefer <strong>this</strong>)<ul>
 <li><a class="reference external" href="http://projects.scipy.org/numpy">http://projects.scipy.org/numpy</a></li>
@@ -1788,7 +1865,7 @@ time, ignoring the invalid numbers.</p>
 </li>
 </ul>
 <div class="section" id="good-bug-report">
-<h4>2.2.6.2.1. Good bug report<a class="headerlink" href="#good-bug-report" title="Permalink to this headline">¶</a></h4>
+<h4>2.2.6.2.1. Good bug report<a class="headerlink" href="#good-bug-report" title="Enlazar permanentemente con este título">¶</a></h4>
 <div class="highlight-python"><pre>Title: numpy.random.permutations fails for non-integer arguments
 
 I'm trying to generate random permutations, using numpy.random.permutations
@@ -1843,7 +1920,7 @@ I'm using Numpy 1.4.1, built from the official tarball, on Windows
 </div>
 </div>
 <div class="section" id="contributing-to-documentation">
-<h3><a class="toc-backref" href="#id28">2.2.6.3. Contributing to documentation</a><a class="headerlink" href="#contributing-to-documentation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id28">2.2.6.3. Contributing to documentation</a><a class="headerlink" href="#contributing-to-documentation" title="Enlazar permanentemente con este título">¶</a></h3>
 <ol class="arabic">
 <li><p class="first">Documentation editor</p>
 <ul>
@@ -1896,7 +1973,7 @@ N. N.</pre>
 </ol>
 </div>
 <div class="section" id="contributing-features">
-<h3><a class="toc-backref" href="#id29">2.2.6.4. Contributing features</a><a class="headerlink" href="#contributing-features" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id29">2.2.6.4. Contributing features</a><a class="headerlink" href="#contributing-features" title="Enlazar permanentemente con este título">¶</a></h3>
 <ol class="arabic" start="0">
 <li><p class="first">Ask on mailing list, if unsure where it should go</p>
 </li>
@@ -1931,7 +2008,7 @@ git push github name-of-my-feature-branch</pre>
 </ol>
 </div>
 <div class="section" id="how-to-help-in-general">
-<h3><a class="toc-backref" href="#id30">2.2.6.5. How to help, in general</a><a class="headerlink" href="#how-to-help-in-general" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id30">2.2.6.5. How to help, in general</a><a class="headerlink" href="#how-to-help-in-general" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul>
 <li><p class="first">Bug fixes always welcome!</p>
 <ul class="simple">
@@ -1975,21 +2052,35 @@ git push github name-of-my-feature-branch</pre>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../debugging/index.html" title="2.3. Debugging code / Código de depuración"
-             >next</a></li>
+             >siguiente</a></li>
         <li class="right" >
           <a href="../advanced_python/index.html" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)"
-             >previous</a> |</li>
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

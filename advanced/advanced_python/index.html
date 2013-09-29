@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,23 +25,100 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="2. Temas avanzados" href="../index.html" />
+    <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.2. Numpy avanzado" href="../advanced_numpy/index.html" />
-    <link rel="prev" title="2. Temas avanzados" href="../index.html" /> 
+    <link rel="prev" title="2. Advanced topics" href="../index.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../advanced_numpy/index.html" title="2.2. Numpy avanzado"
-             accesskey="N">next</a></li>
+             accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="../index.html" title="2. Temas avanzados"
-             accesskey="P">previous</a> |</li>
+          <a href="../index.html" title="2. Advanced topics"
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" accesskey="U">2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,7 +127,7 @@
           <div class="body">
             
   <div class="section" id="expresiones-avanzadas-en-python-advanced-python-constructs">
-<h1>2.1. Expresiones avanzadas en python (Advanced Python Constructs)<a class="headerlink" href="#expresiones-avanzadas-en-python-advanced-python-constructs" title="Permalink to this headline">¶</a></h1>
+<h1>2.1. Expresiones avanzadas en python (Advanced Python Constructs)<a class="headerlink" href="#expresiones-avanzadas-en-python-advanced-python-constructs" title="Enlazar permanentemente con este título">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -109,9 +186,9 @@ sirven para resolver problemas reales y de que su uso es lo más simple posible.
 </ul>
 </div>
 <div class="section" id="iteradores-expresiones-generadoras-y-generadores">
-<h2><a class="toc-backref" href="#id3">2.1.1. Iteradores, expresiones generadoras y generadores</a><a class="headerlink" href="#iteradores-expresiones-generadoras-y-generadores" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">2.1.1. Iteradores, expresiones generadoras y generadores</a><a class="headerlink" href="#iteradores-expresiones-generadoras-y-generadores" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="iteradores">
-<h3><a class="toc-backref" href="#id4">2.1.1.1. Iteradores</a><a class="headerlink" href="#iteradores" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">2.1.1.1. Iteradores</a><a class="headerlink" href="#iteradores" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Simplicidad</p>
 <p>La duplicación del esfuerzo es un derroche y reemplazar
@@ -181,7 +258,7 @@ a otras cosas: e.g. los objetos <tt class="docutils literal"><span class="pre">f
 solo se crea un hilo (thread) de acceso secuencial.</p>
 </div>
 <div class="section" id="expresiones-generadoras">
-<h3><a class="toc-backref" href="#id5">2.1.1.2. Expresiones generadoras</a><a class="headerlink" href="#expresiones-generadoras" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">2.1.1.2. Expresiones generadoras</a><a class="headerlink" href="#expresiones-generadoras" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Una segunda forma en la cual son creados objetos iteradores es a través de
 <strong>expresiones generadoras</strong>, que son la base de la &#8216;comprensión de listas&#8217;
 (<strong>list comprehensions</strong>). Para aumentar la claridad sobre el tema, una expresión generadora
@@ -221,7 +298,7 @@ la variable de índexación (<tt class="docutils literal"><span class="pre">i</s
 esto ha sido corregido en versiones &gt;= 3.</p>
 </div>
 <div class="section" id="generadores">
-<h3><a class="toc-backref" href="#id6">2.1.1.3. Generadores</a><a class="headerlink" href="#generadores" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">2.1.1.3. Generadores</a><a class="headerlink" href="#generadores" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="sidebar">
 <p class="first sidebar-title">Generadores</p>
 <p>Un generador es una función que crea una
@@ -317,7 +394,7 @@ separada. Esto permite destacar el cuerpo del bucle &#8212; la parte interesante
 Además, es posible reusar el código del iterador en otras partes del código.</p>
 </div>
 <div class="section" id="comunicacion-bidireccional">
-<h3><a class="toc-backref" href="#id7">2.1.1.4. Comunicación bidireccional</a><a class="headerlink" href="#comunicacion-bidireccional" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">2.1.1.4. Comunicación bidireccional</a><a class="headerlink" href="#comunicacion-bidireccional" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Cada declaración <tt class="docutils literal"><span class="pre">yield</span></tt> provoca que un valor sea pasado al cliente (&#8216;caller&#8217;).
 Esta es la razón para la introducción de los generadores por el <span class="target" id="index-0"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0255"><strong>PEP 255</strong></a>
 (implementado en Python 2.2).  Pero la comunicación en el sentido contrario
@@ -394,7 +471,7 @@ de send y throw.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p><tt class="docutils literal"><span class="pre">next</span></tt> o <tt class="docutils literal"><span class="pre">__next__</span></tt>?</p>
 <p class="last">En Python 2.x, el método iterador para recuperarel siguiente valor
 se llama <a class="reference external" href="http://docs.python.org/2.7/library/stdtypes.html#iterator.next" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">next</span></tt></a>. Es invocado de forma explícita a
@@ -414,9 +491,9 @@ incorrecta de forma obvia ya que es invocado de forma implícita.</p>
 </div>
 </div>
 <div class="section" id="encadenando-generadores">
-<h3><a class="toc-backref" href="#id8">2.1.1.5. Encadenando generadores</a><a class="headerlink" href="#encadenando-generadores" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2.1.1.5. Encadenando generadores</a><a class="headerlink" href="#encadenando-generadores" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="first admonition-title">Nota</p>
 <p class="last">Esto ha sido implementado en Python 3.3 (<a class="reference external" href="http://docs.python.org/3/whatsnew/3.3.html#pep-380-syntax-for-delegating-to-a-subgenerator">PEP 380: Syntax for Delegating to a Subgenerator</a>).</p>
 </div>
 <p>Digamos que estamos escribiendo un generador y queremos arrojar un número
@@ -435,8 +512,7 @@ La declaración <tt class="docutils literal"><span class="pre">yield</span></tt>
 <a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#try">try..except..finally</a> similar a la definida en la anterior
 sección para &#8220;depurar&#8221; la función generadora. Este código se encuentra en
 <span class="target" id="index-2"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0380#id13"><strong>PEP 380</strong></a>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">yield from</span> <span class="n">some_other_generator</span><span class="p">()</span>
-<div class="newline"></div></pre></div>
+<div class="highlight-python"><pre>yield from some_other_generator()</pre>
 </div>
 <p>Esto se comporta como el bucle explícito mostrado más arriba, arrojando repetidamente
 valores desde <tt class="docutils literal"><span class="pre">some_other_generator</span></tt> hasta que se agota, pero también transmite
@@ -444,7 +520,7 @@ valores desde <tt class="docutils literal"><span class="pre">some_other_generato
 </div>
 </div>
 <div class="section" id="decoradores">
-<h2><a class="toc-backref" href="#id9">2.1.2. Decoradores</a><a class="headerlink" href="#decoradores" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">2.1.2. Decoradores</a><a class="headerlink" href="#decoradores" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="sidebar">
 <p class="first sidebar-title">Resumen</p>
 <p>Esta maravillosa característica del lenguaje apareció casi pidiendo disculpas
@@ -509,7 +585,7 @@ y es difícil pasarla por alto (&#8220;en tu cara&#8221;,
 de acuerdo al PEP :) ). Cuando se aplica más de un decorador,
 cada uno se emplaza en una línea para que sea de fácil lectura.</p>
 <div class="section" id="reemplazando-o-modificando-el-objeto-original">
-<h3><a class="toc-backref" href="#id10">2.1.2.1. Reemplazando o modificando el objeto original</a><a class="headerlink" href="#reemplazando-o-modificando-el-objeto-original" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">2.1.2.1. Reemplazando o modificando el objeto original</a><a class="headerlink" href="#reemplazando-o-modificando-el-objeto-original" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Los decoradores pueden devolver tanto el mismo objeto función u objeto clase
 como pueden devolver un objeto completamente diferente. En el primer caso,
 el decorador puede aprovecharse del hecho de que un objeto función o un objeto clase
@@ -531,7 +607,7 @@ parte, si el primer caso es suficiente, sería recomendable usarlo puesto que es
 simple.</p>
 </div>
 <div class="section" id="decoradores-implementados-como-clases-y-funciones">
-<h3><a class="toc-backref" href="#id11">2.1.2.2. Decoradores implementados como clases y funciones</a><a class="headerlink" href="#decoradores-implementados-como-clases-y-funciones" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">2.1.2.2. Decoradores implementados como clases y funciones</a><a class="headerlink" href="#decoradores-implementados-como-clases-y-funciones" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>El único requerimiento de los decoradores es el siguiente, solo pueden ser
 llamados con un único argumento. Esto significa que los decoradores pueden
 ser implementados como funciones normales o como clases con un método
@@ -668,7 +744,7 @@ el objeto función original y &#8216;machacar&#8217; los argumentos, llamar a la
 original o no y, después, &#8216;machacar&#8217; el valor de retorno.</p>
 </div>
 <div class="section" id="copiando-el-docstring-documentacion-y-otros-atributos-de-la-funcion-original">
-<h3><a class="toc-backref" href="#id12">2.1.2.3. Copiando el docstring (documentación) y otros atributos de la función original</a><a class="headerlink" href="#copiando-el-docstring-documentacion-y-otros-atributos-de-la-funcion-original" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">2.1.2.3. Copiando el docstring (documentación) y otros atributos de la función original</a><a class="headerlink" href="#copiando-el-docstring-documentacion-y-otros-atributos-de-la-funcion-original" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Cuando un decorador devuelve una nueva función que reemplaza a
 la función original nos encontramos que, desafortunadamente,
 hemos perdido el nombre original de la función, el docstring original y la lista
@@ -723,7 +799,7 @@ en un decorador que preserva la <tt class="docutils literal"><span class="pre">f
 o cualquier otra manera de poder copiar los atributos de las funciones.</p>
 </div>
 <div class="section" id="ejemplos-en-la-libreria-estandar">
-<h3><a class="toc-backref" href="#id13">2.1.2.4. Ejemplos en la librería estándar</a><a class="headerlink" href="#ejemplos-en-la-libreria-estandar" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">2.1.2.4. Ejemplos en la librería estándar</a><a class="headerlink" href="#ejemplos-en-la-libreria-estandar" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Primero de todo deberíamos destacar el hecho de que hay muchos
 decoradores útiles en la librería estándar. Hay tres decoradores
 que son parte importante del lenguaje:</p>
@@ -857,7 +933,7 @@ based on a single available one (Python 2.7).</li>
 </ul>
 </div>
 <div class="section" id="funciones-obsoletas-deprecation-of-functions">
-<h3><a class="toc-backref" href="#id14">2.1.2.5. Funciones obsoletas (Deprecation of functions)</a><a class="headerlink" href="#funciones-obsoletas-deprecation-of-functions" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">2.1.2.5. Funciones obsoletas (Deprecation of functions)</a><a class="headerlink" href="#funciones-obsoletas-deprecation-of-functions" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Digamos que queremos mostrar un aviso de que una función será discontinuada (<tt class="docutils literal"><span class="pre">deprecating</span></tt>)
 en <tt class="docutils literal"><span class="pre">stderr</span></tt> cuando invoquemos por primera vez una función que ya no queremos. Si no queremos
 modificar la función podríamos usar un decorador:</p>
@@ -902,7 +978,7 @@ modificar la función podríamos usar un decorador:</p>
 </div>
 </div>
 <div class="section" id="un-decorador-para-eliminar-bucles-while">
-<h3><a class="toc-backref" href="#id15">2.1.2.6. Un decorador para eliminar bucles <tt class="docutils literal"><span class="pre">while</span></tt></a><a class="headerlink" href="#un-decorador-para-eliminar-bucles-while" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">2.1.2.6. Un decorador para eliminar bucles <tt class="docutils literal"><span class="pre">while</span></tt></a><a class="headerlink" href="#un-decorador-para-eliminar-bucles-while" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Pensemos en una función que nos devuelve una lista de cosas mediante un bucle
 while dentro de la función. Si desconocemos cuantos objetos serán necesarios,
 una forma estándar de hacer esto sería:</p>
@@ -940,7 +1016,7 @@ explícita a <tt class="docutils literal"><span class="pre">list(find_answers())
 </div>
 </div>
 <div class="section" id="un-sistema-de-registro-de-plugins">
-<h3><a class="toc-backref" href="#id16">2.1.2.7. Un sistema de registro de <tt class="docutils literal"><span class="pre">plugins</span></tt></a><a class="headerlink" href="#un-sistema-de-registro-de-plugins" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">2.1.2.7. Un sistema de registro de <tt class="docutils literal"><span class="pre">plugins</span></tt></a><a class="headerlink" href="#un-sistema-de-registro-de-plugins" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Esta es una clase decoradora que no modifica la clase, simplemente la coloca en un
 registro global. Pertenece a la categoría de decoradores que
 devuelven la función original:</p>
@@ -973,7 +1049,7 @@ directamente sería imposible distinguirlo de un texto enfatizado en la fuente
 del programa.</p>
 </div>
 <div class="section" id="mas-ejemplos-y-lecturas-recomendadas">
-<h3><a class="toc-backref" href="#id17">2.1.2.8. Más ejemplos y lecturas recomendadas</a><a class="headerlink" href="#mas-ejemplos-y-lecturas-recomendadas" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">2.1.2.8. Más ejemplos y lecturas recomendadas</a><a class="headerlink" href="#mas-ejemplos-y-lecturas-recomendadas" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li><span class="target" id="index-5"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-0318"><strong>PEP 318</strong></a> (function and method decorator syntax)</li>
 <li><span class="target" id="index-6"></span><a class="pep reference external" href="http://www.python.org/dev/peps/pep-3129"><strong>PEP 3129</strong></a> (class decorator syntax)</li>
@@ -990,7 +1066,7 @@ del programa.</p>
 </div>
 </div>
 <div class="section" id="gestores-de-contexto-context-managers">
-<h2><a class="toc-backref" href="#id18">2.1.3. Gestores de contexto (<tt class="docutils literal"><span class="pre">context</span> <span class="pre">managers</span></tt>)</a><a class="headerlink" href="#gestores-de-contexto-context-managers" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">2.1.3. Gestores de contexto (<tt class="docutils literal"><span class="pre">context</span> <span class="pre">managers</span></tt>)</a><a class="headerlink" href="#gestores-de-contexto-context-managers" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Un gestor de contexto es un objeto con los métodos <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__enter__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__enter__</span></tt></a> y
 <a class="reference external" href="http://docs.python.org/2.7/reference/datamodel.html#object.__exit__" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">__exit__</span></tt></a> los cuales pueden ser usados en la declaración
 <a class="reference external" href="http://docs.python.org/2.7/reference/compound_stmts.html#with">with</a>:</p>
@@ -1081,7 +1157,7 @@ soporte en más lugares:</p>
 </li>
 </ul>
 <div class="section" id="capturando-excepciones">
-<h3><a class="toc-backref" href="#id19">2.1.3.1. Capturando excepciones</a><a class="headerlink" href="#capturando-excepciones" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">2.1.3.1. Capturando excepciones</a><a class="headerlink" href="#capturando-excepciones" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Cuando se lanza una excepción en el bloque <tt class="docutils literal"><span class="pre">with</span></tt>, es pasada como
 argumentos a <tt class="docutils literal"><span class="pre">__exit__</span></tt>. Se usan tres argumentos, el mismo que es
 devuelto por <a class="reference external" href="http://docs.python.org/2.7/library/sys.html#sys.exc_info" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">sys.exc_info()</span></tt></a>: tipo, valor y <a class="reference external" href="http://docs.python.org/2.7/library/traceback.html#traceback" title="(in Python v2.7)"><tt class="xref py py-obj docutils literal"><span class="pre">traceback</span></tt></a>. Cuando no se lanza
@@ -1113,7 +1189,7 @@ código lanza determinada excepción de forma correcta:</p>
 </div>
 </div>
 <div class="section" id="usindo-generadores-para-definir-gestores-de-contexto">
-<h3><a class="toc-backref" href="#id20">2.1.3.2. Usindo generadores para definir gestores de contexto</a><a class="headerlink" href="#usindo-generadores-para-definir-gestores-de-contexto" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">2.1.3.2. Usindo generadores para definir gestores de contexto</a><a class="headerlink" href="#usindo-generadores-para-definir-gestores-de-contexto" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Cuando discutimos sobre los <a class="reference internal" href="#generadores">generadores</a>, se dijo que se se prefería los generadores
 a los iteradores implementados como clases debido a que son más cortos, más dulces
 y el estado se almacena como local, no instancias o variables.
@@ -1176,21 +1252,35 @@ A través del uso de generadores los gestores de contexto son más cortos y simp
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../advanced_numpy/index.html" title="2.2. Numpy avanzado"
-             >next</a></li>
+             >siguiente</a></li>
         <li class="right" >
-          <a href="../index.html" title="2. Temas avanzados"
-             >previous</a> |</li>
+          <a href="../index.html" title="2. Advanced topics"
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

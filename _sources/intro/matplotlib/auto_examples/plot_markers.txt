@@ -5,8 +5,8 @@
 
 
 
-.. image:: images/plot_markers_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Python source code:** :download:`plot_markers.py <plot_markers.py>`

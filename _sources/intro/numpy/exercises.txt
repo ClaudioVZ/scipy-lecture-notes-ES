@@ -1,0 +1,206 @@
+Algunos ejercicios
+==================
+
+Manipulaciones de arreglos
+--------------------------
+
+1. Construya un arreglo 2-D (sin necesidad de escribirlo en forma explícita)::
+
+[[ 1, 6, 11],
+ [ 2, 7, 12],
+ [ 3, 8, 13],
+ [ 4, 9, 14],
+ [ 5, 10, 15]]
+
+y genere un nuevo arreglo que contenga la segunda y cuarta fila.
+
+2. Divide cada columna del arreglo::
+
+>>> a = np.arange(25).reshape(5, 5)
+
+elemento a elemento con el arreglo ``b = np.array([1., 5, 10, 15, 20])``.(Sugerencia: ``np.newaxis``).
+
+3. Uno dificil: Generar un arreglo 10 x 3 de números aleatorios (en el rango [0,1]). Para cada fila, escoja el número más cercano a 0.5.
+
+- Use ``abs`` y ``argsort`` para encontrar la columna ``j`` cercana para cada fila.
+
+- Utilice el indexado fancy para extraer los números. (Sugerencia: ``a[i,j]`` -- el arreglo ``i`` debe contener los números de fila correspondiente a meter en ``j``.)
+
+Manipulando imágenes: Enmarcar a Lena
+-------------------------------------
+
+Vamos a hacer algunas manipulaciones de arreglos numpy comenzando con la famosa imagen de Lena (http://www.cs.cmu.edu/~chuck/lennapg/). ``scipy`` proporciona una matriz 2D de esta imagen con la función ``scipy.lena``::
+
+>>> from scipy import misc
+>>> lena = misc.lena()
+
+**Nota:** En versiones anteriores de scipy, usar ``scipy.lena()``
+
+Aquí están algunas imágenes que podemos obtener: utilizando diferentes mapas de color, recortamdo la imagen, cambiando algunas partes de la imagen.
+
+.. image:: images/lenas.png
+    :align: center
+
+* Vamos a usar la función de pylab imshow() para mostrar la imagen.
+
+.. sourcecode:: ipython
+
+In [3]: import pylab as plt
+In [4]: lena = misc.lena()
+In [5]: plt.imshow(lena)
+
+* Luego se muestra a Lena en colores falsos. Un mapa de colores debe estar especificado para que se muestra en escala de grises.
+
+.. sourcecode:: ipython
+
+In [6]: plt.imshow(lena, cmap=plt.cm.gray)
+
+* Crear una matriz de la imagen con un centrado más estrecho: por ejemplo, eliminar 30 píxeles de todos los bordes de la imagen. Para comprobar el resultado, muestre este nuevo arreglo con ``imshow()``.
+
+.. sourcecode:: ipython
+
+In [9]: crop_lena = lena[30:-30,30:-30]
+
+* Ahora vamos a enmarcar la cara de Lena con un medallón negro. Para ello, necesitamos crear una máscara correspondiente a los píxeles negros. La máscara se define por esta condición ``(y-256)**2 + (x-256)**2``
+
+.. sourcecode:: ipython
+
+In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
+In [16]: y.shape, x.shape
+Out[16]: ((512, 1), (1, 512))
+In [17]: centerx, centery = (256, 256) # center of the image
+In [18]: mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
+
+a continuación, se le asigna el valor 0 a los píxeles de la imagen que corresponde a la máscara. La sintaxis es muy sencilla e intuitiva:
+
+.. sourcecode:: ipython
+
+In [19]: lena[mask] = 0
+In [20]: plt.imshow(lena)
+Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
+
+* Seguimiento: copie todas las instrucciones de este ejercicio en un script llamado ``lena_locket.py`` a continuación, ejecute este script en IPython con ``run% lena_locket.py``.
+
+Cambie el círculo por un elipse.
+
+Datos estadísticos
+------------------
+
+Los datos en :download:`populations.txt <../../data/populations.txt>` describe las poblaciones de liebres y linces (y zanahorias ) en el norte de Canadá durante 20 años::
+
+>>> data = np.loadtxt('data/populations.txt')
+>>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+>>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
+<matplotlib.axes.Axes object at ...>
+>>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+[<matplotlib.lines.Line2D object at ...>, ...]
+>>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+<matplotlib.legend.Legend object at ...>
+
+.. plot:: pyplots/numpy_intro_7.py
+
+Calcule e imprima, basado en los datos en ``populations.txt``...
+
+1. La media y desviación estándar de las poblaciones de cada especie para los años en el período.
+
+2. En qué año cada especie tenía la mayor población.
+
+3. Qué especies tiene la mayor población de cada año. (Sugerencia: ``argsort`` e indexado fancy de ``np.array(['H', 'L', 'C'])``)
+
+4. Qué año cualquiera de las poblaciones está por encima de 50000. (Sugerencia: comparaciones y ``np.any``)
+
+5. Los primeros 2 años para cada especie cuando tuvieron el más bajo poblaciones. (Sugerencia: ``argsort``, indexado fancy)
+
+6. Comparar (plot) el cambio en la población de liebres (ver ``help(np.gradient)``) y el número de linces. Compruebe correlación (ver ``help( np.corrcoef )``).
+
+... todo sin bucles for.
+
+Solución: :download:`Python source file <solutions/2_2_data_statistics.py>`
+
+Aproximaciones cruda de integrales
+----------------------------------
+
+Escriba una función ``f(a, b​​, c)`` que devuelva :math:`a^b - c`. Construya un arreglo 24x12x6 que contenga valores en los rangos de ``[0,1] x [0,1] x [0,1]``.
+
+Aproximar la integral 3-d
+
+.. math:: \int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc
+
+sobre este volumen con la media. El resultado exacto es: :math:`\ln 2 - \frac{1} {2} \approx 0.1931 \ldots` --- cuál es su error relativo?
+
+(Sugerencia: use las operaciones elemento a elemento y broadcasting. Usted puede usar ``np.ogrid`` para obtener una serie de puntos en determinado rango con ``np.ogrid[0:1:20j]``.)
+
+**Recuerde** las funciones en Python::
+
+def f(a, b​​, c):
+    return algun_resultado
+
+Solución: :download:`Python source file <solutions/2_3_crude_integration.py>`
+
+Conjunto de Mandelbrot
+----------------------
+
+.. plot:: intro/numpy/solutions/2_4_mandelbrot.py
+
+Escribir un script que calcula el fractal de Mandelbrot. Iteración Mandelbrot::
+
+N_max = 50
+some_threshold = 50
+
+c = x + 1j*y
+
+for j in xrange(N_max):
+    z = z**2 + c
+
+El punto (x, y) pertenece al conjunto de Mandelbrot si :math: `|c|` < ``some_threshold``.
+
+Para el cálculo de:
+
+.. For doctests
+   >>> mask = np.ones((3, 3))
+
+1. Construir una grid de c = x + 1j*y valores en el rango [-2, 1] x [-1,5, 1,5]
+
+2. Es la iteración
+
+3. Construya una máscara booleana 2-d que indica que los puntos están en el conjunto
+
+4. Guardar el resultado en una imagen::
+
+>>> import matplotlib.pyplot as plt
+>>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5])
+<matplotlib.image.AxesImage object at ...>
+>>> plt.gray()
+>>> plt.savefig('mandelbrot.png')
+
+Solution: :download:`Python source file <solutions/2_4_mandelbrot.py>`
+
+Cadenas de Markov
+-----------------
+
+.. image:: images/markov-chain.png
+
+Matriz de transición ``P`` cadena de Markov, y la distribución de probabilidad de  ``p`` estados:
+
+1. ``0 <= P[i,j] <= 1``: probabilidad de pasar del estado ``i`` al estado ``j``
+
+2. Regla de transición: :math:`p_{new} = P^T p_{old}`
+
+3. ``all(sum(P, axis=1) == 1)``, ``p.sum() == 1``: normalizado
+
+Escribir un script que funciona con 5 estados, y:
+
+- Construir una matriz aleatoria , y normalice cada fila para que sea una matriz de transición.
+
+- Empiezar a partir de una distribución de probabilidad aleatoria (normalizada) ``p`` y toma 50 pasos => ``p_50``
+
+- Calcular la distribución estacionaria: el vector propio de ``P.T`` con valor propio 1 ( numéricamente: cercano a 1 ) => ``p_stationary`` 
+
+Recuerda normalizar el vector propio --- Yo no ...
+
+- Comprueba si ``p_50`` y ``p_stationary`` son iguales a la tolerancia 1e- 5
+
+Caja de herramientas: ``np.random.rand``, ``.dot()``, ``np.linalg.eig``, reductions, ``abs()``, ``argmin``, comparaciones, ``all``, ``np.linalg.norm``, etc.
+
+Solution: :download:`Python source file <solutions/2_5_markov_chain.py>`
+

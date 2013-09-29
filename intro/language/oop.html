@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.10. Object-oriented programming (OOP) &mdash; Scipy lecture notes</title>
+    <title>1.2.9. Programación Orientada a Objetos (POO) &mdash; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,24 +25,101 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="1.2. The Python language" href="python_language.html" />
-    <link rel="next" title="1.3. NumPy: creating and manipulating numerical data" href="../numpy/index.html" />
-    <link rel="prev" title="1.2.9. Exception handling in Python" href="exceptions.html" /> 
+    <link rel="up" title="1.2. El lenguaje Python" href="python_language.html" />
+    <link rel="next" title="1.3. NumPy: creación y manipulación de datos numéricos" href="../numpy/index.html" />
+    <link rel="prev" title="1.2.8. Manejo de excepciones en Python" href="exceptions.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../numpy/index.html" title="1.3. NumPy: creating and manipulating numerical data"
-             accesskey="N">next</a></li>
+          <a href="../numpy/index.html" title="1.3. NumPy: creación y manipulación de datos numéricos"
+             accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="exceptions.html" title="1.2.9. Exception handling in Python"
-             accesskey="P">previous</a> |</li>
+          <a href="exceptions.html" title="1.2.8. Manejo de excepciones en Python"
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,60 +127,46 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="object-oriented-programming-oop">
-<h1>1.2.10. Object-oriented programming (OOP)<a class="headerlink" href="#object-oriented-programming-oop" title="Permalink to this headline">¶</a></h1>
-<p>Python supports object-oriented programming (OOP). The goals of OOP are:</p>
+  <div class="section" id="programacion-orientada-a-objetos-poo">
+<h1>1.2.9. Programación Orientada a Objetos (POO)<a class="headerlink" href="#programacion-orientada-a-objetos-poo" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Python soporta la programación orientada a objetos (POO). Los objetivos de la programación orientada a objetos son:</p>
 <blockquote>
 <div><ul class="simple">
-<li>to organize the code, and</li>
-<li>to re-use code in similar contexts.</li>
+<li>organizar el código, y</li>
+<li>volver a utilizar el código en contextos similares.</li>
 </ul>
 </div></blockquote>
-<p>Here is a small example: we create a Student <em>class</em>, which is an object
-gathering several custom functions (<em>methods</em>) and variables (<em>attributes</em>),
-we will be able to use:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">set_age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">set_major</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">major</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">major</span>
+<p>He aquí un pequeño ejemplo: creamos la <em>clase</em> Estudiante, es un objeto
+que reune varias funciones personalizadas (<em>métodos</em>) y variables (<em>atributos</em>), que pueden usarse:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Estudiante</span><span class="p">(</span><span class="n">objecto</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">establece_edad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">edad</span> <span class="o">=</span> <span class="n">edad</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">establece_licenciatura</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">licenciatura</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">licenciatura</span> <span class="o">=</span> <span class="n">licenciatura</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;anna&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">set_major</span><span class="p">(</span><span class="s">&#39;physics&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span> <span class="o">=</span> <span class="n">Estudiante</span><span class="p">(</span><span class="s">&#39;anna&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">establece_edad</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">anna</span><span class="o">.</span><span class="n">establece_licenciatura</span><span class="p">(</span><span class="s">&#39;fisica&#39;</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>In the previous example, the Student class has <tt class="docutils literal"><span class="pre">__init__</span></tt>, <tt class="docutils literal"><span class="pre">set_age</span></tt> and
-<tt class="docutils literal"><span class="pre">set_major</span></tt> methods. Its attributes are <tt class="docutils literal"><span class="pre">name</span></tt>, <tt class="docutils literal"><span class="pre">age</span></tt> and <tt class="docutils literal"><span class="pre">major</span></tt>. We
-can call these methods and attributes with the following notation:
-<tt class="docutils literal"><span class="pre">classinstance.method</span></tt> or  <tt class="docutils literal"><span class="pre">classinstance.attribute</span></tt>.  The <tt class="docutils literal"><span class="pre">__init__</span></tt>
-constructor is a special method we call with: <tt class="docutils literal"><span class="pre">MyClass(init</span> <span class="pre">parameters</span> <span class="pre">if</span>
-<span class="pre">any)</span></tt>.</p>
-<p>Now, suppose we want to create a new class MasterStudent with the same
-methods and attributes as the previous one, but with an additional
-<tt class="docutils literal"><span class="pre">internship</span></tt> attribute. We won&#8217;t copy the previous class, but
-<strong>inherit</strong> from it:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">MasterStudent</span><span class="p">(</span><span class="n">Student</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="n">internship</span> <span class="o">=</span> <span class="s">&#39;mandatory, from March to June&#39;</span>
+<p>En el ejemplo anterior, la clase Estudiante tiene los métodos <tt class="docutils literal"><span class="pre">__init__</span></tt>, <tt class="docutils literal"><span class="pre">establece_edad</span></tt> y <tt class="docutils literal"><span class="pre">establece_licenciatura</span></tt>. Sus atributos son <tt class="docutils literal"><span class="pre">nombre</span></tt>, <tt class="docutils literal"><span class="pre">edad</span></tt> y <tt class="docutils literal"><span class="pre">licenciatura</span></tt>. Nosotros podemos llamar a estos métodos y atributos con la siguiente notación: <tt class="docutils literal"><span class="pre">classinstance.método</span></tt> o <tt class="docutils literal"><span class="pre">classinstance.atributo</span></tt>. El constructor <tt class="docutils literal"><span class="pre">__init__</span></tt> es un método especial que llamamos con: <tt class="docutils literal"><span class="pre">MiClase(parámetros</span> <span class="pre">de</span> <span class="pre">inicio</span> <span class="pre">cualquiera)</span></tt>.</p>
+<p>Ahora, supongamos que queremos crear una nueva clase EstudianteMaestria con los mismos métodos y atributos que el anterior, pero con un atributo adicional <tt class="docutils literal"><span class="pre">practicas</span></tt>. No copiaremos la clase anterior, pero si <strong>heredarlos</strong> de ella:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">EstudianteMaestria</span><span class="p">(</span><span class="n">Estudiante</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="n">practicas</span> <span class="o">=</span> <span class="s">&#39;obligatorias, de marzo a junio&#39;</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span> <span class="o">=</span> <span class="n">MasterStudent</span><span class="p">(</span><span class="s">&#39;james&#39;</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">internship</span>
-<div class="newline"></div><span class="go">&#39;mandatory, from March to June&#39;</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">age</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span> <span class="o">=</span> <span class="n">EstudianteMaestria</span><span class="p">(</span><span class="s">&#39;james&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">practicas</span>
+<div class="newline"></div><span class="go">&#39;obligatorias, de marzo a junio&#39;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">establece_edad</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">james</span><span class="o">.</span><span class="n">edad</span>
 <div class="newline"></div><span class="go">23</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The MasterStudent class inherited from the Student attributes and methods.</p>
-<p>Thanks to classes and object-oriented programming, we can organize code
-with different classes corresponding to different objects we encounter
-(an Experiment class, an Image class, a Flow class, etc.), with their own
-methods and attributes. Then we can use inheritance to consider
-variations around a base class and <strong>re-use</strong> code. Ex : from a Flow
-base class, we can create derived StokesFlow, TurbulentFlow,
-PotentialFlow, etc.</p>
+<p>La clase EstudianteMaestria hereda los atributos y métodos de la clase Estudiante.</p>
+<p>Gracias a las clases y a la programación orientada a objetos, podemos organizar el código en distintas clases correspondientes a diferentes objetos que nos encontramos (clase Experimento, clase Imagen, clase Flujo, etc), con sus propios métodos y atributos. También podemos utilizar la herencia para considerar variaciones en torno a una clase base y <strong>reutilizar</strong> código. Ejemplo: a partir de la clase Flujo, podemos crear sus derivados FlujoStokes, FlujoTurbulento, FlujoPotencial, etc.</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -113,22 +176,36 @@ PotentialFlow, etc.</p>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../numpy/index.html" title="1.3. NumPy: creating and manipulating numerical data"
-             >next</a></li>
+          <a href="../numpy/index.html" title="1.3. NumPy: creación y manipulación de datos numéricos"
+             >siguiente</a></li>
         <li class="right" >
-          <a href="exceptions.html" title="1.2.9. Exception handling in Python"
-             >previous</a> |</li>
+          <a href="exceptions.html" title="1.2.8. Manejo de excepciones en Python"
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

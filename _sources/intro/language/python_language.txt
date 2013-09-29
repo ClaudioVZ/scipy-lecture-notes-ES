@@ -1,53 +1,40 @@
-The Python language
+El lenguaje Python
 =====================================
 
-:authors: Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël Varoquaux
+:Autores: Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël Varoquaux
 
-.. topic:: Python for scientific computing
+.. topic:: Python para computacíon científica
 
-    We introduce here the Python language. Only the bare minimum
-    necessary for getting started with Numpy and Scipy is addressed here.
-    To learn more about the language, consider going through the
-    excellent tutorial http://docs.python.org/tutorial. Dedicated books
-    are also available, such as http://diveintopython.org/.
+    Presentamos el lenguaje Python. Se aborda sólo el mínimo necesario para empezar con Numpy y Scipy. Para aprender más sobre el lenguaje, considere revisar este excelente tutorial http://docs.python.org/tutorial. Libros dedicados también están disponibles, tales como http://diveintopython.org/.
+
 
 .. image:: python-logo.png
    :align: right
 
-Python is a **programming language**, as are C, Fortran, BASIC, PHP,
-etc. Some specific features of Python are as follows:
+.. tip::
 
-* an *interpreted* (as opposed to *compiled*) language. Contrary to e.g.
-  C or Fortran, one does not compile Python code before executing it. In
-  addition, Python can be used **interactively**: many Python
-  interpreters are available, from which commands and scripts can be
-  executed.
+  Python es un **lenguaje de programación**, al igual que C, Fortran, BASIC, PHP, etc. Algunas de las características específicas de Python son:
 
-* a free software released under an **open-source** license: Python can
-  be used and distributed free of charge, even for building commercial
-  software.
+  * un lenguaje *interpretado* (opuesto a *compilado*). Al contrario de C o Fortran, no se puede compilar código Python antes de ejecutarlo. Además, Python se usa **interactivamente**: muchos intérpretes de Python están disponibles, pueden ser ejecutado desde la línea de comandos y scripts.
 
-* **multi-platform**: Python is available for all major operating
-  systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone
-  OS, etc.
+  * Es software libre publicado bajo una licencia **open-source**: Python puede ser utilizado y distribuido de forma gratuita, incluso para la construcción de software comercial.
 
-* a very readable language with clear non-verbose syntax
+  * **Multiplataforma**: Python está disponible para los principales sistemas operativos, Windows, Linux/Unix, MacOS X, probablemente en su teléfono móvil OS, etc
 
-* a language for which a large variety of high-quality packages are
-  available for various applications, from web frameworks to scientific
-  computing.
+  * Un lenguaje de fácil lectura con una sintaxis clara
 
-* a language very easy to interface with other languages, in particular C
-  and C++.
-
-* Some other features of the language are illustrated just below. For
-  example, Python is an object-oriented language, with dynamic typing
-  (the same variable can contain objects of different types during the
-  course of a program).
+  * Un lenguaje con una gran variedad de paquetes de alta calidad disponibles para diversas aplicaciones, desde web frameworks hasta cálculos científicos.
 
 
-See http://www.python.org/about/ for more information about
-distinguishing features of Python.
+  * Un lenguaje de muy fácil interfaz con otros lenguajes, en particular C
+    y C++.
+
+  * Algunas otras características de la lengua se ilustran más abajo. Por ejemplo, Python es un lenguaje orientado a objetos, con tipado dinámico (la misma variable puede contener objetos de diferentes tipos durante el transcurso de un programa).
+
+
+
+  Visite http://www.python.org/about/ para más información acerca de las
+  distinguidas capacidades de Python.
 
 _____
 

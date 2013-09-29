@@ -5,8 +5,8 @@
 
 
 
-.. image:: images/plot_ticks_1.png
-    :align: center
+.. rst-class:: horizontal
+
 
 
 **Python source code:** :download:`plot_ticks.py <plot_ticks.py>`

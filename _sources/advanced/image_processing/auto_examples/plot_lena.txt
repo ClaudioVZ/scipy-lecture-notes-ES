@@ -5,8 +5,8 @@
  Small example to plot lena.
 
 
-.. rst-class:: horizontal
-
+.. image:: images/plot_lena_1.png
+    :align: center
 
 
 **Python source code:** :download:`plot_lena.py <plot_lena.py>`

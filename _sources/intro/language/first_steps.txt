@@ -1,31 +1,29 @@
-First steps
+Primeros pasos
 -------------
 
 
-Start the **Ipython** shell (an enhanced interactive Python shell):
+Inicie el shell **IPython** (shell Python interactivo mejorado):
 
-* by typing "ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
-* **or** by starting the program from a menu, e.g. in the `Python(x,y)`_ or
-  `EPD`_ menu if you have installed one of these scientific-Python suites.
+* escriba "ipython" en una terminal Linux/Mac, o desde el shell cmd de Windows,
+* **o** iniciando el programa desde un menú, por ejemplo, en `Python(x,y)`_ o `EPD`_ si ha instalado una distribución científica Python.
 
 .. _`Python(x,y)`: http://www.pythonxy.com/
 .. _`EPD`: http://www.enthought.com/products/epd.php
 
-If you don't have Ipython installed on your computer, other Python shells
-are available, such as the plain Python shell started by typing "python"
-in a terminal, or the Idle interpreter. However, we advise to use the
-Ipython shell because of its enhanced features, especially for
-interactive scientific computing.
+.. tip::
 
-Once you have started the interpreter, type ::
+    Si usted no tiene IPython instalado en su equipo, otras shell Python están disponibles, como el shell python que se inicia escribiendo "python" en una terminal, o el intérprete Idle. Sin embargo, nos recomiendan usar el shell IPython debido a sus características mejoradas, especialmente para cálculo científico interactivo.
 
-    >>> print "Hello, world!"
-    Hello, world!
+Después de iniciar el interprete, teclee::
 
-The message "Hello, world!" is then displayed. You just executed your
-first Python instruction, congratulations!
+    >>> print "Hola, mundo!"
+    Hola, mundo!
 
-To get yourself started, type the following stack of instructions ::
+.. tip::
+
+    Si el mensaje "Hola, mundo!" fue mostrado. Usted acaba de ejecutar su primera instrucción Python, felicitaciones!
+
+Para empezar, escriba las siguientes instrucciones::
 
     >>> a = 3
     >>> b = 2*a
@@ -35,27 +33,20 @@ To get yourself started, type the following stack of instructions ::
     6
     >>> a*b 
     18
-    >>> b = 'hello' 
+    >>> b = 'hola' 
     >>> type(b)
     <type 'str'>
     >>> b + b
-    'hellohello'
+    'holahola'
     >>> 2*b
-    'hellohello'
+    'holahola'
 
-Two variables ``a`` and ``b`` have been defined above. Note that one does
-not declare the type of an variable before assigning its value. In C,
-conversely, one should write:
+.. tip::
 
-.. sourcecode:: c
+  Las variables ``a`` y ``b`` se han definidon anteriormente. Tenga en cuenta que no se declarar el tipo de una variable antes de asignarle un valor. Por el contrario en C, se debe escribir:
 
-    int a = 3;
+  .. sourcecode:: c
 
-In addition, the type of a variable may change, in the sense that at
-one point in time it can be equal to a value of a certain type, and a
-second point in time, it can be equal to a value of a different
-type. `b` was first equal to an integer, but it became equal to a
-string when it was assigned the value `'hello'`. Operations on
-integers (``b=2*a``) are coded natively in Python, and so are some
-operations on strings such as additions and multiplications, which
-amount respectively to concatenation and repetition.
+      int a = 3;
+
+  Además, el tipo de una variable puede cambiar, en el sentido de que en un punto del tiempo puede ser igual a un valor de un cierto tipo, y un segundo punto en el tiempo, puede ser igual a un valor de un tipo diferente. Primero `b` fue igual a un número entero, pero se convirtio en cadena cuando se le asignó el valor `'hola'`. Operaciones en enteros (``b = 2*a``) están codificados de forma nativa en Python, y también lo son algunas operaciones sobre cadenas, tales como adiciones y multiplicaciones, que son respectivamente, concatenación y repetición.

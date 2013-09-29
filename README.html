@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,21 +25,98 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/copybutton.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="index.html" />
-    <link rel="next" title="How to contribute" href="guide/index.html" />
+    <link rel="next" title="Cómo contribuir" href="guide/index.html" />
     <link rel="prev" title="Novedades" href="CHANGES.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="guide/index.html" title="How to contribute"
-             accesskey="N">next</a></li>
+          <a href="guide/index.html" title="Cómo contribuir"
+             accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="CHANGES.html" title="Novedades"
-             accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li> 
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -55,9 +132,9 @@ completo de computación científica en python.</p>
 <p>Estos documentos han sido escritos con el lenguaje de marcado rest (extensión
 .rst) y han sido creados usando Sphinx: <a class="reference external" href="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</a>.</p>
 <div class="section" id="modificando">
-<h1>Modificando<a class="headerlink" href="#modificando" title="Permalink to this headline">¶</a></h1>
+<h1>Modificando<a class="headerlink" href="#modificando" title="Enlazar permanentemente con este título">¶</a></h1>
 <div class="section" id="reusando-y-distribuyendo">
-<h2>Reusando y distribuyendo<a class="headerlink" href="#reusando-y-distribuyendo" title="Permalink to this headline">¶</a></h2>
+<h2>Reusando y distribuyendo<a class="headerlink" href="#reusando-y-distribuyendo" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Como se ha expuesto en el fichero LICENSE.txt, este material ha sido creado
 sin ningún tipo de restricciones. Siéntete libre para reusarlo y modificarlo para
 tus propias necesidades de enseñanza.</p>
@@ -69,7 +146,7 @@ y editadas por los autores originales y posteriormente puedan ser
 traducidas al español u otros idiomas.</p>
 </div>
 <div class="section" id="instrucciones-para-crear-la-documentacion">
-<h2>Instrucciones para crear la documentación<a class="headerlink" href="#instrucciones-para-crear-la-documentacion" title="Permalink to this headline">¶</a></h2>
+<h2>Instrucciones para crear la documentación<a class="headerlink" href="#instrucciones-para-crear-la-documentacion" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Para crear la salida en html y que pueda ser mostrada en la pantalla, Escribe:</p>
 <div class="highlight-python"><pre>make html</pre>
 </div>
@@ -84,7 +161,7 @@ puesto que la información se encontrará cacheada.</p>
 Modificaciones al formato en los ficheros rst deberían ser suficiente para
 evitar estos problemas.</p>
 <div class="section" id="requerimientos">
-<h3>Requerimientos<a class="headerlink" href="#requerimientos" title="Permalink to this headline">¶</a></h3>
+<h3>Requerimientos<a class="headerlink" href="#requerimientos" title="Enlazar permanentemente con este título">¶</a></h3>
 <p><em>probablemente incompleto</em></p>
 <ul class="simple">
 <li>make</li>
@@ -97,9 +174,9 @@ evitar estos problemas.</p>
 </div>
 </div>
 <div class="section" id="para-contribuir">
-<h2>Para contribuir<a class="headerlink" href="#para-contribuir" title="Permalink to this headline">¶</a></h2>
+<h2>Para contribuir<a class="headerlink" href="#para-contribuir" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="politica-editorial">
-<h3>Política editorial<a class="headerlink" href="#politica-editorial" title="Permalink to this headline">¶</a></h3>
+<h3>Política editorial<a class="headerlink" href="#politica-editorial" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>El objetivo de este material es proporcionar un texto conciso para aprender
 las principales características del ecosistema scipy. Si quieres contribuir
 a la traducción del material de referencia te sugerimos que contribuyas a la
@@ -120,7 +197,7 @@ de atención de la gente no suele durar más allá de una o dos horas, independi
 de que estén leyendo un tutorial o estén atendiendo en una clase.</p>
 </div>
 <div class="section" id="modificar">
-<h3>Modificar<a class="headerlink" href="#modificar" title="Permalink to this headline">¶</a></h3>
+<h3>Modificar<a class="headerlink" href="#modificar" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>La forma más fácil de hacer tu propia versión de este material de enseñanza
 es &#8216;forkear&#8217; (crear una nueva forja) en Github y usar el sistema de control
 de versiones git para mantener tu propio fork (forja). Para ello, lo único que
@@ -133,7 +210,7 @@ arriba de la página de tu fork.</p>
 necesario.</p>
 </div>
 <div class="section" id="graficas-y-ejemplos-de-codigo">
-<h3>Gráficas y ejemplos de código<a class="headerlink" href="#graficas-y-ejemplos-de-codigo" title="Permalink to this headline">¶</a></h3>
+<h3>Gráficas y ejemplos de código<a class="headerlink" href="#graficas-y-ejemplos-de-codigo" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Las figuras deberían ser generadas a partir del código fuente python. La
 política es crear un directorio <tt class="docutils literal"><span class="pre">examples</span></tt> en el cual colocar los
 correspondientes ficheros python. Cualquier fichero cuyo nombre empiece con
@@ -151,14 +228,17 @@ adoptado del proyecto scikits.learn y puede ser encontrado en <tt class="docutil
 sobre como contribuir:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="guide/index.html">How to contribute</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#id1">How to contribute ?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#figures-and-code-examples">Figures and code examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#linking-to-package-documentations">Linking to package documentations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#chapter-section-subsection-paragraph">Chapter, section, subsection, paragraph</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#admonitions">Admonitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#clearing-floats">Clearing floats</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/index.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/index.html">Cómo contribuir</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#como-colaborar">¿Cómo colaborar?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#mantenerlo-concisa-parrafos-colapso">Mantenerlo concisa: párrafos colapso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#figuras-y-ejemplos-de-codigo">Figuras y ejemplos de código</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#el-uso-de-marcas">El uso de marcas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#enlaces-a-documentacion-del-paquete">Enlaces a documentación del paquete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#capitulo-articulo-inciso-parrafo">Capítulo, artículo, inciso, párrafo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#usando-github">Usando Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#advertencias">Advertencias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#limpieza-de-flotantes">Limpieza de flotantes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/index.html#referencias">Referencias</a></li>
 </ul>
 </li>
 </ul>
@@ -175,20 +255,34 @@ sobre como contribuir:</p>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="guide/index.html" title="How to contribute"
-             >next</a></li>
+          <a href="guide/index.html" title="Cómo contribuir"
+             >siguiente</a></li>
         <li class="right" >
           <a href="CHANGES.html" title="Novedades"
-             >previous</a> |</li>
-        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li> 
+             >anterior</a> |</li>
+        <li><a href="index.html">Scipy lecture notes</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

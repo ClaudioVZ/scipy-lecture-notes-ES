@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,23 +25,100 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="2. Temas avanzados" href="../index.html" />
+    <link rel="up" title="2. Advanced topics" href="../index.html" />
     <link rel="next" title="2.7. Mathematical optimization: finding minima of functions" href="../mathematical_optimization/index.html" />
     <link rel="prev" title="2.5.4. Other Interesting Packages" href="../scipy_sparse/other_packages.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../mathematical_optimization/index.html" title="2.7. Mathematical optimization: finding minima of functions"
-             accesskey="N">next</a></li>
+             accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="../scipy_sparse/other_packages.html" title="2.5.4. Other Interesting Packages"
-             accesskey="P">previous</a> |</li>
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" accesskey="U">2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,7 +127,7 @@
           <div class="body">
             
   <div class="section" id="manipulacion-y-procesamiento-de-imagenes-usando-numpy-y-scipy">
-<h1>2.6. Manipulación y procesamiento de imágenes usando Numpy y Scipy<a class="headerlink" href="#manipulacion-y-procesamiento-de-imagenes-usando-numpy-y-scipy" title="Permalink to this headline">¶</a></h1>
+<h1>2.6. Manipulación y procesamiento de imágenes usando Numpy y Scipy<a class="headerlink" href="#manipulacion-y-procesamiento-de-imagenes-usando-numpy-y-scipy" title="Enlazar permanentemente con este título">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -128,17 +205,18 @@
 </ul>
 </div>
 <div class="section" id="abriendo-y-escribiendo-archivos-de-imagenes">
-<h2><a class="toc-backref" href="#id1">2.6.1. Abriendo y escribiendo archivos de imágenes</a><a class="headerlink" href="#abriendo-y-escribiendo-archivos-de-imagenes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">2.6.1. Abriendo y escribiendo archivos de imágenes</a><a class="headerlink" href="#abriendo-y-escribiendo-archivos-de-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Escribiendo un array a un archivo:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="n">l</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="n">misc</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span><span class="s">&#39;lena.png&#39;</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="c"># uses the Image module (PIL)</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
-<div class="newline"></div><span class="n">pl</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<div class="newline"></div><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 <div class="newline"></div></pre></div>
 </div>
-<a class="reference internal image-reference" href="advanced/image_processing/examples/lena.png"><img alt="advanced/image_processing/examples/lena.png" class="align-center" src="advanced/image_processing/examples/lena.png" /></a>
+<a class="reference internal image-reference" href="../../_images/lena.png"><img alt="../../_images/lena.png" class="align-center" src="../../_images/lena.png" style="width: 256.0px; height: 256.0px;" /></a>
 <p>Creando un array numpy desde un archivo de imagen:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s">&#39;lena.png&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">lena</span><span class="p">)</span>
@@ -177,7 +255,7 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 </div>
 </div>
 <div class="section" id="mostrando-imagenes">
-<h2><a class="toc-backref" href="#id2">2.6.2. Mostrando imágenes</a><a class="headerlink" href="#mostrando-imagenes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">2.6.2. Mostrando imágenes</a><a class="headerlink" href="#mostrando-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Se puede usar <tt class="docutils literal"><span class="pre">matplotlib</span></tt> e <tt class="docutils literal"><span class="pre">imshow</span></tt> para mostrar una imagen dentro de una
 <tt class="docutils literal"><span class="pre">figura</span> <span class="pre">matplotlib</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
@@ -200,7 +278,7 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_display_lena.html"><img alt="../../_images/plot_display_lena_1.png" src="../../_images/plot_display_lena_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_display_lena.html"><img alt="../../_images/plot_display_lena_1.png" src="../../_images/plot_display_lena_1.png" style="width: 1000.0px; height: 360.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_display_lena.html#example-plot-display-lena-py"><em>Python source code</em></a>]</p>
 <p>Para hacer una inspección detallada de variaciones de intensidad podemos usar
@@ -210,7 +288,7 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_interpolation_lena.html"><img alt="../../_images/plot_interpolation_lena_1.png" src="../../_images/plot_interpolation_lena_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_interpolation_lena.html"><img alt="../../_images/plot_interpolation_lena_1.png" src="../../_images/plot_interpolation_lena_1.png" style="width: 640.0px; height: 320.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_interpolation_lena.html#example-plot-interpolation-lena-py"><em>Python source code</em></a>]</p>
 <p>A veces, otros paquetes usan paquetes o <tt class="xref py py-obj docutils literal"><span class="pre">toolkits</span></tt> para visualización (GTK, Qt):</p>
@@ -221,7 +299,7 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 </div>
 <div class="topic">
 <p class="topic-title first">Visualización en 3-D: Mayavi</p>
-<p>Ver <a class="reference internal" href="../3d_plotting/index.html#mayavi-label"><em>Gráficos 3D con Mayavi</em></a> y <em class="xref std std-ref">mayavi-voldata-label</em>.</p>
+<p>Ver <a class="reference internal" href="../../packages/3d_plotting/index.html#mayavi-label"><em>Gráficos 3D con Mayavi</em></a> y <a class="reference internal" href="../../packages/3d_plotting/index.html#mayavi-voldata-label"><em>Datos volumétricos</em></a>.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Widget para planos de imagen</li>
@@ -233,9 +311,9 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 </div>
 </div>
 <div class="section" id="manipulaciones-basicas">
-<h2><a class="toc-backref" href="#id3">2.6.3. Manipulaciones básicas</a><a class="headerlink" href="#manipulaciones-basicas" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">2.6.3. Manipulaciones básicas</a><a class="headerlink" href="#manipulaciones-basicas" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Las imágenes las leemos usando arrays numpy: ¡Podemos usar toda la maquinaria <tt class="docutils literal"><span class="pre">numpy</span></tt>!</p>
-<a class="reference internal image-reference" href="../../_images/axis_convention.png"><img alt="../../_images/axis_convention.png" class="align-center" src="../../_images/axis_convention.png" /></a>
+<a class="reference internal image-reference" href="../../_images/axis_convention.png"><img alt="../../_images/axis_convention.png" class="align-center" src="../../_images/axis_convention.png" style="width: 432.25px; height: 221.65px;" /></a>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
 <div class="newline"></div><span class="go">166</span>
@@ -256,11 +334,11 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_numpy_array.html"><img alt="../../_images/plot_numpy_array_1.png" src="../../_images/plot_numpy_array_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_numpy_array.html"><img alt="../../_images/plot_numpy_array_1.png" src="../../_images/plot_numpy_array_1.png" style="width: 300.0px; height: 300.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_numpy_array.html#example-plot-numpy-array-py"><em>Python source code</em></a>]</p>
 <div class="section" id="informacion-estadistica">
-<h3><a class="toc-backref" href="#id4">2.6.3.1. Información estadística</a><a class="headerlink" href="#informacion-estadistica" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">2.6.3.1. Información estadística</a><a class="headerlink" href="#informacion-estadistica" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <div class="newline"></div><span class="go">124.04678344726562</span>
@@ -286,11 +364,11 @@ y haz zoom para ver la diferencia.</li>
 los píxeles más claros.</li>
 <li>Guarda el array a los diferentes formatos de imagen (png, jpg, tiff)</li>
 </ul>
-<img alt="advanced/image_processing/scikits_image_logo.png" class="align-center" src="advanced/image_processing/scikits_image_logo.png" />
+<img alt="../../_images/scikits_image_logo.png" class="align-center" src="../../_images/scikits_image_logo.png" />
 </div>
 </div>
 <div class="section" id="transformaciones-geometricas">
-<h3><a class="toc-backref" href="#id5">2.6.3.2. Transformaciones geométricas</a><a class="headerlink" href="#transformaciones-geometricas" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">2.6.3.2. Transformaciones geométricas</a><a class="headerlink" href="#transformaciones-geometricas" title="Enlazar permanentemente con este título">¶</a></h3>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lx</span><span class="p">,</span> <span class="n">ly</span> <span class="o">=</span> <span class="n">lena</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="c"># Recorte de la imagen</span>
@@ -303,19 +381,19 @@ los píxeles más claros.</li>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_geom_lena.html"><img alt="../../_images/plot_geom_lena_1.png" src="../../_images/plot_geom_lena_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_geom_lena.html"><img alt="../../_images/plot_geom_lena_1.png" src="../../_images/plot_geom_lena_1.png" style="width: 1000.0px; height: 200.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_geom_lena.html#example-plot-geom-lena-py"><em>Python source code</em></a>]</p>
 </div>
 </div>
 <div class="section" id="filtrado-de-imagenes">
-<h2><a class="toc-backref" href="#id6">2.6.4. Filtrado de imágenes</a><a class="headerlink" href="#filtrado-de-imagenes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">2.6.4. Filtrado de imágenes</a><a class="headerlink" href="#filtrado-de-imagenes" title="Enlazar permanentemente con este título">¶</a></h2>
 <p><strong>Filtros locales</strong>: reemplaza el valor de los pixeles por una función de los
 valores de los pixeles vecinos.</p>
 <p>Vecindad: cuadrado (selecciona el tamaño), círculo o <em>elementos estructurados</em> más complejos*.</p>
 <img alt="../../_images/kernels.png" class="align-center" src="../../_images/kernels.png" />
 <div class="section" id="desenfoque-suavizado">
-<h3><a class="toc-backref" href="#id7">2.6.4.1. Desenfoque/suavizado</a><a class="headerlink" href="#desenfoque-suavizado" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">2.6.4.1. Desenfoque/suavizado</a><a class="headerlink" href="#desenfoque-suavizado" title="Enlazar permanentemente con este título">¶</a></h3>
 <p><strong>Filtro gaussiano</strong> de <tt class="docutils literal"><span class="pre">scipy.ndimage</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
@@ -328,12 +406,12 @@ valores de los pixeles vecinos.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_blur.html"><img alt="../../_images/plot_blur_1.png" src="../../_images/plot_blur_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_blur.html"><img alt="../../_images/plot_blur_1.png" src="../../_images/plot_blur_1.png" style="width: 720.0px; height: 240.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_blur.html#example-plot-blur-py"><em>Python source code</em></a>]</p>
 </div>
 <div class="section" id="enfoque-refinamiento-sharpening">
-<h3><a class="toc-backref" href="#id8">2.6.4.2. enfoque/refinamiento (<tt class="xref py py-obj docutils literal"><span class="pre">sharpening</span></tt>)</a><a class="headerlink" href="#enfoque-refinamiento-sharpening" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2.6.4.2. enfoque/refinamiento (<tt class="xref py py-obj docutils literal"><span class="pre">sharpening</span></tt>)</a><a class="headerlink" href="#enfoque-refinamiento-sharpening" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Enfocar una imagen borrosa:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
@@ -347,12 +425,12 @@ valores de los pixeles vecinos.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_sharpen.html"><img alt="../../_images/plot_sharpen_1.png" src="../../_images/plot_sharpen_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_sharpen.html"><img alt="../../_images/plot_sharpen_1.png" src="../../_images/plot_sharpen_1.png" style="width: 1200.0px; height: 400.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_sharpen.html#example-plot-sharpen-py"><em>Python source code</em></a>]</p>
 </div>
 <div class="section" id="reduciendo-ruido">
-<h3><a class="toc-backref" href="#id9">2.6.4.3. Reduciendo ruido</a><a class="headerlink" href="#reduciendo-ruido" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">2.6.4.3. Reduciendo ruido</a><a class="headerlink" href="#reduciendo-ruido" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Imagen de Lena con ruido:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
@@ -371,7 +449,7 @@ valores de los pixeles vecinos.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_lena_denoise.html"><img alt="../../_images/plot_lena_denoise_1.png" src="../../_images/plot_lena_denoise_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_lena_denoise.html"><img alt="../../_images/plot_lena_denoise_1.png" src="../../_images/plot_lena_denoise_1.png" style="width: 720.0px; height: 168.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_lena_denoise.html#example-plot-lena-denoise-py"><em>Python source code</em></a>]</p>
 <p>Filtro de mediana: mejor resultado para zonas de frontera rectas (<strong>baja curvatura</strong>):</p>
@@ -383,7 +461,7 @@ valores de los pixeles vecinos.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_denoising.html"><img alt="../../_images/plot_denoising_1.png" src="../../_images/plot_denoising_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_denoising.html"><img alt="../../_images/plot_denoising_1.png" src="../../_images/plot_denoising_1.png" style="width: 960.0px; height: 300.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_denoising.html#example-plot-denoising-py"><em>Python source code</em></a>]</p>
 <p>Otros filtros de rango: <tt class="docutils literal"><span class="pre">ndimage.maximum_filter</span></tt>,
@@ -401,7 +479,7 @@ medida:</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_lena_tv_denoise.html"><img alt="../../_images/plot_lena_tv_denoise_1.png" src="../../_images/plot_lena_tv_denoise_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_lena_tv_denoise.html"><img alt="../../_images/plot_lena_tv_denoise_1.png" src="../../_images/plot_lena_tv_denoise_1.png" style="width: 720.0px; height: 168.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_lena_tv_denoise.html#example-plot-lena-tv-denoise-py"><em>Python source code</em></a>]</p>
 <div class="topic">
@@ -419,7 +497,7 @@ total.</li>
 </div>
 </div>
 <div class="section" id="morfologia-matematica">
-<h3><a class="toc-backref" href="#id10">2.6.4.4. Morfología matemática</a><a class="headerlink" href="#morfologia-matematica" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">2.6.4.4. Morfología matemática</a><a class="headerlink" href="#morfologia-matematica" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Ver <a class="reference external" href="http://en.wikipedia.org/wiki/Mathematical_morphology">http://en.wikipedia.org/wiki/Mathematical_morphology</a></p>
 <p>Prueba una imagen con una forma simple (un <strong>elemento con estructura</strong>) y
 modifica esta imagen de acuerdo a como se ajuste o no a la imagen.</p>
@@ -499,7 +577,7 @@ modifica esta imagen de acuerdo a como se ajuste o no a la imagen.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_greyscale_dilation.html"><img alt="../../_images/plot_greyscale_dilation_1.png" src="../../_images/plot_greyscale_dilation_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_greyscale_dilation.html"><img alt="../../_images/plot_greyscale_dilation_1.png" src="../../_images/plot_greyscale_dilation_1.png" style="width: 500.0px; height: 120.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_greyscale_dilation.html#example-plot-greyscale-dilation-py"><em>Python source code</em></a>]</p>
 <p><strong>Opening (Apertura)</strong>: erosión + dilatación:</p>
@@ -541,7 +619,7 @@ modifica esta imagen de acuerdo a como se ajuste o no a la imagen.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_propagation.html"><img alt="../../_images/plot_propagation_1.png" src="../../_images/plot_propagation_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_propagation.html"><img alt="../../_images/plot_propagation_1.png" src="../../_images/plot_propagation_1.png" style="width: 380.0px; height: 120.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_propagation.html#example-plot-propagation-py"><em>Python source code</em></a>]</p>
 <p><strong>Cierre (Closing)</strong>: dilatación + erosión</p>
@@ -552,9 +630,9 @@ etc.</p>
 </div>
 </div>
 <div class="section" id="extraccion-de-patrones">
-<h2><a class="toc-backref" href="#id11">2.6.5. Extracción de patrones</a><a class="headerlink" href="#extraccion-de-patrones" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">2.6.5. Extracción de patrones</a><a class="headerlink" href="#extraccion-de-patrones" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="deteccion-de-borde">
-<h3><a class="toc-backref" href="#id12">2.6.5.1. Detección de borde</a><a class="headerlink" href="#deteccion-de-borde" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">2.6.5.1. Detección de borde</a><a class="headerlink" href="#deteccion-de-borde" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Datos sintéticos:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">im</span><span class="p">[</span><span class="mi">64</span><span class="p">:</span><span class="o">-</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">:</span><span class="o">-</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -570,7 +648,7 @@ etc.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_find_edges.html"><img alt="../../_images/plot_find_edges_1.png" src="../../_images/plot_find_edges_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_find_edges.html"><img alt="../../_images/plot_find_edges_1.png" src="../../_images/plot_find_edges_1.png" style="width: 640.0px; height: 200.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_find_edges.html#example-plot-find-edges-py"><em>Python source code</em></a>]</p>
 <p><strong>Filtro de Canny</strong></p>
@@ -581,13 +659,13 @@ etc.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_canny.html"><img alt="../../_images/plot_canny_1.png" src="../../_images/plot_canny_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_canny.html"><img alt="advanced/image_processing/auto_examples/images/plot_canny_1.png" src="advanced/image_processing/auto_examples/images/plot_canny_1.png" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_canny.html#example-plot-canny-py"><em>Python source code</em></a>]</p>
 <p>Se necesitan ajustar varios parámetros... riesgo de sobreajuste.</p>
 </div>
 <div class="section" id="segmentacion">
-<h3><a class="toc-backref" href="#id13">2.6.5.2. Segmentación</a><a class="headerlink" href="#segmentacion" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id13">2.6.5.2. Segmentación</a><a class="headerlink" href="#segmentacion" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
 <li>Segmentación <strong>basada en histograma</strong> (sin información espacial)</li>
 </ul>
@@ -610,7 +688,7 @@ etc.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_histo_segmentation.html"><img alt="../../_images/plot_histo_segmentation_1.png" src="../../_images/plot_histo_segmentation_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_histo_segmentation.html"><img alt="../../_images/plot_histo_segmentation_1.png" src="../../_images/plot_histo_segmentation_1.png" style="width: 715.0px; height: 260.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_histo_segmentation.html#example-plot-histo-segmentation-py"><em>Python source code</em></a>]</p>
 <p>Umbral automático: usa el modelo de mezcla gaussiano:</p>
@@ -634,7 +712,7 @@ etc.</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">binary_img</span> <span class="o">=</span> <span class="n">img</span> <span class="o">&gt;</span> <span class="n">threshold</span>
 <div class="newline"></div></pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/image_GMM.png"><img alt="../../_images/image_GMM.png" class="align-center" src="../../_images/image_GMM.png" /></a>
+<a class="reference internal image-reference" href="../../_images/image_GMM.png"><img alt="../../_images/image_GMM.png" class="align-center" src="../../_images/image_GMM.png" style="width: 500.0px; height: 185.0px;" /></a>
 <p>Usamos morfología matemática para limpiar el resultado:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Elimina pequeñas regiones blancas</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">open_img</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_opening</span><span class="p">(</span><span class="n">binary_img</span><span class="p">)</span>
@@ -643,7 +721,7 @@ etc.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_clean_morpho.html"><img alt="../../_images/plot_clean_morpho_1.png" src="../../_images/plot_clean_morpho_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_clean_morpho.html"><img alt="../../_images/plot_clean_morpho_1.png" src="../../_images/plot_clean_morpho_1.png" style="width: 780.0px; height: 195.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_clean_morpho.html#example-plot-clean-morpho-py"><em>Python source code</em></a>]</p>
 <div class="green topic">
@@ -692,7 +770,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_watershed_segmentation.html"><img alt="advanced/image_processing/auto_examples/images/plot_watershed_segmentation_1.png" src="advanced/image_processing/auto_examples/images/plot_watershed_segmentation_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_watershed_segmentation.html"><img alt="../../_images/plot_watershed_segmentation_1.png" src="../../_images/plot_watershed_segmentation_1.png" style="width: 630.0px; height: 245.0px;" /></a>
 </div>
 <p>Segmentation <strong>Spectral clustering</strong> (cortes normalizados)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction</span> <span class="kn">import</span> <span class="n">image</span>
@@ -735,7 +813,7 @@ basada en histograma resultante es más exacta.</p>
 </div>
 </div>
 <div class="section" id="midiendo-propiedades-de-objetos-ndimage-measurements">
-<h2><a class="toc-backref" href="#id14">2.6.6. Midiendo propiedades de objetos: <tt class="docutils literal"><span class="pre">ndimage.measurements</span></tt></a><a class="headerlink" href="#midiendo-propiedades-de-objetos-ndimage-measurements" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">2.6.6. Midiendo propiedades de objetos: <tt class="docutils literal"><span class="pre">ndimage.measurements</span></tt></a><a class="headerlink" href="#midiendo-propiedades-de-objetos-ndimage-measurements" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Synthetic data:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="mi">256</span>
@@ -758,7 +836,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_synthetic_data.html"><img alt="../../_images/plot_synthetic_data_1.png" src="../../_images/plot_synthetic_data_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_synthetic_data.html"><img alt="../../_images/plot_synthetic_data_1.png" src="../../_images/plot_synthetic_data_1.png" style="width: 810.0px; height: 270.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_synthetic_data.html#example-plot-synthetic-data-py"><em>Python source code</em></a>]</p>
 <p>Calcula tamaño, valor medio, etcétera, de cada región:</p>
@@ -782,7 +860,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_measure_data.html"><img alt="../../_images/plot_measure_data_1.png" src="../../_images/plot_measure_data_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_measure_data.html"><img alt="../../_images/plot_measure_data_1.png" src="../../_images/plot_measure_data_1.png" style="width: 540.0px; height: 270.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_measure_data.html#example-plot-measure-data-py"><em>Python source code</em></a>]</p>
 <p>Encuentra una región de interes del objeto:</p>
@@ -793,7 +871,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_find_object.html"><img alt="../../_images/plot_find_object_1.png" src="../../_images/plot_find_object_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_find_object.html"><img alt="../../_images/plot_find_object_1.png" src="../../_images/plot_find_object_1.png" style="width: 520.0px; height: 260.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_find_object.html#example-plot-find-object-py"><em>Python source code</em></a>]</p>
 <p>Otras mediciones espaciales: <tt class="docutils literal"><span class="pre">ndimage.center_of_mass</span></tt>,
@@ -811,7 +889,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_block_mean.html"><img alt="../../_images/plot_block_mean_1.png" src="../../_images/plot_block_mean_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_block_mean.html"><img alt="../../_images/plot_block_mean_1.png" src="../../_images/plot_block_mean_1.png" style="width: 350.0px; height: 350.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_block_mean.html#example-plot-block-mean-py"><em>Python source code</em></a>]</p>
 <p>Cuando las regiones son bloques regulares, es más eficiente usar
@@ -825,7 +903,7 @@ basada en histograma resultante es más exacta.</p>
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_radial_mean.html"><img alt="../../_images/plot_radial_mean_1.png" src="../../_images/plot_radial_mean_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_radial_mean.html"><img alt="../../_images/plot_radial_mean_1.png" src="../../_images/plot_radial_mean_1.png" style="width: 350.0px; height: 350.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_radial_mean.html#example-plot-radial-mean-py"><em>Python source code</em></a>]</p>
 <div class="topic">
@@ -841,7 +919,7 @@ y <tt class="docutils literal"><span class="pre">skimage.filter.sobel</span></tt
 <li>Calcula el tamaño de las monedas.</li>
 </ul>
 </div>
-<img alt="advanced/image_processing/coins.png" class="align-center" src="advanced/image_processing/coins.png" />
+<img alt="../../_images/coins.png" class="align-center" src="../../_images/coins.png" />
 <ul class="simple">
 <li><strong>Otras mediciones</strong></li>
 </ul>
@@ -879,7 +957,7 @@ y <tt class="docutils literal"><span class="pre">skimage.filter.sobel</span></tt
 <div class="newline"></div></pre></div>
 </div>
 <div class="figure">
-<a class="reference external image-reference" href="auto_examples/plot_granulo.html"><img alt="../../_images/plot_granulo_1.png" src="../../_images/plot_granulo_1.png" /></a>
+<a class="reference external image-reference" href="auto_examples/plot_granulo.html"><img alt="../../_images/plot_granulo_1.png" src="../../_images/plot_granulo_1.png" style="width: 600.0px; height: 220.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_granulo.html#example-plot-granulo-py"><em>Python source code</em></a>]</p>
 <p><div style="clear: both"></div></p>
@@ -892,21 +970,35 @@ y <tt class="docutils literal"><span class="pre">skimage.filter.sobel</span></tt
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
           <a href="../mathematical_optimization/index.html" title="2.7. Mathematical optimization: finding minima of functions"
-             >next</a></li>
+             >siguiente</a></li>
         <li class="right" >
           <a href="../scipy_sparse/other_packages.html" title="2.5.4. Other Interesting Packages"
-             >previous</a> |</li>
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Temas avanzados</a> &raquo;</li> 
+          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

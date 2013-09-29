@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2.5. Defining functions &mdash; Scipy lecture notes</title>
+    <title>1.2.4. Definiendo funciones &mdash; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2012.3 (EuroScipy 2012)',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,24 +25,101 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="1.2. The Python language" href="python_language.html" />
-    <link rel="next" title="1.2.6. Reusing code: scripts and modules" href="reusing_code.html" />
-    <link rel="prev" title="1.2.4. Control Flow" href="control_flow.html" /> 
+    <link rel="up" title="1.2. El lenguaje Python" href="python_language.html" />
+    <link rel="next" title="1.2.5. Reusando código: scripts y módulos" href="reusing_code.html" />
+    <link rel="prev" title="1.2.3. Control de flujo" href="control_flow.html" /> 
   </head>
   <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="reusing_code.html" title="1.2.6. Reusing code: scripts and modules"
-             accesskey="N">next</a></li>
+          <a href="reusing_code.html" title="1.2.5. Reusando código: scripts y módulos"
+             accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="control_flow.html" title="1.2.4. Control Flow"
-             accesskey="P">previous</a> |</li>
+          <a href="control_flow.html" title="1.2.3. Control de flujo"
+             accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" accesskey="U">1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>  
 
@@ -50,215 +127,212 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="defining-functions">
-<h1>1.2.5. Defining functions<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="function-definition">
-<h2>1.2.5.1. Function definition<a class="headerlink" href="#function-definition" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="definiendo-funciones">
+<h1>1.2.4. Definiendo funciones<a class="headerlink" href="#definiendo-funciones" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="definiendo-una-funcion">
+<h2>1.2.4.1. Definiendo una función<a class="headerlink" href="#definiendo-una-funcion" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [56]: </span><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;in test function&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;funcion de prueba&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [57]: </span><span class="n">test</span><span class="p">()</span>
-<div class="newline"></div><span class="go">in test function</span>
+<div class="newline"></div><span class="go">funcion de prueba</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Function blocks must be indented as other control-flow blocks.</p>
+<p class="first admonition-title">Advertencia</p>
+<p class="last">Después de definir una función deben indentarse los bloques que la componen.</p>
 </div>
 </div>
-<div class="section" id="return-statement">
-<h2>1.2.5.2. Return statement<a class="headerlink" href="#return-statement" title="Permalink to this headline">¶</a></h2>
-<p>Functions can <em>optionally</em> return values.</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [6]: </span><span class="k">def</span> <span class="nf">disk_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">   ...:</span>     <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">radius</span>
+<div class="section" id="sentencia-return">
+<h2>1.2.4.2. Sentencia return<a class="headerlink" href="#sentencia-return" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las funciones pueden <em>opcionalmente</em> devolver valores.</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [6]: </span><span class="k">def</span> <span class="nf">area_circulo</span><span class="p">(</span><span class="n">radio</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">   ...:</span>     <span class="k">return</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radio</span> <span class="o">*</span> <span class="n">radio</span>
 <div class="newline"></div><span class="gp">   ...:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [8]: </span><span class="n">disk_area</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [8]: </span><span class="n">area_circulo</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[8]: </span><span class="mf">7.0649999999999995</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">By default, functions return <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<p class="first admonition-title">Nota</p>
+<p class="last">Por defecto, las funciones devuelven <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Note the syntax to define a function:</p>
+<p class="first admonition-title">Nota</p>
+<p>Tenga en cuenta la sintaxis para definir una función:</p>
 <ul class="last simple">
-<li>the <tt class="docutils literal"><span class="pre">def</span></tt> keyword;</li>
-<li>is followed by the function&#8217;s <strong>name</strong>, then</li>
-<li>the arguments of the function are given between parentheses followed
-by a colon.</li>
-<li>the function body;</li>
-<li>and <tt class="docutils literal"><span class="pre">return</span> <span class="pre">object</span></tt> for optionally returning values.</li>
+<li>la palabra clave <tt class="docutils literal"><span class="pre">def</span></tt>;</li>
+<li>seguido por el <strong>nombre</strong> la función, a continuación</li>
+<li>los argumentos de la función van entre paréntesis seguido por dos puntos.</li>
+<li>el cuerpo de la función;</li>
+<li>y <tt class="docutils literal"><span class="pre">return</span> <span class="pre">object</span></tt> si la función devuelve valores.</li>
 </ul>
 </div>
 </div>
-<div class="section" id="parameters">
-<h2>1.2.5.3. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
-<p>Mandatory parameters (positional arguments)</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [81]: </span><span class="k">def</span> <span class="nf">double_it</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="section" id="parametros">
+<h2>1.2.4.3. Parámetros<a class="headerlink" href="#parametros" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Parámetros obligatorios (argumentos con posición)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [81]: </span><span class="k">def</span> <span class="nf">por_dos</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [82]: </span><span class="n">double_it</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [82]: </span><span class="n">por_dos</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[82]: </span><span class="mi">6</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [83]: </span><span class="n">double_it</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">In [83]: </span><span class="n">por_dos</span><span class="p">()</span>
 <div class="newline"></div><span class="go">---------------------------------------------------------------------------</span>
 <div class="newline"></div><span class="go">Traceback (most recent call last):</span>
 <div class="newline"></div><span class="go">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span>
 <div class="newline"></div><span class="go">TypeError: double_it() takes exactly 1 argument (0 given)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Optional parameters (keyword or named arguments)</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [84]: </span><span class="k">def</span> <span class="nf">double_it</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<p>Parámetros opcionales (argumentos con nombre o palabra clave)</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [84]: </span><span class="k">def</span> <span class="nf">por_dos</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [85]: </span><span class="n">double_it</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">In [85]: </span><span class="n">por_dos</span><span class="p">()</span>
 <div class="newline"></div><span class="gr">Out[85]: </span><span class="mi">4</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [86]: </span><span class="n">double_it</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [86]: </span><span class="n">por_dos</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[86]: </span><span class="mi">6</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Keyword arguments allow you to specify <em>default values</em>.</p>
+<p>Los argumentos con nombre le permiten especificar los <em>valores por defecto</em>.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Default values are evaluated when the function is defined, not when
-it is called. This can be problematic when using mutable types (e.g.
-dictionary or list) and modifying them in the function body, since the
-modifications will be persistent across invocations of the function.</p>
+<p class="first admonition-title">Advertencia</p>
+<p class="last">Los valores por defecto se evalúan cuando se define la función, no cuando se le llama. Esto puede ser problemático cuando se utiliza tipos mutables (por ejemplo, un diccionario o una lista) y su modificación en el cuerpo de la función, ya que el modificaciones no persisten al invocar una función.</p>
 </div>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [124]: </span><span class="n">bigx</span> <span class="o">=</span> <span class="mi">10</span>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [124]: </span><span class="n">gran_x</span> <span class="o">=</span> <span class="mi">10</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [125]: </span><span class="k">def</span> <span class="nf">double_it</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">bigx</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">In [125]: </span><span class="k">def</span> <span class="nf">por_dos</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">gran_x</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [126]: </span><span class="n">bigx</span> <span class="o">=</span> <span class="mf">1e9</span>  <span class="c"># Now really big</span>
+<div class="newline"></div><span class="gp">In [126]: </span><span class="n">por_dos</span><span class="p">()</span>
+<div class="newline"></div><span class="gr">Out[126]: </span><span class="mi">20</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [128]: </span><span class="n">double_it</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">In [127]: </span><span class="n">gran_x</span> <span class="o">=</span> <span class="mf">1e9</span>  <span class="c"># Ahora si es grande</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="gp">In [128]: </span><span class="n">por_dos</span><span class="p">()</span>
 <div class="newline"></div><span class="gr">Out[128]: </span><span class="mi">20</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>More involved example implementing python&#8217;s slicing:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [98]: </span><span class="k">def</span> <span class="nf">slicer</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="sd">&quot;&quot;&quot;Implement basic python slicing.&quot;&quot;&quot;</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">:</span><span class="n">step</span><span class="p">]</span>
+<div class="admonition tip">
+<p class="first admonition-title">Truco</p>
+<p>Un ejemplo que se parece a la segmentación de Python:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [98]: </span><span class="k">def</span> <span class="nf">segmento</span><span class="p">(</span><span class="n">secuencia</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="sd">&quot;&quot;&quot;Implementacion basica de segmentacion python.&quot;&quot;&quot;</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">secuencia</span><span class="p">[</span><span class="n">inicio</span><span class="p">:</span><span class="n">final</span><span class="p">:</span><span class="n">paso</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [101]: </span><span class="n">rhyme</span> <span class="o">=</span> <span class="s">&#39;one fish, two fish, red fish, blue fish&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">In [101]: </span><span class="n">rima</span> <span class="o">=</span> <span class="s">&#39;pez uno, pez dos, pez rojo, pez azul&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [102]: </span><span class="n">rhyme</span>
-<div class="newline"></div><span class="gr">Out[102]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">In [102]: </span><span class="n">rima</span>
+<div class="newline"></div><span class="gr">Out[102]: </span><span class="p">[</span><span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;rojo,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;azul&#39;</span><span class="p">]</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [103]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[103]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">In [103]: </span><span class="n">segmento</span><span class="p">(</span><span class="n">rima</span><span class="p">)</span>
+<div class="newline"></div><span class="gr">Out[103]: </span><span class="p">[</span><span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;rojo,&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;azul&#39;</span><span class="p">]</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [104]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[104]: </span><span class="p">[</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="s">&#39;blue&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">In [104]: </span><span class="n">segmento</span><span class="p">(</span><span class="n">rima</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="gr">Out[104]: </span><span class="p">[</span><span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">,</span> <span class="s">&#39;pez&#39;</span><span class="p">]</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [105]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[105]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">In [105]: </span><span class="n">segmento</span><span class="p">(</span><span class="n">rima</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="gr">Out[105]: </span><span class="p">[</span><span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">,</span> <span class="s">&#39;rojo,&#39;</span><span class="p">,</span> <span class="s">&#39;azul&#39;</span><span class="p">]</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [106]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[106]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">]</span>
+<div class="newline"></div><span class="gp">In [106]: </span><span class="n">segmento</span><span class="p">(</span><span class="n">rima</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="gr">Out[106]: </span><span class="p">[</span><span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>The order of the keyword arguments does not matter:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [107]: </span><span class="n">slicer</span><span class="p">(</span><span class="n">rhyme</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<div class="newline"></div><span class="gr">Out[107]: </span><span class="p">[</span><span class="s">&#39;fish,&#39;</span><span class="p">,</span> <span class="s">&#39;fish,&#39;</span><span class="p">]</span>
+<p>El orden de los argumentos con nombre no importa:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [107]: </span><span class="n">segmento</span><span class="p">(</span><span class="n">rima</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<div class="newline"></div><span class="gr">Out[107]: </span><span class="p">[</span><span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>but it is good practice to use the same ordering as the function&#8217;s
-definition.</p>
-<p><em>Keyword arguments</em> are a very convenient feature for defining functions
-with a variable number of arguments, especially when default values are
-to be used in most calls to the function.</p>
+<p class="last">pero es una buena práctica usar el mismo orden que en la definición.</p>
 </div>
-<div class="section" id="passing-by-value">
-<h2>1.2.5.4. Passing by value<a class="headerlink" href="#passing-by-value" title="Permalink to this headline">¶</a></h2>
-<p>Can you modify the value of a variable inside a function? Most languages
-(C, Java, ...) distinguish &#8220;passing by value&#8221; and &#8220;passing by reference&#8221;.
-In Python, such a distinction is somewhat artificial, and it is a bit
-subtle whether your variables are going to be modified or not.
-Fortunately, there exist clear rules.</p>
-<p>Parameters to functions are references to objects, which are passed by
-value. When you pass a variable to a function, python passes the
-reference to the object to which the variable refers (the <strong>value</strong>).
-Not the variable itself.</p>
-<p>If the <strong>value</strong> is immutable, the function does not modify the caller&#8217;s
-variable.  If the <strong>value</strong> is mutable, the function may modify the
-caller&#8217;s variable in-place:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">try_to_modify</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+<p>Los <em>argumentos con nombre</em> son una característica muy conveniente para la definición de funciones con un número variable de argumentos, sobre todo cuando los valores por defecto se usan en la mayoría de las llamadas a la función.</p>
+</div>
+<div class="section" id="paso-por-valor">
+<h2>1.2.4.4. Paso por valor<a class="headerlink" href="#paso-por-valor" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="admonition tip">
+<p class="first admonition-title">Truco</p>
+<p>Se puede modificar el valor de una variable dentro una función? La mayoría de los lenguajes (C, Java, ...) distinguen <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">valor</span></tt> y <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">referencia</span></tt>.
+En Python, tal distinción es un tanto artificial, y es un poco sutil si las variables serán modificadas o no.
+Afortunadamente, existen reglas claras.</p>
+<p class="last">Los parámetros a funciones son referencias a los objetos, que se pasan por valor. Cuando se pasa una variable a una función, Python pasa la referencia al objeto al que hace referencia la variable (el <strong>valor</strong>).
+No es la propia variable.</p>
+</div>
+<p>Si el <strong>valor</strong> pasado a una función es inmutable, la función no
+modificar la variable llamada. Si el <strong>valor</strong> es mutable, la función
+puede modificar la variable llamada sobre la marcha:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">intenta_modificar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">23</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="c"># new reference</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="c"># nueva referencia</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">x</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">y</span>
+<div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">z</span>
 <div class="newline"></div><span class="gp">...</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">77</span>    <span class="c"># immutable variable</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span>  <span class="c"># mutable variable</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">77</span>    <span class="c"># variable immutable</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">]</span>  <span class="c"># variable mutable</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="mi">28</span><span class="p">]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">try_to_modify</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">intenta_modificar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <div class="newline"></div><span class="go">23</span>
 <div class="newline"></div><span class="go">[99, 42]</span>
 <div class="newline"></div><span class="go">[99]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">a</span>
 <div class="newline"></div><span class="go">77</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span>
 <div class="newline"></div><span class="go">[99, 42]</span>
-<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span>
 <div class="newline"></div><span class="go">[28]</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Functions have a local variable table called a <em>local namespace</em>.</p>
-<p>The variable <tt class="docutils literal"><span class="pre">x</span></tt> only exists within the function <em>try_to_modify</em>.</p>
+<p>Las funciones tienen una tabla de variables locales llamada <em>local namespace</em>.</p>
+<p>La variable <tt class="docutils literal"><span class="pre">x</span></tt> sólo existe dentro la función <em>intenta_modificar</em>.</p>
 </div>
-<div class="section" id="global-variables">
-<h2>1.2.5.5. Global variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h2>
-<p>Variables declared outside the function can be referenced within the
-function:</p>
+<div class="section" id="variables-globales">
+<h2>1.2.4.5. Variables globales<a class="headerlink" href="#variables-globales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Las variables declaradas fuera de una función pueden referenciarse a una función:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [114]: </span><span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [115]: </span><span class="k">def</span> <span class="nf">addx</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">In [115]: </span><span class="k">def</span> <span class="nf">suma_x</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [116]: </span><span class="n">addx</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [116]: </span><span class="n">suma_x</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[116]: </span><span class="mi">15</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>But these &#8220;global&#8221; variables cannot be modified within the function,
-unless declared <strong>global</strong> in the function.</p>
-<p>This doesn&#8217;t work:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [117]: </span><span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<p>Pero estas variables <tt class="docutils literal"><span class="pre">globales</span></tt> no se pueden modificar dentro de la función,
+a menos que se declare como <strong>global</strong> en la función.</p>
+<p>Esto no funciona:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [117]: </span><span class="k">def</span> <span class="nf">asigna_x</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
-<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span> <span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [118]: </span><span class="n">setx</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [118]: </span><span class="n">asigna_x</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="go">x is 10</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [120]: </span><span class="n">x</span>
 <div class="newline"></div><span class="gr">Out[120]: </span><span class="mi">5</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>This works:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [121]: </span><span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<p>Esto si funciona:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [121]: </span><span class="k">def</span> <span class="nf">asigna_x</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="k">global</span> <span class="n">x</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
-<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">   .....:</span>     <span class="k">print</span> <span class="s">&#39;x is </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">x</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div><span class="gp">   .....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [122]: </span><span class="n">setx</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">In [122]: </span><span class="n">asigna_x</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="go">x is 10</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [123]: </span><span class="n">x</span>
@@ -266,98 +340,85 @@ unless declared <strong>global</strong> in the function.</p>
 <div class="newline"></div></pre></div>
 </div>
 </div>
-<div class="section" id="variable-number-of-parameters">
-<h2>1.2.5.6. Variable number of parameters<a class="headerlink" href="#variable-number-of-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="numero-variable-de-parametros">
+<h2>1.2.4.6. Número variable de parámetros<a class="headerlink" href="#numero-variable-de-parametros" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="docutils">
-<dt>Special forms of parameters:</dt>
+<dt>Formas especiales de los parámetros:</dt>
 <dd><ul class="first last simple">
-<li><tt class="docutils literal"><span class="pre">*args</span></tt>: any number of positional arguments packed into a tuple</li>
-<li><tt class="docutils literal"><span class="pre">**kwargs</span></tt>: any number of keyword arguments packed into a dictionary</li>
+<li><tt class="docutils literal"><span class="pre">*args</span></tt>: cualquier número de argumentos posicionales en una tupla</li>
+<li><tt class="docutils literal"><span class="pre">**kwargs</span></tt>: cualquier número de argumentos con nombre en un diccionario</li>
 </ul>
 </dd>
 </dl>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [35]: </span><span class="k">def</span> <span class="nf">variable_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;args is&#39;</span><span class="p">,</span> <span class="n">args</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;kwargs is&#39;</span><span class="p">,</span> <span class="n">kwargs</span>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [35]: </span><span class="k">def</span> <span class="nf">argumentos_variables</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;args es&#39;</span><span class="p">,</span> <span class="n">args</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;kwargs es&#39;</span><span class="p">,</span> <span class="n">kwargs</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [36]: </span><span class="n">variable_args</span><span class="p">(</span><span class="s">&#39;one&#39;</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<div class="newline"></div><span class="go">args is (&#39;one&#39;, &#39;two&#39;)</span>
-<div class="newline"></div><span class="go">kwargs is {&#39;y&#39;: 2, &#39;x&#39;: 1, &#39;z&#39;: 3}</span>
+<div class="newline"></div><span class="gp">In [36]: </span><span class="n">argumentos_variables</span><span class="p">(</span><span class="s">&#39;uno&#39;</span><span class="p">,</span> <span class="s">&#39;dos&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<div class="newline"></div><span class="go">args es (&#39;uno&#39;, &#39;dos&#39;)</span>
+<div class="newline"></div><span class="go">kwargs es {&#39;y&#39;: 2, &#39;x&#39;: 1, &#39;z&#39;: 3}</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
 <div class="section" id="docstrings">
-<h2>1.2.5.7. Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this headline">¶</a></h2>
-<p>Documentation about what the function does and its parameters.  General
-convention:</p>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [67]: </span><span class="k">def</span> <span class="nf">funcname</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="sd">&quot;&quot;&quot;Concise one-line sentence describing the function.</span>
+<h2>1.2.4.7. Docstrings<a class="headerlink" href="#docstrings" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Documentación sobre lo que hace la función y sus parámetros. Convención general:</p>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [67]: </span><span class="k">def</span> <span class="nf">funcion_ejemplo</span><span class="p">(</span><span class="n">parametros</span><span class="p">):</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="sd">&quot;&quot;&quot;Frase concisa de una línea que describe la funcion.</span>
 <div class="newline"></div><span class="gp">   ....:</span><span class="sd"></span>
-<div class="newline"></div><span class="gp">   ....:</span><span class="sd">     Extended summary which can contain multiple paragraphs.</span>
+<div class="newline"></div><span class="gp">   ....:</span><span class="sd">     Resumen extendido que puede contener varios parrafos.</span>
 <div class="newline"></div><span class="gp">   ....:</span><span class="sd">     &quot;&quot;&quot;</span>
-<div class="newline"></div><span class="gp">   ....:</span>     <span class="c"># function body</span>
+<div class="newline"></div><span class="gp">   ....:</span>     <span class="c"># cuerpo de funcion</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">pass</span>
 <div class="newline"></div><span class="gp">   ....:</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [68]: </span><span class="n">funcname</span><span class="err">?</span>
-<div class="newline"></div><span class="go">Type:           function</span>
-<div class="newline"></div><span class="go">Base Class:     type &#39;function&#39;&gt;</span>
-<div class="newline"></div><span class="go">String Form:    &lt;function funcname at 0xeaa0f0&gt;</span>
-<div class="newline"></div><span class="go">Namespace:      Interactive</span>
-<div class="newline"></div><span class="go">File:           &lt;ipython console&gt;</span>
-<div class="newline"></div><span class="go">Definition:     funcname(params)</span>
+<div class="newline"></div><span class="gp">In [68]: </span><span class="n">funcion_ejemplo</span><span class="err">?</span>
+<div class="newline"></div><span class="go">Type:       function</span>
+<div class="newline"></div><span class="go">String Form:&lt;function funcion_ejemplo at 0x9893e9c&gt;</span>
+<div class="newline"></div><span class="go">File:       /home/claudio/&lt;ipython-input-4-3c894f027eb2&gt;</span>
+<div class="newline"></div><span class="go">Definition: funcion_ejemplo(parametros)</span>
 <div class="newline"></div><span class="go">Docstring:</span>
-<div class="newline"></div><span class="go">    Concise one-line sentence describing the function.</span>
+<div class="newline"></div><span class="go">Frase concisa de una línea que describe la funcion.</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="go">    Extended summary which can contain multiple paragraphs.</span>
+<div class="newline"></div><span class="go">Resumen extendido que puede contener varios parrafos.</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p><strong>Docstring guidelines</strong></p>
-<p>For the sake of standardization, the <a class="reference external" href="http://www.python.org/dev/peps/pep-0257">Docstring
-Conventions</a> webpage
-documents the semantics and conventions associated with Python
-docstrings.</p>
-<p class="last">Also, the Numpy and Scipy modules have defined a precise standard
-for documenting scientific functions, that you may want to follow for
-your own functions, with a <tt class="docutils literal"><span class="pre">Parameters</span></tt> section, an <tt class="docutils literal"><span class="pre">Examples</span></tt>
-section, etc. See
-<a class="reference external" href="http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard">http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard</a>
-and <a class="reference external" href="http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37">http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37</a></p>
+<p class="first admonition-title">Nota</p>
+<p><strong>Guia para docstrings</strong></p>
+<p>Para estandarizar la documentación, revise la página web <a class="reference external" href="http://www.python.org/dev/peps/pep-0257">Docstring Conventions</a>  contiene documentos de semántica y convenios relacionados con Python docstrings.</p>
+<p class="last">Además, los módulos numpy y scipy han definido un estándar preciso para la documentación de las funciones científicas, es posible que desee seguir para sus propias funciones, con una sección <tt class="docutils literal"><span class="pre">Parámetros</span></tt> , una sección <tt class="docutils literal"><span class="pre">Ejemplos</span></tt>, etc. Ver <a class="reference external" href="http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard">http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard</a> y <a class="reference external" href="http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37">http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37</a></p>
 </div>
 </div>
-<div class="section" id="functions-are-objects">
-<h2>1.2.5.8. Functions are objects<a class="headerlink" href="#functions-are-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="las-funciones-son-objectos">
+<h2>1.2.4.8. Las funciones son objectos<a class="headerlink" href="#las-funciones-son-objectos" title="Enlazar permanentemente con este título">¶</a></h2>
 <dl class="docutils">
-<dt>Functions are first-class objects, which means they can be:</dt>
+<dt>Las funciones son la primera clase de objetos, lo que significa que puede:</dt>
 <dd><ul class="first last simple">
-<li>assigned to a variable</li>
-<li>an item in a list (or any collection)</li>
-<li>passed as an argument to another function.</li>
+<li>asignarse a una variable</li>
+<li>ser un elemento de una lista (o cualquier colección)</li>
+<li>ser pasado como argumento a otra función.</li>
 </ul>
 </dd>
 </dl>
-<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [38]: </span><span class="n">va</span> <span class="o">=</span> <span class="n">variable_args</span>
+<div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [38]: </span><span class="n">va</span> <span class="o">=</span> <span class="n">argumentos_variables</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="gp">In [39]: </span><span class="n">va</span><span class="p">(</span><span class="s">&#39;three&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<div class="newline"></div><span class="go">args is (&#39;three&#39;,)</span>
-<div class="newline"></div><span class="go">kwargs is {&#39;y&#39;: 2, &#39;x&#39;: 1}</span>
+<div class="newline"></div><span class="gp">In [39]: </span><span class="n">va</span><span class="p">(</span><span class="s">&#39;tres&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="newline"></div><span class="go">args es (&#39;tres&#39;,)</span>
+<div class="newline"></div><span class="go">kwargs es {&#39;y&#39;: 2, &#39;x&#39;: 1}</span>
 <div class="newline"></div></pre></div>
 </div>
 </div>
-<div class="section" id="methods">
-<h2>1.2.5.9. Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
-<p>Methods are functions attached to objects.  You&#8217;ve seen these in our
-examples on <em>lists</em>, <em>dictionaries</em>, <em>strings</em>, etc...</p>
+<div class="section" id="metodos">
+<h2>1.2.4.9. Métodos<a class="headerlink" href="#metodos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los métodos son funciones vinculadas a los objetos. Usted ha visto esto en los ejemplos de <em>listas</em>, <em>diccionarios</em>, <em>cadenas</em>, etc ..</p>
 </div>
-<div class="section" id="exercises">
-<h2>1.2.5.10. Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ejercicios">
+<h2>1.2.4.10. Ejercicios<a class="headerlink" href="#ejercicios" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="green topic">
-<p class="topic-title first">Exercise: Fibonacci sequence</p>
-<p>Write a function that displays the <tt class="docutils literal"><span class="pre">n</span></tt> first terms of the Fibonacci
-sequence, defined by:</p>
+<p class="topic-title first">Ejercicio: Serie de Fibonacci</p>
+<p>Escriba una función que muestre los <tt class="docutils literal"><span class="pre">n</span></tt> primeros términos de la serie de Fibonacci , definido por:</p>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">u_0</span> <span class="pre">=</span> <span class="pre">1;</span> <span class="pre">u_1</span> <span class="pre">=</span> <span class="pre">1</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">u_(n+2)</span> <span class="pre">=</span> <span class="pre">u_(n+1)</span> <span class="pre">+</span> <span class="pre">u_n</span></tt></li>
@@ -365,7 +426,7 @@ sequence, defined by:</p>
 </div>
 <div class="green topic">
 <p class="topic-title first">Exercise: Quicksort</p>
-<p>Implement the quicksort algorithm, as defined by wikipedia:</p>
+<p>Implemente el algoritmo quicksort, definido por wikipedia:</p>
 <dl class="docutils">
 <dt>function quicksort(array)</dt>
 <dd><p class="first">var list less, greater
@@ -391,22 +452,36 @@ else append x to greater</div></blockquote>
       <div class="clearer"></div>
     </div>
     <div class="related">
-      <h3>Navigation</h3>
+      <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="reusing_code.html" title="1.2.6. Reusing code: scripts and modules"
-             >next</a></li>
+          <a href="reusing_code.html" title="1.2.5. Reusando código: scripts y módulos"
+             >siguiente</a></li>
         <li class="right" >
-          <a href="control_flow.html" title="1.2.4. Control Flow"
-             >previous</a> |</li>
+          <a href="control_flow.html" title="1.2.3. Control de flujo"
+             >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
           <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
-          <li><a href="python_language.html" >1.2. The Python language</a> &raquo;</li> 
+          <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
 </html>

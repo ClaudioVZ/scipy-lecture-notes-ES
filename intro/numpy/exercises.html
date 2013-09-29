@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.3.5. Algunos ejercicios &mdash; Scipy lecture notes</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Scipy lecture notes" href="../../index.html" />
+    <link rel="up" title="1.3. NumPy: creación y manipulación de datos numéricos" href="index.html" />
+    <link rel="next" title="1.4. Obteniendo ayuda y buscando en la documentación" href="../help/help.html" />
+    <link rel="prev" title="1.3.4. Operaciones avanzadas" href="advanced_operations.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../help/help.html" title="1.4. Obteniendo ayuda y buscando en la documentación"
+             accesskey="N">siguiente</a></li>
+        <li class="right" >
+          <a href="advanced_operations.html" title="1.3.4. Operaciones avanzadas"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">1.3. NumPy: creación y manipulación de datos numéricos</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="algunos-ejercicios">
+<h1>1.3.5. Algunos ejercicios<a class="headerlink" href="#algunos-ejercicios" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="manipulaciones-de-arreglos">
+<h2>1.3.5.1. Manipulaciones de arreglos<a class="headerlink" href="#manipulaciones-de-arreglos" title="Enlazar permanentemente con este título">¶</a></h2>
+<ol class="arabic simple">
+<li>Construya un arreglo 2-D (sin necesidad de escribirlo en forma explícita):</li>
+</ol>
+<dl class="docutils">
+<dt>[[ 1, 6, 11],</dt>
+<dd>[ 2, 7, 12],
+[ 3, 8, 13],
+[ 4, 9, 14],
+[ 5, 10, 15]]</dd>
+</dl>
+<p>y genere un nuevo arreglo que contenga la segunda y cuarta fila.</p>
+<ol class="arabic simple" start="2">
+<li>Divide cada columna del arreglo:</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>elemento a elemento con el arreglo <tt class="docutils literal"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">np.array([1.,</span> <span class="pre">5,</span> <span class="pre">10,</span> <span class="pre">15,</span> <span class="pre">20])</span></tt>.(Sugerencia: <tt class="docutils literal"><span class="pre">np.newaxis</span></tt>).</p>
+<ol class="arabic simple" start="3">
+<li>Uno dificil: Generar un arreglo 10 x 3 de números aleatorios (en el rango [0,1]). Para cada fila, escoja el número más cercano a 0.5.</li>
+</ol>
+<ul class="simple">
+<li>Use <tt class="docutils literal"><span class="pre">abs</span></tt> y <tt class="docutils literal"><span class="pre">argsort</span></tt> para encontrar la columna <tt class="docutils literal"><span class="pre">j</span></tt> cercana para cada fila.</li>
+<li>Utilice el indexado fancy para extraer los números. (Sugerencia: <tt class="docutils literal"><span class="pre">a[i,j]</span></tt> &#8211; el arreglo <tt class="docutils literal"><span class="pre">i</span></tt> debe contener los números de fila correspondiente a meter en <tt class="docutils literal"><span class="pre">j</span></tt>.)</li>
+</ul>
+</div>
+<div class="section" id="manipulando-imagenes-enmarcar-a-lena">
+<h2>1.3.5.2. Manipulando imágenes: Enmarcar a Lena<a class="headerlink" href="#manipulando-imagenes-enmarcar-a-lena" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vamos a hacer algunas manipulaciones de arreglos numpy comenzando con la famosa imagen de Lena (<a class="reference external" href="http://www.cs.cmu.edu/~chuck/lennapg/">http://www.cs.cmu.edu/~chuck/lennapg/</a>). <tt class="docutils literal"><span class="pre">scipy</span></tt> proporciona una matriz 2D de esta imagen con la función <tt class="docutils literal"><span class="pre">scipy.lena</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
+<div class="newline"></div></pre></div>
+</div>
+<p><strong>Nota:</strong> En versiones anteriores de scipy, usar <tt class="docutils literal"><span class="pre">scipy.lena()</span></tt></p>
+<p>Aquí están algunas imágenes que podemos obtener: utilizando diferentes mapas de color, recortamdo la imagen, cambiando algunas partes de la imagen.</p>
+<img alt="../../_images/lenas.png" class="align-center" src="../../_images/lenas.png" />
+<ul class="simple">
+<li>Vamos a usar la función de pylab imshow() para mostrar la imagen.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre>
+<div class="newline"></div></pre></div>
+</div>
+<p>In [3]: import pylab as plt
+In [4]: lena = misc.lena()
+In [5]: plt.imshow(lena)</p>
+<ul class="simple">
+<li>Luego se muestra a Lena en colores falsos. Un mapa de colores debe estar especificado para que se muestra en escala de grises.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre>
+<div class="newline"></div></pre></div>
+</div>
+<p>In [6]: plt.imshow(lena, cmap=plt.cm.gray)</p>
+<ul class="simple">
+<li>Crear una matriz de la imagen con un centrado más estrecho: por ejemplo, eliminar 30 píxeles de todos los bordes de la imagen. Para comprobar el resultado, muestre este nuevo arreglo con <tt class="docutils literal"><span class="pre">imshow()</span></tt>.</li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre>
+<div class="newline"></div></pre></div>
+</div>
+<p>In [9]: crop_lena = lena[30:-30,30:-30]</p>
+<ul class="simple">
+<li>Ahora vamos a enmarcar la cara de Lena con un medallón negro. Para ello, necesitamos crear una máscara correspondiente a los píxeles negros. La máscara se define por esta condición <tt class="docutils literal"><span class="pre">(y-256)**2</span> <span class="pre">+</span> <span class="pre">(x-256)**2</span></tt></li>
+</ul>
+<div class="highlight-ipython"><div class="highlight"><pre>
+<div class="newline"></div></pre></div>
+</div>
+<p>In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
+In [16]: y.shape, x.shape
+Out[16]: ((512, 1), (1, 512))
+In [17]: centerx, centery = (256, 256) # center of the image
+In [18]: mask = ((y - centery)**2 + (x - centerx)**2) &gt; 230**2 # circle</p>
+<p>a continuación, se le asigna el valor 0 a los píxeles de la imagen que corresponde a la máscara. La sintaxis es muy sencilla e intuitiva:</p>
+<div class="highlight-ipython"><div class="highlight"><pre>
+<div class="newline"></div></pre></div>
+</div>
+<p>In [19]: lena[mask] = 0
+In [20]: plt.imshow(lena)
+Out[20]: &lt;matplotlib.image.AxesImage object at 0xa36534c&gt;</p>
+<ul class="simple">
+<li>Seguimiento: copie todas las instrucciones de este ejercicio en un script llamado <tt class="docutils literal"><span class="pre">lena_locket.py</span></tt> a continuación, ejecute este script en IPython con <tt class="docutils literal"><span class="pre">run%</span> <span class="pre">lena_locket.py</span></tt>.</li>
+</ul>
+<p>Cambie el círculo por un elipse.</p>
+</div>
+<div class="section" id="datos-estadisticos">
+<h2>1.3.5.3. Datos estadísticos<a class="headerlink" href="#datos-estadisticos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los datos en <a class="reference download internal" href="../../_downloads/populations.txt"><tt class="xref download docutils literal"><span class="pre">populations.txt</span></tt></a> describe las poblaciones de liebres y linces (y zanahorias ) en el norte de Canadá durante 20 años:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s">&#39;data/populations.txt&#39;</span><span class="p">)</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">year</span><span class="p">,</span> <span class="n">hares</span><span class="p">,</span> <span class="n">lynxes</span><span class="p">,</span> <span class="n">carrots</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span>  <span class="c"># trick: columns to variables</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span> 
+<div class="newline"></div></pre></div>
+</div>
+<p>&lt;matplotlib.axes.Axes object at ...&gt;
+&gt;&gt;&gt; plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+[&lt;matplotlib.lines.Line2D object at ...&gt;, ...]
+&gt;&gt;&gt; plt.legend((&#8216;Hare&#8217;, &#8216;Lynx&#8217;, &#8216;Carrot&#8217;), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+&lt;matplotlib.legend.Legend object at ...&gt;</p>
+<p>[<a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.py">source code</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.hires.png">hires.png</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_7.pdf">pdf</a>]</p>
+<img alt="../../_images/numpy_intro_7.png" src="../../_images/numpy_intro_7.png" />
+<p>Calcule e imprima, basado en los datos en <tt class="docutils literal"><span class="pre">populations.txt</span></tt>...</p>
+<ol class="arabic simple">
+<li>La media y desviación estándar de las poblaciones de cada especie para los años en el período.</li>
+<li>En qué año cada especie tenía la mayor población.</li>
+<li>Qué especies tiene la mayor población de cada año. (Sugerencia: <tt class="docutils literal"><span class="pre">argsort</span></tt> e indexado fancy de <tt class="docutils literal"><span class="pre">np.array(['H',</span> <span class="pre">'L',</span> <span class="pre">'C'])</span></tt>)</li>
+<li>Qué año cualquiera de las poblaciones está por encima de 50000. (Sugerencia: comparaciones y <tt class="docutils literal"><span class="pre">np.any</span></tt>)</li>
+<li>Los primeros 2 años para cada especie cuando tuvieron el más bajo poblaciones. (Sugerencia: <tt class="docutils literal"><span class="pre">argsort</span></tt>, indexado fancy)</li>
+<li>Comparar (plot) el cambio en la población de liebres (ver <tt class="docutils literal"><span class="pre">help(np.gradient)</span></tt>) y el número de linces. Compruebe correlación (ver <tt class="docutils literal"><span class="pre">help(</span> <span class="pre">np.corrcoef</span> <span class="pre">)</span></tt>).</li>
+</ol>
+<p>... todo sin bucles for.</p>
+<p>Solución: <a class="reference download internal" href="../../_downloads/2_2_data_statistics.py"><tt class="xref download docutils literal"><span class="pre">Python</span> <span class="pre">source</span> <span class="pre">file</span></tt></a></p>
+</div>
+<div class="section" id="aproximaciones-cruda-de-integrales">
+<h2>1.3.5.4. Aproximaciones cruda de integrales<a class="headerlink" href="#aproximaciones-cruda-de-integrales" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Escriba una función <tt class="docutils literal"><span class="pre">f(a,</span> <span class="pre">b​​,</span> <span class="pre">c)</span></tt> que devuelva <img class="math" src="../../_images/math/3d7c9694dffca6866113f84e9c6a0980cf8ce047.png" alt="a^b - c" style="vertical-align: 0px"/>. Construya un arreglo 24x12x6 que contenga valores en los rangos de <tt class="docutils literal"><span class="pre">[0,1]</span> <span class="pre">x</span> <span class="pre">[0,1]</span> <span class="pre">x</span> <span class="pre">[0,1]</span></tt>.</p>
+<p>Aproximar la integral 3-d</p>
+<div class="math">
+<p><img src="../../_images/math/7057c0b4df82c2659d776bcdc0eb1c9e16f61f9f.png" alt="\int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc"/></p>
+</div><p>sobre este volumen con la media. El resultado exacto es: <img class="math" src="../../_images/math/73d904a94ec4cdb827a29f067e6c4dd333a59f8c.png" alt="\ln 2 - \frac{1} {2} \approx 0.1931 \ldots" style="vertical-align: -10px"/> &#8212; cuál es su error relativo?</p>
+<p>(Sugerencia: use las operaciones elemento a elemento y broadcasting. Usted puede usar <tt class="docutils literal"><span class="pre">np.ogrid</span></tt> para obtener una serie de puntos en determinado rango con <tt class="docutils literal"><span class="pre">np.ogrid[0:1:20j]</span></tt>.)</p>
+<p><strong>Recuerde</strong> las funciones en Python:</p>
+<dl class="docutils">
+<dt>def f(a, b​​, c):</dt>
+<dd>return algun_resultado</dd>
+</dl>
+<p>Solución: <a class="reference download internal" href="../../_downloads/2_3_crude_integration.py"><tt class="xref download docutils literal"><span class="pre">Python</span> <span class="pre">source</span> <span class="pre">file</span></tt></a></p>
+</div>
+<div class="section" id="conjunto-de-mandelbrot">
+<h2>1.3.5.5. Conjunto de Mandelbrot<a class="headerlink" href="#conjunto-de-mandelbrot" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>[<a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.py">source code</a>, <a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.hires.png">hires.png</a>, <a class="reference external" href="../../plot_directive/intro/numpy/solutions/2_4_mandelbrot.pdf">pdf</a>]</p>
+<img alt="../../_images/2_4_mandelbrot.png" src="../../_images/2_4_mandelbrot.png" />
+<p>Escribir un script que calcula el fractal de Mandelbrot. Iteración Mandelbrot:</p>
+<p>N_max = 50
+some_threshold = 50</p>
+<p>c = x + 1j*y</p>
+<dl class="docutils">
+<dt>for j in xrange(N_max):</dt>
+<dd>z = z**2 + c</dd>
+</dl>
+<p>El punto (x, y) pertenece al conjunto de Mandelbrot si :math: <tt class="xref py py-obj docutils literal"><span class="pre">|c|</span></tt> &lt; <tt class="docutils literal"><span class="pre">some_threshold</span></tt>.</p>
+<p>Para el cálculo de:</p>
+<ol class="arabic simple">
+<li>Construir una grid de c = x + 1j*y valores en el rango [-2, 1] x [-1,5, 1,5]</li>
+<li>Es la iteración</li>
+<li>Construya una máscara booleana 2-d que indica que los puntos están en el conjunto</li>
+<li>Guardar el resultado en una imagen:</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">mask</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage object at ...&gt;</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span>
+<div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;mandelbrot.png&#39;</span><span class="p">)</span>
+<div class="newline"></div></pre></div>
+</div>
+<p>Solution: <a class="reference download internal" href="../../_downloads/2_4_mandelbrot.py"><tt class="xref download docutils literal"><span class="pre">Python</span> <span class="pre">source</span> <span class="pre">file</span></tt></a></p>
+</div>
+<div class="section" id="cadenas-de-markov">
+<h2>1.3.5.6. Cadenas de Markov<a class="headerlink" href="#cadenas-de-markov" title="Enlazar permanentemente con este título">¶</a></h2>
+<img alt="../../_images/markov-chain.png" src="../../_images/markov-chain.png" />
+<p>Matriz de transición <tt class="docutils literal"><span class="pre">P</span></tt> cadena de Markov, y la distribución de probabilidad de  <tt class="docutils literal"><span class="pre">p</span></tt> estados:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">P[i,j]</span> <span class="pre">&lt;=</span> <span class="pre">1</span></tt>: probabilidad de pasar del estado <tt class="docutils literal"><span class="pre">i</span></tt> al estado <tt class="docutils literal"><span class="pre">j</span></tt></li>
+<li>Regla de transición: <img class="math" src="../../_images/math/df72f26c7e5032305f8cdafc8cf3385cdc367f19.png" alt="p_{new} = P^T p_{old}" style="vertical-align: -6px"/></li>
+<li><tt class="docutils literal"><span class="pre">all(sum(P,</span> <span class="pre">axis=1)</span> <span class="pre">==</span> <span class="pre">1)</span></tt>, <tt class="docutils literal"><span class="pre">p.sum()</span> <span class="pre">==</span> <span class="pre">1</span></tt>: normalizado</li>
+</ol>
+<p>Escribir un script que funciona con 5 estados, y:</p>
+<ul class="simple">
+<li>Construir una matriz aleatoria , y normalice cada fila para que sea una matriz de transición.</li>
+<li>Empiezar a partir de una distribución de probabilidad aleatoria (normalizada) <tt class="docutils literal"><span class="pre">p</span></tt> y toma 50 pasos =&gt; <tt class="docutils literal"><span class="pre">p_50</span></tt></li>
+<li>Calcular la distribución estacionaria: el vector propio de <tt class="docutils literal"><span class="pre">P.T</span></tt> con valor propio 1 ( numéricamente: cercano a 1 ) =&gt; <tt class="docutils literal"><span class="pre">p_stationary</span></tt></li>
+</ul>
+<p>Recuerda normalizar el vector propio &#8212; Yo no ...</p>
+<ul class="simple">
+<li>Comprueba si <tt class="docutils literal"><span class="pre">p_50</span></tt> y <tt class="docutils literal"><span class="pre">p_stationary</span></tt> son iguales a la tolerancia 1e- 5</li>
+</ul>
+<p>Caja de herramientas: <tt class="docutils literal"><span class="pre">np.random.rand</span></tt>, <tt class="docutils literal"><span class="pre">.dot()</span></tt>, <tt class="docutils literal"><span class="pre">np.linalg.eig</span></tt>, reductions, <tt class="docutils literal"><span class="pre">abs()</span></tt>, <tt class="docutils literal"><span class="pre">argmin</span></tt>, comparaciones, <tt class="docutils literal"><span class="pre">all</span></tt>, <tt class="docutils literal"><span class="pre">np.linalg.norm</span></tt>, etc.</p>
+<p>Solution: <a class="reference download internal" href="../../_downloads/2_5_markov_chain.py"><tt class="xref download docutils literal"><span class="pre">Python</span> <span class="pre">source</span> <span class="pre">file</span></tt></a></p>
+<p><div style="clear: both"></div></p>
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../help/help.html" title="1.4. Obteniendo ayuda y buscando en la documentación"
+             >siguiente</a></li>
+        <li class="right" >
+          <a href="advanced_operations.html" title="1.3.4. Operaciones avanzadas"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="index.html" >1.3. NumPy: creación y manipulación de datos numéricos</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

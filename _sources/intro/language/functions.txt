@@ -1,343 +1,321 @@
-Defining functions
-=====================
+Definiendo funciones
+====================
 
-Function definition
--------------------
+Definiendo una función
+----------------------
 
 .. sourcecode:: ipython
 
     In [56]: def test():
-       ....:     print('in test function')
+       ....:     print('funcion de prueba')
        ....:
        ....:
 
     In [57]: test()
-    in test function
+    funcion de prueba
 
 .. Warning::
 
-    Function blocks must be indented as other control-flow blocks.
+    Después de definir una función deben indentarse los bloques que la componen.
 
-Return statement
+Sentencia return
 ----------------
 
-Functions can *optionally* return values.
+Las funciones pueden *opcionalmente* devolver valores.
 
 .. sourcecode:: ipython
 
-    In [6]: def disk_area(radius):
-       ...:     return 3.14 * radius * radius
+    In [6]: def area_circulo(radio):
+       ...:     return 3.14 * radio * radio
        ...:
 
-    In [8]: disk_area(1.5)
+    In [8]: area_circulo(1.5)
     Out[8]: 7.0649999999999995
 
-.. Note:: By default, functions return ``None``.
+.. Note:: Por defecto, las funciones devuelven ``None``.
 
-.. Note:: Note the syntax to define a function:
+.. Note:: Tenga en cuenta la sintaxis para definir una función:
 
-    * the ``def`` keyword;
+    * la palabra clave ``def``;
 
-    * is followed by the function's **name**, then
+    * seguido por el **nombre** la función, a continuación
 
-    * the arguments of the function are given between parentheses followed
-      by a colon.
+    * los argumentos de la función van entre paréntesis seguido por dos puntos.
 
-    * the function body;
+    * el cuerpo de la función;
 
-    * and ``return object`` for optionally returning values.
+    * y ``return object`` si la función devuelve valores.
 
 
-Parameters
+Parámetros
 ----------
 
-Mandatory parameters (positional arguments)
+Parámetros obligatorios (argumentos con posición)
 
 .. sourcecode:: ipython
 
-    In [81]: def double_it(x):
+    In [81]: def por_dos(x):
        ....:     return x * 2
        ....:
 
-    In [82]: double_it(3)
+    In [82]: por_dos(3)
     Out[82]: 6
 
-    In [83]: double_it()
+    In [83]: por_dos()
     ---------------------------------------------------------------------------
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: double_it() takes exactly 1 argument (0 given)
 
-Optional parameters (keyword or named arguments)
+Parámetros opcionales (argumentos con nombre o palabra clave)
 
 .. sourcecode:: ipython
 
-    In [84]: def double_it(x=2):
+    In [84]: def por_dos(x=2):
        ....:     return x * 2
        ....:
 
-    In [85]: double_it()
+    In [85]: por_dos()
     Out[85]: 4
 
-    In [86]: double_it(3)
+    In [86]: por_dos(3)
     Out[86]: 6
 
-Keyword arguments allow you to specify *default values*.
+Los argumentos con nombre le permiten especificar los *valores por defecto*.
 
 .. warning::
 
-   Default values are evaluated when the function is defined, not when
-   it is called. This can be problematic when using mutable types (e.g.
-   dictionary or list) and modifying them in the function body, since the
-   modifications will be persistent across invocations of the function.
+   Los valores por defecto se evalúan cuando se define la función, no cuando se le llama. Esto puede ser problemático cuando se utiliza tipos mutables (por ejemplo, un diccionario o una lista) y su modificación en el cuerpo de la función, ya que el modificaciones no persisten al invocar una función. 
 
 .. sourcecode:: ipython
 
-    In [124]: bigx = 10
+    In [124]: gran_x = 10
 
-    In [125]: def double_it(x=bigx):
+    In [125]: def por_dos(x=gran_x):
        .....:     return x * 2
        .....:
 
-    In [126]: bigx = 1e9  # Now really big
+    In [126]: por_dos()
+    Out[126]: 20
 
-    In [128]: double_it()
+    In [127]: gran_x = 1e9  # Ahora si es grande
+
+    In [128]: por_dos()
     Out[128]: 20
 
-More involved example implementing python's slicing:
+.. tip::
 
-.. sourcecode:: ipython
+  Un ejemplo que se parece a la segmentación de Python:
 
-    In [98]: def slicer(seq, start=None, stop=None, step=None):
-       ....:     """Implement basic python slicing."""
-       ....:     return seq[start:stop:step]
+  .. sourcecode:: ipython
+
+    In [98]: def segmento(secuencia, inicio=None, final=None, paso=None):
+       ....:     """Implementacion basica de segmentacion python."""
+       ....:     return secuencia[inicio:final:paso]
        ....:
 
-    In [101]: rhyme = 'one fish, two fish, red fish, blue fish'.split()
+    In [101]: rima = 'pez uno, pez dos, pez rojo, pez azul'.split()
 
-    In [102]: rhyme
-    Out[102]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
+    In [102]: rima
+    Out[102]: ['pez', 'uno,', 'pez', 'dos,', 'pez', 'rojo,', 'pez', 'azul']
 
-    In [103]: slicer(rhyme)
-    Out[103]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
+    In [103]: segmento(rima)
+    Out[103]: ['pez', 'uno,', 'pez', 'dos,', 'pez', 'rojo,', 'pez', 'azul']
 
-    In [104]: slicer(rhyme, step=2)
-    Out[104]: ['one', 'two', 'red', 'blue']
+    In [104]: segmento(rima, paso=2)
+    Out[104]: ['pez', 'pez', 'pez', 'pez']
 
-    In [105]: slicer(rhyme, 1, step=2)
-    Out[105]: ['fish,', 'fish,', 'fish,', 'fish']
+    In [105]: segmento(rima, 1, paso=2)
+    Out[105]: ['uno,', 'dos,', 'rojo,', 'azul']
 
-    In [106]: slicer(rhyme, start=1, stop=4, step=2)
-    Out[106]: ['fish,', 'fish,']
+    In [106]: segmento(rima, inicio=1, final=4, paso=2)
+    Out[106]: ['uno,', 'dos,']
 
-The order of the keyword arguments does not matter:
+  El orden de los argumentos con nombre no importa:
 
-.. sourcecode:: ipython
+  .. sourcecode:: ipython
 
-    In [107]: slicer(rhyme, step=2, start=1, stop=4)
-    Out[107]: ['fish,', 'fish,']
+    In [107]: segmento(rima, paso=2, inicio=1, final=4)
+    Out[107]: ['uno,', 'dos,']
 
-but it is good practice to use the same ordering as the function's
-definition.
+  pero es una buena práctica usar el mismo orden que en la definición.
 
-*Keyword arguments* are a very convenient feature for defining functions
-with a variable number of arguments, especially when default values are
-to be used in most calls to the function.
+Los *argumentos con nombre* son una característica muy conveniente para la definición de funciones con un número variable de argumentos, sobre todo cuando los valores por defecto se usan en la mayoría de las llamadas a la función.
 
-Passing by value
-----------------
+Paso por valor
+--------------
 
-Can you modify the value of a variable inside a function? Most languages
-(C, Java, ...) distinguish "passing by value" and "passing by reference".
-In Python, such a distinction is somewhat artificial, and it is a bit
-subtle whether your variables are going to be modified or not.
-Fortunately, there exist clear rules.
+.. tip::
 
-Parameters to functions are references to objects, which are passed by
-value. When you pass a variable to a function, python passes the
-reference to the object to which the variable refers (the **value**).
-Not the variable itself.
+    Se puede modificar el valor de una variable dentro una función? La mayoría de los lenguajes (C, Java, ...) distinguen ``el paso por valor`` y ``el paso por referencia``.
+    En Python, tal distinción es un tanto artificial, y es un poco sutil si las variables serán modificadas o no.
+    Afortunadamente, existen reglas claras.
 
-If the **value** is immutable, the function does not modify the caller's
-variable.  If the **value** is mutable, the function may modify the
-caller's variable in-place::
+    Los parámetros a funciones son referencias a los objetos, que se pasan por valor. Cuando se pasa una variable a una función, Python pasa la referencia al objeto al que hace referencia la variable (el **valor**).
+    No es la propia variable.
 
-    >>> def try_to_modify(x, y, z):
+Si el **valor** pasado a una función es inmutable, la función no
+modificar la variable llamada. Si el **valor** es mutable, la función
+puede modificar la variable llamada sobre la marcha::
+
+    >>> def intenta_modificar(x, y, z):
     ...     x = 23
     ...     y.append(42)
-    ...     z = [99] # new reference
-    ...     print(x)
-    ...     print(y)
-    ...     print(z)
+    ...     z = [99] # nueva referencia
+    ...     print x
+    ...     print y
+    ...     print z
     ...
-    >>> a = 77    # immutable variable
-    >>> b = [99]  # mutable variable
+    >>> a = 77    # variable immutable 
+    >>> b = [99]  # variable mutable
     >>> c = [28]
-    >>> try_to_modify(a, b, c)
+    >>> intenta_modificar(a, b, c)
     23
     [99, 42]
     [99]
-    >>> print(a)
+    >>> print a 
     77
-    >>> print(b)
+    >>> print b
     [99, 42]
-    >>> print(c)
+    >>> print c
     [28]
 
+Las funciones tienen una tabla de variables locales llamada *local namespace*.
 
+La variable ``x`` sólo existe dentro la función *intenta_modificar*.
 
-Functions have a local variable table called a *local namespace*.
+Variables globales
+------------------
 
-The variable ``x`` only exists within the function *try_to_modify*.
-
-
-Global variables
-----------------
-
-Variables declared outside the function can be referenced within the
-function:
+Las variables declaradas fuera de una función pueden referenciarse a una función:
 
 .. sourcecode:: ipython
 
     In [114]: x = 5
 
-    In [115]: def addx(y):
+    In [115]: def suma_x(y):
        .....:     return x + y
        .....:
 
-    In [116]: addx(10)
+    In [116]: suma_x(10)
     Out[116]: 15
 
-But these "global" variables cannot be modified within the function,
-unless declared **global** in the function.
+Pero estas variables ``globales`` no se pueden modificar dentro de la función,
+a menos que se declare como **global** en la función.
 
-This doesn't work:
+Esto no funciona:
 
 .. sourcecode:: ipython
 
-    In [117]: def setx(y):
+    In [117]: def asigna_x(y):
        .....:     x = y
-       .....:     print('x is %d' % x)
+       .....:     print 'x is %d' % x
        .....:
        .....:
 
-    In [118]: setx(10)
+    In [118]: asigna_x(10)
     x is 10
 
     In [120]: x
     Out[120]: 5
 
-This works:
+Esto si funciona:
 
 .. sourcecode:: ipython
 
-    In [121]: def setx(y):
+    In [121]: def asigna_x(y):
        .....:     global x
        .....:     x = y
-       .....:     print('x is %d' % x)
+       .....:     print 'x is %d' % x
        .....:
        .....:
 
-    In [122]: setx(10)
+    In [122]: asigna_x(10)
     x is 10
 
     In [123]: x
     Out[123]: 10
 
 
-Variable number of parameters
+Número variable de parámetros
 -----------------------------
-Special forms of parameters:
-  * ``*args``: any number of positional arguments packed into a tuple
-  * ``**kwargs``: any number of keyword arguments packed into a dictionary
+Formas especiales de los parámetros:
+  * ``*args``: cualquier número de argumentos posicionales en una tupla
+  * ``**kwargs``: cualquier número de argumentos con nombre en un diccionario
 
 .. sourcecode:: ipython
 
-    In [35]: def variable_args(*args, **kwargs):
-       ....:     print 'args is', args
-       ....:     print 'kwargs is', kwargs
+    In [35]: def argumentos_variables(*args, **kwargs):
+       ....:     print 'args es', args
+       ....:     print 'kwargs es', kwargs
        ....:
 
-    In [36]: variable_args('one', 'two', x=1, y=2, z=3)
-    args is ('one', 'two')
-    kwargs is {'y': 2, 'x': 1, 'z': 3}
+    In [36]: argumentos_variables('uno', 'dos', x=1, y=2, z=3)
+    args es ('uno', 'dos')
+    kwargs es {'y': 2, 'x': 1, 'z': 3}
 
 
 Docstrings
 ----------
 
-Documentation about what the function does and its parameters.  General
-convention:
+Documentación sobre lo que hace la función y sus parámetros. Convención general:
 
 .. sourcecode:: ipython
 
-    In [67]: def funcname(params):
-       ....:     """Concise one-line sentence describing the function.
+    In [67]: def funcion_ejemplo(parametros):
+       ....:     """Frase concisa de una línea que describe la funcion.
        ....:
-       ....:     Extended summary which can contain multiple paragraphs.
+       ....:     Resumen extendido que puede contener varios parrafos.
        ....:     """
-       ....:     # function body
+       ....:     # cuerpo de funcion
        ....:     pass
        ....:
 
-    In [68]: funcname?
-    Type:           function
-    Base Class:     type 'function'>
-    String Form:    <function funcname at 0xeaa0f0>
-    Namespace:      Interactive
-    File:           <ipython console>
-    Definition:     funcname(params)
+    In [68]: funcion_ejemplo?
+    Type:       function
+    String Form:<function funcion_ejemplo at 0x9893e9c>
+    File:       /home/claudio/<ipython-input-4-3c894f027eb2>
+    Definition: funcion_ejemplo(parametros)
     Docstring:
-        Concise one-line sentence describing the function.
+    Frase concisa de una línea que describe la funcion.
 
-        Extended summary which can contain multiple paragraphs.
+    Resumen extendido que puede contener varios parrafos.
 
-.. Note:: **Docstring guidelines**
+.. Note:: **Guia para docstrings**
 
+    Para estandarizar la documentación, revise la página web `Docstring Conventions <http://www.python.org/dev/peps/pep-0257>`_  contiene documentos de semántica y convenios relacionados con Python docstrings.
 
-    For the sake of standardization, the `Docstring
-    Conventions <http://www.python.org/dev/peps/pep-0257>`_ webpage
-    documents the semantics and conventions associated with Python
-    docstrings.
+    Además, los módulos numpy y scipy han definido un estándar preciso para la documentación de las funciones científicas, es posible que desee seguir para sus propias funciones, con una sección ``Parámetros`` , una sección ``Ejemplos``, etc. Ver http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard y http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37
 
-    Also, the Numpy and Scipy modules have defined a precise standard
-    for documenting scientific functions, that you may want to follow for
-    your own functions, with a ``Parameters`` section, an ``Examples``
-    section, etc. See
-    http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard
-    and http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37
+Las funciones son objectos
+--------------------------
 
-Functions are objects
----------------------
-Functions are first-class objects, which means they can be:
-  * assigned to a variable
-  * an item in a list (or any collection)
-  * passed as an argument to another function.
+Las funciones son la primera clase de objetos, lo que significa que puede:
+   * asignarse a una variable
+   * ser un elemento de una lista (o cualquier colección)
+   * ser pasado como argumento a otra función.
 
 .. sourcecode:: ipython
 
-    In [38]: va = variable_args
+    In [38]: va = argumentos_variables
 
-    In [39]: va('three', x=1, y=2)
-    args is ('three',)
-    kwargs is {'y': 2, 'x': 1}
+    In [39]: va('tres', x=1, y=2)
+    args es ('tres',)
+    kwargs es {'y': 2, 'x': 1}
 
 
-Methods
+Métodos
 -------
 
-Methods are functions attached to objects.  You've seen these in our
-examples on *lists*, *dictionaries*, *strings*, etc...
+Los métodos son funciones vinculadas a los objetos. Usted ha visto esto en los ejemplos de *listas*, *diccionarios*, *cadenas*, etc ..
 
+Ejercicios
+----------
 
-Exercises
----------
-
-.. topic:: Exercise: Fibonacci sequence
+.. topic:: Ejercicio: Serie de Fibonacci
     :class: green
 
-    Write a function that displays the ``n`` first terms of the Fibonacci
-    sequence, defined by:
+    Escriba una función que muestre los ``n`` primeros términos de la serie de Fibonacci , definido por:
 
     * ``u_0 = 1; u_1 = 1``
     * ``u_(n+2) = u_(n+1) + u_n``
@@ -347,7 +325,7 @@ Exercises
 .. topic:: Exercise: Quicksort
     :class: green
 
-    Implement the quicksort algorithm, as defined by wikipedia::
+    Implemente el algoritmo quicksort, definido por wikipedia::
 
     function quicksort(array)
         var list less, greater

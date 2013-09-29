@@ -61,6 +61,14 @@ Fixes:
 
 - Ozan Çağlayan
 
+- kikocorreo
+
+- Sergio Oller
+
+- Robert Gieseke
+
+- Jonathan J. Helmus
+
 Traductores al español
 ======================
 

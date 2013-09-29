@@ -1,6 +1,6 @@
 .. _summary_exercise_image_processing:
 
-Aplicación de proceso de imagen: contando burbujas y granos no fundidos
+Image processing application: counting bubbles and unmolten grains
 ------------------------------------------------------------------
 
 .. image:: ../image_processing/MV_HFV_012.jpg
@@ -9,46 +9,45 @@ Aplicación de proceso de imagen: contando burbujas y granos no fundidos
 
 .. only:: latex
 
-Definición del problema
+Statement of the problem
 ..........................
 
-1. Abre la imagen file MV_HFV_012.jpg y muéstrala en pantalla. Navega
-a través de los argumentos del `docstring` de ``imshow`` para mostrar
-la imagen con la orientación correctato display the image (origen en la
-esquina inferior izquierda y no en la esquina superior izquierda como
-en un array estándar).
+1. Open the image file MV_HFV_012.jpg and display it. Browse through the
+keyword arguments in the docstring of ``imshow`` to display the image
+with the "right" orientation (origin in the bottom left corner, and not
+the upper left corner as for standard arrays).
 
-Esta imagen `Scanning Element Microscopy` representa una muestra de cristal 
-(matriz gris clara) con algunas burbujass (en negro) y granos de arena sin fundir (gris oscuro). 
-Deseamos determinar la fración de la muestra cubierta por cada una de estas tres
-fases y estimar el tamaño típico de los granos de arena, de las burbujas, sus
-tamaños, etc.
+This Scanning Element Microscopy image shows a glass sample (light gray
+matrix) with some bubbles (on black) and unmolten sand grains (dark
+gray). We wish to determine the fraction of the sample covered by these
+three phases, and to estimate the typical size of sand grains and
+bubbles, their sizes, etc.
 
-2. Recorta la imagen para eliminar el panel inferior con la información de la medida.
+2. Crop the image to remove the lower panel with measure information.
 
-3. Filtra ligeramente la imagen con un filtro de mediana para refinar su histograma.
-Comprueba como cambia el histograma.
+3. Slightly filter the image with a median filter in order to refine its
+histogram. Check how the histogram changes.
 
-4. Usando el histograma de la imagen filtrada determina umbrales que permitan definir
-máscaras para los píxeles de arena, los píxeles de cristal y los píxeles de burbuja.
-Otra opción (deberes para casa): escribe una función que determine automáticamente
-los umbrales a partir de la mínima del histograma.
+4. Using the histogram of the filtered image, determine thresholds that
+allow to define masks for sand pixels, glass pixels and bubble pixels.
+Other option (homework): write a function that determines automatically
+the thresholds from the minima of the histogram.
 
-5. Muestra en pantalla una imagen en la cual las tres fases (cristal, burbuja, arena) se
-muestre con tres colores diferentes.
+5. Display an image in which the three phases are colored with three
+different colors.
 
-6. Usa morfología matemática para limpiar las diferentes fases.
+6. Use mathematical morphology to clean the different phases.
 
-7. Creo etiquetas de atributos para todas las burbujas y los granos de arena
- y elimina granos de arena que sean menores a 10 píxeles. Para hacer esto 
-último puedes usar ``ndimage.sum`` o ``np.bincount`` para calcular el tamaño de los granos.
+7. Attribute labels to all bubbles and sand grains, and remove from the
+sand mask grains that are smaller than 10 pixels. To do so, use
+``ndimage.sum`` or ``np.bincount`` to compute the grain sizes.
 
-8. Calcula el tamaño medio de las burbujas.
+8. Compute the mean size of bubbles.
 
 .. only:: latex
 
    .. _image-answers:
 
-Solución propuesta
+Proposed solution
 ....................
 

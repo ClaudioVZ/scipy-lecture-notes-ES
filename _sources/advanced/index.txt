@@ -1,47 +1,21 @@
-Temas avanzados
+Advanced topics
 ===================================================================
 
-.. raw:: html
+This part of the *Scipy lecture notes* is dedicated to advanced usage. It
+strives to educate the proficient Python coder to be an expert and
+tackles various specific topics.
 
-  <style type="text/css">
-    div.bodywrapper blockquote {
-        margin: 0 ;
-    }
+|clear-floats|
 
-    div.toctree-wrapper ul {
-        margin-top: 0 ;
-        margin-bottom: 0 ;
-        padding-left: 10px ;
-    }
+_____
 
-    li.toctree-l1 {
-        padding: 0 0 0.5em 0 ;
-        list-style-type: none;
-        font-size: 150% ;
-        font-weight: bold;
-    }
+|clear-floats|
 
-    li.toctree-l1 ul {
-        padding-left: 40px ;
-    }
+.. include:: ../includes/big_toc_css.rst
 
-    li.toctree-l2 {
-        font-size: 70% ;
-        list-style-type: square;
-        font-weight: normal;
-    }
-
-    li.toctree-l3 {
-        font-size: 85% ;
-        list-style-type: circle;
-        font-weight: normal;
-    }
-
-  </style>
-
+.. include:: ../tune_toc.rst
 
 .. toctree::
-   :maxdepth: 3
 
    advanced_python/index.rst
    advanced_numpy/index.rst
@@ -50,7 +24,4 @@ Temas avanzados
    scipy_sparse/index.rst
    image_processing/index.rst
    mathematical_optimization/index.rst
-   traits/index.rst
-   3d_plotting/index.rst
-   sympy.rst
-   scikit-learn/index.rst
+   interfacing_with_c/interfacing_with_c.rst

@@ -1,5 +1,27 @@
+
 Novedades
 ===========
+
+Release 2013.2 beta (21 August 2013)
+-------------------------------------
+
+* Numpy chapter simplified (Valentin Haenel)
+
+* New layout for the HTML rendering (Gaël Varoquaux)
+
+Release 2013.1 (10 Feb 2013)
+----------------------------
+
+* Improvements to the advanced image manipulation chapter (Emmanuelle Gouillart)
+
+* Upgrade of the introductory language chapter (Valentin Haenel)
+
+* Upgrade of the introductory numpy chapter (Valentin Haenel)
+
+* New advanced chapter on interfacing with C (Valentin Haenel)
+
+* Minor fixes and improvements in various places (Robert Gieseke, Ozan Çağlayan,
+  Sergio Oller, kikocorreo, Valentin Haenel)
 
 Publicación 2012.3 (26 Nov 2012)
 -----------------------------
@@ -51,4 +73,3 @@ simplificado (Gaël Varoquaux). Se han añadido capítulos avanzados:
 Python constructs avanzados (Zbigniew Jędrzejewski-Szmek), Código de depuración (Gaël Varoquaux), 
 optimización de código (Gaël Varoquaux), procesamiento de imagen (Emmanuelle Gouillart), scikit-learn
 (Fabian Pedregosa).
-
