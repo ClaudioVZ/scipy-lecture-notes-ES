@@ -1,71 +1,57 @@
-.. _matplotlib:
+.. currentmodule:: matplotlib
+
+.. _matplotlib-label
 
 ====================
-Matplotlib: plotting
+Matplotlib: trazado
 ====================
 
-:authors: Nicolas Rougier, Mike Müller, Gaël Varoquaux
+:Autores: Nicolas Rougier, Mike Müller, Gaël Varoquaux
 
-.. sidebar:: **Thanks**
+.. sidebar:: **Agradecimientos**
 
-    Many thanks to **Bill Wing** and **Christoph Deil** for review and
-    corrections.
+    Muchas gracias a **Bill Wing** y **Christoph Deil** por revisar y corregir.
 
-.. contents:: Chapters contents
+.. contents:: Contenido
    :local:
    :depth: 2
 
-Introduction
+Introducción
 ============
 
-matplotlib is probably the single most used Python package for 2D-graphics. It
-provides both a very quick way to visualize data from Python and
-publication-quality figures in many formats.  We are going to explore
-matplotlib in interactive mode covering most common cases.
+Matplotlib es probablemente el paquete de Python más utilizado para gráficos 2D. Proporciona una manera muy rápida de visualizar datos y figuras con calidad de publicación en varios formatos. Vamos a explorar Matplotlib en modo interactivo cubriendo los casos más comunes.
 
-IPython and the pylab mode
---------------------------
+IPython y el modo pylab
+-----------------------
 
-`IPython <http://ipython.org/>`_ is an enhanced interactive Python shell that
-has lots of interesting features including named inputs and outputs, access to
-shell commands, improved debugging and many more. When we start it with the
-command line argument -pylab (--pylab since IPython version 0.12), it allows
-interactive matplotlib sessions that have Matlab/Mathematica-like functionality.
+`IPython <http://ipython.org/>`_ es un shell interactivo mejorado de Python que
+tiene un montón de características interesantes, incluyendo entradas y salidas con nombre, el acceso a comandos de la shell, la mejora de depuración y mucho más. Cuando se inicia con el argumento -pylab en la ventana de comandos (--pylab desde la versión IPython 0.12), permite sesiones interactivas Matplotlib que tienen la misma funcionalidad que Matlab/Mathematica.
 
 pylab
 -----
 
-pylab provides a procedural interface to the matplotlib object-oriented
-plotting library. It is modeled closely after Matlab(TM). Therefore, the
-majority of plotting commands in pylab have Matlab(TM) analogs with similar
-arguments.  Important commands are explained with interactive examples.
+pylab proporciona una interfaz orientada a objetos a la biblioteca de trazado Matplotlib cercano a Matlab(TM). Por tanto, la mayoría de los comandos de trazado en pylab tiene análogos Matlab(TM) con similares argumentos. Comandos importantes se explican con ejemplos interactivos.
 
+Gráfica simple
+==============
 
-Simple plot
-===========
+En esta sección, llamaremos a las funciones seno y coseno en la misma gráfica. A partir de la configuración por defecto, vamos a enriquecer la figura paso a paso para que sea más agradable.
 
-In this section, we want to draw the cosine and sine functions on the same
-plot. Starting from the default settings, we'll enrich the figure step by step
-to make it nicer.
-
-First step is to get the data for the sine and cosine functions:
-
-::
+El primer paso es obtener los datos para las funciones seno y coseno::
 
    import numpy as np
 
    X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+
    C, S = np.cos(X), np.sin(X)
 
+X es ahora un arreglo numpy con 256 valores que van desde -π a +π (incluido). C es la función coseno (256 valores) y S es la función seno (256 valores).
 
-X is now a numpy array with 256 values ranging from -π to +π (included). C is
-the cosine (256 values) and S is the sine (256 values).
-
-To run the example, you can type them in an IPython interactive session::
+Para ejecutar el ejemplo, teclee los comandos en una sesión interactiva IPython::
 
     $ ipython --pylab
 
-This brings us to the IPython prompt: ::
+Esto nos lleva a el shell IPython::
 
     IPython 0.13 -- An enhanced Interactive Python.
     ?       -> Introduction to IPython's features.
@@ -76,31 +62,26 @@ This brings us to the IPython prompt: ::
     Welcome to pylab, a matplotlib-based Python environment.
     For more information, type 'help(pylab)'.
 
-
-or you can download each of the examples and run it using regular python::
+o puede descargar cada uno de los ejemplos y ejecutarlo usando el intérprete estandar python::
 
     $ python exercice_1.py
 
-You can get source for each step by clicking on the corresponding figure.
+Usted puede obtener el código para cada paso haciendo clic en la figura correspondiente.
 
-
-Using defaults
---------------
+Valores por defecto
+-------------------
 
 .. image:: auto_examples/images/plot_exercice_1_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_1.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
-   * `plot tutorial <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
-   * `plot() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
+   * `Tutorial pyplot <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
+   * `comando plot() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
-Matplotlib comes with a set of default settings that allow customizing all
-kinds of properties. You can control the defaults of almost every property in
-matplotlib: figure size and dpi, line width, color and style, axes, axis and
-grid properties, text and font properties and so on. ::
+Matplotlib viene con un conjunto de valores predeterminados que permiten la personalización de todos los tipos de propiedades. Puede controlar los valores predeterminados de casi todas las propiedades en matplotlib: tamaño de figura y dpi, grosor de línea, color y estilo, ejes , ejes y propiedades de cuadrícula, propiedades de texto y fuente, etc. ::
 
    import pylab as pl
    import numpy as np
@@ -113,8 +94,7 @@ grid properties, text and font properties and so on. ::
 
    pl.show()
 
-
-Instantiating defaults
+Instancias por defecto
 ----------------------
 
 .. image:: auto_examples/images/plot_exercice_2_1.png
@@ -122,68 +102,63 @@ Instantiating defaults
    :scale: 35
    :target: auto_examples/plot_exercice_2.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
-   *  `Customizing matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
+   *  `Personalizando matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
 
-In the script below, we've instantiated (and commented) all the figure settings
-that influence the appearance of the plot. The settings have been explicitly
-set to their default values, but now you can interactively play with the values
-to explore their affect (see `Line properties`_ and `Line styles`_ below). ::
+En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver `Line properties`_ y `Line styles`_ más abajo). ::
 
    import pylab as pl
    import numpy as np
 
-   # Create a figure of size 8x6 points, 80 dots per inch
+   # Crear una figura de 8x6 puntos de tamaño, 80 puntos por pulgada
    pl.figure(figsize=(8, 6), dpi=80)
 
-   # Create a new subplot from a grid of 1x1
+   # Crear una nueva subgráfica en una rejilla de 1x1
    pl.subplot(1, 1, 1)
 
    X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
    C, S = np.cos(X), np.sin(X)
 
-   # Plot cosine with a blue continuous line of width 1 (pixels)
+   # Graficar la función coseno con una línea continua azul de 1 pixel de grosor
    pl.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
 
-   # Plot sine with a green continuous line of width 1 (pixels)
+   # Graficar la función coseno con una línea continua verde de 1 pixel de grosor
    pl.plot(X, S, color="green", linewidth=1.0, linestyle="-")
 
-   # Set x limits
+   # Establecer límites del eje x
    pl.xlim(-4.0, 4.0)
 
-   # Set x ticks
+   # Ticks en x
    pl.xticks(np.linspace(-4, 4, 9, endpoint=True))
 
-   # Set y limits
+   # Establecer límites del eje y
    pl.ylim(-1.0, 1.0)
 
-   # Set y ticks
+   # Ticks en y
    pl.yticks(np.linspace(-1, 1, 5, endpoint=True))
 
-   # Save figure using 72 dots per inch
+   # Guardar la figura usando 72 puntos por pulgada
    # savefig("exercice_2.png", dpi=72)
 
-   # Show result on screen
+   # Mostrar resultado en pantalla
    pl.show()
 
-
-Changing colors and line widths
---------------------------------
+Cambiar colores y grosor de línea
+---------------------------------
 
 .. image:: auto_examples/images/plot_exercice_3_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_3.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
-   * `Controlling line properties <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html#controlling-line-properties>`_
-   * `Line API <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
+   * `Controlando propiedades de línea <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html#controlling-line-properties>`_
+   * `API línea <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
 
-First step, we want to have the cosine in blue and the sine in red and a
-slighty thicker line for both of them. We'll also slightly alter the figure
-size to make it more horizontal. ::
+Primer paso, queremos mostrar la función coseno en azul, la función seno en rojo y un
+línea ligeramente más gruesa para ambas funciones. También vamos a modificar el tamaño para que sea ligeramente más horizontal. ::
 
    ...
    pl.figure(figsize=(10, 6), dpi=80)
@@ -191,9 +166,8 @@ size to make it more horizontal. ::
    pl.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
    ...
 
-
-Setting limits
---------------
+Establecer límites
+------------------
 
 .. image:: auto_examples/images/plot_exercice_4_1.png
    :align: right
@@ -202,12 +176,12 @@ Setting limits
 
 .. hint:: Documentation
 
-   * `xlim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
-   * `ylim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
-
+   * `comando xlim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
+   * `comando ylim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
 Current limits of the figure are a bit too tight and we want to make some space
 in order to clearly see all data points.
+Los límites actuales de la figura son un poco demasiado apretado y que quieren hacer un poco de espacio con el fin de ver con claridad todos los puntos de datos.
 
 ::
 
@@ -215,8 +189,6 @@ in order to clearly see all data points.
    pl.xlim(X.min() * 1.1, X.max() * 1.1)
    pl.ylim(C.min() * 1.1, C.max() * 1.1)
    ...
-
-
 
 Setting ticks
 -------------

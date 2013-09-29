@@ -1,4 +1,4 @@
-The submodule dedicated to image processing in scipy is `scipy.ndimage`. ::
+The submodule dedicated to image processing in scipy is :mod:`scipy.ndimage`. ::
 
     >>> from scipy import ndimage
 
@@ -21,8 +21,9 @@ Changing orientation, resolution, .. ::
     >>> zoomed_lena.shape
     (1024, 1024)
 
-.. image:: image_processing/lena_transforms.png
+.. figure:: image_processing/lena_transforms.png
    :align: center
+   :scale: 70
 
 
 .. sourcecode:: ipython
@@ -54,11 +55,12 @@ Image filtering
     >>> from scipy import signal
     >>> wiener_lena = signal.wiener(blurred_lena, (5,5))
 
-.. image:: image_processing/filtered_lena.png
+.. figure:: image_processing/filtered_lena.png
    :align: center
+   :scale: 80
 
 
-Many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
+Many other filters in :mod:`scipy.ndimage.filters` and :mod:`scipy.signal`
 can be applied to images.
 
 .. topic:: Exercise
@@ -85,12 +87,12 @@ Let us first generate a structuring element ::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
     >>> el
-    array([[False,  True, False],
-	   [ True,  True,  True],
-	   [False,  True, False]], dtype=bool)
+    array([[False, True, False],
+           [True, True, True],
+           [False, True, False]], dtype=bool)
     >>> el.astype(np.int)
     array([[0, 1, 0],
-	   [1, 1, 1],
+           [1, 1, 1],
            [0, 1, 0]])
 
 * **Erosion** ::
@@ -183,8 +185,9 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. image:: image_processing/morpho.png
+.. figure:: image_processing/morpho.png
    :align: center
+   :scale: 75
 
 .. topic:: Exercise
    :class: green
@@ -193,7 +196,7 @@ image. ::
     than the area of the initial square. (The opposite would occur if the
     closing step was performed *before* the opening).
 
-For **gray-valued** images, eroding (resp. dilating) amounts to replacing
+For *gray-valued* images, eroding (resp. dilating) amounts to replacing
 a pixel by the minimal (resp. maximal) value among pixels covered by the
 structuring element centered on the pixel of interest. ::
 
@@ -247,8 +250,9 @@ Now we look for various information about the objects in the image::
     <matplotlib.image.AxesImage object at ...>
 
 
-.. image:: image_processing/measures.png
+.. figure:: image_processing/measures.png
    :align: center
+   :scale: 80
 
 
 See the summary exercise on :ref:`summary_exercise_image_processing` for a more

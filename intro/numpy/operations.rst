@@ -117,7 +117,7 @@ Cálculando sumas::
     >>> x.sum()
     10
 
-.. image:: reductions.png
+.. image:: images/reductions.png
     :align: right
 
 Suma por filas y por columnas::
@@ -261,19 +261,19 @@ describe las poblaciones de liebres y linces (y zanahorias) en el norte de Canad
 
 .. topic:: Ejemplo: simulación de difusión usando el algoritmo random walk
 
-  .. image:: random_walk.png
+  .. image:: images/random_walk.png
      :align: center
 
   Cuál es la distancia típica al origen en un recorrido al azar después de ``t`` saltos a la derecha o izquierda?
 
   .. only:: latex
 
-    .. image:: random_walk_schema.png
+    .. image:: images/random_walk_schema.png
         :align: center
 
   .. only:: html
 
-    .. image:: random_walk_schema.png
+    .. image:: images/random_walk_schema.png
         :align: center
         :width: 100%
 
@@ -296,7 +296,7 @@ describe las poblaciones de liebres y linces (y zanahorias) en el norte de Canad
 
    >>> media_distancias_al_cuadrado = np.mean(distancias_al_cuadrado, axis=0)
 
-  Plot the results::
+  graficamos el resultado::
 
    >>> plt.figure(figsize=(8, 6))
    <matplotlib.figure.Figure object at ...>
@@ -310,7 +310,7 @@ describe las poblaciones de liebres y linces (y zanahorias) en el norte de Canad
 
   .. plot:: pyplots/numpy_intro_5.py
 
-The RMS distance grows as the square root of the time!
+La distancia RMS (raíz media cuadrática) crece como la raíz cuadrada del tiempo!
 
 .. arithmetic: sum/prod/mean/std
 
@@ -331,28 +331,26 @@ The RMS distance grows as the square root of the time!
 Broadcasting
 ------------
 
-* Basic operations on ``numpy`` arrays (addition, etc.) are elementwise
+* Operaciones básicas en arreglos ``numpy`` (suma, etc) son elemento a elemento.
 
-* This works on arrays of the same size.
+* Esto funciona con arreglos del mismo tamaño.
 
-    | **Nevertheless**, It's also possible to do operations on arrays of different
-    | sizes if *Numpy* can transform these arrays so that they all have
-    | the same size: this conversion is called **broadcasting**.
+    **No obstante!**, también es posible hacer operaciones con matrices de diferentes tamaños si *Numpy* puede transformar estos arreglos en arreglos del mismo tamaño: esta conversión se llama **broadcasting**.
 
-The image below gives an example of broadcasting:
+La siguiente imagen muestra un ejemplo de broadcasting:
 
 .. only:: latex
 
-    .. image:: numpy_broadcasting.png
+    .. image:: images/numpy_broadcasting.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_broadcasting.png
+    .. image:: images/numpy_broadcasting.png
         :align: center
         :width: 100%
 
-Let's verify::
+Vamos a verificarlo::
 
     >>> a = np.tile(np.arange(0, 40, 10), (3, 1)).T
     >>> a
@@ -367,7 +365,7 @@ Let's verify::
            [20, 21, 22],
            [30, 31, 32]])
 
-An useful trick::
+Un truco útil::
 
     >>> a = np.arange(0, 40, 10)
     >>> a.shape
@@ -386,7 +384,7 @@ An useful trick::
            [20, 21, 22],
            [30, 31, 32]])
 
-We have already used broadcasting without knowing it!::
+Ya hemos usado broadcasting sin saberlo!::
 
     >>> a = np.ones((4, 5))
     >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
@@ -398,15 +396,11 @@ We have already used broadcasting without knowing it!::
 
 .. tip::
 
-    Broadcasting seems a bit magical, but it is actually quite natural to
-    use it when we want to solve a problem whose output data is an array
-    with more dimensions than input data.
+    El broadcasting parece un poco mágico, pero en realidad es bastante natural usarlo cuando queremos resolver un problema cuya salida de datos es una matriz con más dimensiones que los datos de entrada.
 
-.. topic:: Example
+.. topic:: Ejemplo
 
-  Let's construct an array of distances (in miles) between cities of
-  Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
-  Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
+  Vamos a construir un arreglo de distancias (en millas) entre las ciudades de la Ruta 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City, Amarillo, Santa Fe, Albuquerque, Flagstaff y Los Angeles.
 
   ::
 
@@ -426,13 +420,12 @@ We have already used broadcasting without knowing it!::
              [2448, 2250, 2145, 1712, 1577, 1273,  973,  904,  535,    0]])
 
 
-  .. image:: route66.png
+  .. image:: images/route66.png
      :align: center
      :scale: 60
 
-A lot of grid-based or network-based problems can also use
-broadcasting. For instance, if we want to compute the distance from
-the origin of points on a 10x10 grid, we can do
+Una gran cantidad de problemas basados ​​en mallas o redes también puede utilizar broadcasting. Por ejemplo, si queremos calcular la distancia de
+el origen de los puntos en una cuadrícula de 10x10, se puede hacer
 
 .. sourcecode:: pycon
 
@@ -445,7 +438,7 @@ the origin of points on a 10x10 grid, we can do
            [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
            [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
-Or in color::
+O en colores::
 
     >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
     <matplotlib.collections.PolyCollection object at ...>
@@ -456,9 +449,8 @@ Or in color::
 
 .. plot:: pyplots/numpy_intro_6.py
 
-
-**Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
-and y of the previous example, with two "significant dimensions"::
+**Observación**: la función ``numpy.ogrid`` permite crear directamente vectores x
+e y del ejemplo anterior, con dos "dimensiones significativas"::
 
     >>> x, y = np.ogrid[0:5, 0:5]
     >>> x, y
@@ -473,10 +465,7 @@ and y of the previous example, with two "significant dimensions"::
 
 .. tip::
 
-  So, ``np.ogrid`` is very useful as soon as we have to handle
-  computations on a grid. On the other hand, ``np.mgrid`` directly
-  provides matrices full of indices for cases where we can't (or don't
-  want to) benefit from broadcasting::
+  Por tanto, ``np.ogrid`` es muy útil para manejar cálculos sobre una malla. Por otro lado, ``np.mgrid`` proporciona directamente matrices llenas de índices para los casos en que no pueda (o no desee hacer) beneficiarse del broadcasting::
 
     >>> x, y = np.mgrid[0:4, 0:4]
     >>> x
@@ -490,7 +479,7 @@ and y of the previous example, with two "significant dimensions"::
            [0, 1, 2, 3],
            [0, 1, 2, 3]])
 
-  However, in practice, this is rarely needed!
+  Sin embargo, en la práctica, esto casi nunca se necesita!
 
 .. rules
 
@@ -504,11 +493,11 @@ and y of the previous example, with two "significant dimensions"::
 .. CHA: constructing grids -- meshgrid using only newaxis
 
 
-Array shape manipulation
-------------------------
+Manipulando las dimensiones de un arreglo
+-----------------------------------------
 
-Flattening
-...........
+Aplanado
+........
 
 ::
 
@@ -522,12 +511,12 @@ Flattening
     >>> a.T.ravel()
     array([1, 4, 2, 5, 3, 6])
 
-Higher dimensions: last dimensions ravel out "first".
+Dimensiones superiores: las últimos dimensiones son las "primeras".
 
 Reshaping
 .........
 
-The inverse operation to flattening::
+La operación inversa a aplanar::
 
     >>> a.shape
     (2, 3)
@@ -536,14 +525,14 @@ The inverse operation to flattening::
     array([[1, 2, 3],
            [4, 5, 6]])
 
-Or, ::
+O, ::
 
     >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
 
 .. warning:: 
    
-   ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)), 
-   or copy
+   ``ndarray.reshape`` **puede** devolver una vista (cf ``help(np.reshape)``)),
+    o copia
 
 .. tip::
 
@@ -555,7 +544,7 @@ Or, ::
         17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
         34, 35])
 
-  Beware: reshape may also return a copy!::
+  Cuidado: reshape también pueden devolver una copia!::
 
     >>> a = np.zeros((3, 2))
     >>> b = a.T.reshape(3*2)
@@ -565,12 +554,12 @@ Or, ::
         [ 0.,  0.],
         [ 0.,  0.]])
 
-  To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
+  Para entender, consulte la sección sobre :ref: `el diseño de memoria de un arreglo <memory_layout>` más abajo.
 
-Adding a dimension
-...................
+Agregando una dimensión
+.......................
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
+Indexando con el objeto ``np.newaxis`` nos permite agregar un eje a un arreglo::
 
     >>> z = np.array([1, 2, 3])
     >>> z
@@ -584,10 +573,8 @@ Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
     >>> z[np.newaxis, :]
     array([[1, 2, 3]])
 
-
-
-Dimension shuffling
-....................
+Cambiando dimensiones
+.....................
 
 ::
 
@@ -602,23 +589,23 @@ Dimension shuffling
     >>> b[2, 1, 0]
     5
 
-Also creates a view::
+También crea una vista::
 
     >>> b[2, 1, 0] = -1
     >>> a[0, 2, 1]
     -1
 
 Resizing
-.........
+........
 
-Size of an array can be changed with ``ndarray.resize``::
+El tamaño de un arreglo se puede cambiar con ``ndarray.resize``::
 
     >>> a = np.arange(4)
     >>> a.resize((8,))
     >>> a
     array([0, 1, 2, 3, 0, 0, 0, 0])
 
-However, it must not be referred to somewhere else:
+Sin embargo, no debe ser referenciado a otro objeto:
 
 .. sourcecode:: pycon
 
@@ -629,13 +616,12 @@ However, it must not be referred to somewhere else:
     ValueError: cannot resize an array that has been referenced or is
     referencing another array in this way.  Use the resize function
 
-Some examples of real-world use cases
-......................................
+Algunos ejemplos del mundo real
+...............................
 
-.. topic:: Case 2.a: Calling (legacy) Fortran code
+.. topic:: Case 2.a: Llamando código (legado) Fortran
 
-   Shape-preserving functions with elementwise non-Python
-   routines. For instance, Fortran
+   Funciones y rutinas no Python. Por ejemplo, Fortran
 
    .. sourcecode:: fortran
 
@@ -647,7 +633,7 @@ Some examples of real-world use cases
         b = a + 1
       end subroutine some_function
 
-   We can use f2py to wrap this fortran code in Python:
+   Podemos utilizar f2py para envolver código Fortran en Python:
    ``f2py -c -m fortran_module 2_a_fortran_module.f90``
 
    .. sourcecode:: python
@@ -672,9 +658,9 @@ Some examples of real-world use cases
        # [[ 2.  3.]
        #  [ 4.  5.]]
 
-.. topic:: Case 2.b: Block matrices and vectors (and tensors)
+.. topic:: Case 2.b: Bloques de matrices y vectores (y tensores)
 
-   Vector space: quantum level :math:`\otimes` spin
+   Vector espacio: nivel cuántico :math:`\otimes` spin
 
    .. math::
 
@@ -695,16 +681,15 @@ Some examples of real-world use cases
         \psi_{2\uparrow} \\ \psi_{2\downarrow}
       \end{pmatrix}
 
-   In short: for **block matrices and vectors**, it can be useful
-   to preserve the **block structure**.
+   En resumen: para **bloques de matrices y vectores**, puede ser útil preservar la **estructura de bloque**.
 
-   In Numpy::
+   En Numpy::
 
     >>> psi = np.zeros((2, 2))   # dimensions: level, spin
     >>> psi[0, 1] # <-- psi_{1,downarrow}
     0.0
 
-   Linear operators on such block vectors have similar block structure:
+   Los operadores lineales en tales bloques de vectores tienen una estructura de bloques similar:
 
    .. math::
 
@@ -730,8 +715,7 @@ Some examples of real-world use cases
    >>> h_11 = H[0,0,:,:]
    >>> V = H[0,1]
 
-   Doing the matrix product: get rid of the block structure, do the
-   4x4 matrix product, then put it back
+   Para hacer el producto matricial: nos deshacemos de la estructura de bloques, hacemos el producto de la matriz 4x4, a continuación de nuevo
 
    .. math::
 
@@ -741,8 +725,7 @@ Some examples of real-world use cases
    ...     return operator.transpose(0, 2, 1, 3).reshape(4, 4).dot(
    ...                psi.reshape(4)).reshape(2, 2)
 
-   I.e., reorder dimensions first to ``level1, spin1, level2, spin2``
-   and then reshape => correct matrix product.
+   Es decir, cambiamos el orden de las dimensiones primero a ``level1, spin1, level2, spin2`` y luego reshape => producto matriz correcto.
 
    .. seealso: ``help(np.tensordot)``
 
@@ -761,10 +744,10 @@ Some examples of real-world use cases
 .. EXE: shuffling dimensions when writing a general vectorized function
 .. CHA: the mathematical 'vec' operation
 
-Sorting data
-------------
+Ordenando datos
+---------------
 
-Sorting along an axis::
+Ordenando a lo largo de un eje::
 
     >>> a = np.array([[4, 3, 5], [1, 2, 1]])
     >>> b = np.sort(a, axis=1)
@@ -772,16 +755,16 @@ Sorting along an axis::
     array([[3, 4, 5],
            [1, 1, 2]])
 
-.. note:: Sorts each row separately!
+.. note:: Ordena filas y columnas por separado!
 
-In-place sort::
+Ordenar y reemplazar::
 
     >>> a.sort(axis=1)
     >>> a
     array([[3, 4, 5],
            [1, 1, 2]])
 
-Sorting with fancy indexing::
+Ordenar con indexado fancy::
 
     >>> a = np.array([4, 3, 1, 2])
     >>> j = np.argsort(a)
@@ -790,7 +773,7 @@ Sorting with fancy indexing::
     >>> a[j]
     array([1, 2, 3, 4])
 
-Finding minima and maxima::
+Buscando los valores mínimos y máximos::
 
     >>> a = np.array([4, 3, 1, 2])
     >>> j_max = np.argmax(a)
@@ -809,273 +792,30 @@ Finding minima and maxima::
     * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
     * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 
-Some exercises
-----------------
-
-.. topic:: Worked example: Framing Lena
-    :class: green
-
-    Let's do some manipulations on numpy arrays by starting with the
-    famous image of Lena (http://www.cs.cmu.edu/~chuck/lennapg/).
-    ``scipy`` provides a 2D array of this image with the ``scipy.lena``
-    function::
-
-        >>> from scipy import misc
-        >>> lena = misc.lena()
-
-    **Note:** In older versions of scipy, you will find lena under
-    ``scipy.lena()``
-
-    Here are a few images we will be able to obtain with our manipulations:
-    use different colormaps, crop the image, change some parts of the image.
-
-    .. image:: lenas.png
-        :align: center
-
-    * Let's use the imshow function of pylab to display the image.
-
-      .. sourcecode:: ipython
-
-        In [3]: import pylab as plt
-        In [4]: lena = misc.lena()
-        In [5]: plt.imshow(lena)
-
-    * Lena is then displayed in false colors. A colormap must be
-      specified for her to be displayed in grey.
-
-      .. sourcecode:: ipython
-
-        In [6]: plt.imshow(lena, cmap=plt.cm.gray)
-
-    * Create an array of the image with a narrower centering : for example,
-      remove 30 pixels from all the borders of the image. To check the result,
-      display this new array with ``imshow``.
-
-      .. sourcecode:: ipython
-
-        In [9]: crop_lena = lena[30:-30,30:-30]
-
-    * We will now frame Lena's face with a black locket. For this, we
-      need to create a mask corresponding to the pixels we want to be
-      black. The mask is defined by this condition ``(y-256)**2 +
-      (x-256)**2``
-
-      .. sourcecode:: ipython
-
-         In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
-         In [16]: y.shape, x.shape
-         Out[16]: ((512, 1), (1, 512))
-         In [17]: centerx, centery = (256, 256) # center of the image
-         In [18]: mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
-
-      then we assign the value 0 to the pixels of the image corresponding
-      to the mask. The syntax is extremely simple and intuitive:
-
-      .. sourcecode:: ipython
-
-         In [19]: lena[mask] = 0
-         In [20]: plt.imshow(lena)
-         Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
-
-    * Follow-up: copy all instructions of this exercise in a script called
-      ``lena_locket.py`` then execute this script in IPython with ``%run
-      lena_locket.py``.
-
-      Change the circle to an ellipsoid.
-
-.. topic:: Exercise: Array manipulations
-    :class: green
-
-    1. Form the 2-D array (without typing it in explicitly)::
-
-        [[1,  6, 11],
-         [2,  7, 12],
-         [3,  8, 13],
-         [4,  9, 14],
-         [5, 10, 15]]
-
-       and generate a new array containing its 2nd and 4th rows.
-
-    2. Divide each column of the array::
-
-        >>> a = np.arange(25).reshape(5, 5)
-
-       elementwise with the array ``b = np.array([1., 5, 10, 15, 20])``.
-       (Hint: ``np.newaxis``).
-
-    3. Harder one: Generate a 10 x 3 array of random numbers (in range [0,1]).
-       For each row, pick the number closest to 0.5.
-
-       - Use ``abs`` and ``argsort`` to find the column ``j`` closest for
-         each row.
-
-       - Use fancy indexing to extract the numbers.  (Hint: ``a[i,j]`` --
-         the array ``i`` must contain the row numbers corresponding to stuff in
-         ``j``.)
-
-.. topic:: Exercise: Data statistics
+.. topic:: **Exercise: Sorting**
    :class: green
 
-   The data in :download:`populations.txt <../../data/populations.txt>`::
-   describes the populations of hares and lynxes (and carrots) in
-   northern Canada during 20 years::
+    * Try both in-place and out-of-place sorting.
+    * Try creating arrays with different dtypes and sorting them.
+    * Use ``all`` or ``array_equal`` to check the results.
+    * Look at ``np.random.shuffle`` for a way to create sortable input quicker.
+    * Combine ``ravel``, ``sort`` and ``reshape``.
+    * Look at the ``axis`` keyword for ``sort`` and rewrite the previous
+      exercise.
 
-    >>> data = np.loadtxt('data/populations.txt')
-    >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+Resumen
+-------
 
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
-    <matplotlib.axes.Axes object at ...>
-    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>, ...]
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
-    <matplotlib.legend.Legend object at ...>
+**Qué es lo necesita saber para empezar?**
 
-   .. plot:: pyplots/numpy_intro_7.py
+* Saber cómo crear arreglos: ``array``, ``arange``, ``ones``, ``zeros``.
 
-   Computes and print, based on the data in ``populations.txt``...
+* Obtener la dimensión de un arreglo con ``array.shape``, usar el segmentado para obtener diferentes vistas de un arreglo: ``array [:: 2]``, etc. Cambiar la dimensión de la matriz mediante ``reshape`` o aplanarla con ``ravel``.
 
-   1. The mean and std of the populations of each species for the years
-      in the period.
-
-   2. Which year each species had the largest population.
-
-   3. Which species has the largest population for each year.
-      (Hint: ``argsort`` & fancy indexing of
-      ``np.array(['H', 'L', 'C'])``)
-
-   4. Which years any of the populations is above 50000.
-      (Hint: comparisons and ``np.any``)
-
-   5. The top 2 years for each species when they had the lowest
-      populations. (Hint: ``argsort``, fancy indexing)
-
-   6. Compare (plot) the change in hare population (see
-      ``help(np.gradient)``) and the number of lynxes. Check correlation
-      (see ``help(np.corrcoef)``).
-
-   ... all without for-loops.
-
-.. topic:: Exercise: Crude integral approximations
-   :class: green
-
-   Write a function ``f(a, b, c)`` that returns :math:`a^b - c`.  Form
-   a 24x12x6 array containing its values in parameter ranges ``[0,1] x
-   [0,1] x [0,1]``.
-
-   Approximate the 3-d integral
-
-   .. math:: \int_0^1\int_0^1\int_0^1(a^b-c)da\,db\,dc
-
-   over this volume with the mean.  The exact result is: :math:`\ln 2 -
-   \frac{1}{2}\approx0.1931\ldots` --- what is your relative error?
-
-   (Hints: use elementwise operations and broadcasting.
-   You can make ``np.ogrid`` give a number of points in given range
-   with ``np.ogrid[0:1:20j]``.)
-
-   **Reminder** Python functions::
-
-       def f(a, b, c):
-           return some_result
-
-.. topic:: Exercise: Mandelbrot set
-   :class: green
-
-    .. plot:: intro/numpy/solutions/2_4_mandelbrot.py
-
-    Write a script that computes the Mandelbrot fractal. The Mandelbrot
-    iteration::
-
-        N_max = 50
-        some_threshold = 50
-
-        c = x + 1j*y
-
-        for j in xrange(N_max):
-            z = z**2 + c
-
-    Point (x, y) belongs to the Mandelbrot set if :math:`|c|` <
-    ``some_threshold``.
-
-    Do this computation by:
-
-    .. For doctests
-       >>> mask = np.ones((3, 3))
-
-    1. Construct a grid of c = x + 1j*y values in range [-2, 1] x [-1.5, 1.5]
-
-    2. Do the iteration
-
-    3. Form the 2-d boolean mask indicating which points are in the set
-
-    4. Save the result to an image with::
-
-        >>> import matplotlib.pyplot as plt
-        >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
-        <matplotlib.image.AxesImage object at ...>
-        >>> plt.gray()
-        >>> plt.savefig('mandelbrot.png')
-
-
-.. topic:: Exercise: Markov chain
-   :class: green
-
-    .. image:: markov-chain.png
-
-    Markov chain transition matrix ``P``, and probability distribution on
-    the states ``p``::
-
-    1. ``0 <= P[i,j] <= 1``: probability to go from state ``i`` to state ``j``
-
-    2. Transition rule: :math:`p_{new} = P^T p_{old}`
-
-    3. ``all(sum(P, axis=1) == 1)``, ``p.sum() == 1``: normalization
-
-    Write a script that works with 5 states, and:
-
-    - Constructs a random matrix, and normalizes each row so that it
-      is a transition matrix.
-
-    - Starts from a random (normalized) probability distribution
-      ``p`` and takes 50 steps => ``p_50``
-
-    - Computes the stationary distribution: the eigenvector of ``P.T``
-      with eigenvalue 1 (numerically: closest to 1) => ``p_stationary``
-
-    Remember to normalize the eigenvector --- I didn't...
-
-    - Checks if ``p_50`` and ``p_stationary`` are equal to tolerance 1e-5
-
-    Toolbox: ``np.random.rand``, ``.dot()``, ``np.linalg.eig``,
-    reductions, ``abs()``, ``argmin``, comparisons, ``all``,
-    ``np.linalg.norm``, etc.
-
-
-Summary
---------
-
-**What do you need to know to get started?**
-
-* Know how to create arrays : ``array``, ``arange``, ``ones``,
-  ``zeros``.
-
-* Know the shape of the array with ``array.shape``, then use slicing
-  to obtain different views of the array: ``array[::2]``,
-  etc. Adjust the shape of the array using ``reshape`` or flatten it
-  with ``ravel``.
-
-* Obtain a subset of the elements of an array and/or modify their values
-  with masks::
+* Obtener un subconjunto de los elementos de un arreglo y/o modificar sus valores con máscaras::
 
   >>> a[a < 0] = 0
 
-* Know miscellaneous operations on arrays, such as finding the mean or max
-  (``array.max()``, ``array.mean()``). No need to retain everything, but
-  have the reflex to search in the documentation (online docs,
-  ``help()``, ``lookfor()``)!!
+* Conocer las operaciones misceláneas con arreglos, como la búsqueda de la media o el valor máximo (``array.mean()``, ``array.max()``). No hay necesidad de saberlo todo, solo busque en la documentación (documentación en línea, ``help()``, ``lookfor()``)!!
 
-* For advanced use: master the indexing with arrays of integers, as well as
-  broadcasting. Know more Numpy functions to handle various array
-  operations.
-
-
+* Para uso avanzado: dominar el indexado con arreglos de enteros, así como broadcasting. Conocer más funciones para manejar varias operaciones con arreglos Numpy.

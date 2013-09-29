@@ -1,7 +1,7 @@
 import sys
 
 def print_a():
-    "Imprime a."
+    "Prints a."
     print 'a'
 
 print sys.argv

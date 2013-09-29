@@ -6,60 +6,60 @@
 
 .. currentmodule:: numpy
 
-More elaborate arrays
-======================
+Arreglos más elaborados
+=======================
 
-.. contents:: Section contents
+.. contents:: Contenido
     :local:
     :depth: 1
 
-More data types
----------------
+Más tipos de datos
+------------------
 
-Casting
-........
+Conversión de tipos
+...................
 
-"Bigger" type wins in mixed-type operations::
+El tipo "más grande" prevalece en las operaciones de tipo mixto::
 
     >>> np.array([1, 2, 3]) + 1.5
     array([ 2.5,  3.5,  4.5])
 
-Assignment never changes the type! ::
+La asignación no cambia el tipo!::
 
     >>> a = np.array([1, 2, 3])
     >>> a.dtype
-    dtype('int64')
-    >>> a[0] = 1.9     # <-- float is truncated to integer
+    dtype('int32')
+    >>> a[0] = 1.9     # <-- número de punto flotante truncado a número entero
     >>> a
     array([1, 2, 3])
 
-Forced casts::
+Conversión forzada::
 
     >>> a = np.array([1.7, 1.2, 1.6])
-    >>> b = a.astype(int)  # <-- truncates to integer
+    >>> b = a.astype(int)  # <-- truncado a entero
     >>> b
     array([1, 1, 1])
 
-Rounding::
+Redondeo::
 
     >>> a = np.array([1.2, 1.5, 1.6, 2.5, 3.5, 4.5])
     >>> b = np.around(a)
-    >>> b                    # still floating-point
+    >>> b                    # sigue siendo de punto flotante
     array([ 1.,  2.,  2.,  2.,  4.,  4.])
     >>> c = np.around(a).astype(int)
     >>> c
     array([1, 2, 2, 2, 4, 4])
 
-Different data type sizes
+Tamaños de tipos de datos
 ..........................
 
-Integers (signed):
+Enteros (con signo):
 
 =================== ==============================================================
 :class:`int8`        8 bits
 :class:`int16`       16 bits
-:class:`int32`       32 bits (same as :class:`int` on 32-bit platform)
-:class:`int64`       64 bits (same as :class:`int` on 64-bit platform)
+:class:`int32`       32 bits (el mismo :class:`int` en platforma 32-bit)
+:class:`int64`       64 bits (el mismo :class:`int` en platforma 64-bit)
 =================== ==============================================================
 
 ::
@@ -71,7 +71,7 @@ Integers (signed):
     >>> np.iinfo(np.int64).max, 2**63 - 1
     (9223372036854775807, 9223372036854775807L)
 
-Unsigned integers:
+Enteros sin signo:
 
 =================== ==============================================================
 :class:`uint8`       8 bits
@@ -87,14 +87,14 @@ Unsigned integers:
     >>> np.iinfo(np.uint64).max, 2**64 - 1
     (18446744073709551615L, 18446744073709551615L)
 
-Floating-point numbers:
+Números de punto flotante:
 
 =================== ==============================================================
 :class:`float16`     16 bits
 :class:`float32`     32 bits
-:class:`float64`     64 bits (same as :class:`float`)
-:class:`float96`     96 bits, platform-dependent (same as :class:`np.longdouble`)
-:class:`float128`    128 bits, platform-dependent (same as :class:`np.longdouble`)
+:class:`float64`     64 bits (el mismo :class:`float`)
+:class:`float96`     96 bits, dependiente de la plataforma (el mismo :class:`np.longdouble`)
+:class:`float128`    128 bits, dependiente de la plataforma (el mismo :class:`np.longdouble`)
 =================== ==============================================================
 
 ::
@@ -109,23 +109,23 @@ Floating-point numbers:
     >>> np.float64(1e-8) + np.float64(1) == 1
     False
 
-Complex floating-point numbers:
+Números complejos de punto flotante:
 
 =================== ==============================================================
-:class:`complex64`   two 32-bit floats
-:class:`complex128`  two 64-bit floats
-:class:`complex192`  two 96-bit floats, platform-dependent
-:class:`complex256`  two 128-bit floats, platform-dependent
+:class:`complex64`   dos números de punto flotante 32-bit
+:class:`complex128`  dos números de punto flotante 64-bit
+:class:`complex192`  dos números de punto flotante 96-bit, dependiente de la plataforma
+:class:`complex256`  dos números de punto flotante 128-bit, dependiente de la plataforma
 =================== ==============================================================
 
-.. topic:: Smaller data types
+.. topic:: Tipos de datos pequeños
 
-   If you don't know you need special data types, then you probably don't.
+   Si usted no sabe si necesita los tipos de datos especiales, es probable que no los conozca.
 
-   Comparison on using ``float32`` instead of ``float64``:
+   Comparación sobre el uso de ``float32`` en vez de ``float64``:
 
-   - Half the size in memory and on disk
-   - Half the memory bandwidth required (may be a bit faster in some operations)
+   - La mitad del tamaño en la memoria y en el disco
+   - La mitad del ancho de banda de memoria necesaria (puede ser un poco más rápido en algunas operaciones )
 
      .. sourcecode:: ipython
 
@@ -139,73 +139,69 @@ Complex floating-point numbers:
         In [4]: %timeit b*b
         1000 loops, best of 3: 1.07 ms per loop
 
-   - But: bigger rounding errors --- sometimes in surprising places
-     (i.e., don't use them unless you really need them)
+   - Pero: con grandes errores de redondeo --- a veces en lugares sorprendentes
+     (es decir, no lo utilice a menos que realmente lo necesite)
 
-
-Structured data types
----------------------
+Tipos de datos estructurados
+----------------------------
 
 =============== ====================
-``sensor_code``  (4-character string)
-``position``     (float)
-``value``        (float)
+``codigo_sensor``  (cadena de 4 caracteres)
+``posicion``     (número de punto flotante)
+``valor``        (número de punto flotante)
 =============== ====================
 
 ::
 
-    >>> samples = np.zeros((6,), dtype=[('sensor_code', 'S4'),
-    ...                                 ('position', float), ('value', float)])
-    >>> samples.ndim
+    >>> muestras = np.zeros((6,), dtype=[('codigo_sensor', 'S4'),
+    ...                                  ('posicion', float), ('valor', float)])
+    >>> muestras.ndim
     1
-    >>> samples.shape
+    >>> muestras.shape
     (6,)
-    >>> samples.dtype.names
-    ('sensor_code', 'position', 'value')
-
-    >>> samples[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
-    ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
-    >>> samples
+    >>> muestras.dtype.names
+    ('codigo_sensor', 'posicion', 'valor')
+    >>> muestras[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
+    ...                ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
+    >>> muestras
     array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
            ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
-          dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
+          dtype=[('codigo_sensor', 'S4'), ('posicion', '<f8'), ('valor', '<f8')])
 
-Field access works by indexing with field names::
+Para acceder a los campos se debe indexar los nombres de los campos::
 
-    >>> samples['sensor_code']
+    >>> muestras['codigo_sensor']
     array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
           dtype='|S4')
-    >>> samples['value']
+    >>> muestras['valor']
     array([ 0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
-    >>> samples[0]
+    >>> muestras[0]
     ('ALFA', 1.0, 0.37)
-
-    >>> samples[0]['sensor_code'] = 'TAU'
+    >>> muestras[0]['codigo_sensor']
+    >>> 'ALFA'
+    >>> muestras[0]['codigo_sensor'] = 'TAU'
     >>> samples[0]
     ('TAU', 1.0, 0.37)
 
-Multiple fields at once::
+Campos múltiples a la vez::
 
-    >>> samples[['position', 'value']]
+    >>> muestras[['posicion', 'valor']]
     array([(1.0, 0.37), (1.0, 0.11), (1.0, 0.13), (1.5, 0.37), (3.0, 0.11),
            (1.2, 0.13)], 
-          dtype=[('position', '<f8'), ('value', '<f8')])
+          dtype=[('posicion', '<f8'), ('valor', '<f8')])
 
-Fancy indexing works, as usual::
+Usando indexado fancy, en la forma usual::
 
-    >>> samples[samples['sensor_code'] == 'ALFA']
+    >>> muestras[muestras['codigo_sensor'] == 'ALFA']
     array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
-          dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
+          dtype=[('codigo_sensor', 'S4'), ('posicion', '<f8'), ('valor', '<f8')])
 
-.. note:: There are a bunch of other syntaxes for constructing structured
-   arrays, see `here <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
-   and `here <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
+.. note:: Hay un montón de otras sintaxis para construir arreglos estructurados, consulte `aquí <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__ y `aquí <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
 
+:class:`maskedarray`: tratando con datos que faltan
+---------------------------------------------------
 
-:class:`maskedarray`: dealing with (propagation of) missing data
-------------------------------------------------------------------
-
-* For floats one could use NaN's, but masks work for all types::
+* Para números de punto flotante se podría utilizar NaN , pero las máscaras funcionan para todos los tipos::
 
     >>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
     >>> x
@@ -221,7 +217,7 @@ Fancy indexing works, as usual::
            fill_value = 999999)
     <BLANKLINE>
 
-* Masking versions of common functions::
+* Versión enmascarada de funciones comunes::
 
     >>> np.ma.sqrt([1, -1, 2, -2])
     masked_array(data = [1.0 -- 1.41421356237 --],
@@ -229,31 +225,20 @@ Fancy indexing works, as usual::
            fill_value = 1e+20)
     <BLANKLINE>
 
-
 .. note::
 
-   There are other useful :ref:`array siblings <array_siblings>`
-
-
+   Hay otros útiles :ref:`array siblings <array_siblings>`
 _____
 
-While it is off topic in a chapter on numpy, let's take a moment to
-recall good coding practice, which really do pay off in the long run:
+Este tema esta fuera de los capítulos sobre Numpy, tomemos un momento para
+recordar las buenas prácticas de codificación, lo que realmente vale la pena a largo plazo:
 
-.. topic:: Good practices
+.. topic:: Buenas prácticas
 
-    * Explicit variable names (no need of a comment to explain what is in
-      the variable)
+    * Nombres de variables explícitos (sin necesidad de un comentario que explique lo que está en la variable)
 
-    * Style: spaces after commas, around ``=``, etc.
+    * Estilo: espacio después de las comas, antes y despues de ``=``, etc.
 
-      A certain number of rules for writing "beautiful" code (and, more
-      importantly, using the same conventions as everybody else!) are
-      given in the `Style Guide for Python Code
-      <http://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
-      Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to
-      manage help strings).
+      Un cierto número de reglas para escribir código "hermoso" (y más importante, el uso de las mismas convenciones para todos los demás!) están en `Style Guide for Python Code <http://www.python.org/dev/peps/pep-0008>`_ y `Docstring Conventions <http://www.python.org/dev/peps/pep-0257>`_ (manejo de cadenas de ayuda).
 
-    * Except some rare cases, variable names and comments in English.
-
-
+    * Excepto en algunos casos raros, los nombres de variables y comentarios en inglés.

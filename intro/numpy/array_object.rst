@@ -16,17 +16,17 @@ Que es Numpy y los array numpy
 
 :Objetos **Python**:
 
-    - números objeto de alto nivel: enteros, de punto flotante
+- números objeto de alto nivel: enteros, de punto flotante
 
-    - contenedores: listas (inserción y agregar elementos), diccionarios (búsqueda rápida)
+- contenedores: listas (inserción y agregar elementos), diccionarios (búsqueda rápida)
 
 :**Numpy** dispone lo siguiente:
 
-    - paquete de extensión Python para matrices multidimensionales
+- paquete de extensión Python para matrices multidimensionales
 
-    - cercano al hardware (eficiente)
+- cercano al hardware (eficiente)
 
-    - diseñado para cálculo científico (conveniente)
+- diseñado para cálculo científico (conveniente)
 
 ::
 
@@ -37,9 +37,7 @@ Que es Numpy y los array numpy
 
 .. tip:: 
    
-   **Por ejemplo:**
-
-    Una arreglo contiene:
+   **Por ejemplo:** Una arreglo contiene:
 
     * valores de un experimento/simulación en intervalos de tiempo discreto
 
@@ -127,6 +125,18 @@ Documentación de referencia
 .. the import convention, reminder on python imports
 .. la convención import, recuerdelo al importar en python
 
+Import conventions
+------------------
+
+The general convention to import numpy is:
+
+.. sourcecode:: pycon
+
+   >>> import numpy as np
+
+Using this style of import is recommended.
+
+
 Creando arreglos
 ----------------
 
@@ -164,6 +174,17 @@ Creando arreglos
             [4]]])
     >>> c.shape
     (2, 2, 1)
+
+.. topic:: **Exercise: Simple arrays**
+    :class: green
+
+    * Create simple one and two dimensional arrays. First, redo the examples
+      from above. And then create your own.
+    * Use the functions ``len``, ``shape`` and ``ndim`` on some of those
+      arrays and observe their output.
+
+Functions for creating arrays
+-----------------------------
 
 En la práctica, rara vez introducimos los items uno por uno ...
 
@@ -372,7 +393,7 @@ Inicie IPython en modo *pylab*
 
   Para la visualización 3D, podemos utilizar otro paquete: **Mayavi**. Un ejemplo rápido: **iniciar IPython** con estas opciones: **ipython -pylab=wx** (o **ipython -pylab -wthread** en IPython < 0.10).
 
-  .. image:: surf.png
+  .. image:: images/surf.png
      :align: right
      :scale: 60
 
@@ -457,12 +478,12 @@ Un pequeño resumen ilustrado de indexado y segmentado en Numpy ...
 
 .. only:: latex
 
-    .. image:: numpy_indexing.png
+    .. image:: images/numpy_indexing.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_indexing.png
+    .. image:: images/numpy_indexing.png
         :align: center
         :width: 65%
 
@@ -524,7 +545,7 @@ Este comportamiento puede resultar sorprendente a primera vista ... pues permite
 .. topic:: Ejemplo práctico: Criba de números primos
    :class: green
 
-   .. image:: prime-sieve.png
+   .. image:: images/prime-sieve.png
 
    Calcular los números primos en 0--99, con una criba
 
@@ -624,12 +645,12 @@ La imagen a continuación muestra varias aplicaciones del indexado fancy
 
 .. only:: latex
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
         :width: 80%
 

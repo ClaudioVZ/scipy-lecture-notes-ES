@@ -1,14 +1,13 @@
-#-*- coding: utf-8 -*-
-
-"Módulo demo."
+"A demo module."
 
 def print_b():
-    "Imprime b."
+    "Prints b."
     print 'b'
 
 def print_a():
-    "Imprime a."
+    "Prints a."
     print 'a'
+
 
 c = 2
 d = 2

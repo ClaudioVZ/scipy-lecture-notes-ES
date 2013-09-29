@@ -5,19 +5,19 @@
 
 .. currentmodule:: numpy
 
-Advanced operations
-===================
+Operaciones avanzadas
+=====================
 
-.. contents:: Section contents
+.. contents:: Contenido
     :local:
     :depth: 1
 
-Polynomials
+Polinomios
 -----------
 
-Numpy also contains polynomials in different bases:
+Numpy contiene polinomios en diferentes bases :
 
-For example, :math:`3x^2 + 2x - 1`::
+Por ejemplo, :math:`3x^2 + 2x - 1`::
 
     >>> p = np.poly1d([3, 2, -1])
     >>> p(0)
@@ -39,27 +39,26 @@ For example, :math:`3x^2 + 2x - 1`::
 
 .. plot:: pyplots/numpy_intro_9.py
 
-See http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
-for more.
+Ver http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
+para más información.
 
-More polynomials (with more bases)
-...................................
+Más polinomios (con más bases)
+..............................
 
-Numpy also has a more sophisticated polynomial interface, which supports
-e.g. the Chebyshev basis.
+Numpy tiene una interfaz para polinomios más sofisticada , que soporta
+por ejemplo bases de Chebyshev.
 
 :math:`3x^2 + 2x - 1`::
 
-    >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
+    >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coeficientes en orden diferente!
     >>> p(0)
     -1.0
     >>> p.roots()
     array([-1.        ,  0.33333333])
-    >>> p.degree()  # In general polynomials do not always expose 'order'
+    >>> p.degree()  # generalmente en polinomios no siempre muestra el 'orden'
     2
 
-Example using polynomials in Chebyshev basis, for polynomials in
-range ``[-1, 1]``::
+Ejemplo de uso de polinomios en bases de Chebyshev, para polinomios en el rango ``[-1, 1]``::
 
     >>> x = np.linspace(-1, 1, 2000)
     >>> y = np.cos(x) + 0.3*np.random.rand(2000)
@@ -73,15 +72,15 @@ range ``[-1, 1]``::
 
 .. plot:: pyplots/numpy_intro_10.py
 
-The Chebyshev polynomials have some advantages in interpolation.
+Los polinomios de Chebyshev tienen algunas ventajas en interpolación.
 
-Loading data files
--------------------
+Cargando archivos de datos
+--------------------------
 
-Text files
-...........
+Archivos de texto
+.................
 
-Example: :download:`populations.txt <../../data/populations.txt>`:
+Ejemplo: :download:`populations.txt <../../data/populations.txt>`:
 
 .. include:: ../../data/populations.txt
     :end-line: 5
@@ -101,28 +100,27 @@ Example: :download:`populations.txt <../../data/populations.txt>`:
     >>> np.savetxt('pop2.txt', data)
     >>> data2 = np.loadtxt('pop2.txt')
 
-.. note:: If you have a complicated text file, what you can try are:
+.. note:: Si usted tiene un archivo de texto complicado, puede probar con:
 
    - ``np.genfromtxt``
 
-   - Using Python's I/O functions and e.g. regexps for parsing
-     (Python is quite well suited for this)
+   - Usar las funciones de E/S de Python, por ejemplo regexps para parsear (Python es bastante adecuado para esto)
 
-.. topic:: Reminder: Navigating the filesystem with IPython
+.. topic:: Recuerde: Navegando por el sistema de archivos con IPython
 
    .. sourcecode:: ipython
 
-       In [1]: pwd      # show current directory
+       In [1]: pwd      # muestra el directorio actual
        '/home/user/stuff/2011-numpy-tutorial'
        In [2]: cd ex
        '/home/user/stuff/2011-numpy-tutorial/ex'
        In [3]: ls
        populations.txt	species.txt
 
-Images
-.......
+Imágenes
+........
 
-Using Matplotlib::
+Usando Matplotlib::
 
     >>> img = plt.imread('data/elephant.png')
     >>> img.shape, img.dtype
@@ -133,12 +131,12 @@ Using Matplotlib::
 
     >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
 
-This saved only one channel (of RGB)::
+Esto guarda solo un canal (de RGB)::
 
     >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 
-Other libraries::
+Otras bibliotecas::
 
     >>> from scipy.misc import imsave
     >>> imsave('tiny_elephant.png', img[::6,::6])
@@ -147,34 +145,29 @@ Other libraries::
 
 .. plot:: pyplots/numpy_intro_3.py
 
+Formato propio de Numpy
+.......................
 
-Numpy's own format
-...................
-
-Numpy has its own binary format, not portable but with efficient I/O::
+Numpy tiene su propio formato binario, no es portátil pero con eficiente E/S::
 
     >>> data = np.ones((3, 3))
     >>> np.save('pop.npy', data)
     >>> data3 = np.load('pop.npy')
 
-Well-known (& more obscure) file formats
-.........................................
+Formatos bien conocidos (y más obscuros) de archivo
+...................................................
 
 * HDF5: `h5py <http://code.google.com/p/h5py/>`__, `PyTables <http://pytables.org>`__
 * NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <http://code.google.com/p/netcdf4-python/>`__, ...
 * Matlab: ``scipy.io.loadmat``, ``scipy.io.savemat``
 * MatrixMarket: ``scipy.io.mmread``, ``scipy.io.mmread``
 
-... if somebody uses it, there's probably also a Python library for it.
+... si alguien lo usa, es probable que haya una biblioteca de Python para ello.
 
-
-.. topic:: Exercise: Text data files
+.. topic:: Ejercicio: Archivos de datos de texto
    :class: green
 
-   Write a Python script that loads data from :download:`populations.txt
-   <../../data/populations.txt>`:: and drop the last column and the first
-   5 rows. Save the smaller dataset to ``pop2.txt``.
-
+   Escribir un script en Python para cargar los datos de :download:`populations.txt <../../data/populations.txt>`:: y elimine la última columna y las primeras 5 filas. Guarde el pequeño conjunto de datos en ``pop2.txt``.
 
 .. loadtxt, savez, load, fromfile, tofile
 
@@ -189,8 +182,7 @@ Well-known (& more obscure) file formats
 .. EXE: advanced: read the data in a PPM file
 
 
-.. topic:: Numpy internals
+.. topic:: El interior de Numpy
 
-    If you are interested in the Numpy internals, there is a good discussion in
-    :ref:`advanced_numpy`.
+    Si está interesado en el funcionamiento interno de Numpy, hay una buena discusión en :ref:`advanced_numpy`.
 

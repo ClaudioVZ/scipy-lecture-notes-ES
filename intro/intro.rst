@@ -1,7 +1,7 @@
 Computación científica con herramientas y flujos de trabajo
 ===========================================================
 
-:autores: Fernando Pérez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
+:Autores: Fernando Pérez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
 
 ..
     .. image:: phd053104s.png
