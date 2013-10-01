@@ -149,11 +149,6 @@ Examples
 
    :ref:`example_plot_synthetic_data.py`
 
-.. figure:: ./images/thumb/plot_watershed_segmentation.png
-   :target: ./plot_watershed_segmentation.html
-
-   :ref:`example_plot_watershed_segmentation.py`
-
 .. figure:: ./images/thumb/tv_denoise.png
    :target: ./tv_denoise.html
 

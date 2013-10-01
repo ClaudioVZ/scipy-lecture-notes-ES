@@ -1,6 +1,6 @@
 .. currentmodule:: matplotlib
 
-.. _matplotlib-label
+.. _matplotlib-label:
 
 ====================
 Matplotlib: trazado
@@ -79,7 +79,7 @@ Valores por defecto
 .. hint:: Documentación
 
    * `Tutorial pyplot <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
-   * `comando plot() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
+   * `Comando plot() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
 Matplotlib viene con un conjunto de valores predeterminados que permiten la personalización de todos los tipos de propiedades. Puede controlar los valores predeterminados de casi todas las propiedades en matplotlib: tamaño de figura y dpi, grosor de línea, color y estilo, ejes , ejes y propiedades de cuadrícula, propiedades de texto y fuente, etc. ::
 
@@ -106,7 +106,7 @@ Instancias por defecto
 
    *  `Personalizando matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
 
-En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver `Line properties`_ y `Line styles`_ más abajo). ::
+En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver `Line properties`_ y `Line styles`_ más abajo).::
 
    import pylab as pl
    import numpy as np
@@ -174,14 +174,12 @@ Establecer límites
    :scale: 35
    :target: auto_examples/plot_exercice_4.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
-   * `comando xlim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
-   * `comando ylim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
+   * `Comando xlim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
+   * `Comando ylim() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
-Current limits of the figure are a bit too tight and we want to make some space
-in order to clearly see all data points.
-Los límites actuales de la figura son un poco demasiado apretado y que quieren hacer un poco de espacio con el fin de ver con claridad todos los puntos de datos.
+Debido a los límites actuales la figura se muestra un poco ajustada, cambiamos los límites con el fin de ver con claridad todos los puntos.
 
 ::
 
@@ -190,25 +188,23 @@ Los límites actuales de la figura son un poco demasiado apretado y que quieren 
    pl.ylim(C.min() * 1.1, C.max() * 1.1)
    ...
 
-Setting ticks
--------------
+Configurando graduación de ejes
+-------------------------------
 
 .. image:: auto_examples/images/plot_exercice_5_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_5.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
-   * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `Comando xticks() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `Comando yticks() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
    * `Tick container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
    * `Tick locating and formatting <http://matplotlib.sourceforge.net/api/ticker_api.html>`_
 
-
-Current ticks are not ideal because they do not show the interesting values
-(+/-π,+/-π/2) for sine and cosine. We'll change them such that they show only
-these values.
+Los graduación actual no es ideal, ya que no muestran los valores requeridos
+(+/-π,+/-π/2) para la función seno y la función coseno. Los cambiamos de tal manera que sólo muestren estos valores.
 
 ::
 
@@ -217,31 +213,23 @@ these values.
    pl.yticks([-1, 0, +1])
    ...
 
-
-
-Setting tick labels
--------------------
+Configurando etiquetas graduadas
+--------------------------------
 
 .. image:: auto_examples/images/plot_exercice_6_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_6.html
 
+.. hint:: Documentación
 
-.. hint:: Documentation
-
-   * `Working with text <http://matplotlib.sourceforge.net/users/index_text.html>`_
-   * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `Trabajando con texto <http://matplotlib.sourceforge.net/users/index_text.html>`_
+   * `Comando xticks() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `Comando yticks() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
    * `set_xticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
    * `set_yticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
 
-
-Ticks are now properly placed but their label is not very explicit. We could
-guess that 3.142 is π but it would be better to make it explicit. When we set
-tick values, we can also provide a corresponding label in the second argument
-list. Note that we'll use latex to allow for nice rendering of the label.
-
+Las graduaciones están correctamente colocadas, pero su etiqueta no es muy explícita. Podríamos suponer que 3.142 es π pero es mejor hacerlo de forma explícita. Cuando establecemos los valores de graduación, también podemos proporcionar una etiqueta correspondiente en el segundo argumento de la lista. Tenga en cuenta que vamos a utilizar látex para permitir una buena renderización de la etiqueta.
 
 ::
 
@@ -253,29 +241,21 @@ list. Note that we'll use latex to allow for nice rendering of the label.
              [r'$-1$', r'$0$', r'$+1$'])
    ...
 
-
-
-Moving spines
--------------
+Moviendo spines
+---------------
 
 .. image:: auto_examples/images/plot_exercice_7_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_7.html
 
-
-.. hint:: Documentation
+.. hint:: Documentación
 
    * `Spines <http://matplotlib.sourceforge.net/api/spines_api.html#matplotlib.spines>`_
    * `Axis container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.sourceforge.net/users/transforms_tutorial.html>`_
 
-Spines are the lines connecting the axis tick marks and noting the boundaries
-of the data area. They can be placed at arbitrary positions and until now, they
-were on the border of the axis. We'll change that since we want to have them in
-the middle. Since there are four of them (top/bottom/left/right), we'll discard
-the top and right by setting their color to none and we'll move the bottom and
-left ones to coordinate 0 in data space coordinates.
+Los spines son las líneas que unen las marcas de graduación del eje y muestran los límites de datos. Se pueden colocar en posiciones arbitrarias, hasta ahora estaban en el borde del eje. Vamos a cambiar eso, ya que queremos tener en el medio. Puesto que hay cuatro de ellos (arriba/abajo/izquierda/derecha), vamos a descartar la parte superior y derecha al establecer su color a ninguno y vamos a mover la parte inferior y la izquierdas para coordinar 0 en las coordenadas de datos.
 
 ::
 
@@ -289,10 +269,8 @@ left ones to coordinate 0 in data space coordinates.
    ax.spines['left'].set_position(('data',0))
    ...
 
-
-
-Adding a legend
----------------
+Agregando una leyenda
+---------------------
 
 .. image:: auto_examples/images/plot_exercice_8_1.png
    :align: right
@@ -300,16 +278,13 @@ Adding a legend
    :target: auto_examples/plot_exercice_8.html
 
 
-.. hint:: Documentation
+.. hint:: Documentación
 
    * `Legend guide <http://matplotlib.sourceforge.net/users/legend_guide.html>`_
    * `legend() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend>`_
    * `Legend API <http://matplotlib.sourceforge.net/api/legend_api.html#matplotlib.legend.Legend>`_
 
-Let's add a legend in the upper left corner. This only requires adding the
-keyword argument label (that will be used in the legend box) to the plot
-commands.
-
+Vamos a añadir una leyenda en la esquina superior izquierda. Esto sólo requiere la adición de la palabra clave label (que se utilizará en el cuadro de la leyenda) en el comando plot.
 
 ::
 
@@ -320,27 +295,21 @@ commands.
    pl.legend(loc='upper left')
    ...
 
-
-
-Annotate some points
---------------------
+Anotaciones en puntos
+---------------------
 
 .. image:: auto_examples/images/plot_exercice_9_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_9.html
 
-
-.. hint:: Documentation
+.. hint:: Documentación
 
    * `Annotating axis <http://matplotlib.sourceforge.net/users/annotations_guide.html>`_
    * `annotate() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
 
-Let's annotate some interesting points using the annotate command. We chose the
-2π/3 value and we want to annotate both the sine and the cosine. We'll first
-draw a marker on the curve as well as a straight dotted line. Then, we'll use
-the annotate command to display some text with an arrow.
-
+Vamos a anotar algunos puntos interesantes utilizando el comando de annotate. Elegimos el valor 2π/3 y queremos anotar tanto en la función seno y el coseno. Haremos primero
+dibujar un marcador en la curva, así como una línea de puntos recta. A continuación, vamos a utilizar el comando annotate que muestra parte del texto con una flecha.
 
 ::
 
@@ -364,8 +333,6 @@ the annotate command to display some text with an arrow.
                arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
    ...
 
-
-
 Devil is in the details
 ------------------------
 
@@ -374,16 +341,14 @@ Devil is in the details
    :scale: 35
    :target: auto_examples/plot_exercice_10_1.html
 
-.. hint:: Documentation
+.. hint:: Documentación
 
    * `Artists <http://matplotlib.sourceforge.net/api/artist_api.html>`_
    * `BBox <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
 
-The tick labels are now hardly visible because of the blue and red lines. We can
-make them bigger and we can also adjust their properties such that they'll be
-rendered on a semi-transparent white background. This will allow us to see both
-the data and the labels.
-
+Las etiquetas graduadas ahora son apenas visibles debido a las líneas azules y rojas. Podemos hacerlos más grandes y también podemos ajustar sus propiedades, que van a estar
+renderizados en un fondo blanco semi-transparente. Esto nos permitirá ver tanto
+los datos y las etiquetas.
 
 ::
 
@@ -393,62 +358,37 @@ the data and the labels.
        label.set_bbox(dict(facecolor='white', edgecolor='None', alpha=0.65))
    ...
 
-
-
-
-Figures, Subplots, Axes and Ticks
+Figuras, Subplots, Axes y Ticks
 =================================
 
-So far we have used implicit figure and axes creation. This is handy for fast
-plots. We can have more control over the display using figure, subplot, and
-axes explicitly. A figure in matplotlib means the whole window in the user
-interface. Within this figure there can be subplots. While subplot positions
-the plots in a regular grid, axes allows free placement within the figure. Both
-can be useful depending on your intention. We've already worked with figures
-and subplots without explicitly calling them. When we call plot, matplotlib
-calls gca() to get the current axes and gca in turn calls gcf() to get the
-current figure. If there is none it calls figure() to make one, strictly
-speaking, to make a subplot(111). Let's look at the details.
+Hasta ahora hemos utilizado implícitamente la creación de ejes y figuras. Esto es útil para hacer gráficas rápidas. Podemos tener más control sobre la figura, subplots y ejes explícitamente. Una figura en matplotlib significa toda la ventana en la interfaz de usuario. Dentro de esta figura no pueden haber subplots . Mientras que las posiciones de los subplots en una cuadrícula regular, permite la colocación libre de ejes dentro de la figura. Ambos puede ser útiles dependiendo de su intención. Ya hemos trabajado con figuras y subplots sin llamarlos explícitamente. Cuando llamamos a un gráfico, matplotlib llama a gca() para obtener los ejes actuales y gca a su vez llama a gcf() para obtener la figura actual. Si no hay ninguna figure() es llamada para hacer una, hablando estrictamente, se hace un subplot(111). Echemos un vistazo a los detalles.
 
-Figures
+Figuras
 -------
 
-A figure is the windows in the GUI that has "Figure #" as title. Figures
-are numbered starting from 1 as opposed to the normal Python way starting
-from 0. This is clearly MATLAB-style.  There are several parameters that
-determine what the figure looks like:
+Una figura es una ventana(s) en el GUI con título "Figure #". Las figuras están numeradas a partir de 1, esto es claramente un 'estilo' MATLAB. Existen varios parámetros que determinar que la figura se vea así:
 
-==============  ======================= ============================================
-Argument        Default                 Description
-==============  ======================= ============================================
-num             1                       number of figure
-figsize         figure.figsize          figure size in in inches (width, height)
-dpi             figure.dpi              resolution in dots per inch
-facecolor       figure.facecolor        color of the drawing background
-edgecolor       figure.edgecolor        color of edge around the drawing background
-frameon         True                    draw figure frame or not
-==============  ======================= ============================================
+==============  ======================= ==============================================
+Argumento       Por defecto             Descripción
+==============  ======================= ==============================================
+num             1                       número de figura
+figsize         figure.figsize          tamaño de figura en pulgadas (ancho, alto)
+dpi             figure.dpi              resolución en puntos por pulgada
+facecolor       figure.facecolor        color de fondo del dibujo
+edgecolor       figure.edgecolor        color del borde alrededor del fondo del dibujo
+frameon         True                    dibujar figura en marcos o no
+==============  ======================= ==============================================
 
-The defaults can be specified in the resource file and will be used most of the
-time. Only the number of the figure is frequently changed.
+Los valores por defecto se pueden especificar en el archivo de recursos y se utilizará la mayor parte del tiempo. Sólo el número de la figura se cambia con frecuencia.
 
-When you work with the GUI you can close a figure by clicking on the x in the
-upper right corner. But you can close a figure programmatically by calling
-close. Depending on the argument it closes (1) the current figure (no
-argument), (2) a specific figure (figure number or figure instance as
-argument), or (3) all figures (all as argument).
+Cuando se trabaja con la interfaz gráfica de usuario se puede cerrar una figura haciendo clic en la X de la esquina superior derecha. Sin embargo, se puede cerrar una figura llamando a close. Según el argumento para cerrar (1) la figura actual (sin argumento) , (2) una figura específica (número de la figura o instancia de figura es argumento ), o (3) todas las figuras (all es argumento).
 
-As with other objects, you can set figure properties also setp or with the
-set_something methods.
-
+Al igual que con otros objetos, también se puede establecer las propiedades de la figura con setp o con el método set_something.
 
 Subplots
 --------
 
-With subplot you can arrange plots in a regular grid. You need to specify the
-number of rows and columns and the number of the plot. Note that the `gridspec
-<http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is a more
-powerful alternative.
+Con subplot puede organizar gráficas en una cuadrícula regular. Es necesario especificar el número de filas, columnas y el número del gráfico. Tenga en cuenta que el comando `gridspec <http://matplotlib.sourceforge.net/users/gridspec.html>`_ es una alternativa más poderosa.
 
 .. image:: auto_examples/images/plot_subplot-horizontal_1.png
    :scale: 28
@@ -463,13 +403,10 @@ powerful alternative.
    :scale: 28
    :target: auto_examples/plot_gridspec.html
 
+Ejes (axes)
+-----------
 
-Axes
-----
-
-Axes are very similar to subplots but allow placement of plots at any location
-in the figure. So if we want to put a smaller plot inside a bigger one we do
-so with axes.
+Los ejes son muy similares a los subplots, permiten colocar gráficos en cualquier ubicación en la figura. Así que si queremos poner un gráfico pequeño dentro de uno más grande con los mismos ejes.
 
 .. image:: auto_examples/images/plot_axes_1.png
    :scale: 35
@@ -478,42 +415,33 @@ so with axes.
    :scale: 35
    :target: auto_examples/plot_axes-2.html
 
+Graduaciones (ticks)
+--------------------
 
-Ticks
------
+Las graduaciones con formato son una parte importante de los gráficos listos para publicar. Matplotlib ofrece un sistema totalmente configurable para graduaciones. Hay
+graduaciones localizadoras para especificar dónde deben aparecer las graduaciones y graduaciones con formato para dar el aspecto que desea a las graduaciones. Las graduaciones mayores y menores puede ser localizadas y formateadas de forma independiente el uno del otro. Por defecto no se muestra la graduación menor,
+es decir, sólo hay una lista vacía de ellos, ya que estan con NullLocator (ver
+a continuación).
 
-Well formatted ticks are an important part of publishing-ready
-figures. Matplotlib provides a totally configurable system for ticks. There are
-tick locators to specify where ticks should appear and tick formatters to give
-ticks the appearance you want. Major and minor ticks can be located and
-formatted independently from each other. Per default minor ticks are not shown,
-i.e. there is only an empty list for them because it is as NullLocator (see
-below).
+Localizadoras de graduación (tick locators)
+...........................................
 
-Tick Locators
-.............
-
-Tick locators control the positions of the ticks. They are set as
-follows::
+Las localizadoras de graduación controlan las posiciones de las graduaciones. Ellas se establecen como::
 
     ax = pl.gca()
     ax.xaxis.set_major_locator(eval(locator))
 
-There are several locators for different kind of requirements:
+Hay varios localizadores para diferentes tipos de requerimientos:
 
 .. image:: auto_examples/images/plot_ticks_1.png
     :scale: 60
     :target: auto_examples/plot_ticks.html
 
+Todos estos localizadores derivan de la clase base matplotlib.ticker.Locator.
+Usted puede hacer su propio localizador derivandola de la clase base. Manipulación de fechas con graduaciones puede ser especialmente difícil. Por lo tanto, matplotlib proporciona localizadores especiales en matplotlib.dates.
 
-All of these locators derive from the base class matplotlib.ticker.Locator.
-You can make your own locator deriving from it. Handling dates as ticks can be
-especially tricky. Therefore, matplotlib provides special locators in
-matplotlib.dates.
-
-
-Other Types of Plots: examples and exercises
-=============================================
+Otros tipos de gráficos: ejemplos y ejercicios
+==============================================
 
 .. image:: auto_examples/images/plot_plot_1.png
    :scale: 39
@@ -552,9 +480,8 @@ Other Types of Plots: examples and exercises
    :scale: 39
    :target: `Text`_
 
-
-Regular Plots
--------------
+Gráficos regulares
+------------------
 
 .. image:: auto_examples/images/plot_plot_ex_1.png
    :align: right
@@ -563,12 +490,11 @@ Regular Plots
 
 .. hint::
 
-   You need to use the `fill_between
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
-   command.
+   Es necesario utilizar el comando `fill_between
+   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of filled areas::
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+tomando en cuenta las zonas rellenadas::
 
    n = 256
    X = np.linspace(-np.pi, np.pi, n, endpoint=True)
@@ -577,11 +503,10 @@ care of filled areas::
    pl.plot(X, Y + 1, color='blue', alpha=1.00)
    pl.plot(X, Y - 1, color='blue', alpha=1.00)
 
-Click on the figure for solution.
+Haga clic en la figura para la solución.
 
-
-Scatter Plots
--------------
+Gráficos de dispersión (scatter)
+--------------------------------
 
 .. image:: auto_examples/images/plot_scatter_ex_1.png
    :align: right
@@ -590,11 +515,10 @@ Scatter Plots
 
 .. hint::
 
-   Color is given by angle of (X,Y).
+   Color está dado por el ángulo de (X, Y).
 
-
-Starting from the code below, try to reproduce the graphic on the right taking
-care of marker size, color and transparency.
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+tomando en cuenta el tamaño de marcas, el color y la transparencia.
 
 ::
 
@@ -604,11 +528,10 @@ care of marker size, color and transparency.
 
    pl.scatter(X,Y)
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
-
-Bar Plots
----------
+Gráfico de barras (bar)
+-----------------------
 
 .. image:: auto_examples/images/plot_bar_ex_1.png
    :align: right
@@ -617,11 +540,10 @@ Bar Plots
 
 .. hint::
 
-   You need to take care of text alignment.
+   Tomar en cuenta la alineación del texto.
 
-
-Starting from the code below, try to reproduce the graphic on the right by
-adding labels for red bars.
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+agregando etiquetas en las barras rojas.
 
 ::
 
@@ -638,26 +560,23 @@ adding labels for red bars.
 
    pl.ylim(-1.25, +1.25)
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
-
-Contour Plots
--------------
+Gráficos de contorno
+--------------------
 
 .. image:: auto_examples/images/plot_contour_ex_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_contour_ex.html
 
-
 .. hint::
 
-   You need to use the `clabel
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
-   command.
+   Es necesario utilizar el comando `clabel
+   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of the colormap (see `Colormaps`_ below). 
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+tomando en cuneta el colormap (ver `Colormaps`_ más abajo).
 
 ::
 
@@ -672,9 +591,7 @@ care of the colormap (see `Colormaps`_ below).
    pl.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap='jet')
    C = pl.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
 
-Click on figure for solution.
-
-
+Haga clic en la figura para la solución.
 
 Imshow
 ------
@@ -684,16 +601,12 @@ Imshow
    :scale: 35
    :target: auto_examples/plot_imshow_ex.html
 
-
 .. hint::
 
-   You need to take care of the ``origin`` of the image in the imshow command and
-   use a `colorbar
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_
+   Necesita tomar en cuenta el ``origin`` de la imagen en el comando imshow y usar un `colorbar <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_.
 
-
-Starting from the code below, try to reproduce the graphic on the right taking
-care of colormap, image interpolation and origin.
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+teniendo en cuenta el colormap, interpolación de imágenes y el origen.
 
 ::
 
@@ -706,8 +619,7 @@ care of colormap, image interpolation and origin.
    X, Y = np.meshgrid(x, y)
    pl.imshow(f(X, Y))
 
-Click on the figure for the solution.
-
+Haga clic en la figura para la solución.
 
 Pie Charts
 ----------
@@ -720,19 +632,17 @@ Pie Charts
 
 .. hint::
 
-   You need to modify Z.
+   Debe modificar Z.
 
-Starting from the code below, try to reproduce the graphic on the right taking
-care of colors and slices size.
+A partir del código de abajo, trate de reproducir el gráfico en forma correcta
+tomando en cuenta los colores y el tamaño de divisiones.
 
 ::
 
    Z = np.random.uniform(0, 1, 20)
    pl.pie(Z)
 
-Click on the figure for the solution.
-
-
+Haga clic en la figura para la solución.
 
 Quiver Plots
 ------------
@@ -742,13 +652,12 @@ Quiver Plots
    :scale: 35
    :target: auto_examples/plot_quiver_ex.html
 
-
 .. hint::
 
-   You need to draw arrows twice.
+   Tienes que dibujar las flechas dos veces.
 
-Starting from the code above, try to reproduce the graphic on the right taking
-care of colors and orientations.
+A partir del código anterior, intente reproducir el gráfico en la toma correcta
+tomando en cuenta los colores y direcciones.
 
 ::
 
@@ -756,20 +665,18 @@ care of colors and orientations.
    X, Y = np.mgrid[0:n, 0:n]
    pl.quiver(X, Y)
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
-
-Grids
------
+Cuadrículas (grids)
+-------------------
 
 .. image:: auto_examples/images/plot_grid_ex_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_grid_ex.html
 
-
-Starting from the code below, try to reproduce the graphic on the right taking
-care of line styles.
+A partir del código anterior, intente reproducir el gráfico en la toma correcta
+tomando en cuenta los estilos de línea.
 
 ::
 
@@ -779,12 +686,10 @@ care of line styles.
    axes.set_xticklabels([])
    axes.set_yticklabels([])
 
+Haga clic en la figura para la solución.
 
-Click on figure for solution.
-
-
-Multi Plots
------------
+Gráficos múltiples
+------------------
 
 .. image:: auto_examples/images/plot_multiplot_ex_1.png
    :align: right
@@ -793,10 +698,9 @@ Multi Plots
 
 .. hint::
 
-   You can use several subplots with different partition.
+   Puede utilizar varios subplots con diferentes particiones.
 
-
-Starting from the code below, try to reproduce the graphic on the right.
+A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
 ::
 
@@ -804,24 +708,21 @@ Starting from the code below, try to reproduce the graphic on the right.
    pl.subplot(2, 2, 3)
    pl.subplot(2, 2, 4)
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
-
-Polar Axis
-----------
+Ejes polares
+------------
 
 .. image:: auto_examples/images/plot_polar_ex_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_polar_ex.html
 
-
 .. hint::
 
-   You only need to modify the ``axes`` line
+   Tiene que modificar la línea ``axes``
 
-
-Starting from the code below, try to reproduce the graphic on the right.
+A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
 ::
 
@@ -837,25 +738,22 @@ Starting from the code below, try to reproduce the graphic on the right.
        bar.set_facecolor(cm.jet(r / 10.))
        bar.set_alpha(0.5)
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
-
-3D Plots
---------
+Gráficos 3D
+-----------
 
 .. image:: auto_examples/images/plot_plot3d_ex_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_plot3d_ex.html
 
-
 .. hint::
 
-   You need to use `contourf
+   Debe usar `contourf
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
 
-
-Starting from the code below, try to reproduce the graphic on the right.
+A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
 ::
 
@@ -871,38 +769,35 @@ Starting from the code below, try to reproduce the graphic on the right.
 
    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
 .. seealso:: :ref:`mayavi-label`
 
-Text
-----
-
+Texto
+-----
 
 .. image:: auto_examples/images/plot_text_ex_1.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_text_ex.html
 
-
 .. hint::
 
-   Have a look at the `matplotlib logo
+   Echa un vistazo a `matplotlib logo
    <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
 
-Try to do the same from scratch !
+Trate de hacer lo mismo desde el principio !
 
-Click on figure for solution.
+Haga clic en la figura para la solución.
 
+Más allá de este tutorial
+=========================
 
-Beyond this tutorial
-====================
+Matplotlib esta beneficiada con una extensa documentación, así como una gran
+comunidad de usuarios y desarrolladores. Estos son algunos enlaces de interés:
 
-Matplotlib benefits from extensive documentation as well as a large
-community of users and developpers. Here are some links of interest:
-
-Tutorials
----------
+Tutoriales
+----------
 
 .. hlist::
 
@@ -953,9 +848,7 @@ Tutorials
     - Using offset transforms to create a shadow effect
     - The transformation pipeline
 
-
-
-Matplotlib documentation
+Documentación Matplotlib
 ------------------------
 
 * `User guide <http://matplotlib.sourceforge.net/users/index.html>`_
@@ -970,12 +863,11 @@ Matplotlib documentation
 
 * `Screenshots <http://matplotlib.sourceforge.net/users/screenshots.html>`_
 
+Código de documentación
+-----------------------
 
-Code documentation
-------------------
-
-The code is well documented and you can quickly access a specific command
-from within a python session:
+El código está bien documentado y se puede acceder rápidamente a un comando específico
+dentro una sesión de python:
 
 ::
 
@@ -999,49 +891,46 @@ from within a python session:
       will be plotted.
       ...
 
-Galleries
+Galerías
 ---------
 
-The `matplotlib gallery <http://matplotlib.sourceforge.net/gallery.html>`_ is
-also incredibly useful when you search how to render a given graphic. Each
-example comes with its source.
+La `galería matplotlib <http://matplotlib.sourceforge.net/gallery.html>`_ es
+muy útil cuando se busca la manera de hacer un gráfico dado. Cada
+ejemplo viene con su código fuente.
 
-A smaller gallery is also available `here <http://www.loria.fr/~rougier/coding/gallery/>`_.
+Una galería más pequeña está disponible `aquí <http://www.loria.fr/~rougier/coding/gallery/>`_.
 
-
-Mailing lists
---------------
-
-Finally, there is a `user mailing list
-<https://lists.sourceforge.net/lists/listinfo/matplotlib-users>`_ where you can
-ask for help and a `developers mailing list
-<https://lists.sourceforge.net/lists/listinfo/matplotlib-devel>`_ that is more
-technical.
-
-
-
-Quick references
-================
-
-Here is a set of tables that show main properties and styles.
-
-Line properties
+Lista de correos
 ----------------
+
+Por último, hay una `lista de correo de usuarios
+<https://lists.sourceforge.net/lists/listinfo/matplotlib-users>`_ donde se puede
+pedir ayuda y una `lista de correo de desarrolladores
+<https://lists.sourceforge.net/lists/listinfo/matplotlib-devel>`_ que es más
+técnica.
+
+Referencias rápidas
+===================
+
+Aquí hay una serie de cuadros que muestran las propiedades y estilos principales.
+
+Propiedades de Línea
+--------------------
 
 .. list-table::
    :widths: 20 30 50
    :header-rows: 1
 
-   * - Property
-     - Description
-     - Appearance
+   * - Propiedad
+     - Descripción
+     - Apariencia
 
-   * - alpha (or a)
-     - alpha transparency on 0-1 scale
+   * - alpha (o a)
+     - transparencia alpha en escala 0-1
      - .. image:: auto_examples/images/plot_alpha_1.png
 
    * - antialiased
-     - True or False - use antialised rendering
+     - True o False - usar renderizado suavizado
      - .. image:: auto_examples/images/plot_aliased_1.png
        .. image:: auto_examples/images/plot_antialiased_1.png
 
@@ -1049,11 +938,11 @@ Line properties
      - matplotlib color arg
      - .. image:: auto_examples/images/plot_color_1.png
 
-   * - linestyle (or ls)
-     - see `Line properties`_
+   * - linestyle (o ls)
+     - ver `Line properties`_
      -
 
-   * - linewidth (or lw)
+   * - linewidth (o lw)
      - float, the line width in points
      - .. image:: auto_examples/images/plot_linewidth_1.png
 
@@ -1093,25 +982,23 @@ Line properties
      - size of the marker in points
      - .. image:: auto_examples/images/plot_ms_1.png
 
-
-
-Line styles
------------
+Estilos de línea
+----------------
 
 .. image:: auto_examples/images/plot_linestyles_1.png
 
-Markers
--------
+Marcadores
+----------
 
 .. image:: auto_examples/images/plot_markers_1.png
 
 Colormaps
 ---------
 
-All colormaps can be reversed by appending ``_r``. For instance, ``gray_r`` is
-the reverse of ``gray``.
+Todos los colormaps pueden invertirse añadiendo ``_r``. Por ejemplo, ``gray_r`` es
+el inverso de ``gray``.
 
-If you want to know more about colormaps, checks `Documenting the matplotlib
+Si desea saber más acerca de colormaps, revise `Documenting the matplotlib
 colormaps <https://gist.github.com/2719900>`_.
 
 .. image:: auto_examples/images/plot_colormaps_1.png

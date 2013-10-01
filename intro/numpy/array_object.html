@@ -511,12 +511,12 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 <img alt="../../_images/numpy_intro_2.png" src="../../_images/numpy_intro_2.png" />
 <div class="admonition-ver-tambien admonition seealso">
 <p class="first admonition-title">Ver también</p>
-<p class="last">Más en <em class="xref std std-ref">Capítulo Matplotlib</em></p>
+<p class="last">Más en <a class="reference internal" href="../matplotlib/matplotlib.html#matplotlib-label"><em>Capítulo Matplotlib</em></a></p>
 </div>
 </li>
 <li><p class="first"><strong>Trazado 3D</strong></p>
 <p>Para la visualización 3D, podemos utilizar otro paquete: <strong>Mayavi</strong>. Un ejemplo rápido: <strong>iniciar IPython</strong> con estas opciones: <strong>ipython -pylab=wx</strong> (o <strong>ipython -pylab -wthread</strong> en IPython &lt; 0.10).</p>
-<a class="reference internal image-reference" href="../../_images/surf.png"><img alt="../../_images/surf.png" class="align-right" src="../../_images/surf.png" style="width: 238.8px; height: 189.6px;" /></a>
+<a class="reference internal image-reference" href="intro/numpy/images/surf.png"><img alt="intro/numpy/images/surf.png" class="align-right" src="intro/numpy/images/surf.png" /></a>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [58]: </span><span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <div class="newline"></div><span class="gp">In [61]: </span><span class="n">mlab</span><span class="o">.</span><span class="n">surf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[61]: </span><span class="o">&lt;</span><span class="n">enthought</span><span class="o">.</span><span class="n">mayavi</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">Surface</span> <span class="nb">object</span> <span class="n">at</span> <span class="o">...&gt;</span>
@@ -587,7 +587,7 @@ En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Los tres argumentos de segmentado no son necesarios: por defecto, <tt class="xref py py-obj docutils literal"><span class="pre">inicio</span></tt> es 0, <tt class="xref py py-obj docutils literal"><span class="pre">final</span></tt> es el último y <tt class="xref py py-obj docutils literal"><span class="pre">paso</span></tt> es 1:</p>
+<p>Los tres argumentos de segmentado no son necesarios: por defecto, <cite>inicio</cite> es 0, <cite>final</cite> es el último y <cite>paso</cite> es 1:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([1, 2])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
@@ -597,7 +597,7 @@ En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>Un pequeño resumen ilustrado de indexado y segmentado en Numpy ...</p>
-<img alt="../../_images/numpy_indexing.png" class="align-center" src="../../_images/numpy_indexing.png" style="width: 65%;" />
+<img alt="intro/numpy/images/numpy_indexing.png" class="align-center" src="intro/numpy/images/numpy_indexing.png" style="width: 65%;" />
 </div>
 <div class="section" id="copias-y-vistas">
 <h2><a class="toc-backref" href="#id9">1.3.1.9. Copias y vistas</a><a class="headerlink" href="#copias-y-vistas" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -644,7 +644,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </div>
 <div class="green topic">
 <p class="topic-title first">Ejemplo práctico: Criba de números primos</p>
-<img alt="../../_images/prime-sieve.png" src="../../_images/prime-sieve.png" />
+<img alt="intro/numpy/images/prime-sieve.png" src="intro/numpy/images/prime-sieve.png" />
 <p>Calcular los números primos en 0&#8211;99, con una criba</p>
 <ul>
 <li><p class="first">Construir un arreglo booleano <tt class="docutils literal"><span class="pre">es_primo</span></tt> con 100 elementos, en el principio todos sus elementos son True:</p>
@@ -674,7 +674,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </ul>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Descarte los <tt class="xref py py-obj docutils literal"><span class="pre">j</span></tt> que ya son conocidos por no ser primos</li>
+<li>Descarte los <cite>j</cite> que ya son conocidos por no ser primos</li>
 <li>El primer número para descartar es <img class="math" src="../../_images/math/d9714cf77a92cb89757ce29264f51a9edac2a072.png" alt="j^2" style="vertical-align: -6px"/></li>
 </ol>
 </div></blockquote>
@@ -742,7 +742,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </div>
 <hr class="docutils" />
 <p>La imagen a continuación muestra varias aplicaciones del indexado fancy</p>
-<img alt="../../_images/numpy_fancy_indexing.png" class="align-center" src="../../_images/numpy_fancy_indexing.png" style="width: 80%;" />
+<img alt="intro/numpy/images/numpy_fancy_indexing.png" class="align-center" src="intro/numpy/images/numpy_fancy_indexing.png" style="width: 80%;" />
 <p>Incluso podemos utilizar el indexado fancy y <a class="reference internal" href="operations.html#broadcasting"><em>broadcasting</em></a> al mismo tiempo:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>

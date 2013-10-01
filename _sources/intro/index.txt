@@ -9,8 +9,8 @@ Para empezar con Python para fines científicos
    intro.rst
    language/python_language.rst
    numpy/index.rst 
-   help/help.rst
    matplotlib/matplotlib.rst 
    scipy.rst
+   help/help.rst
 
 

@@ -242,7 +242,7 @@
 <div class="newline"></div><span class="go">10</span>
 <div class="newline"></div></pre></div>
 </div>
-<img alt="../../_images/reductions.png" class="align-right" src="../../_images/reductions.png" />
+<img alt="intro/numpy/images/reductions.png" class="align-right" src="intro/numpy/images/reductions.png" />
 <p>Suma por filas y por columnas:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span>
@@ -392,9 +392,9 @@
 </div></blockquote>
 <div class="topic">
 <p class="topic-title first">Ejemplo: simulación de difusión usando el algoritmo random walk</p>
-<img alt="../../_images/random_walk.png" class="align-center" src="../../_images/random_walk.png" />
+<img alt="intro/numpy/images/random_walk.png" class="align-center" src="intro/numpy/images/random_walk.png" />
 <p>Cuál es la distancia típica al origen en un recorrido al azar después de <tt class="docutils literal"><span class="pre">t</span></tt> saltos a la derecha o izquierda?</p>
-<img alt="../../_images/random_walk_schema.png" class="align-center" src="../../_images/random_walk_schema.png" style="width: 100%;" />
+<img alt="intro/numpy/images/random_walk_schema.png" class="align-center" src="intro/numpy/images/random_walk_schema.png" style="width: 100%;" />
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">numero_recorridos</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c"># número de recorridos</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tiempo_maximo</span> <span class="o">=</span> <span class="mi">200</span>      <span class="c"># tiempo de duración de cada recorrido</span>
 <div class="newline"></div></pre></div>
@@ -444,7 +444,7 @@
 </li>
 </ul>
 <p>La siguiente imagen muestra un ejemplo de broadcasting:</p>
-<img alt="../../_images/numpy_broadcasting.png" class="align-center" src="../../_images/numpy_broadcasting.png" style="width: 100%;" />
+<img alt="intro/numpy/images/numpy_broadcasting.png" class="align-center" src="intro/numpy/images/numpy_broadcasting.png" style="width: 100%;" />
 <p>Vamos a verificarlo:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -512,7 +512,7 @@
 <div class="newline"></div><span class="go">       [2448, 2250, 2145, 1712, 1577, 1273,  973,  904,  535,    0]])</span>
 <div class="newline"></div></pre></div>
 </div>
-<a class="reference internal image-reference" href="../../_images/route66.png"><img alt="../../_images/route66.png" class="align-center" src="../../_images/route66.png" style="width: 342.0px; height: 210.0px;" /></a>
+<a class="reference internal image-reference" href="intro/numpy/images/route66.png"><img alt="intro/numpy/images/route66.png" class="align-center" src="intro/numpy/images/route66.png" /></a>
 </div>
 <p>Una gran cantidad de problemas basados ​​en mallas o redes también puede utilizar broadcasting. Por ejemplo, si queremos calcular la distancia de
 el origen de los puntos en una cuadrícula de 10x10, se puede hacer</p>
@@ -628,7 +628,7 @@ e y del ejemplo anterior, con dos &#8220;dimensiones significativas&#8221;:</p>
 <div class="newline"></div><span class="go">    [ 0.,  0.]])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p class="last">Para entender, consulte la sección sobre :ref: <tt class="xref py py-obj docutils literal"><span class="pre">el</span> <span class="pre">diseño</span> <span class="pre">de</span> <span class="pre">memoria</span> <span class="pre">de</span> <span class="pre">un</span> <span class="pre">arreglo</span></tt> más abajo.</p>
+<p class="last">Para entender, consulte la sección sobre :ref: <cite>el diseño de memoria de un arreglo &lt;memory_layout&gt;</cite> más abajo.</p>
 </div>
 </div>
 <div class="section" id="agregando-una-dimension">
