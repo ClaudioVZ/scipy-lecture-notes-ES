@@ -28,40 +28,38 @@ Que es Numpy y los array numpy
 
 - diseñado para cálculo científico (conveniente)
 
-::
+.. code-block:: python
 
-    >>> import numpy as np
-    >>> a = np.array([0, 1, 2, 3])
-    >>> a
-    array([0, 1, 2, 3])
+   >>> import numpy as np
+   >>> a = np.array([0, 1, 2, 3])
+   >>> a
+   array([0, 1, 2, 3])
 
-.. tip:: 
-   
-   **Por ejemplo:** Una arreglo contiene:
+.. tip:: **Por ejemplo:** Una arreglo contiene:
 
-    * valores de un experimento/simulación en intervalos de tiempo discreto
+   * valores de un experimento/simulación en intervalos de tiempo discreto
 
-    * señal grabada por un dispositivo de medición, por ejemplo, onda de sonido
+   * señal grabada por un dispositivo de medición, por ejemplo, onda de sonido
 
-    * píxeles de una imagen en escala de grises o en color
+   * píxeles de una imagen en escala de grises o en color
 
-    * datos 3-D que miden diferentes posiciones XYZ, por ejemplo, imagen de resonancia magnética (MRI)
+   * datos 3-D que miden diferentes posiciones XYZ, por ejemplo, imagen de resonancia magnética (MRI)
 
-    * ...
+   * ...
 
 **Por qué es útil:** Los contenedores eficientes en memoria, proporcionan operaciones numéricas rápidas.
 
 .. sourcecode:: ipython
 
-    In [1]: L = range(1000)
+   In [1]: L = range(1000)
 
-    In [2]: %timeit [i**2 for i in L]
-    1000 loops, best of 3: 73.8 us per loop
+   In [2]: %timeit [i**2 for i in L]
+   1000 loops, best of 3: 73.8 us per loop
 
-    In [3]: a = np.arange(1000)
+   In [3]: a = np.arange(1000)
 
-    In [4]: %timeit a**2
-    100000 loops, best of 3: 3.59 us per loop
+   In [4]: %timeit a**2
+   100000 loops, best of 3: 3.59 us per loop
 
 .. paquete de extensión Python con soporte de arreglos multidimensionales
 
@@ -91,15 +89,15 @@ Documentación de referencia
 
   .. tip::
   
-   .. code-block:: python
+     .. code-block:: python
 
-     >>> help(np.array)
-     Help on built-in function array in module numpy.core.multiarray:
+        >>> help(np.array)
+        Help on built-in function array in module numpy.core.multiarray:
 
-     array(...)
-         array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0)
+        array(...)
+            array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0)
 
-     ...
+        ...
 
 - Por búsqueda:
 
@@ -125,70 +123,73 @@ Documentación de referencia
 .. the import convention, reminder on python imports
 .. la convención import, recuerdelo al importar en python
 
-Import conventions
-------------------
+Convención para importar
+------------------------
 
-The general convention to import numpy is:
+La convención general para importar numpy es:
 
-.. sourcecode:: pycon
+.. code-block:: python
 
    >>> import numpy as np
 
-Using this style of import is recommended.
-
+El uso de este tipo de importación es recomendada.
 
 Creando arreglos
 ----------------
 
-* **1-D**::
+* **1-D**
 
-    >>> a = np.array([0, 1, 2, 3])
-    >>> a
-    array([0, 1, 2, 3])
-    >>> a.ndim
-    1
-    >>> a.shape
-    (4,)
-    >>> len(a)
-    4
+  .. code-block:: python
 
-* **2-D, 3-D, ...**::
+     >>> a = np.array([0, 1, 2, 3])
+     >>> a
+     array([0, 1, 2, 3])
+     >>> a.ndim
+     1
+     >>> a.shape
+     (4,)
+     >>> len(a)
+     4
 
-    >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # arreglo 2 x 3
-    >>> b
-    array([[0, 1, 2],
-           [3, 4, 5]])
-    >>> b.ndim
-    2
-    >>> b.shape
-    (2, 3)
-    >>> len(b)     # devuelve el tamaño de la primera dimension
-    2
+* **2-D, 3-D, ...**
 
-    >>> c = np.array([[[1], [2]], [[3], [4]]])
-    >>> c
-    array([[[1],
-            [2]],
+  .. code-block:: python
 
-           [[3],
-            [4]]])
-    >>> c.shape
-    (2, 2, 1)
+     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # arreglo 2 x 3
+     >>> b
+     array([[0, 1, 2],
+            [3, 4, 5]])
+     >>> b.ndim
+     2
+     >>> b.shape
+     (2, 3)
+     >>> len(b)     # devuelve el tamaño de la primera dimension
+     2
 
-.. topic:: **Exercise: Simple arrays**
-    :class: green
+     >>> c = np.array([[[1], [2]], [[3], [4]]])
+     >>> c
+     array([[[1],
+             [2]],
 
-    * Create simple one and two dimensional arrays. First, redo the examples
-      from above. And then create your own.
-    * Use the functions ``len``, ``shape`` and ``ndim`` on some of those
-      arrays and observe their output.
+            [[3],
+             [4]]])
+     >>> c.shape
+     (2, 2, 1)
 
-Functions for creating arrays
+.. topic:: **Ejercicio: Arreglos simples**
+   :class: green
+
+   * Crear arreglos simples unidimensionales y bidimensionales. Hacer de nuevo los ejemplos de arriba y luego crear unos propios.
+   * Utilice las funciones ``len``, ``shape`` y ``ndim`` en algunos de esos arreglos y observe su salida.
+
+Funciones para crear arreglos
 -----------------------------
 
 En la práctica, rara vez introducimos los items uno por uno ...
 
-* Uniformemente espaciados::
+* Uniformemente espaciados
+
+ .. code-block:: python
 
     >>> import numpy as np
     >>> a = np.arange(10) # 0 ... n-1  (!)
@@ -198,7 +199,9 @@ En la práctica, rara vez introducimos los items uno por uno ...
     >>> b
     array([1, 3, 5, 7])
 
-* o por número de puntos::
+* o por número de puntos
+
+ .. code-block:: python
 
     >>> c = np.linspace(0, 1, 6)   # inicio, final, número de puntos
     >>> c
@@ -207,7 +210,9 @@ En la práctica, rara vez introducimos los items uno por uno ...
     >>> d
     array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-* Arreglos comunes::
+* Arreglos comunes
+
+ .. code-block:: python
 
     >>> a = np.ones((3, 3))  # recuerde: (3, 3) es una tupla
     >>> a
@@ -230,7 +235,9 @@ En la práctica, rara vez introducimos los items uno por uno ...
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* :mod:`np.random`: números seudoaleatorios (Mersenne Twister PRNG)::
+* :mod:`np.random`: números seudoaleatorios (Mersenne Twister PRNG)
+
+ .. code-block:: python
 
     >>> a = np.random.rand(4)       # uniformes in [0, 1]
     >>> a
@@ -243,37 +250,41 @@ En la práctica, rara vez introducimos los items uno por uno ...
     >>> np.random.seed(1234)        # Establece la semilla aleatoria
 
 .. topic:: **Ejercicio: Creación de arreglos**
-    :class: green
+   :class: green
 
-    Crear los siguientes arreglos (con los tipos de datos correctos)::
+   Crear los siguientes arreglos (con los tipos de datos correctos)
 
-        [[1, 1, 1, 1],
-         [1, 1, 1, 1],
-         [1, 1, 1, 2],
-         [1, 6, 1, 1]]
+   .. code-block:: python
 
-        [[0., 0., 0., 0., 0.],
-         [2., 0., 0., 0., 0.],
-         [0., 3., 0., 0., 0.],
-         [0., 0., 4., 0., 0.],
-         [0., 0., 0., 5., 0.],
-         [0., 0., 0., 0., 6.]]
+      [[1, 1, 1, 1],
+       [1, 1, 1, 1],
+       [1, 1, 1, 2],
+       [1, 6, 1, 1]]
 
-    Para el curso: 3 casos de cada uno
+      [[0., 0., 0., 0., 0.],
+       [2., 0., 0., 0., 0.],
+       [0., 3., 0., 0., 0.],
+       [0., 0., 4., 0., 0.],
+       [0., 0., 0., 5., 0.],
+       [0., 0., 0., 0., 6.]]
 
-    *Hint*: A los elementos de un arreglo se acceden de igual forma que una lista, por ejemplo ``a[1]`` or ``a[1, 2]``.
+   Para el curso: 3 casos de cada uno
 
-    *Hint*: Examine el docstring para ``diag``.
+   *Sugerencia*: A los elementos de un arreglo se acceden de igual forma que una lista, por ejemplo ``a[1]`` or ``a[1, 2]``.
+
+   *Sugerencia*: Examine el docstring para ``diag``.
 
 .. topic:: Ejercicio: Crear arreglos en mosaicos
-    :class: green
+   :class: green
 
-    Repasa la documentación de ``np.tile``, y utiliza esta función para construir la matriz ::
+   Repasa la documentación de ``np.tile``, y utiliza esta función para construir la matriz
 
-        [[4, 3, 4, 3, 4, 3],
-         [2, 1, 2, 1, 2, 1],
-         [4, 3, 4, 3, 4, 3],
-         [2, 1, 2, 1, 2, 1]]
+   .. code-block:: python
+
+      [[4, 3, 4, 3, 4, 3],
+       [2, 1, 2, 1, 2, 1],
+       [4, 3, 4, 3, 4, 3],
+       [2, 1, 2, 1, 2, 1]]
 
 .. array() constructor
 
@@ -288,102 +299,114 @@ En la práctica, rara vez introducimos los items uno por uno ...
 Tipos de datos básicos
 ----------------------
 
-Usted puede haber notado que, en algunos casos, los elementos de la matriz se muestran con un punto (por ejemplo, ``2.`` vs ``2``). Esto se debe a los tipos de datos utilizados ::
+Usted puede haber notado que, en algunos casos, los elementos del arreglo se muestran con un punto (por ejemplo, ``2.`` vs ``2``). Esto se debe a los tipos de datos utilizados
 
-    >>> a = np.array([1, 2, 3])
-    >>> a.dtype
-    dtype('int64')
+.. code-block:: python
 
-    >>> b = np.array([1., 2., 3.])
-    >>> b.dtype
-    dtype('float64')
+   >>> a = np.array([1, 2, 3])
+   >>> a.dtype
+   dtype('int64')
 
-.. tip::
+   >>> b = np.array([1., 2., 3.])
+   >>> b.dtype
+   dtype('float64')
 
-    Diferentes tipos de datos no permiten almacenar datos de forma más compacta en memoria, la mayoría de las veces simplemente trabaje con números de punto flotante.
-    Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el tipo de datos a partir de la entrada.
+.. tip:: Diferentes tipos de datos no permiten almacenar datos de forma más compacta en memoria, la mayoría de las veces simplemente trabaje con números de punto flotante.
+   Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el tipo de datos a partir de la entrada.
 
 -----------------------------
 
-Puede especificar explícitamente qué tipo de datos desea::
+Puede especificar explícitamente qué tipo de datos desea
 
-    >>> c = np.array([1, 2, 3], dtype=float)
-    >>> c.dtype
-    dtype('float64')
+.. code-block:: python
+
+   >>> c = np.array([1, 2, 3], dtype=float)
+   >>> c.dtype
+   dtype('float64')
 
 El tipo de dato **por defecto** es de punto flotante
 
 .. tip::
    
-   ::
+   .. code-block:: python
 
-    >>> a = np.ones((3, 3))
-    >>> a.dtype
-    dtype('float64')
+      >>> a = np.ones((3, 3))
+      >>> a.dtype
+      dtype('float64')
 
 También hay otros tipos:
 
 :Complejos:
 
-        >>> d = np.array([1+2j, 3+4j, 5+6*1j])
-        >>> d.dtype
-        dtype('complex128')
+ .. code-block:: python
+
+    >>> d = np.array([1+2j, 3+4j, 5+6*1j])
+    >>> d.dtype
+    dtype('complex128')
 
 :Booleanos:
 
-        >>> e = np.array([True, False, False, True])
-        >>> e.dtype
-        dtype('bool')
+ .. code-block:: python
+
+    >>> e = np.array([True, False, False, True])
+    >>> e.dtype
+    dtype('bool')
 
 :Cadenas:
 
-        >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
-        >>> f.dtype     # <--- las cadenas en f contienen máximo 7 letras
-        dtype('S7')
+ .. code-block:: python
+
+    >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
+    >>> f.dtype     # <--- las cadenas en f contienen máximo 7 letras
+    dtype('S7')
 
 :Muchos más:
 
-        ``int32/int64...``
+ ``int32/int64...``
 
 .. XXX: mention: astype
 
 Visualización básica
 --------------------
 
-.. tip::
-
-  Ahora que tenemos nuestros primeros arreglos de datos, vamos a visualizarlos.
+.. tip:: Ahora que tenemos nuestros primeros arreglos de datos, vamos a visualizarlos.
 
 Inicie IPython en modo *pylab*
 
 .. sourcecode:: bash
 
-    $ ipython --pylab
+   $ ipython --pylab
 
-*Matplotlib* es un paquete de trazado 2D y 3D. Podemos importar sus funciones de la siguiente manera ::
+*Matplotlib* es un paquete de trazado 2D y 3D. Podemos importar sus funciones de la siguiente manera
 
-    >>> import matplotlib.pyplot as plt  # en forma ordenada
+.. code-block:: python
 
-* **Arreglos 1D**::
+   >>> import matplotlib.pyplot as plt  # en forma ordenada
 
-    >>> x = np.linspace(0, 3, 20)
-    >>> y = np.linspace(0, 9, 20)
-    >>> plt.plot(x, y)       # gráfica con línea continua
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(x, y, 'o')  # gráfica con línea punteada
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.show()           # <-- mostrar la gráfica (en Ipython no es necesario) 
+* **Arreglos 1D**
+
+  .. code-block:: python
+
+     >>> x = np.linspace(0, 3, 20)
+     >>> y = np.linspace(0, 9, 20)
+     >>> plt.plot(x, y)       # gráfica con línea continua
+     [<matplotlib.lines.Line2D object at ...>]
+     >>> plt.plot(x, y, 'o')  # gráfica con línea punteada
+     [<matplotlib.lines.Line2D object at ...>]
+     >>> plt.show()           # <-- mostrar la gráfica (en Ipython no es necesario) 
 
   .. plot:: pyplots/numpy_intro_1.py
 
-* **Arreglos 2D** (como las imágenes)::
+* **Arreglos 2D** (como las imágenes)
 
-    >>> image = np.random.rand(30, 30)
-    >>> plt.imshow(image, cmap=plt.cm.hot)
-    <matplotlib.image.AxesImage at 0xb763f0c>
-    >>> plt.colorbar()
-    <matplotlib.colorbar.Colorbar instance at 0xb7e538c>
-    >>> plt.show()
+  .. code-block:: python
+
+     >>> image = np.random.rand(30, 30)
+     >>> plt.imshow(image, cmap=plt.cm.hot)
+     <matplotlib.image.AxesImage at 0xb763f0c>
+     >>> plt.colorbar()
+     <matplotlib.colorbar.Colorbar instance at 0xb7e538c>
+     >>> plt.show()
 
   .. plot:: pyplots/numpy_intro_2.py
 
@@ -399,15 +422,13 @@ Inicie IPython en modo *pylab*
 
   .. sourcecode:: ipython
 
-      In [58]: from mayavi import mlab
-      In [61]: mlab.surf(image)
-      Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
-      In [62]: mlab.axes()
-      Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
+     In [58]: from mayavi import mlab
+     In [61]: mlab.surf(image)
+     Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
+     In [62]: mlab.axes()
+     Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
 
-  .. tip::
-
-   La ventana Mayavi/mlab que se abre es interactiva: haga clic en el botón izquierdo del ratón para rotar la imagen, hacer zoom con la rueda del ratón, etc.
+  .. tip:: La ventana Mayavi/mlab que se abre es interactiva: haga clic en el botón izquierdo del ratón para rotar la imagen, hacer zoom con la rueda del ratón, etc.
 
    Para más información sobre Mayavi : http://github.enthought.com/mayavi/mayavi
 
@@ -417,75 +438,82 @@ Indexado y segmentado
 ---------------------
 
 Los elementos de un arreglo se puede acceder y asignar de la misma forma que
-otras secuencias de Python (por ejemplo, listas)::
+otras secuencias de Python (por ejemplo, listas)
 
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> a[0], a[2], a[-1]
-    (0, 2, 9)
+.. code-block:: python
 
-.. warning::
+   >>> a = np.arange(10)
+   >>> a
+   array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+   >>> a[0], a[2], a[-1]
+   (0, 2, 9)
 
-   Los indices comienzan en 0, al igual que otras secuencias de Python (y C/C++).
-   En contraste, en Fortran o Matlab, los índices comienzan en 1.
+.. warning:: Los indices comienzan en 0, al igual que otras secuencias de Python (y C/C++). En contraste, en Fortran o Matlab, los índices comienzan en 1.
 
-En arreglos multidimensionales, los índices son tuplas de números enteros::
+En arreglos multidimensionales, los índices son tuplas de números enteros
 
-    >>> a = np.diag(np.arange(3))
-    >>> a
-    array([[0, 0, 0],
-           [0, 1, 0],
-           [0, 0, 2]])
-    >>> a[1, 1]
-    1
-    >>> a[2, 1] = 10 # tercera fila, segunda columna
-    >>> a
-    array([[ 0,  0,  0],
-           [ 0,  1,  0],
-           [ 0, 10,  2]])
-    >>> a[1]
-    array([0, 1, 0]) # segunda fila
+.. code-block:: python
+
+   >>> a = np.diag(np.arange(3))
+   >>> a
+   array([[0, 0, 0],
+          [0, 1, 0],
+          [0, 0, 2]])
+   >>> a[1, 1]
+   1
+   >>> a[2, 1] = 10 # tercera fila, segunda columna
+   >>> a
+   array([[ 0,  0,  0],
+          [ 0,  1,  0],
+          [ 0, 10,  2]])
+   >>> a[1]
+   array([0, 1, 0]) # segunda fila
 
 Note que:
 
 * En 2D, la primera dimensión corresponde a las filas, la segunda a las columnas.
 * Para un arreglo multidimensional ``a``, ``a[0]`` es interpretado teniendo todos los elementos en las dimensiones especificadas.
 
-**Segmentado** de arreglos, al igual que otras secuencias de Python también pueden ser segmentadas::
+**Segmentado** de arreglos, al igual que otras secuencias de Python también pueden ser segmentadas
 
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> a[2:9:3] # [inicio:final:paso]
-    array([2, 5, 8])
+.. code-block:: python
 
-Tenga en cuenta que el último índice no es incluido!::
+   >>> a = np.arange(10)
+   >>> a
+   array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+   >>> a[2:9:3] # [inicio:final:paso]
+   array([2, 5, 8])
 
-    >>> a[:4]
-    array([0, 1, 2, 3])
+Tenga en cuenta que el último índice no es incluido!
 
-Los tres argumentos de segmentado no son necesarios: por defecto, `inicio` es 0, `final` es el último y `paso` es 1::
+.. code-block:: python
 
-    >>> a[1:3]
-    array([1, 2])
-    >>> a[::2]
-    array([0, 2, 4, 6, 8])
-    >>> a[3:]
-    array([3, 4, 5, 6, 7, 8, 9])
+   >>> a[:4]
+   array([0, 1, 2, 3])
+
+Los tres argumentos de segmentado no son necesarios: por defecto, `inicio` es 0, `final` es el último y `paso` es 1
+
+.. code-block:: python
+
+   >>> a[1:3]
+   array([1, 2])
+   >>> a[::2]
+   array([0, 2, 4, 6, 8])
+   >>> a[3:]
+   array([3, 4, 5, 6, 7, 8, 9])
 
 Un pequeño resumen ilustrado de indexado y segmentado en Numpy ...
 
 .. only:: latex
 
-    .. image:: images/numpy_indexing.png
-        :align: center
+   .. image:: images/numpy_indexing.png
+      :align: center
 
 .. only:: html
 
-    .. image:: images/numpy_indexing.png
-        :align: center
-        :width: 65%
+   .. image:: images/numpy_indexing.png
+      :align: center
+      :width: 65%
 
 Copias y vistas
 ---------------
@@ -493,43 +521,47 @@ Copias y vistas
 Una operación de segmentado crea una **vista** del arreglo original, que es
 sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo original no es copiado en memoria.
 
-**Al modificar una vista, la matriz original es modificado**::
+**Al modificar una vista, la matriz original es modificado**
 
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> b = a[::2]
-    array([0, 2, 4, 6, 8])
-    >>> b
-    array([0, 2, 4, 6, 8])
-    >>> b[0] = 12
-    >>> b
-    array([12,  2,  4,  6,  8])
-    >>> a  # (!)
-    array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
+.. code-block:: python
 
-    >>> a = np.arange(10)
-    >>> b = a[::2].copy()  # creando una copia
-    >>> b[0] = 12
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+   >>> a = np.arange(10)
+   >>> a
+   array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+   >>> b = a[::2]
+   array([0, 2, 4, 6, 8])
+   >>> b
+   array([0, 2, 4, 6, 8])
+   >>> b[0] = 12
+   >>> b
+   array([12,  2,  4,  6,  8])
+   >>> a  # (!)
+   array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
+
+   >>> a = np.arange(10)
+   >>> b = a[::2].copy()  # creando una copia
+   >>> b[0] = 12
+   >>> a
+   array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 Este comportamiento puede resultar sorprendente a primera vista ... pues permite ahorrar memoria y tiempo.
 
 .. warning:: **La transpuesta es una vista**
 
-   Como resultado, una matriz no puede simétrica sobre la marcha::
+   Como resultado, una matriz no puede simétrica sobre la marcha
 
-    >>> a = np.ones((100, 100))
-    >>> a += a.T
-    >>> a
-    array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           ...,
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
+   .. code-block:: python
+
+      >>> a = np.ones((100, 100))
+      >>> a += a.T
+      >>> a
+      array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
+             [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+             [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+             ...,
+             [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+             [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+             [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
 
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]
@@ -549,19 +581,25 @@ Este comportamiento puede resultar sorprendente a primera vista ... pues permite
 
    Calcular los números primos en 0--99, con una criba
 
-   * Construir un arreglo booleano ``es_primo`` con 100 elementos, en el principio todos sus elementos son True::
+   * Construir un arreglo booleano ``es_primo`` con 100 elementos, en el principio todos sus elementos son True
 
-       >>> es_primo = np.ones((100), dtype=bool)
+   .. code-block:: python
 
-   * Descartar 0 y 1 porque no son primos::
+      >>> es_primo = np.ones((100), dtype=bool)
 
-       >>> es_primo[:2] = 0 # 0 es False, 1 es True
+   * Descartar 0 y 1 porque no son primos
 
-   * Para cada número entero ``j`` a partir de 2, descartar sus múltiplos superiores::
+   .. code-block:: python
 
-       >>> numero_maximo = int(np.sqrt(len(es_primo)))
-       >>> for j in range(2, numero_maximo):
-       ...     es_primo[2*j::j] = False
+      >>> es_primo[:2] = 0 # 0 es False, 1 es True
+
+   * Para cada número entero ``j`` a partir de 2, descartar sus múltiplos superiores
+
+   .. code-block:: python
+
+      >>> numero_maximo = int(np.sqrt(len(es_primo)))
+      >>> for j in range(2, numero_maximo):
+      ...     es_primo[2*j::j] = False
 
    * Repase ``help(np.nonzero)``, e imprima los números primos
 
@@ -581,63 +619,67 @@ Este comportamiento puede resultar sorprendente a primera vista ... pues permite
 Indexado fancy
 --------------
 
-.. tip::
-
-    Los arreglos numpy pueden indexarse ​​en segmentos, pero también con arreglos booleanos o arreglos enteros (**enmascarados**). Este método se llama *indexado fancy*. Crea **copias no vistas**.
+.. tip:: Los arreglos numpy pueden indexarse ​​en segmentos, pero también con arreglos booleanos o arreglos enteros (**enmascarados**). Este método se llama *indexado fancy*. Crea **copias no vistas**.
 
 Usando enmascarado booleano
 ...........................
 
-::
+.. code-block:: python
 
-    >>> np.random.seed(3)
-    >>> a = np.random.random_integers(0, 20, 15)
-    >>> a
-    array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
-    >>> a % 3 == 0
-    array([False,  True, False,  True, False, False, False,  True, False,
-            True,  True, False,  True, False, False], dtype=bool)
-    >>> mascara = (a % 3 == 0)
-    >>> extraer_desde_a = a[mascara] # o tambien,  extraer_desde_a = a[a%3==0]
-    >>> extraer_desde_a           # extrae un subarreglo con máscara
-    array([ 3,  0,  9,  6,  0, 12])
+   >>> np.random.seed(3)
+   >>> a = np.random.random_integers(0, 20, 15)
+   >>> a
+   array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
+   >>> a % 3 == 0
+   array([False,  True, False,  True, False, False, False,  True, False,
+           True,  True, False,  True, False, False], dtype=bool)
+   >>> mascara = (a % 3 == 0)
+   >>> extraer_desde_a = a[mascara] # o tambien,  extraer_desde_a = a[a%3==0]
+   >>> extraer_desde_a           # extrae un subarreglo con máscara
+   array([ 3,  0,  9,  6,  0, 12])
 
-El indexado con máscara puede ser muy útil para asignar un nuevo valor a un subarreglo::
+El indexado con máscara puede ser muy útil para asignar un nuevo valor a un subarreglo
 
-    >>> a[a % 3 == 0] = -1 # o tambien,  a[a%3==0] = -1
-    >>> a
-    array([10, -1,  8, -1, 19, 10, 11, -1, 10, -1, -1, 20, -1,  7, 14])
+.. code-block:: python
+
+   >>> a[a % 3 == 0] = -1 # o tambien,  a[a%3==0] = -1
+   >>> a
+   array([10, -1,  8, -1, 19, 10, 11, -1, 10, -1, -1, 20, -1,  7, 14])
 
 Indexado con una arreglo de enteros
 ...................................
 
-::
+.. code-block:: python
 
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+   >>> a = np.arange(10)
+   >>> a
+   array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-El indexado se puede hacer con un arreglo de enteros, donde se repita el mismo índice varias veces::
+El indexado se puede hacer con un arreglo de enteros, donde se repita el mismo índice varias veces
 
-    >>> a[[2, 3, 2, 4, 2]]  # nota: [2, 3, 2, 4, 2] es una lista Python
-    array([2, 3, 2, 4, 2])
+.. code-block:: python
 
-Nuevos valores pueden ser asignados con este tipo de indexado::
+   >>> a[[2, 3, 2, 4, 2]]  # nota: [2, 3, 2, 4, 2] es una lista Python
+   array([2, 3, 2, 4, 2])
 
-    >>> a[[9, 7]] = -10
-    >>> a
-    array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
+Nuevos valores pueden ser asignados con este tipo de indexado
 
-.. tip::
+.. code-block:: python
 
-  Cuando una nuevo arreglo es creado a partir de un indexado de un arreglo de enteros, el nuevo arreglo tiene la misma forma que el arreglo de enteros ::
+   >>> a[[9, 7]] = -10
+   >>> a
+   array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
 
-    >>> a = np.arange(10)
-    >>> indices = np.array([[3, 4], [9, 7]])
-    >>> a[indices]
-    array([[3, 4],
-           [9, 7]])
-    >>> b = np.arange(10)
+.. tip:: Cuando una nuevo arreglo es creado a partir de un indexado de un arreglo de enteros, el nuevo arreglo tiene la misma forma que el arreglo de enteros
+
+   .. code-block:: python
+
+      >>> a = np.arange(10)
+      >>> indices = np.array([[3, 4], [9, 7]])
+      >>> a[indices]
+      array([[3, 4],
+             [9, 7]])
+      >>> b = np.arange(10)
 
 ____
 
@@ -645,25 +687,25 @@ La imagen a continuación muestra varias aplicaciones del indexado fancy
 
 .. only:: latex
 
-    .. image:: images/numpy_fancy_indexing.png
-        :align: center
+   .. image:: images/numpy_fancy_indexing.png
+      :align: center
 
 .. only:: html
 
-    .. image:: images/numpy_fancy_indexing.png
-        :align: center
-        :width: 80%
+   .. image:: images/numpy_fancy_indexing.png
+      :align: center
+      :width: 80%
 
-Incluso podemos utilizar el indexado fancy y :ref:`broadcasting <broadcasting>` al mismo tiempo::
+Incluso podemos utilizar el indexado fancy y :ref:`broadcasting <broadcasting>` al mismo tiempo
 
-    >>> a = np.arange(12).reshape(3,4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11]])
-    >>> i = np.array([[0, 1], [1, 2]])
-    >>> a[i, 2] # lo mismo es a[i, 2*np.ones((2, 2), dtype=int)]
-    array([[ 2,  6],
-           [ 6, 10]])
+.. code-block:: python
 
-
+   >>> a = np.arange(12).reshape(3,4)
+   >>> a
+   array([[ 0,  1,  2,  3],
+          [ 4,  5,  6,  7],
+          [ 8,  9, 10, 11]])
+   >>> i = np.array([[0, 1], [1, 2]])
+   >>> a[i, 2] # lo mismo es a[i, 2*np.ones((2, 2), dtype=int)]
+   array([[ 2,  6],
+          [ 6, 10]])

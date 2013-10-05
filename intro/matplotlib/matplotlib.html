@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.4. Matplotlib: trazado &mdash; Scipy lecture notes</title>
+    <title>1.4. Matplotlib: Gráficas usando pylab &mdash; Scipy lecture notes</title>
     
     <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -28,9 +28,9 @@
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="1. Para empezar con Python para fines científicos" href="../index.html" />
-    <link rel="next" title="1.5. Scipy : high-level scientific computing" href="../scipy.html" />
-    <link rel="prev" title="1.3.4. Operaciones avanzadas" href="../numpy/advanced_operations.html" /> 
+    <link rel="up" title="1. Iniciandose en computación científica con Python" href="../index.html" />
+    <link rel="next" title="1.5. Scipy: computación científica de alto nivel" href="../scipy.html" />
+    <link rel="prev" title="1.3.5. Some exercises" href="../numpy/exercises.html" /> 
   </head>
   <body>
    <!-- Use the header to add javascript -->
@@ -98,13 +98,13 @@
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../scipy.html" title="1.5. Scipy : high-level scientific computing"
+          <a href="../scipy.html" title="1.5. Scipy: computación científica de alto nivel"
              accesskey="N">siguiente</a></li>
         <li class="right" >
-          <a href="../numpy/advanced_operations.html" title="1.3.4. Operaciones avanzadas"
+          <a href="../numpy/exercises.html" title="1.3.5. Some exercises"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">1. Iniciandose en computación científica con Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -126,8 +126,8 @@
       <div class="documentwrapper">
           <div class="body">
             
-  <div class="section" id="matplotlib-trazado">
-<span id="matplotlib-label"></span><h1>1.4. Matplotlib: trazado<a class="headerlink" href="#matplotlib-trazado" title="Enlazar permanentemente con este título">¶</a></h1>
+  <div class="section" id="matplotlib-graficas-usando-pylab">
+<span id="matplotlib-label"></span><h1>1.4. Matplotlib: Gráficas usando pylab<a class="headerlink" href="#matplotlib-graficas-usando-pylab" title="Enlazar permanentemente con este título">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -216,7 +216,7 @@ tiene un montón de características interesantes, incluyendo entradas y salidas
 <div class="section" id="grafica-simple">
 <h2><a class="toc-backref" href="#id6">1.4.2. Gráfica simple</a><a class="headerlink" href="#grafica-simple" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En esta sección, llamaremos a las funciones seno y coseno en la misma gráfica. A partir de la configuración por defecto, vamos a enriquecer la figura paso a paso para que sea más agradable.</p>
-<p>El primer paso es obtener los datos para las funciones seno y coseno:</p>
+<p>El primer paso es obtener los datos para las funciones seno y coseno</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -225,11 +225,12 @@ tiene un montón de características interesantes, incluyendo entradas y salidas
 <div class="newline"></div></pre></div>
 </div>
 <p>X es ahora un arreglo numpy con 256 valores que van desde -π a +π (incluido). C es la función coseno (256 valores) y S es la función seno (256 valores).</p>
-<p>Para ejecutar el ejemplo, teclee los comandos en una sesión interactiva IPython:</p>
-<div class="highlight-python"><pre>$ ipython --pylab</pre>
+<p>Para ejecutar el ejemplo, teclee los comandos en una sesión interactiva IPython</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>ipython --pylab
+<div class="newline"></div></pre></div>
 </div>
-<p>Esto nos lleva a el shell IPython:</p>
-<div class="highlight-python"><pre>IPython 0.13 -- An enhanced Interactive Python.
+<p>Esto nos lleva a el shell IPython</p>
+<div class="highlight-bash"><pre>IPython 0.13 -- An enhanced Interactive Python.
 ?       -&gt; Introduction to IPython's features.
 %magic  -&gt; Information about IPython's 'magic' % functions.
 help    -&gt; Python's own help system.
@@ -238,8 +239,9 @@ object? -&gt; Details about 'object'. ?object also works, ?? prints more.
 Welcome to pylab, a matplotlib-based Python environment.
 For more information, type 'help(pylab)'.</pre>
 </div>
-<p>o puede descargar cada uno de los ejemplos y ejecutarlo usando el intérprete estandar python:</p>
-<div class="highlight-python"><pre>$ python exercice_1.py</pre>
+<p>o puede descargar cada uno de los ejemplos y ejecutarlo usando el intérprete estandar python</p>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>python exercice_1.py
+<div class="newline"></div></pre></div>
 </div>
 <p>Usted puede obtener el código para cada paso haciendo clic en la figura correspondiente.</p>
 <div class="section" id="valores-por-defecto">
@@ -277,7 +279,7 @@ For more information, type 'help(pylab)'.</pre>
 <li><a class="reference external" href="http://matplotlib.sourceforge.net/users/customizing.html">Personalizando matplotlib</a></li>
 </ul>
 </div>
-<p>En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver <a href="#id46"><span class="problematic" id="id47">`Line properties`_</span></a> y <a href="#id48"><span class="problematic" id="id49">`Line styles`_</span></a> más abajo).:</p>
+<p>En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver <a href="#id46"><span class="problematic" id="id47">`Line properties`_</span></a> y <a href="#id48"><span class="problematic" id="id49">`Line styles`_</span></a> más abajo).</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">pylab</span> <span class="kn">as</span> <span class="nn">pl</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div>
@@ -579,7 +581,7 @@ es decir, sólo hay una lista vacía de ellos, ya que estan con NullLocator (ver
 a continuación).</p>
 <div class="section" id="localizadoras-de-graduacion-tick-locators">
 <h4>1.4.3.4.1. Localizadoras de graduación (tick locators)<a class="headerlink" href="#localizadoras-de-graduacion-tick-locators" title="Enlazar permanentemente con este título">¶</a></h4>
-<p>Las localizadoras de graduación controlan las posiciones de las graduaciones. Ellas se establecen como:</p>
+<p>Las localizadoras de graduación controlan las posiciones de las graduaciones. Ellas se establecen como</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 <div class="newline"></div><span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">locator</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
@@ -604,7 +606,7 @@ Usted puede hacer su propio localizador derivandola de la clase base. Manipulaci
 <p class="last">Es necesario utilizar el comando <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between">fill_between</a>.</p>
 </div>
 <p>A partir del código de abajo, trate de reproducir el gráfico en forma correcta
-tomando en cuenta las zonas rellenadas:</p>
+tomando en cuenta las zonas rellenadas</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">n</span> <span class="o">=</span> <span class="mi">256</span>
 <div class="newline"></div><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <div class="newline"></div><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span>
@@ -1056,13 +1058,13 @@ colormaps</a>.</p>
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../scipy.html" title="1.5. Scipy : high-level scientific computing"
+          <a href="../scipy.html" title="1.5. Scipy: computación científica de alto nivel"
              >siguiente</a></li>
         <li class="right" >
-          <a href="../numpy/advanced_operations.html" title="1.3.4. Operaciones avanzadas"
+          <a href="../numpy/exercises.html" title="1.3.5. Some exercises"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">

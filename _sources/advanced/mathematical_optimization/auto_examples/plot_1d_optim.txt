@@ -12,22 +12,22 @@ Illustration of 1D optimization: Brent's method
 
     *
 
-      .. image:: images/plot_1d_optim_2.png
-            :scale: 50
-
-    *
-
       .. image:: images/plot_1d_optim_1.png
             :scale: 50
 
     *
 
-      .. image:: images/plot_1d_optim_4.png
+      .. image:: images/plot_1d_optim_2.png
             :scale: 50
 
     *
 
       .. image:: images/plot_1d_optim_3.png
+            :scale: 50
+
+    *
+
+      .. image:: images/plot_1d_optim_4.png
             :scale: 50
 
 

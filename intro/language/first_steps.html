@@ -104,7 +104,7 @@
           <a href="python_language.html" title="1.2. El lenguaje Python"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -129,24 +129,18 @@
             
   <div class="section" id="primeros-pasos">
 <h1>1.2.1. Primeros pasos<a class="headerlink" href="#primeros-pasos" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Inicie el shell <strong>IPython</strong> (shell Python interactivo mejorado):</p>
+<p>Inicie la consola <strong>IPython</strong> (consola mejorada interactiva Python):</p>
 <ul class="simple">
-<li>escriba &#8220;ipython&#8221; en una terminal Linux/Mac, o desde el shell cmd de Windows,</li>
-<li><strong>o</strong> iniciando el programa desde un menú, por ejemplo, en <a class="reference external" href="http://www.pythonxy.com/">Python(x,y)</a> o <a class="reference external" href="http://www.enthought.com/products/epd.php">EPD</a> si ha instalado una distribución científica Python.</li>
+<li>Escriba &#8220;ipython&#8221; en una terminal Linux/Mac, o desde la consola cmd de Windows.</li>
+<li>O iniciando el programa desde un menú, por ejemplo, en <a class="reference external" href="http://www.pythonxy.com/">Python(x,y)</a> o <a class="reference external" href="http://www.enthought.com/products/epd.php">EPD</a> si ha instalado una distribución científica Python.</li>
 </ul>
-<div class="admonition tip">
-<p class="first admonition-title">Truco</p>
-<p class="last">Si usted no tiene IPython instalado en su equipo, otras shell Python están disponibles, como el shell python que se inicia escribiendo &#8220;python&#8221; en una terminal, o el intérprete Idle. Sin embargo, nos recomiendan usar el shell IPython debido a sus características mejoradas, especialmente para cálculo científico interactivo.</p>
-</div>
+<p>Si usted no tiene IPython instalado en su equipo, otras consolas Python están disponibles, como la consola estandar python que se inicia escribiendo &#8220;python&#8221; en una terminal, o el intérprete Idle. Sin embargo, nos recomiendan usar la consola IPython debido a sus características mejoradas, especialmente para computación científica interactiva.</p>
 <p>Después de iniciar el interprete, teclee:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="s">&quot;Hola, mundo!&quot;</span>
 <div class="newline"></div><span class="go">Hola, mundo!</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="admonition tip">
-<p class="first admonition-title">Truco</p>
-<p class="last">Si el mensaje &#8220;Hola, mundo!&#8221; fue mostrado. Usted acaba de ejecutar su primera instrucción Python, felicitaciones!</p>
-</div>
+<p>Si el mensaje &#8220;Hola, mundo!&#8221; fue mostrado. Usted acaba de ejecutar su primera instrucción Python, felicitaciones!</p>
 <p>Para empezar, escriba las siguientes instrucciones:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">3</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">a</span>
@@ -165,14 +159,13 @@
 <div class="newline"></div><span class="go">&#39;holahola&#39;</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="admonition tip">
-<p class="first admonition-title">Truco</p>
-<p>Las variables <tt class="docutils literal"><span class="pre">a</span></tt> y <tt class="docutils literal"><span class="pre">b</span></tt> se han definidon anteriormente. Tenga en cuenta que no se declarar el tipo de una variable antes de asignarle un valor. Por el contrario en C, se debe escribir:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<p>Tenga en cuenta que las variables <tt class="docutils literal"><span class="pre">a</span></tt> y <tt class="docutils literal"><span class="pre">b</span></tt> no se declararon su tipo antes de asignarles un valor. Por el contrario en C, se debe escribir:</p>
+<blockquote>
+<div><div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <div class="newline"></div></pre></div>
 </div>
-<p class="last">Además, el tipo de una variable puede cambiar, en el sentido de que en un punto del tiempo puede ser igual a un valor de un cierto tipo, y un segundo punto en el tiempo, puede ser igual a un valor de un tipo diferente. Primero <tt class="xref py py-obj docutils literal"><span class="pre">b</span></tt> fue igual a un número entero, pero se convirtio en cadena cuando se le asignó el valor <tt class="xref py py-obj docutils literal"><span class="pre">'hola'</span></tt>. Operaciones en enteros (<tt class="docutils literal"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">2*a</span></tt>) están codificados de forma nativa en Python, y también lo son algunas operaciones sobre cadenas, tales como adiciones y multiplicaciones, que son respectivamente, concatenación y repetición.</p>
-</div>
+</div></blockquote>
+<p>Además, el tipo de una variable puede cambiar, en el sentido de que por un periodo de tiempo puede ser igual a un valor de un cierto tipo, y en otro periodo tiempo puede ser igual a otro valor de tipo diferente. Primero <tt class="xref py py-obj docutils literal"><span class="pre">b</span></tt> fue igual a un número entero, pero se convirtio en cadena cuando se le asignó el valor <tt class="docutils literal"><span class="pre">hola</span></tt>. Las operaciones con enteros (<tt class="docutils literal"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">2*a</span></tt>) están codificados de forma nativa en Python, y también lo son algunas operaciones sobre cadenas, tales como adiciones y multiplicaciones, que son respectivamente, concatenación y repetición.</p>
 <p><div style="clear: both"></div></p>
 </div>
 
@@ -191,7 +184,7 @@
           <a href="python_language.html" title="1.2. El lenguaje Python"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->

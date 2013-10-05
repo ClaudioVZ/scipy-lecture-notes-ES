@@ -28,7 +28,7 @@
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="2. Advanced topics" href="../index.html" />
+    <link rel="up" title="2. Temas avanzados" href="../index.html" />
     <link rel="next" title="2.3. Debugging code / Código de depuración" href="../debugging/index.html" />
     <link rel="prev" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)" href="../advanced_python/index.html" /> 
   </head>
@@ -104,7 +104,7 @@
           <a href="../advanced_python/index.html" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">2. Advanced topics</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">2. Temas avanzados</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -132,7 +132,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">autor:</th><td class="field-body">Pauli Virtanen</td>
+<tr class="field-odd field"><th class="field-name">Autor:</th><td class="field-body">Pauli Virtanen</td>
 </tr>
 </tbody>
 </table>
@@ -158,12 +158,12 @@ PEP 3118 buffers, ufuncs generalizadas, ...</li>
 <li>PIL (usado en un par de ejemplos)</li>
 </ul>
 </div>
-<p>En esta sección numpy será importado de la siguiente forma:</p>
+<p>En esta sección numpy será importado de la siguiente forma</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div></pre></div>
 </div>
-<div class="contents local topic" id="chapter-contents">
-<p class="topic-title first">Chapter contents</p>
+<div class="contents local topic" id="contenido">
+<p class="topic-title first">Contenido</p>
 <ul class="simple">
 <li><a class="reference internal" href="#vida-de-un-ndarray" id="id3">Vida de un ndarray</a><ul>
 <li><a class="reference internal" href="#esto-es" id="id4">Esto es...</a></li>
@@ -529,20 +529,13 @@ etc. para leer datos de sonido...</p>
 <col width="19%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><p class="first last"><tt class="docutils literal"><span class="pre">0x01</span></tt></p>
-</td>
-<td><p class="first last">||</p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">0x02</span></tt></p>
-</td>
-<td><p class="first last">||</p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">0x03</span></tt></p>
-</td>
-<td><p class="first last">||</p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">0x04</span></tt></p>
-</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">0x01</span></tt></td>
+<td>||</td>
+<td><tt class="docutils literal"><span class="pre">0x02</span></tt></td>
+<td>||</td>
+<td><tt class="docutils literal"><span class="pre">0x03</span></tt></td>
+<td>||</td>
+<td><tt class="docutils literal"><span class="pre">0x04</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -1193,35 +1186,23 @@ pre-made ones</p>
 <col width="82%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_f_f</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">float</span> <span class="pre">elementwise_func(float</span> <span class="pre">input_1)</span></tt></p>
-</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">PyUfunc_f_f</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">float</span> <span class="pre">elementwise_func(float</span> <span class="pre">input_1)</span></tt></td>
 </tr>
-<tr class="row-even"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_ff_f</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">float</span> <span class="pre">elementwise_func(float</span> <span class="pre">input_1,</span> <span class="pre">float</span> <span class="pre">input_2)</span></tt></p>
-</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">PyUfunc_ff_f</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">float</span> <span class="pre">elementwise_func(float</span> <span class="pre">input_1,</span> <span class="pre">float</span> <span class="pre">input_2)</span></tt></td>
 </tr>
-<tr class="row-odd"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_d_d</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">double</span> <span class="pre">elementwise_func(double</span> <span class="pre">input_1)</span></tt></p>
-</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">PyUfunc_d_d</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">elementwise_func(double</span> <span class="pre">input_1)</span></tt></td>
 </tr>
-<tr class="row-even"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_dd_d</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">double</span> <span class="pre">elementwise_func(double</span> <span class="pre">input_1,</span> <span class="pre">double</span> <span class="pre">input_2)</span></tt></p>
-</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">PyUfunc_dd_d</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">elementwise_func(double</span> <span class="pre">input_1,</span> <span class="pre">double</span> <span class="pre">input_2)</span></tt></td>
 </tr>
-<tr class="row-odd"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_D_D</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">elementwise_func(npy_cdouble</span> <span class="pre">*input,</span> <span class="pre">npy_cdouble*</span> <span class="pre">output)</span></tt></p>
-</td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">PyUfunc_D_D</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">elementwise_func(npy_cdouble</span> <span class="pre">*input,</span> <span class="pre">npy_cdouble*</span> <span class="pre">output)</span></tt></td>
 </tr>
-<tr class="row-even"><td><p class="first last"><tt class="docutils literal"><span class="pre">PyUfunc_DD_D</span></tt></p>
-</td>
-<td><p class="first last"><tt class="docutils literal"><span class="pre">elementwise_func(npy_cdouble</span> <span class="pre">*in1,</span> <span class="pre">npy_cdouble</span> <span class="pre">*in2,</span> <span class="pre">npy_cdouble*</span> <span class="pre">out)</span></tt></p>
-</td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">PyUfunc_DD_D</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">elementwise_func(npy_cdouble</span> <span class="pre">*in1,</span> <span class="pre">npy_cdouble</span> <span class="pre">*in2,</span> <span class="pre">npy_cdouble*</span> <span class="pre">out)</span></tt></td>
 </tr>
 </tbody>
 </table>
@@ -1297,108 +1278,108 @@ Use it to determine which <cite>c</cite> are in the Mandelbrot set.</p>
 </div>
 <div class="section" id="solution-building-an-ufunc-from-scratch">
 <h3><a class="toc-backref" href="#id12">2.2.2.3. Solution: building an ufunc from scratch</a><a class="headerlink" href="#solution-building-an-ufunc-from-scratch" title="Enlazar permanentemente con este título">¶</a></h3>
-<div class="highlight-python"><pre># The elementwise function
-# ------------------------
-
-cdef void mandel_single_point(double complex *z_in, 
-                              double complex *c_in,
-                              double complex *z_out) nogil:
-    #
-    # The Mandelbrot iteration
-    #
-
-    #
-    # Some points of note:
-    #
-    # - It's *NOT* allowed to call any Python functions here.
-    #
-    #   The Ufunc loop runs with the Python Global Interpreter Lock released.
-    #   Hence, the ``nogil``.
-    #
-    # - And so all local variables must be declared with ``cdef``
-    #
-    # - Note also that this function receives *pointers* to the data;
-    #   the "traditional" solution to passing complex variables around
-    #
-
-    cdef double complex z = z_in[0]
-    cdef double complex c = c_in[0]
-    cdef int k  # the integer we use in the for loop
-
-    # Straightforward iteration
-
-    for k in range(100):
-        z = z*z + c
-        if z.real**2 + z.imag**2 &gt; 1000:
-            break
-
-    # Return the answer for this point
-    z_out[0] = z
-
-
-# Boilerplate Cython definitions
-#
-# You don't really need to read this part, it just pulls in
-# stuff from the Numpy C headers.
-# ----------------------------------------------------------
-
-cdef extern from "numpy/arrayobject.h":
-    void import_array()
-    ctypedef int npy_intp
-    cdef enum NPY_TYPES:
-        NPY_CDOUBLE
-
-cdef extern from "numpy/ufuncobject.h":
-    void import_ufunc()
-    ctypedef void (*PyUFuncGenericFunction)(char**, npy_intp*, npy_intp*, void*)
-    object PyUFunc_FromFuncAndData(PyUFuncGenericFunction* func, void** data,
-        char* types, int ntypes, int nin, int nout,
-        int identity, char* name, char* doc, int c)
-
-    void PyUFunc_DD_D(char**, npy_intp*, npy_intp*, void*)
-
-
-# Required module initialization
-# ------------------------------
-
-import_array()
-import_ufunc()
-
-
-# The actual ufunc declaration
-# ----------------------------
-
-cdef PyUFuncGenericFunction loop_func[1]
-cdef char input_output_types[3]
-cdef void *elementwise_funcs[1]
-
-loop_func[0] = PyUFunc_DD_D
-
-input_output_types[0] = NPY_CDOUBLE
-input_output_types[1] = NPY_CDOUBLE
-input_output_types[2] = NPY_CDOUBLE
-
-elementwise_funcs[0] = &lt;void*&gt;mandel_single_point
-
-mandel = PyUFunc_FromFuncAndData(
-    loop_func,
-    elementwise_funcs,
-    input_output_types,
-    1, # number of supported input types
-    2, # number of input args
-    1, # number of output args
-    0, # `identity` element, never mind this
-    "mandel", # function name
-    "mandel(z, c) -&gt; computes iterated z*z + c", # docstring
-    0 # unused
-    )
-</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># The elementwise function</span>
+<div class="newline"></div><span class="c"># ------------------------</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">void</span> <span class="n">mandel_single_point</span><span class="p">(</span><span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">z_in</span><span class="p">,</span> 
+<div class="newline"></div>                              <span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">c_in</span><span class="p">,</span>
+<div class="newline"></div>                              <span class="n">double</span> <span class="nb">complex</span> <span class="o">*</span><span class="n">z_out</span><span class="p">)</span> <span class="n">nogil</span><span class="p">:</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c"># The Mandelbrot iteration</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c"># Some points of note:</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c"># - It&#39;s *NOT* allowed to call any Python functions here.</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c">#   The Ufunc loop runs with the Python Global Interpreter Lock released.</span>
+<div class="newline"></div>    <span class="c">#   Hence, the ``nogil``.</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c"># - And so all local variables must be declared with ``cdef``</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>    <span class="c"># - Note also that this function receives *pointers* to the data;</span>
+<div class="newline"></div>    <span class="c">#   the &quot;traditional&quot; solution to passing complex variables around</span>
+<div class="newline"></div>    <span class="c">#</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="n">cdef</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">z</span> <span class="o">=</span> <span class="n">z_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="newline"></div>    <span class="n">cdef</span> <span class="n">double</span> <span class="nb">complex</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c_in</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class="newline"></div>    <span class="n">cdef</span> <span class="nb">int</span> <span class="n">k</span>  <span class="c"># the integer we use in the for loop</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="c"># Straightforward iteration</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+<div class="newline"></div>        <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">*</span><span class="n">z</span> <span class="o">+</span> <span class="n">c</span>
+<div class="newline"></div>        <span class="k">if</span> <span class="n">z</span><span class="o">.</span><span class="n">real</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span><span class="o">**</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+<div class="newline"></div>            <span class="k">break</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="c"># Return the answer for this point</span>
+<div class="newline"></div>    <span class="n">z_out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Boilerplate Cython definitions</span>
+<div class="newline"></div><span class="c">#</span>
+<div class="newline"></div><span class="c"># You don&#39;t really need to read this part, it just pulls in</span>
+<div class="newline"></div><span class="c"># stuff from the Numpy C headers.</span>
+<div class="newline"></div><span class="c"># ----------------------------------------------------------</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s">&quot;numpy/arrayobject.h&quot;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="n">void</span> <span class="n">import_array</span><span class="p">()</span>
+<div class="newline"></div>    <span class="n">ctypedef</span> <span class="nb">int</span> <span class="n">npy_intp</span>
+<div class="newline"></div>    <span class="n">cdef</span> <span class="n">enum</span> <span class="n">NPY_TYPES</span><span class="p">:</span>
+<div class="newline"></div>        <span class="n">NPY_CDOUBLE</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="s">&quot;numpy/ufuncobject.h&quot;</span><span class="p">:</span>
+<div class="newline"></div>    <span class="n">void</span> <span class="n">import_ufunc</span><span class="p">()</span>
+<div class="newline"></div>    <span class="n">ctypedef</span> <span class="n">void</span> <span class="p">(</span><span class="o">*</span><span class="n">PyUFuncGenericFunction</span><span class="p">)(</span><span class="n">char</span><span class="o">**</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span>
+<div class="newline"></div>    <span class="nb">object</span> <span class="n">PyUFunc_FromFuncAndData</span><span class="p">(</span><span class="n">PyUFuncGenericFunction</span><span class="o">*</span> <span class="n">func</span><span class="p">,</span> <span class="n">void</span><span class="o">**</span> <span class="n">data</span><span class="p">,</span>
+<div class="newline"></div>        <span class="n">char</span><span class="o">*</span> <span class="n">types</span><span class="p">,</span> <span class="nb">int</span> <span class="n">ntypes</span><span class="p">,</span> <span class="nb">int</span> <span class="n">nin</span><span class="p">,</span> <span class="nb">int</span> <span class="n">nout</span><span class="p">,</span>
+<div class="newline"></div>        <span class="nb">int</span> <span class="n">identity</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="n">char</span><span class="o">*</span> <span class="n">doc</span><span class="p">,</span> <span class="nb">int</span> <span class="n">c</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div>    <span class="n">void</span> <span class="n">PyUFunc_DD_D</span><span class="p">(</span><span class="n">char</span><span class="o">**</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">npy_intp</span><span class="o">*</span><span class="p">,</span> <span class="n">void</span><span class="o">*</span><span class="p">)</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># Required module initialization</span>
+<div class="newline"></div><span class="c"># ------------------------------</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">import_array</span><span class="p">()</span>
+<div class="newline"></div><span class="n">import_ufunc</span><span class="p">()</span>
+<div class="newline"></div>
+<div class="newline"></div>
+<div class="newline"></div><span class="c"># The actual ufunc declaration</span>
+<div class="newline"></div><span class="c"># ----------------------------</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">PyUFuncGenericFunction</span> <span class="n">loop_func</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">char</span> <span class="n">input_output_types</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<div class="newline"></div><span class="n">cdef</span> <span class="n">void</span> <span class="o">*</span><span class="n">elementwise_funcs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">loop_func</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">PyUFunc_DD_D</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
+<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
+<div class="newline"></div><span class="n">input_output_types</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">NPY_CDOUBLE</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">elementwise_funcs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">void</span><span class="o">*&gt;</span><span class="n">mandel_single_point</span>
+<div class="newline"></div>
+<div class="newline"></div><span class="n">mandel</span> <span class="o">=</span> <span class="n">PyUFunc_FromFuncAndData</span><span class="p">(</span>
+<div class="newline"></div>    <span class="n">loop_func</span><span class="p">,</span>
+<div class="newline"></div>    <span class="n">elementwise_funcs</span><span class="p">,</span>
+<div class="newline"></div>    <span class="n">input_output_types</span><span class="p">,</span>
+<div class="newline"></div>    <span class="mi">1</span><span class="p">,</span> <span class="c"># number of supported input types</span>
+<div class="newline"></div>    <span class="mi">2</span><span class="p">,</span> <span class="c"># number of input args</span>
+<div class="newline"></div>    <span class="mi">1</span><span class="p">,</span> <span class="c"># number of output args</span>
+<div class="newline"></div>    <span class="mi">0</span><span class="p">,</span> <span class="c"># `identity` element, never mind this</span>
+<div class="newline"></div>    <span class="s">&quot;mandel&quot;</span><span class="p">,</span> <span class="c"># function name</span>
+<div class="newline"></div>    <span class="s">&quot;mandel(z, c) -&gt; computes iterated z*z + c&quot;</span><span class="p">,</span> <span class="c"># docstring</span>
+<div class="newline"></div>    <span class="mi">0</span> <span class="c"># unused</span>
+<div class="newline"></div>    <span class="p">)</span>
+<div class="newline"></div></pre></div>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">mandel</span>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <div class="newline"></div><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<div class="newline"></div><span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">y</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
+<div class="newline"></div><span class="n">c</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span> <span class="o">+</span> <span class="mi">1j</span><span class="o">*</span><span class="n">y</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
 <div class="newline"></div><span class="n">z</span> <span class="o">=</span> <span class="n">mandel</span><span class="o">.</span><span class="n">mandel</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -2061,7 +2042,7 @@ git push github name-of-my-feature-branch</pre>
           <a href="../advanced_python/index.html" title="2.1. Expresiones avanzadas en python (Advanced Python Constructs)"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
+          <li><a href="../index.html" >2. Temas avanzados</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">

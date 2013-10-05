@@ -104,7 +104,7 @@
           <a href="exceptions.html" title="1.2.8. Manejo de excepciones en Python"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -130,14 +130,12 @@
   <div class="section" id="programacion-orientada-a-objetos-poo">
 <h1>1.2.9. Programación Orientada a Objetos (POO)<a class="headerlink" href="#programacion-orientada-a-objetos-poo" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Python soporta la programación orientada a objetos (POO). Los objetivos de la programación orientada a objetos son:</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>organizar el código, y</li>
 <li>volver a utilizar el código en contextos similares.</li>
 </ul>
-</div></blockquote>
 <p>He aquí un pequeño ejemplo: creamos la <em>clase</em> Estudiante, es un objeto
-que reune varias funciones personalizadas (<em>métodos</em>) y variables (<em>atributos</em>), que pueden usarse:</p>
+que reune varias funciones personalizadas (<em>métodos</em>) y variables (<em>atributos</em>), que pueden usarse</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Estudiante</span><span class="p">(</span><span class="n">objecto</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nombre</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">nombre</span> <span class="o">=</span> <span class="n">nombre</span>
@@ -152,7 +150,7 @@ que reune varias funciones personalizadas (<em>métodos</em>) y variables (<em>a
 <div class="newline"></div></pre></div>
 </div>
 <p>En el ejemplo anterior, la clase Estudiante tiene los métodos <tt class="docutils literal"><span class="pre">__init__</span></tt>, <tt class="docutils literal"><span class="pre">establece_edad</span></tt> y <tt class="docutils literal"><span class="pre">establece_licenciatura</span></tt>. Sus atributos son <tt class="docutils literal"><span class="pre">nombre</span></tt>, <tt class="docutils literal"><span class="pre">edad</span></tt> y <tt class="docutils literal"><span class="pre">licenciatura</span></tt>. Nosotros podemos llamar a estos métodos y atributos con la siguiente notación: <tt class="docutils literal"><span class="pre">classinstance.método</span></tt> o <tt class="docutils literal"><span class="pre">classinstance.atributo</span></tt>. El constructor <tt class="docutils literal"><span class="pre">__init__</span></tt> es un método especial que llamamos con: <tt class="docutils literal"><span class="pre">MiClase(parámetros</span> <span class="pre">de</span> <span class="pre">inicio</span> <span class="pre">cualquiera)</span></tt>.</p>
-<p>Ahora, supongamos que queremos crear una nueva clase EstudianteMaestria con los mismos métodos y atributos que el anterior, pero con un atributo adicional <tt class="docutils literal"><span class="pre">practicas</span></tt>. No copiaremos la clase anterior, pero si <strong>heredarlos</strong> de ella:</p>
+<p>Ahora, supongamos que queremos crear una nueva clase EstudianteMaestria con los mismos métodos y atributos que el anterior, pero con un atributo adicional <tt class="docutils literal"><span class="pre">practicas</span></tt>. No copiaremos la clase anterior, pero si <strong>heredarlos</strong> de ella</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">EstudianteMaestria</span><span class="p">(</span><span class="n">Estudiante</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">practicas</span> <span class="o">=</span> <span class="s">&#39;obligatorias, de marzo a junio&#39;</span>
 <div class="newline"></div><span class="gp">...</span>
@@ -185,7 +183,7 @@ que reune varias funciones personalizadas (<em>métodos</em>) y variables (<em>a
           <a href="exceptions.html" title="1.2.8. Manejo de excepciones en Python"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->

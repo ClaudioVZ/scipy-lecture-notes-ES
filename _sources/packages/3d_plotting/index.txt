@@ -2,16 +2,16 @@
 
 .. _mayavi-label:
 
-========================
+======================
 Gráficos 3D con Mayavi
-========================
+======================
 
 .. only:: html
 
     .. image:: mayavi-logo.png
         :align: right
 
-:autor: Gaël Varoquaux
+:Autor: Gaël Varoquaux
 
 .. tip::
    
@@ -34,7 +34,7 @@ aplicables a arrays numpy. Puedes probar las funciones usando IPython inicializa
 opción ``--gui=wx``.
 
 Funciones para gráficos 3D
----------------------------
+--------------------------
 
 Puntos
 ......
@@ -112,7 +112,7 @@ conectividad**
 .. _mayavi-voldata-label:
 
 Datos volumétricos
-................ 
+..................
 
 .. image:: examples/contour3d.png
     :align: right
@@ -135,7 +135,7 @@ Datos volumétricos
 3D que proporciona la forma del grid.
 
 Figuras y decoraciones
--------------------------
+----------------------
 
 Gestión de figuras
 ..................
@@ -321,7 +321,7 @@ Trabajo interactivo
     interactuando y modificando los distintos ajustes de forma interactiva.
 
 El "pipeline dialog"
-----------------------
+--------------------
 
 Pulsa en el botón 'Mayavi' que se encuentra en la figura para poder controlar las propiedades
 de los objetos con la ayuda de ventanas de diálogos.
@@ -335,14 +335,14 @@ de los objetos con la ayuda de ventanas de diálogos.
 * Se pueden añadir módulos y/o filtras pulsando en el botón derecho del ratón
 
 El botón de grabación del script
------------------------------
+--------------------------------
 
 Para descubrir con qué códido podríamos modificar los cambios realizados de forma interactiva
 podemos pulsar sobre el botón rojo cuando vayamos a realizar las modificaciones y se generarán
 las correspondientes líneas de código.
 
 Slicing and dicing data: sources, modules and filters
-=======================================================
+=====================================================
 
 An example: inspecting magnetic fields
 --------------------------------------

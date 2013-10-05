@@ -28,8 +28,8 @@
     <script type="text/javascript" src="../../_static/copybutton.js"></script>
     <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
-    <link rel="up" title="2. Advanced topics" href="../index.html" />
-    <link rel="next" title="3. Packages and applications" href="../../packages/index.html" />
+    <link rel="up" title="2. Temas avanzados" href="../index.html" />
+    <link rel="next" title="3. Paquetes y aplicaciones" href="../../packages/index.html" />
     <link rel="prev" title="2.7. Mathematical optimization: finding minima of functions" href="../mathematical_optimization/index.html" /> 
   </head>
   <body>
@@ -98,13 +98,13 @@
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../packages/index.html" title="3. Packages and applications"
+          <a href="../../packages/index.html" title="3. Paquetes y aplicaciones"
              accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="../mathematical_optimization/index.html" title="2.7. Mathematical optimization: finding minima of functions"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">2. Advanced topics</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">2. Temas avanzados</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
@@ -235,7 +235,7 @@ be better off, using an alternative technique.</p>
 <h3>2.8.2.1. Example<a class="headerlink" href="#example" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>The following C-extension module, make the <tt class="docutils literal"><span class="pre">cos</span></tt> function from the standard
 math library available to Python:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cp">/*  Example of wrapping cos function from math.h with the Python-C-API. */</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/*  Example of wrapping cos function from math.h with the Python-C-API. */</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="cp">#include &lt;Python.h&gt;</span>
 <div class="newline"></div><span class="cp">#include &lt;math.h&gt;</span>
@@ -356,7 +356,7 @@ C-extension. See also: <a href="#id3"><span class="problematic" id="id4">:ref:`a
 and how to iterate over Numpy arrays using the (old) Numpy-C-Api. It simply
 takes an array as argument applies the cosine function from the <tt class="docutils literal"><span class="pre">math.h</span></tt> and
 returns a resulting new array.</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cp">/*  Example of wrapping the cos function from math.h using the Numpy-C-API. */</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/*  Example of wrapping the cos function from math.h using the Numpy-C-API. */</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="cp">#include &lt;Python.h&gt;</span>
 <div class="newline"></div><span class="cp">#include &lt;numpy/arrayobject.h&gt;</span>
@@ -577,7 +577,7 @@ an input and an output array, computes the cosine of the input array and
 stores the result in the output_array.</p>
 <p>The library consists of the following header file (although this is not
 strictly needed for this example, we list it for completeness):</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>The function implementation resides in the following C source file:</p>
@@ -585,7 +585,7 @@ strictly needed for this example, we list it for completeness):</p>
 <div class="newline"></div>
 <div class="newline"></div><span class="cm">/*  Compute the cosine of each element in in_array, storing the result in</span>
 <div class="newline"></div><span class="cm"> *  out_array. */</span>
-<div class="newline"></div><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
+<div class="newline"></div><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
 <div class="newline"></div>    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 <div class="newline"></div>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <div class="newline"></div>        <span class="n">out_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">in_array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
@@ -700,29 +700,29 @@ the wrapping process, may be a bit tricky to understand.</p>
 been written in <tt class="docutils literal"><span class="pre">c</span></tt> and consists of the source file <tt class="docutils literal"><span class="pre">cos_module.c</span></tt>:</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="cp">#include &lt;math.h&gt;</span>
 <div class="newline"></div>
-<div class="newline"></div><span class="kt">double</span> <span class="n">cos_func</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg</span><span class="p">){</span>
+<div class="newline"></div><span class="kt">double</span> <span class="nf">cos_func</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg</span><span class="p">){</span>
 <div class="newline"></div>    <span class="k">return</span> <span class="n">cos</span><span class="p">(</span><span class="n">arg</span><span class="p">);</span>
 <div class="newline"></div><span class="p">}</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>and the header file <tt class="docutils literal"><span class="pre">cos_module.h</span></tt>:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">double</span> <span class="n">cos_func</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">double</span> <span class="nf">cos_func</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg</span><span class="p">);</span>
 <div class="newline"></div></pre></div>
 </div>
 <p>And our goal is to expose the <tt class="docutils literal"><span class="pre">cos_func</span></tt> to Python. To achieve this with
 SWIG, we must write an <em>interface file</em> which contains the instructions for SWIG.</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cm">/*  Example of wrapping cos function from math.h using SWIG. */</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="o">%</span><span class="n">module</span> <span class="n">cos_module</span>
-<div class="newline"></div><span class="o">%</span><span class="p">{</span>
-<div class="newline"></div><span class="cp">    /* the resulting C file should be built as a python extension */</span>
-<div class="newline"></div><span class="cp">    #define SWIG_FILE_WITH_INIT</span>
-<div class="newline"></div><span class="cp">    /*  Includes the header in the wrapper code */</span>
-<div class="newline"></div><span class="cp">    #include &quot;cos_module.h&quot;</span>
-<div class="newline"></div><span class="o">%</span><span class="p">}</span>
-<div class="newline"></div><span class="cm">/*  Parse the header file to generate wrappers */</span>
-<div class="newline"></div><span class="o">%</span><span class="n">include</span> <span class="s">&quot;cos_module.h&quot;</span>
-<div class="newline"></div></pre></div>
+<div class="highlight-c"><pre>/*  Example of wrapping cos function from math.h using SWIG. */
+
+%module cos_module
+%{
+    /* the resulting C file should be built as a python extension */
+    #define SWIG_FILE_WITH_INIT
+    /*  Includes the header in the wrapper code */
+    #include "cos_module.h"
+%}
+/*  Parse the header file to generate wrappers */
+%include "cos_module.h"
+</pre>
 </div>
 <p>As you can see, not too much code is needed here. For this simple example it is
 enough to simply include the header file in the interface file, to expose the
@@ -820,14 +820,14 @@ file. This interface file defines various so-called <em>typemaps</em> which supp
 conversion between Numpy arrays and C-Arrays. In the following example we will
 take a quick look at how such typemaps work in practice.</p>
 <p>We have the same <tt class="docutils literal"><span class="pre">cos_doubles</span></tt> function as in the ctypes example:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="highlight-c"><div class="highlight"><pre><span class="cp">#include &lt;math.h&gt;</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="cm">/*  Compute the cosine of each element in in_array, storing the result in</span>
 <div class="newline"></div><span class="cm"> *  out_array. */</span>
-<div class="newline"></div><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
+<div class="newline"></div><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
 <div class="newline"></div>    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 <div class="newline"></div>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <div class="newline"></div>        <span class="n">out_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">in_array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
@@ -837,37 +837,37 @@ take a quick look at how such typemaps work in practice.</p>
 </div>
 <p>This is wrapped as <tt class="docutils literal"><span class="pre">cos_doubles_func</span></tt> using the following SWIG interface
 file:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cm">/*  Example of wrapping a C function that takes a C double array as input using</span>
-<div class="newline"></div><span class="cm"> *  numpy typemaps for SWIG. */</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="o">%</span><span class="n">module</span> <span class="n">cos_doubles</span>
-<div class="newline"></div><span class="o">%</span><span class="p">{</span>
-<div class="newline"></div><span class="cp">    /* the resulting C file should be built as a python extension */</span>
-<div class="newline"></div><span class="cp">    #define SWIG_FILE_WITH_INIT</span>
-<div class="newline"></div><span class="cp">    /*  Includes the header in the wrapper code */</span>
-<div class="newline"></div><span class="cp">    #include &quot;cos_doubles.h&quot;</span>
-<div class="newline"></div><span class="o">%</span><span class="p">}</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="cm">/*  include the numpy typemaps */</span>
-<div class="newline"></div><span class="o">%</span><span class="n">include</span> <span class="s">&quot;numpy.i&quot;</span>
-<div class="newline"></div><span class="cm">/*  need this for correct module initialization */</span>
-<div class="newline"></div><span class="o">%</span><span class="n">init</span> <span class="o">%</span><span class="p">{</span>
-<div class="newline"></div>    <span class="n">import_array</span><span class="p">();</span>
-<div class="newline"></div><span class="o">%</span><span class="p">}</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="cm">/*  typemaps for the two arrays, the second will be modified in-place */</span>
-<div class="newline"></div><span class="o">%</span><span class="n">apply</span> <span class="p">(</span><span class="kt">double</span><span class="o">*</span> <span class="n">IN_ARRAY1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">DIM1</span><span class="p">)</span> <span class="p">{(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size_in</span><span class="p">)}</span>
-<div class="newline"></div><span class="o">%</span><span class="n">apply</span> <span class="p">(</span><span class="kt">double</span><span class="o">*</span> <span class="n">INPLACE_ARRAY1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">DIM1</span><span class="p">)</span> <span class="p">{(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size_out</span><span class="p">)}</span>
-<div class="newline"></div>
-<div class="newline"></div><span class="cm">/*  Wrapper for cos_doubles that massages the types */</span>
-<div class="newline"></div><span class="o">%</span><span class="kr">inline</span> <span class="o">%</span><span class="p">{</span>
-<div class="newline"></div>    <span class="cm">/*  takes as input two numpy arrays */</span>
-<div class="newline"></div>    <span class="kt">void</span> <span class="n">cos_doubles_func</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size_in</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size_out</span><span class="p">)</span> <span class="p">{</span>
-<div class="newline"></div>        <span class="cm">/*  calls the original funcion, providing only the size of the first */</span>
-<div class="newline"></div>        <span class="n">cos_doubles</span><span class="p">(</span><span class="n">in_array</span><span class="p">,</span> <span class="n">out_array</span><span class="p">,</span> <span class="n">size_in</span><span class="p">);</span>
-<div class="newline"></div>    <span class="p">}</span>
-<div class="newline"></div><span class="o">%</span><span class="p">}</span>
-<div class="newline"></div></pre></div>
+<div class="highlight-c"><pre>/*  Example of wrapping a C function that takes a C double array as input using
+ *  numpy typemaps for SWIG. */
+
+%module cos_doubles
+%{
+    /* the resulting C file should be built as a python extension */
+    #define SWIG_FILE_WITH_INIT
+    /*  Includes the header in the wrapper code */
+    #include "cos_doubles.h"
+%}
+
+/*  include the numpy typemaps */
+%include "numpy.i"
+/*  need this for correct module initialization */
+%init %{
+    import_array();
+%}
+
+/*  typemaps for the two arrays, the second will be modified in-place */
+%apply (double* IN_ARRAY1, int DIM1) {(double * in_array, int size_in)}
+%apply (double* INPLACE_ARRAY1, int DIM1) {(double * out_array, int size_out)}
+
+/*  Wrapper for cos_doubles that massages the types */
+%inline %{
+    /*  takes as input two numpy arrays */
+    void cos_doubles_func(double * in_array, int size_in, double * out_array, int size_out) {
+        /*  calls the original funcion, providing only the size of the first */
+        cos_doubles(in_array, out_array, size_in);
+    }
+%}
+</pre>
 </div>
 <ul class="simple">
 <li>To use the Numpy typemaps, we need include the <tt class="docutils literal"><span class="pre">numpy.i</span></tt> file.</li>
@@ -1073,14 +1073,14 @@ want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
 is a section about this in the <a class="reference external" href="http://wiki.cython.org/tutorials/NumpyPointerToC">Cython wiki</a>.</p>
 <p>In the following example, we will show how to wrap the familiar <tt class="docutils literal"><span class="pre">cos_doubles</span></tt>
 function using Cython.</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 <div class="newline"></div></pre></div>
 </div>
 <div class="highlight-c"><div class="highlight"><pre><span class="cp">#include &lt;math.h&gt;</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="cm">/*  Compute the cosine of each element in in_array, storing the result in</span>
 <div class="newline"></div><span class="cm"> *  out_array. */</span>
-<div class="newline"></div><span class="kt">void</span> <span class="n">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
+<div class="newline"></div><span class="kt">void</span> <span class="nf">cos_doubles</span><span class="p">(</span><span class="kt">double</span> <span class="o">*</span> <span class="n">in_array</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out_array</span><span class="p">,</span> <span class="kt">int</span> <span class="n">size</span><span class="p">){</span>
 <div class="newline"></div>    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
 <div class="newline"></div>    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">size</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
 <div class="newline"></div>        <span class="n">out_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">in_array</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
@@ -1312,13 +1312,13 @@ you, thus making it more like the Numpy-C-API example.</li>
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../../packages/index.html" title="3. Packages and applications"
+          <a href="../../packages/index.html" title="3. Paquetes y aplicaciones"
              >siguiente</a></li>
         <li class="right" >
           <a href="../mathematical_optimization/index.html" title="2.7. Mathematical optimization: finding minima of functions"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >2. Advanced topics</a> &raquo;</li>
+          <li><a href="../index.html" >2. Temas avanzados</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
     <li class="left">

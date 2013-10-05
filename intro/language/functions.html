@@ -104,7 +104,7 @@
           <a href="control_flow.html" title="1.2.3. Control de flujo"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -223,7 +223,8 @@
 </div>
 <div class="admonition tip">
 <p class="first admonition-title">Truco</p>
-<p>Un ejemplo que se parece a la segmentación de Python:</p>
+<p class="last">Un ejemplo que se parece a la segmentación de Python:</p>
+</div>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [98]: </span><span class="k">def</span> <span class="nf">segmento</span><span class="p">(</span><span class="n">secuencia</span><span class="p">,</span> <span class="n">inicio</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paso</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="sd">&quot;&quot;&quot;Implementacion basica de segmentacion python.&quot;&quot;&quot;</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">return</span> <span class="n">secuencia</span><span class="p">[</span><span class="n">inicio</span><span class="p">:</span><span class="n">final</span><span class="p">:</span><span class="n">paso</span><span class="p">]</span>
@@ -252,23 +253,17 @@
 <div class="newline"></div><span class="gr">Out[107]: </span><span class="p">[</span><span class="s">&#39;uno,&#39;</span><span class="p">,</span> <span class="s">&#39;dos,&#39;</span><span class="p">]</span>
 <div class="newline"></div></pre></div>
 </div>
-<p class="last">pero es una buena práctica usar el mismo orden que en la definición.</p>
-</div>
+<p>pero es una buena práctica usar el mismo orden que en la definición.</p>
 <p>Los <em>argumentos con nombre</em> son una característica muy conveniente para la definición de funciones con un número variable de argumentos, sobre todo cuando los valores por defecto se usan en la mayoría de las llamadas a la función.</p>
 </div>
 <div class="section" id="paso-por-valor">
 <h2>1.2.4.4. Paso por valor<a class="headerlink" href="#paso-por-valor" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="admonition tip">
 <p class="first admonition-title">Truco</p>
-<p>Se puede modificar el valor de una variable dentro una función? La mayoría de los lenguajes (C, Java, ...) distinguen <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">valor</span></tt> y <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">referencia</span></tt>.
-En Python, tal distinción es un tanto artificial, y es un poco sutil si las variables serán modificadas o no.
-Afortunadamente, existen reglas claras.</p>
-<p class="last">Los parámetros a funciones son referencias a los objetos, que se pasan por valor. Cuando se pasa una variable a una función, Python pasa la referencia al objeto al que hace referencia la variable (el <strong>valor</strong>).
-No es la propia variable.</p>
+<p class="last">Se puede modificar el valor de una variable dentro una función? La mayoría de los lenguajes (C, Java, ...) distinguen <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">valor</span></tt> y <tt class="docutils literal"><span class="pre">el</span> <span class="pre">paso</span> <span class="pre">por</span> <span class="pre">referencia</span></tt>. En Python, tal distinción es un tanto artificial, y es un poco sutil si las variables serán modificadas o no. Afortunadamente, existen reglas claras.</p>
 </div>
-<p>Si el <strong>valor</strong> pasado a una función es inmutable, la función no
-modificar la variable llamada. Si el <strong>valor</strong> es mutable, la función
-puede modificar la variable llamada sobre la marcha:</p>
+<p>Los parámetros a funciones son referencias a los objetos, que se pasan por valor. Cuando se pasa una variable a una función, Python pasa la referencia al objeto al que hace referencia la variable (el <strong>valor</strong>). No es la propia variable.</p>
+<p>Si el <strong>valor</strong> pasado a una función es inmutable, la función no modifica la variable llamada. Si el <strong>valor</strong> es mutable, la función puede modificar la variable</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">intenta_modificar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="mi">23</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -308,8 +303,7 @@ puede modificar la variable llamada sobre la marcha:</p>
 <div class="newline"></div><span class="gr">Out[116]: </span><span class="mi">15</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Pero estas variables <tt class="docutils literal"><span class="pre">globales</span></tt> no se pueden modificar dentro de la función,
-a menos que se declare como <strong>global</strong> en la función.</p>
+<p>Pero estas variables <tt class="docutils literal"><span class="pre">globales</span></tt> no se pueden modificar dentro de la función, a menos que se declare como <strong>global</strong> en la función.</p>
 <p>Esto no funciona:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [117]: </span><span class="k">def</span> <span class="nf">asigna_x</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   .....:</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
@@ -342,14 +336,11 @@ a menos que se declare como <strong>global</strong> en la función.</p>
 </div>
 <div class="section" id="numero-variable-de-parametros">
 <h2>1.2.4.6. Número variable de parámetros<a class="headerlink" href="#numero-variable-de-parametros" title="Enlazar permanentemente con este título">¶</a></h2>
-<dl class="docutils">
-<dt>Formas especiales de los parámetros:</dt>
-<dd><ul class="first last simple">
+<p>Formas especiales de los parámetros:</p>
+<ul class="simple">
 <li><tt class="docutils literal"><span class="pre">*args</span></tt>: cualquier número de argumentos posicionales en una tupla</li>
 <li><tt class="docutils literal"><span class="pre">**kwargs</span></tt>: cualquier número de argumentos con nombre en un diccionario</li>
 </ul>
-</dd>
-</dl>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [35]: </span><span class="k">def</span> <span class="nf">argumentos_variables</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;args es&#39;</span><span class="p">,</span> <span class="n">args</span>
 <div class="newline"></div><span class="gp">   ....:</span>     <span class="k">print</span> <span class="s">&#39;kwargs es&#39;</span><span class="p">,</span> <span class="n">kwargs</span>
@@ -393,15 +384,12 @@ a menos que se declare como <strong>global</strong> en la función.</p>
 </div>
 <div class="section" id="las-funciones-son-objectos">
 <h2>1.2.4.8. Las funciones son objectos<a class="headerlink" href="#las-funciones-son-objectos" title="Enlazar permanentemente con este título">¶</a></h2>
-<dl class="docutils">
-<dt>Las funciones son la primera clase de objetos, lo que significa que puede:</dt>
-<dd><ul class="first last simple">
+<p>Las funciones son la primera clase de objetos, lo que significa que puede:</p>
+<ul class="simple">
 <li>asignarse a una variable</li>
 <li>ser un elemento de una lista (o cualquier colección)</li>
 <li>ser pasado como argumento a otra función.</li>
 </ul>
-</dd>
-</dl>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [38]: </span><span class="n">va</span> <span class="o">=</span> <span class="n">argumentos_variables</span>
 <div class="newline"></div>
 <div class="newline"></div><span class="gp">In [39]: </span><span class="n">va</span><span class="p">(</span><span class="s">&#39;tres&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -418,14 +406,16 @@ a menos que se declare como <strong>global</strong> en la función.</p>
 <h2>1.2.4.10. Ejercicios<a class="headerlink" href="#ejercicios" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="green topic">
 <p class="topic-title first">Ejercicio: Serie de Fibonacci</p>
-<p>Escriba una función que muestre los <tt class="docutils literal"><span class="pre">n</span></tt> primeros términos de la serie de Fibonacci , definido por:</p>
-<ul class="simple">
+<p>Escriba una función que muestre los <tt class="docutils literal"><span class="pre">n</span></tt> primeros términos de la serie de Fibonacci, definido por:</p>
+<blockquote>
+<div><ul class="simple">
 <li><tt class="docutils literal"><span class="pre">u_0</span> <span class="pre">=</span> <span class="pre">1;</span> <span class="pre">u_1</span> <span class="pre">=</span> <span class="pre">1</span></tt></li>
 <li><tt class="docutils literal"><span class="pre">u_(n+2)</span> <span class="pre">=</span> <span class="pre">u_(n+1)</span> <span class="pre">+</span> <span class="pre">u_n</span></tt></li>
 </ul>
+</div></blockquote>
 </div>
 <div class="green topic">
-<p class="topic-title first">Exercise: Quicksort</p>
+<p class="topic-title first">Ejercicio: Quicksort</p>
 <p>Implemente el algoritmo quicksort, definido por wikipedia:</p>
 <dl class="docutils">
 <dt>function quicksort(array)</dt>
@@ -461,7 +451,7 @@ else append x to greater</div></blockquote>
           <a href="control_flow.html" title="1.2.3. Control de flujo"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->

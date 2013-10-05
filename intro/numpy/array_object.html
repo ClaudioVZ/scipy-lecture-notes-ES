@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../../index.html" />
     <link rel="up" title="1.3. NumPy: creación y manipulación de datos numéricos" href="index.html" />
-    <link rel="next" title="1.3.2. Operaciones numéricas en arreglos" href="operations.html" />
+    <link rel="next" title="1.3.2. Operaciones numéricas con arreglos" href="operations.html" />
     <link rel="prev" title="1.3. NumPy: creación y manipulación de datos numéricos" href="index.html" /> 
   </head>
   <body>
@@ -98,13 +98,13 @@
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="operations.html" title="1.3.2. Operaciones numéricas en arreglos"
+          <a href="operations.html" title="1.3.2. Operaciones numéricas con arreglos"
              accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="index.html" title="1.3. NumPy: creación y manipulación de datos numéricos"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">1.3. NumPy: creación y manipulación de datos numéricos</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -134,9 +134,9 @@
 <ul class="simple">
 <li><a class="reference internal" href="#que-es-numpy-y-los-array-numpy" id="id1">Que es Numpy y los array numpy</a></li>
 <li><a class="reference internal" href="#documentacion-de-referencia" id="id2">Documentación de referencia</a></li>
-<li><a class="reference internal" href="#import-conventions" id="id3">Import conventions</a></li>
+<li><a class="reference internal" href="#convencion-para-importar" id="id3">Convención para importar</a></li>
 <li><a class="reference internal" href="#creando-arreglos" id="id4">Creando arreglos</a></li>
-<li><a class="reference internal" href="#functions-for-creating-arrays" id="id5">Functions for creating arrays</a></li>
+<li><a class="reference internal" href="#funciones-para-crear-arreglos" id="id5">Funciones para crear arreglos</a></li>
 <li><a class="reference internal" href="#tipos-de-datos-basicos" id="id6">Tipos de datos básicos</a></li>
 <li><a class="reference internal" href="#visualizacion-basica" id="id7">Visualización básica</a></li>
 <li><a class="reference internal" href="#indexado-y-segmentado" id="id8">Indexado y segmentado</a></li>
@@ -181,15 +181,13 @@
 <div class="admonition tip">
 <p class="first admonition-title">Truco</p>
 <p><strong>Por ejemplo:</strong> Una arreglo contiene:</p>
-<blockquote class="last">
-<div><ul class="simple">
+<ul class="last simple">
 <li>valores de un experimento/simulación en intervalos de tiempo discreto</li>
 <li>señal grabada por un dispositivo de medición, por ejemplo, onda de sonido</li>
 <li>píxeles de una imagen en escala de grises o en color</li>
 <li>datos 3-D que miden diferentes posiciones XYZ, por ejemplo, imagen de resonancia magnética (MRI)</li>
 <li>...</li>
 </ul>
-</div></blockquote>
 </div>
 <p><strong>Por qué es útil:</strong> Los contenedores eficientes en memoria, proporcionan operaciones numéricas rápidas.</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
@@ -252,18 +250,18 @@
 </li>
 </ul>
 </div>
-<div class="section" id="import-conventions">
-<h2><a class="toc-backref" href="#id3">1.3.1.3. Import conventions</a><a class="headerlink" href="#import-conventions" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>The general convention to import numpy is:</p>
-<div class="highlight-pycon"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="section" id="convencion-para-importar">
+<h2><a class="toc-backref" href="#id3">1.3.1.3. Convención para importar</a><a class="headerlink" href="#convencion-para-importar" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La convención general para importar numpy es:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Using this style of import is recommended.</p>
+<p>El uso de este tipo de importación es recomendada.</p>
 </div>
 <div class="section" id="creando-arreglos">
 <h2><a class="toc-backref" href="#id4">1.3.1.4. Creando arreglos</a><a class="headerlink" href="#creando-arreglos" title="Enlazar permanentemente con este título">¶</a></h2>
 <ul>
-<li><p class="first"><strong>1-D</strong>:</p>
+<li><p class="first"><strong>1-D</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3])</span>
@@ -276,7 +274,7 @@
 <div class="newline"></div></pre></div>
 </div>
 </li>
-<li><p class="first"><strong>2-D, 3-D, ...</strong>:</p>
+<li><p class="first"><strong>2-D, 3-D, ...</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]])</span>    <span class="c"># arreglo 2 x 3</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span>
 <div class="newline"></div><span class="go">array([[0, 1, 2],</span>
@@ -302,21 +300,21 @@
 </li>
 </ul>
 <div class="green topic">
-<p class="topic-title first"><strong>Exercise: Simple arrays</strong></p>
+<p class="topic-title first"><strong>Ejercicio: Arreglos simples</strong></p>
 <ul class="simple">
-<li>Create simple one and two dimensional arrays. First, redo the examples
-from above. And then create your own.</li>
-<li>Use the functions <tt class="docutils literal"><span class="pre">len</span></tt>, <tt class="docutils literal"><span class="pre">shape</span></tt> and <tt class="docutils literal"><span class="pre">ndim</span></tt> on some of those
-arrays and observe their output.</li>
+<li>Crear arreglos simples unidimensionales y bidimensionales. Hacer de nuevo los ejemplos de arriba y luego crear unos propios.</li>
+<li>Utilice las funciones <tt class="docutils literal"><span class="pre">len</span></tt>, <tt class="docutils literal"><span class="pre">shape</span></tt> y <tt class="docutils literal"><span class="pre">ndim</span></tt> en algunos de esos arreglos y observe su salida.</li>
 </ul>
 </div>
 </div>
-<div class="section" id="functions-for-creating-arrays">
-<h2><a class="toc-backref" href="#id5">1.3.1.5. Functions for creating arrays</a><a class="headerlink" href="#functions-for-creating-arrays" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="funciones-para-crear-arreglos">
+<h2><a class="toc-backref" href="#id5">1.3.1.5. Funciones para crear arreglos</a><a class="headerlink" href="#funciones-para-crear-arreglos" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>En la práctica, rara vez introducimos los items uno por uno ...</p>
-<ul>
-<li><p class="first">Uniformemente espaciados:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<ul class="simple">
+<li>Uniformemente espaciados</li>
+</ul>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c"># 0 ... n-1  (!)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
@@ -325,9 +323,12 @@ arrays and observe their output.</li>
 <div class="newline"></div><span class="go">array([1, 3, 5, 7])</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first">o por número de puntos:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c"># inicio, final, número de puntos</span>
+</div></blockquote>
+<ul class="simple">
+<li>o por número de puntos</li>
+</ul>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>   <span class="c"># inicio, final, número de puntos</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span>
 <div class="newline"></div><span class="go">array([ 0. ,  0.2,  0.4,  0.6,  0.8,  1. ])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -335,9 +336,12 @@ arrays and observe their output.</li>
 <div class="newline"></div><span class="go">array([ 0. ,  0.2,  0.4,  0.6,  0.8])</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first">Arreglos comunes:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c"># recuerde: (3, 3) es una tupla</span>
+</div></blockquote>
+<ul class="simple">
+<li>Arreglos comunes</li>
+</ul>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>  <span class="c"># recuerde: (3, 3) es una tupla</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([[ 1.,  1.,  1.],</span>
 <div class="newline"></div><span class="go">       [ 1.,  1.,  1.],</span>
@@ -359,9 +363,12 @@ arrays and observe their output.</li>
 <div class="newline"></div><span class="go">       [0, 0, 0, 4]])</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first"><tt class="xref py py-mod docutils literal"><span class="pre">np.random</span></tt>: números seudoaleatorios (Mersenne Twister PRNG):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>       <span class="c"># uniformes in [0, 1]</span>
+</div></blockquote>
+<ul class="simple">
+<li><tt class="xref py py-mod docutils literal"><span class="pre">np.random</span></tt>: números seudoaleatorios (Mersenne Twister PRNG)</li>
+</ul>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>       <span class="c"># uniformes in [0, 1]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])</span>
 <div class="newline"></div>
@@ -372,11 +379,10 @@ arrays and observe their output.</li>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>        <span class="c"># Establece la semilla aleatoria</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-</ul>
+</div></blockquote>
 <div class="green topic">
 <p class="topic-title first"><strong>Ejercicio: Creación de arreglos</strong></p>
-<p>Crear los siguientes arreglos (con los tipos de datos correctos):</p>
+<p>Crear los siguientes arreglos (con los tipos de datos correctos)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
 <div class="newline"></div> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
@@ -391,8 +397,8 @@ arrays and observe their output.</li>
 <div class="newline"></div></pre></div>
 </div>
 <p>Para el curso: 3 casos de cada uno</p>
-<p><em>Hint</em>: A los elementos de un arreglo se acceden de igual forma que una lista, por ejemplo <tt class="docutils literal"><span class="pre">a[1]</span></tt> or <tt class="docutils literal"><span class="pre">a[1,</span> <span class="pre">2]</span></tt>.</p>
-<p><em>Hint</em>: Examine el docstring para <tt class="docutils literal"><span class="pre">diag</span></tt>.</p>
+<p><em>Sugerencia</em>: A los elementos de un arreglo se acceden de igual forma que una lista, por ejemplo <tt class="docutils literal"><span class="pre">a[1]</span></tt> or <tt class="docutils literal"><span class="pre">a[1,</span> <span class="pre">2]</span></tt>.</p>
+<p><em>Sugerencia</em>: Examine el docstring para <tt class="docutils literal"><span class="pre">diag</span></tt>.</p>
 </div>
 <div class="green topic">
 <p class="topic-title first">Ejercicio: Crear arreglos en mosaicos</p>
@@ -407,7 +413,7 @@ arrays and observe their output.</li>
 </div>
 <div class="section" id="tipos-de-datos-basicos">
 <h2><a class="toc-backref" href="#id6">1.3.1.6. Tipos de datos básicos</a><a class="headerlink" href="#tipos-de-datos-basicos" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Usted puede haber notado que, en algunos casos, los elementos de la matriz se muestran con un punto (por ejemplo, <tt class="docutils literal"><span class="pre">2.</span></tt> vs <tt class="docutils literal"><span class="pre">2</span></tt>). Esto se debe a los tipos de datos utilizados</p>
+<p>Usted puede haber notado que, en algunos casos, los elementos del arreglo se muestran con un punto (por ejemplo, <tt class="docutils literal"><span class="pre">2.</span></tt> vs <tt class="docutils literal"><span class="pre">2</span></tt>). Esto se debe a los tipos de datos utilizados</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
 <div class="newline"></div><span class="go">dtype(&#39;int64&#39;)</span>
@@ -423,7 +429,7 @@ arrays and observe their output.</li>
 Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el tipo de datos a partir de la entrada.</p>
 </div>
 <hr class="docutils" />
-<p>Puede especificar explícitamente qué tipo de datos desea:</p>
+<p>Puede especificar explícitamente qué tipo de datos desea</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">dtype</span>
 <div class="newline"></div><span class="go">dtype(&#39;float64&#39;)</span>
@@ -443,7 +449,7 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Complejos:</th><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">+</span><span class="mi">2</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="n">j</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="p">])</span>
+<tr class="field-odd field"><th class="field-name">Complejos:</th><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">+</span><span class="mi">2j</span><span class="p">,</span> <span class="mi">3</span><span class="o">+</span><span class="mi">4j</span><span class="p">,</span> <span class="mi">5</span><span class="o">+</span><span class="mi">6</span><span class="o">*</span><span class="mi">1j</span><span class="p">])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">dtype</span>
 <div class="newline"></div><span class="go">dtype(&#39;complex128&#39;)</span>
 <div class="newline"></div></pre></div>
@@ -485,7 +491,7 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 <div class="newline"></div></pre></div>
 </div>
 <ul>
-<li><p class="first"><strong>Arreglos 1D</strong>:</p>
+<li><p class="first"><strong>Arreglos 1D</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>       <span class="c"># gráfica con línea continua</span>
@@ -498,7 +504,7 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 <p>[<a class="reference external" href="../../plot_directive/pyplots/numpy_intro_1.py">source code</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_1.hires.png">hires.png</a>, <a class="reference external" href="../../plot_directive/pyplots/numpy_intro_1.pdf">pdf</a>]</p>
 <img alt="../../_images/numpy_intro_1.png" src="../../_images/numpy_intro_1.png" />
 </li>
-<li><p class="first"><strong>Arreglos 2D</strong> (como las imágenes):</p>
+<li><p class="first"><strong>Arreglos 2D</strong> (como las imágenes)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">hot</span><span class="p">)</span>
 <div class="newline"></div><span class="go">&lt;matplotlib.image.AxesImage at 0xb763f0c&gt;</span>
@@ -516,7 +522,7 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 </li>
 <li><p class="first"><strong>Trazado 3D</strong></p>
 <p>Para la visualización 3D, podemos utilizar otro paquete: <strong>Mayavi</strong>. Un ejemplo rápido: <strong>iniciar IPython</strong> con estas opciones: <strong>ipython -pylab=wx</strong> (o <strong>ipython -pylab -wthread</strong> en IPython &lt; 0.10).</p>
-<a class="reference internal image-reference" href="intro/numpy/images/surf.png"><img alt="intro/numpy/images/surf.png" class="align-right" src="intro/numpy/images/surf.png" /></a>
+<a class="reference internal image-reference" href="../../_images/surf.png"><img alt="../../_images/surf.png" class="align-right" src="../../_images/surf.png" style="width: 238.8px; height: 189.6px;" /></a>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [58]: </span><span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <div class="newline"></div><span class="gp">In [61]: </span><span class="n">mlab</span><span class="o">.</span><span class="n">surf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
 <div class="newline"></div><span class="gr">Out[61]: </span><span class="o">&lt;</span><span class="n">enthought</span><span class="o">.</span><span class="n">mayavi</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">surface</span><span class="o">.</span><span class="n">Surface</span> <span class="nb">object</span> <span class="n">at</span> <span class="o">...&gt;</span>
@@ -539,7 +545,7 @@ Tenga en cuenta que, en el ejemplo anterior, NumPy detecta automáticamente el t
 <div class="section" id="indexado-y-segmentado">
 <h2><a class="toc-backref" href="#id8">1.3.1.8. Indexado y segmentado</a><a class="headerlink" href="#indexado-y-segmentado" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Los elementos de un arreglo se puede acceder y asignar de la misma forma que
-otras secuencias de Python (por ejemplo, listas):</p>
+otras secuencias de Python (por ejemplo, listas)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
@@ -549,10 +555,9 @@ otras secuencias de Python (por ejemplo, listas):</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Advertencia</p>
-<p class="last">Los indices comienzan en 0, al igual que otras secuencias de Python (y C/C++).
-En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
+<p class="last">Los indices comienzan en 0, al igual que otras secuencias de Python (y C/C++). En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 </div>
-<p>En arreglos multidimensionales, los índices son tuplas de números enteros:</p>
+<p>En arreglos multidimensionales, los índices son tuplas de números enteros</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([[0, 0, 0],</span>
@@ -574,7 +579,7 @@ En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 <li>En 2D, la primera dimensión corresponde a las filas, la segunda a las columnas.</li>
 <li>Para un arreglo multidimensional <tt class="docutils literal"><span class="pre">a</span></tt>, <tt class="docutils literal"><span class="pre">a[0]</span></tt> es interpretado teniendo todos los elementos en las dimensiones especificadas.</li>
 </ul>
-<p><strong>Segmentado</strong> de arreglos, al igual que otras secuencias de Python también pueden ser segmentadas:</p>
+<p><strong>Segmentado</strong> de arreglos, al igual que otras secuencias de Python también pueden ser segmentadas</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
@@ -582,12 +587,12 @@ En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 <div class="newline"></div><span class="go">array([2, 5, 8])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Tenga en cuenta que el último índice no es incluido!:</p>
+<p>Tenga en cuenta que el último índice no es incluido!</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Los tres argumentos de segmentado no son necesarios: por defecto, <cite>inicio</cite> es 0, <cite>final</cite> es el último y <cite>paso</cite> es 1:</p>
+<p>Los tres argumentos de segmentado no son necesarios: por defecto, <tt class="xref py py-obj docutils literal"><span class="pre">inicio</span></tt> es 0, <tt class="xref py py-obj docutils literal"><span class="pre">final</span></tt> es el último y <tt class="xref py py-obj docutils literal"><span class="pre">paso</span></tt> es 1</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 <div class="newline"></div><span class="go">array([1, 2])</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
@@ -597,13 +602,13 @@ En contraste, en Fortran o Matlab, los índices comienzan en 1.</p>
 <div class="newline"></div></pre></div>
 </div>
 <p>Un pequeño resumen ilustrado de indexado y segmentado en Numpy ...</p>
-<img alt="intro/numpy/images/numpy_indexing.png" class="align-center" src="intro/numpy/images/numpy_indexing.png" style="width: 65%;" />
+<img alt="../../_images/numpy_indexing.png" class="align-center" src="../../_images/numpy_indexing.png" style="width: 65%;" />
 </div>
 <div class="section" id="copias-y-vistas">
 <h2><a class="toc-backref" href="#id9">1.3.1.9. Copias y vistas</a><a class="headerlink" href="#copias-y-vistas" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Una operación de segmentado crea una <strong>vista</strong> del arreglo original, que es
 sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo original no es copiado en memoria.</p>
-<p><strong>Al modificar una vista, la matriz original es modificado</strong>:</p>
+<p><strong>Al modificar una vista, la matriz original es modificado</strong></p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
@@ -628,7 +633,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 <div class="admonition warning">
 <p class="first admonition-title">Advertencia</p>
 <p><strong>La transpuesta es una vista</strong></p>
-<p>Como resultado, una matriz no puede simétrica sobre la marcha:</p>
+<p>Como resultado, una matriz no puede simétrica sobre la marcha</p>
 <div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+=</span> <span class="n">a</span><span class="o">.</span><span class="n">T</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
@@ -644,26 +649,29 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </div>
 <div class="green topic">
 <p class="topic-title first">Ejemplo práctico: Criba de números primos</p>
-<img alt="intro/numpy/images/prime-sieve.png" src="intro/numpy/images/prime-sieve.png" />
+<img alt="../../_images/prime-sieve.png" src="../../_images/prime-sieve.png" />
 <p>Calcular los números primos en 0&#8211;99, con una criba</p>
-<ul>
-<li><p class="first">Construir un arreglo booleano <tt class="docutils literal"><span class="pre">es_primo</span></tt> con 100 elementos, en el principio todos sus elementos son True:</p>
+<ul class="simple">
+<li>Construir un arreglo booleano <tt class="docutils literal"><span class="pre">es_primo</span></tt> con 100 elementos, en el principio todos sus elementos son True</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">es_primo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first">Descartar 0 y 1 porque no son primos:</p>
+<ul class="simple">
+<li>Descartar 0 y 1 porque no son primos</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">es_primo</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c"># 0 es False, 1 es True</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first">Para cada número entero <tt class="docutils literal"><span class="pre">j</span></tt> a partir de 2, descartar sus múltiplos superiores:</p>
+<ul class="simple">
+<li>Para cada número entero <tt class="docutils literal"><span class="pre">j</span></tt> a partir de 2, descartar sus múltiplos superiores</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">numero_maximo</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">es_primo</span><span class="p">)))</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">numero_maximo</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">es_primo</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">j</span><span class="p">::</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
+<ul>
 <li><p class="first">Repase <tt class="docutils literal"><span class="pre">help(np.nonzero)</span></tt>, e imprima los números primos</p>
 </li>
 <li><p class="first">Pasos a seguir:</p>
@@ -674,7 +682,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </ul>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Descarte los <cite>j</cite> que ya son conocidos por no ser primos</li>
+<li>Descarte los <tt class="xref py py-obj docutils literal"><span class="pre">j</span></tt> que ya son conocidos por no ser primos</li>
 <li>El primer número para descartar es <img class="math" src="../../_images/math/d9714cf77a92cb89757ce29264f51a9edac2a072.png" alt="j^2" style="vertical-align: -6px"/></li>
 </ol>
 </div></blockquote>
@@ -703,7 +711,7 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 <div class="newline"></div><span class="go">array([ 3,  0,  9,  6,  0, 12])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>El indexado con máscara puede ser muy útil para asignar un nuevo valor a un subarreglo:</p>
+<p>El indexado con máscara puede ser muy útil para asignar un nuevo valor a un subarreglo</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[</span><span class="n">a</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c"># o tambien,  a[a%3==0] = -1</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([10, -1,  8, -1, 19, 10, 11, -1, 10, -1, -1, 20, -1,  7, 14])</span>
@@ -717,12 +725,12 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 <div class="newline"></div><span class="go">array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>El indexado se puede hacer con un arreglo de enteros, donde se repita el mismo índice varias veces:</p>
+<p>El indexado se puede hacer con un arreglo de enteros, donde se repita el mismo índice varias veces</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>  <span class="c"># nota: [2, 3, 2, 4, 2] es una lista Python</span>
 <div class="newline"></div><span class="go">array([2, 3, 2, 4, 2])</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Nuevos valores pueden ser asignados con este tipo de indexado:</p>
+<p>Nuevos valores pueden ser asignados con este tipo de indexado</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])</span>
@@ -742,8 +750,8 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
 </div>
 <hr class="docutils" />
 <p>La imagen a continuación muestra varias aplicaciones del indexado fancy</p>
-<img alt="intro/numpy/images/numpy_fancy_indexing.png" class="align-center" src="intro/numpy/images/numpy_fancy_indexing.png" style="width: 80%;" />
-<p>Incluso podemos utilizar el indexado fancy y <a class="reference internal" href="operations.html#broadcasting"><em>broadcasting</em></a> al mismo tiempo:</p>
+<img alt="../../_images/numpy_fancy_indexing.png" class="align-center" src="../../_images/numpy_fancy_indexing.png" style="width: 80%;" />
+<p>Incluso podemos utilizar el indexado fancy y <a class="reference internal" href="operations.html#broadcasting"><em>broadcasting</em></a> al mismo tiempo</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <div class="newline"></div><span class="go">array([[ 0,  1,  2,  3],</span>
@@ -769,13 +777,13 @@ sólo una forma de acceder a los datos de un arreglo. Por lo tanto el arreglo or
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="operations.html" title="1.3.2. Operaciones numéricas en arreglos"
+          <a href="operations.html" title="1.3.2. Operaciones numéricas con arreglos"
              >siguiente</a></li>
         <li class="right" >
           <a href="index.html" title="1.3. NumPy: creación y manipulación de datos numéricos"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="index.html" >1.3. NumPy: creación y manipulación de datos numéricos</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->

@@ -6,7 +6,7 @@
 .. _pi_wallis:
 
 La solución Pi Wallis
-----------------------
+---------------------
 
 Calcula los decimales de Pi usando la fórmula de Wallis:
 
@@ -15,7 +15,7 @@ Calcula los decimales de Pi usando la fórmula de Wallis:
 .. _quick_sort:
 
 La solución Quicksort
-----------------------
+---------------------
 
 Implementa el algoritmo quicksort tal como viene definido en la wikipedia:
 

@@ -32,7 +32,7 @@ Python Scientific Lecture Notes (Spanish translation)
 
     .. topic:: Este documento
 
-        Material didáctico para el ecosistema científico Python, una rápida introducción a las herramientas y técnicas centrales. Cada uno los diferentes capítulos corresponden a un curso de 1 a 2 horas con el aumento de nivel de experiencia, desde principiantes hasta expertos.
+        Material didáctico para el ecosistema científico Python, una rápida introducción a las herramientas y técnicas centrales. Cada uno de los diferentes capítulos corresponden a un curso de 1 a 2 horas con el aumento de nivel de experiencia, desde principiantes hasta expertos.
 
         .. toctree::
             :maxdepth: 1

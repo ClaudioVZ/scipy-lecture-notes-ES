@@ -2,15 +2,15 @@
 
 .. _matplotlib-label:
 
-====================
-Matplotlib: trazado
-====================
+=================================
+Matplotlib: Gráficas usando pylab
+=================================
 
 :Autores: Nicolas Rougier, Mike Müller, Gaël Varoquaux
 
 .. sidebar:: **Agradecimientos**
 
-    Muchas gracias a **Bill Wing** y **Christoph Deil** por revisar y corregir.
+   Muchas gracias a **Bill Wing** y **Christoph Deil** por revisar y corregir.
 
 .. contents:: Contenido
    :local:
@@ -37,7 +37,9 @@ Gráfica simple
 
 En esta sección, llamaremos a las funciones seno y coseno en la misma gráfica. A partir de la configuración por defecto, vamos a enriquecer la figura paso a paso para que sea más agradable.
 
-El primer paso es obtener los datos para las funciones seno y coseno::
+El primer paso es obtener los datos para las funciones seno y coseno
+
+.. code-block:: python
 
    import numpy as np
 
@@ -47,24 +49,30 @@ El primer paso es obtener los datos para las funciones seno y coseno::
 
 X es ahora un arreglo numpy con 256 valores que van desde -π a +π (incluido). C es la función coseno (256 valores) y S es la función seno (256 valores).
 
-Para ejecutar el ejemplo, teclee los comandos en una sesión interactiva IPython::
+Para ejecutar el ejemplo, teclee los comandos en una sesión interactiva IPython
 
-    $ ipython --pylab
+.. sourcecode:: bash
 
-Esto nos lleva a el shell IPython::
+   $ ipython --pylab
 
-    IPython 0.13 -- An enhanced Interactive Python.
-    ?       -> Introduction to IPython's features.
-    %magic  -> Information about IPython's 'magic' % functions.
-    help    -> Python's own help system.
-    object? -> Details about 'object'. ?object also works, ?? prints more.
+Esto nos lleva a el shell IPython
+
+.. sourcecode:: bash
+
+   IPython 0.13 -- An enhanced Interactive Python.
+   ?       -> Introduction to IPython's features.
+   %magic  -> Information about IPython's 'magic' % functions.
+   help    -> Python's own help system.
+   object? -> Details about 'object'. ?object also works, ?? prints more.
     
-    Welcome to pylab, a matplotlib-based Python environment.
-    For more information, type 'help(pylab)'.
+   Welcome to pylab, a matplotlib-based Python environment.
+   For more information, type 'help(pylab)'.
 
-o puede descargar cada uno de los ejemplos y ejecutarlo usando el intérprete estandar python::
+o puede descargar cada uno de los ejemplos y ejecutarlo usando el intérprete estandar python
 
-    $ python exercice_1.py
+.. sourcecode:: bash
+
+   $ python exercice_1.py
 
 Usted puede obtener el código para cada paso haciendo clic en la figura correspondiente.
 
@@ -81,7 +89,9 @@ Valores por defecto
    * `Tutorial pyplot <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
    * `Comando plot() <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
-Matplotlib viene con un conjunto de valores predeterminados que permiten la personalización de todos los tipos de propiedades. Puede controlar los valores predeterminados de casi todas las propiedades en matplotlib: tamaño de figura y dpi, grosor de línea, color y estilo, ejes , ejes y propiedades de cuadrícula, propiedades de texto y fuente, etc. ::
+Matplotlib viene con un conjunto de valores predeterminados que permiten la personalización de todos los tipos de propiedades. Puede controlar los valores predeterminados de casi todas las propiedades en matplotlib: tamaño de figura y dpi, grosor de línea, color y estilo, ejes , ejes y propiedades de cuadrícula, propiedades de texto y fuente, etc.
+
+.. code-block:: python
 
    import pylab as pl
    import numpy as np
@@ -106,7 +116,9 @@ Instancias por defecto
 
    *  `Personalizando matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
 
-En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver `Line properties`_ y `Line styles`_ más abajo).::
+En el siguiente script, hemos creado una instancia (y comentamos) todos los ajustes de la figura que influyen en la aparición del gráfico. Los ajustes son explícitos para configurar los valores predeterminados, pero usted puede jugar interactivamente con los valores para explorar su efecto (ver `Line properties`_ y `Line styles`_ más abajo).
+
+.. code-block:: python
 
    import pylab as pl
    import numpy as np
@@ -158,7 +170,9 @@ Cambiar colores y grosor de línea
    * `API línea <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
 
 Primer paso, queremos mostrar la función coseno en azul, la función seno en rojo y un
-línea ligeramente más gruesa para ambas funciones. También vamos a modificar el tamaño para que sea ligeramente más horizontal. ::
+línea ligeramente más gruesa para ambas funciones. También vamos a modificar el tamaño para que sea ligeramente más horizontal.
+
+.. code-block:: python
 
    ...
    pl.figure(figsize=(10, 6), dpi=80)
@@ -181,7 +195,7 @@ Establecer límites
 
 Debido a los límites actuales la figura se muestra un poco ajustada, cambiamos los límites con el fin de ver con claridad todos los puntos.
 
-::
+.. code-block:: python
 
    ...
    pl.xlim(X.min() * 1.1, X.max() * 1.1)
@@ -206,7 +220,7 @@ Configurando graduación de ejes
 Los graduación actual no es ideal, ya que no muestran los valores requeridos
 (+/-π,+/-π/2) para la función seno y la función coseno. Los cambiamos de tal manera que sólo muestren estos valores.
 
-::
+.. code-block:: python
 
    ...
    pl.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
@@ -231,7 +245,7 @@ Configurando etiquetas graduadas
 
 Las graduaciones están correctamente colocadas, pero su etiqueta no es muy explícita. Podríamos suponer que 3.142 es π pero es mejor hacerlo de forma explícita. Cuando establecemos los valores de graduación, también podemos proporcionar una etiqueta correspondiente en el segundo argumento de la lista. Tenga en cuenta que vamos a utilizar látex para permitir una buena renderización de la etiqueta.
 
-::
+.. code-block:: python
 
    ...
    pl.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
@@ -257,7 +271,7 @@ Moviendo spines
 
 Los spines son las líneas que unen las marcas de graduación del eje y muestran los límites de datos. Se pueden colocar en posiciones arbitrarias, hasta ahora estaban en el borde del eje. Vamos a cambiar eso, ya que queremos tener en el medio. Puesto que hay cuatro de ellos (arriba/abajo/izquierda/derecha), vamos a descartar la parte superior y derecha al establecer su color a ninguno y vamos a mover la parte inferior y la izquierdas para coordinar 0 en las coordenadas de datos.
 
-::
+.. code-block:: python
 
    ...
    ax = pl.gca()  # gca stands for 'get current axis'
@@ -286,7 +300,7 @@ Agregando una leyenda
 
 Vamos a añadir una leyenda en la esquina superior izquierda. Esto sólo requiere la adición de la palabra clave label (que se utilizará en el cuadro de la leyenda) en el comando plot.
 
-::
+.. code-block:: python
 
    ...
    pl.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
@@ -311,7 +325,7 @@ Anotaciones en puntos
 Vamos a anotar algunos puntos interesantes utilizando el comando de annotate. Elegimos el valor 2π/3 y queremos anotar tanto en la función seno y el coseno. Haremos primero
 dibujar un marcador en la curva, así como una línea de puntos recta. A continuación, vamos a utilizar el comando annotate que muestra parte del texto con una flecha.
 
-::
+.. code-block:: python
 
    ...
 
@@ -350,7 +364,7 @@ Las etiquetas graduadas ahora son apenas visibles debido a las líneas azules y 
 renderizados en un fondo blanco semi-transparente. Esto nos permitirá ver tanto
 los datos y las etiquetas.
 
-::
+.. code-block:: python
 
    ...
    for label in ax.get_xticklabels() + ax.get_yticklabels():
@@ -426,16 +440,18 @@ a continuación).
 Localizadoras de graduación (tick locators)
 ...........................................
 
-Las localizadoras de graduación controlan las posiciones de las graduaciones. Ellas se establecen como::
+Las localizadoras de graduación controlan las posiciones de las graduaciones. Ellas se establecen como
 
-    ax = pl.gca()
-    ax.xaxis.set_major_locator(eval(locator))
+.. code-block:: python
+
+   ax = pl.gca()
+   ax.xaxis.set_major_locator(eval(locator))
 
 Hay varios localizadores para diferentes tipos de requerimientos:
 
 .. image:: auto_examples/images/plot_ticks_1.png
-    :scale: 60
-    :target: auto_examples/plot_ticks.html
+   :scale: 60
+   :target: auto_examples/plot_ticks.html
 
 Todos estos localizadores derivan de la clase base matplotlib.ticker.Locator.
 Usted puede hacer su propio localizador derivandola de la clase base. Manipulación de fechas con graduaciones puede ser especialmente difícil. Por lo tanto, matplotlib proporciona localizadores especiales en matplotlib.dates.
@@ -488,13 +504,12 @@ Gráficos regulares
    :scale: 35
    :target: auto_examples/plot_plot_ex.html
 
-.. hint::
-
-   Es necesario utilizar el comando `fill_between
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_.
+.. hint:: Es necesario utilizar el comando `fill_between <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_.
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
-tomando en cuenta las zonas rellenadas::
+tomando en cuenta las zonas rellenadas
+
+.. code-block:: python
 
    n = 256
    X = np.linspace(-np.pi, np.pi, n, endpoint=True)
@@ -513,14 +528,12 @@ Gráficos de dispersión (scatter)
    :scale: 35
    :target: auto_examples/plot_scatter_ex.html
 
-.. hint::
-
-   Color está dado por el ángulo de (X, Y).
+.. hint:: Color está dado por el ángulo de (X, Y).
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
 tomando en cuenta el tamaño de marcas, el color y la transparencia.
 
-::
+.. code-block:: python
 
    n = 1024
    X = np.random.normal(0,1,n)
@@ -538,14 +551,12 @@ Gráfico de barras (bar)
    :scale: 35
    :target: auto_examples/plot_bar_ex.html
 
-.. hint::
-
-   Tomar en cuenta la alineación del texto.
+.. hint:: Tomar en cuenta la alineación del texto.
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
 agregando etiquetas en las barras rojas.
 
-::
+.. code-block:: python
 
    n = 12
    X = np.arange(n)
@@ -570,15 +581,12 @@ Gráficos de contorno
    :scale: 35
    :target: auto_examples/plot_contour_ex.html
 
-.. hint::
-
-   Es necesario utilizar el comando `clabel
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_.
+.. hint:: Es necesario utilizar el comando `clabel <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_.
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
 tomando en cuneta el colormap (ver `Colormaps`_ más abajo).
 
-::
+.. code-block:: python
 
    def f(x, y):
        return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 -y ** 2)
@@ -601,14 +609,12 @@ Imshow
    :scale: 35
    :target: auto_examples/plot_imshow_ex.html
 
-.. hint::
-
-   Necesita tomar en cuenta el ``origin`` de la imagen en el comando imshow y usar un `colorbar <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_.
+.. hint:: Necesita tomar en cuenta el ``origin`` de la imagen en el comando imshow y usar un `colorbar <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_.
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
 teniendo en cuenta el colormap, interpolación de imágenes y el origen.
 
-::
+.. code-block:: python
 
    def f(x, y):
        return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 - y ** 2)
@@ -629,15 +635,12 @@ Pie Charts
    :scale: 35
    :target: auto_examples/plot_pie_ex.html
 
-
-.. hint::
-
-   Debe modificar Z.
+.. hint:: Debe modificar Z.
 
 A partir del código de abajo, trate de reproducir el gráfico en forma correcta
 tomando en cuenta los colores y el tamaño de divisiones.
 
-::
+.. code-block:: python
 
    Z = np.random.uniform(0, 1, 20)
    pl.pie(Z)
@@ -652,14 +655,12 @@ Quiver Plots
    :scale: 35
    :target: auto_examples/plot_quiver_ex.html
 
-.. hint::
-
-   Tienes que dibujar las flechas dos veces.
+.. hint:: Tienes que dibujar las flechas dos veces.
 
 A partir del código anterior, intente reproducir el gráfico en la toma correcta
 tomando en cuenta los colores y direcciones.
 
-::
+.. code-block:: python
 
    n = 8
    X, Y = np.mgrid[0:n, 0:n]
@@ -678,7 +679,7 @@ Cuadrículas (grids)
 A partir del código anterior, intente reproducir el gráfico en la toma correcta
 tomando en cuenta los estilos de línea.
 
-::
+.. code-block:: python
 
    axes = pl.gca()
    axes.set_xlim(0, 4)
@@ -696,13 +697,11 @@ Gráficos múltiples
    :scale: 35
    :target: auto_examples/plot_multiplot_ex.html
 
-.. hint::
-
-   Puede utilizar varios subplots con diferentes particiones.
+.. hint:: Puede utilizar varios subplots con diferentes particiones.
 
 A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
-::
+.. code-block:: python
 
    pl.subplot(2, 2, 1)
    pl.subplot(2, 2, 3)
@@ -718,13 +717,11 @@ Ejes polares
    :scale: 35
    :target: auto_examples/plot_polar_ex.html
 
-.. hint::
-
-   Tiene que modificar la línea ``axes``
+.. hint:: Tiene que modificar la línea ``axes``
 
 A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
-::
+.. code-block:: python
 
    pl.axes([0, 0, 1, 1])
 
@@ -748,14 +745,11 @@ Gráficos 3D
    :scale: 35
    :target: auto_examples/plot_plot3d_ex.html
 
-.. hint::
-
-   Debe usar `contourf
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
+.. hint:: Debe usar `contourf <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
 
 A partir del código de abajo, intente reproducir el gráfico de la derecha.
 
-::
+.. code-block:: python
 
    from mpl_toolkits.mplot3d import Axes3D
 
@@ -781,10 +775,7 @@ Texto
    :scale: 35
    :target: auto_examples/plot_text_ex.html
 
-.. hint::
-
-   Echa un vistazo a `matplotlib logo
-   <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
+.. hint:: Echa un vistazo a `matplotlib logo <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
 
 Trate de hacer lo mismo desde el principio !
 
@@ -869,7 +860,7 @@ Código de documentación
 El código está bien documentado y se puede acceder rápidamente a un comando específico
 dentro una sesión de python:
 
-::
+.. code-block:: python
 
    >>> import pylab as pl
    >>> help(pl.plot)

@@ -104,7 +104,7 @@
           <a href="basic_types.html" title="1.2.2. Tipos básicos"
              accesskey="P">anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" accesskey="U">1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->
@@ -150,7 +150,7 @@
 <p><strong>Los bloques de código son delimitados por indentación</strong></p>
 <div class="admonition tip">
 <p class="first admonition-title">Truco</p>
-<p class="last">Escriba las siguientes líneas en el intérprete de Python, y tenga cuidado <strong>respecto a la profundidad de indentación</strong>. El shell IPython automáticamente aumenta la profundidad de indentado una columna después del signo <tt class="docutils literal"><span class="pre">:</span></tt>, para disminuir la profundidad de indentado, presione la tecla de retroceso o la flecha izquierda. Pulse la tecla Intro dos veces para salir del bloque lógico.</p>
+<p class="last">Escriba las siguientes líneas en el intérprete de Python, y tenga cuidado <strong>respecto a la profundidad de indentación</strong>. La consola IPython aumenta automáticamente la profundidad de indentado una columna después del signo <tt class="docutils literal"><span class="pre">:</span></tt>, para disminuir la profundidad de indentado, presione la tecla de retroceso o la flecha izquierda. Pulse la tecla Intro dos veces para salir del bloque lógico.</p>
 </div>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [1]: </span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
 <div class="newline"></div>
@@ -168,7 +168,7 @@
 </div>
 <div class="section" id="for-range">
 <h2>1.2.3.2. for/range<a class="headerlink" href="#for-range" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Iterando con indices:</p>
+<p>Iterando con indices</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 <div class="newline"></div><span class="go">0</span>
@@ -188,8 +188,8 @@
 </div>
 <div class="section" id="while-break-continue">
 <h2>1.2.3.3. while/break/continue<a class="headerlink" href="#while-break-continue" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Bucle while al estilo C (problema de Mandelbrot):</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span>
+<p>Bucle while al estilo C (problema de Mandelbrot)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1j</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span>
@@ -197,16 +197,15 @@
 <div class="newline"></div></pre></div>
 </div>
 <p><strong>Características más avanzadas</strong></p>
-<p><tt class="docutils literal"><span class="pre">break</span></tt> sale del bucle encerrado por for/while:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span>
-<div class="newline"></div>
+<p><tt class="docutils literal"><span class="pre">break</span></tt> sale del bucle encerrado por for/while</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">1j</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">if</span> <span class="n">z</span><span class="o">.</span><span class="n">imag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">break</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 <div class="newline"></div></pre></div>
 </div>
-<p><tt class="docutils literal"><span class="pre">continue</span></tt> la siguiente iteración de un bucle.:</p>
+<p><tt class="docutils literal"><span class="pre">continue</span></tt> la siguiente iteración de un bucle.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -240,17 +239,16 @@
 </dl>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name"><tt class="docutils literal"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></tt>:</th><td class="field-body"><p class="first">Prueba de igualdad, con operadores lógicos:</p>
+<tr class="field-even field"><th class="field-name"><tt class="docutils literal"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></tt>:</th><td class="field-body"><p class="first">Prueba de igualdad, con operadores lógicos</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">==</span> <span class="mf">1.</span>
 <div class="newline"></div><span class="go">True</span>
 <div class="newline"></div></pre></div>
 </div>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name"><tt class="docutils literal"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></tt>:</th><td class="field-body"><p class="first">Prueba de identidad: ambos lados son el mismo objeto:</p>
+<tr class="field-odd field"><th class="field-name"><tt class="docutils literal"><span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></tt>:</th><td class="field-body"><p class="first">Prueba de identidad: ambos lados son el mismo objeto</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="ow">is</span> <span class="mf">1.</span>
 <div class="newline"></div><span class="go">False</span>
-<div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="ow">is</span> <span class="n">b</span>
@@ -277,9 +275,8 @@
 <h2>1.2.3.5. Iteración avanzada<a class="headerlink" href="#iteracion-avanzada" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="iterando-sobre-una-secuencia">
 <h3>1.2.3.5.1. Iterando sobre una <em>secuencia</em><a class="headerlink" href="#iterando-sobre-una-secuencia" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Se puede iterar sobre una secuencia (cadenas, listas, claves en un diccionario, lineas en un archivo, ...):</p>
+<p>Se puede iterar sobre una secuencia (cadenas, listas, claves en un diccionario, lineas en un archivo, ...)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">vocales</span> <span class="o">=</span> <span class="s">&#39;aeiou&#39;</span>
-<div class="newline"></div>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="s">&#39;poderoso&#39;</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vocales</span><span class="p">:</span>
 <div class="newline"></div><span class="gp">... </span>        <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
@@ -309,8 +306,9 @@
 <div class="section" id="seguimiento-de-una-enumeracion">
 <h3>1.2.3.5.2. Seguimiento de una enumeración<a class="headerlink" href="#seguimiento-de-una-enumeracion" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Una tarea común es iterar sobre una secuencia mientras se enumera los elementos.</p>
-<ul>
-<li><p class="first">Puede utilizarse un bucle while con un contador como el ejemplo anterior. O un bucle for:</p>
+<ul class="simple">
+<li>Puede utilizarse un bucle while con un contador como el ejemplo anterior. O un bucle for</li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">palabras</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;interesante&#39;</span><span class="p">,</span> <span class="s">&#39;poderoso&#39;</span><span class="p">,</span> <span class="s">&#39;legible&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">indice</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">palabras</span><span class="p">)):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">indice</span><span class="p">,</span> <span class="n">palabras</span><span class="p">[</span><span class="n">indice</span><span class="p">]</span>
@@ -319,8 +317,9 @@
 <div class="newline"></div><span class="go">2 legible</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-<li><p class="first">Pero, Python provee la palabra clave <tt class="docutils literal"><span class="pre">enumerate</span></tt>:</p>
+<ul class="simple">
+<li>Pero, Python provee la palabra clave <tt class="docutils literal"><span class="pre">enumerate</span></tt></li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">indice</span><span class="p">,</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">palabras</span><span class="p">):</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">print</span> <span class="n">indice</span><span class="p">,</span> <span class="n">elemento</span>
 <div class="newline"></div><span class="go">0 estupendo</span>
@@ -328,13 +327,11 @@
 <div class="newline"></div><span class="go">2 legible</span>
 <div class="newline"></div></pre></div>
 </div>
-</li>
-</ul>
 </div>
 <div class="section" id="bucle-sobre-un-diccionario">
 <h3>1.2.3.5.3. Bucle sobre un diccionario<a class="headerlink" href="#bucle-sobre-un-diccionario" title="Enlazar permanentemente con este título">¶</a></h3>
-<p>Use <strong>iteritems</strong>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span><span class="mf">1.2</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">:</span><span class="mi">1</span><span class="n">j</span><span class="p">}</span>
+<p>Use <strong>iteritems</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">:</span><span class="mf">1.2</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">:</span><span class="mi">1j</span><span class="p">}</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
 <div class="newline"></div><span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Clave: </span><span class="si">%s</span><span class="s"> con valor: </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">clave</span><span class="p">,</span> <span class="n">valor</span><span class="p">))</span>
 <div class="newline"></div><span class="go">Clave: a con valor: 1</span>
@@ -376,7 +373,7 @@
           <a href="basic_types.html" title="1.2.2. Tipos básicos"
              >anterior</a> |</li>
         <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
-          <li><a href="../index.html" >1. Para empezar con Python para fines científicos</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
           <li><a href="python_language.html" >1.2. El lenguaje Python</a> &raquo;</li>
      
     <!-- Insert a menu in the navigation bar -->

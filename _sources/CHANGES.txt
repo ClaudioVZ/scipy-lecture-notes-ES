@@ -2,25 +2,25 @@
 Novedades
 ===========
 
-Release 2013.2 beta (21 August 2013)
+Publicación 2013.2 beta (21 August 2013)
 -------------------------------------
 
-* Numpy chapter simplified (Valentin Haenel)
+* Capítulo Numpy simplificado (Valentin Haenel)
 
-* New layout for the HTML rendering (Gaël Varoquaux)
+* Nuevo diseño para el renderizado HTML (Gaël Varoquaux)
 
-Release 2013.1 (10 Feb 2013)
+Publicación 2013.1 (10 Feb 2013)
 ----------------------------
 
-* Improvements to the advanced image manipulation chapter (Emmanuelle Gouillart)
+* Mejoras en el capítulo avanzado de manipulación de imágenes (Emmanuelle Gouillart)
 
-* Upgrade of the introductory language chapter (Valentin Haenel)
+* Actualizado el capítulo introductorio al lenguaje (Valentin Haenel)
 
-* Upgrade of the introductory numpy chapter (Valentin Haenel)
+* Actualizado el capítulo introductorio numpy (Valentin Haenel)
 
-* New advanced chapter on interfacing with C (Valentin Haenel)
+* Nuevo capítulo avanzado interfaz con C (Valentin Haenel)
 
-* Minor fixes and improvements in various places (Robert Gieseke, Ozan Çağlayan,
+* Correcciones menores y mejoras en varias partes (Robert Gieseke, Ozan Çağlayan,
   Sergio Oller, kikocorreo, Valentin Haenel)
 
 Publicación 2012.3 (26 Nov 2012)
