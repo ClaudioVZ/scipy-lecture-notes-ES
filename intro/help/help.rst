@@ -36,7 +36,6 @@ para mostrar únicamente la ayuda y `docstrings`...
   Tutoriales sobre varios temas además de la API completa con todos los
   `docstrings` se puede encontrar en el siguiente sitio web.
 
-
   .. image:: scipy_doc.png
      :align: center
      :scale: 80
@@ -57,12 +56,10 @@ para mostrar únicamente la ayuda y `docstrings`...
   para muchos de los problemas que nos encontramos a menudo, como el ajuste de datos,
   resolver ecuaciones diferenciales ordinarias, etc. 
 
-
 * La web de Matplotlib http://matplotlib.sourceforge.net/ dispone de una
   **galeria* con un gran número de gráficos y ejemplos con el código fuente y el
   gráfico resultante. Esto es muy útil aprender mediante ejemplos. También se encuentra 
   disponible la documentación estándar. 
-
 
   .. image:: matplotlib.png
      :align: center
@@ -83,7 +80,6 @@ Finalmente, también serían útiles dos posibilidades más "técnicas":
 * En Ipython, la función mágica ``%psearch`` busca objetos que coincidan
   con los patrones de búsqueda. Esto es útil, por ejemplo, cuando desconocemos
   el nombre exacto de una función.
-
 
   .. sourcecode:: ipython
   
@@ -121,21 +117,15 @@ Finalmente, también serían útiles dos posibilidades más "técnicas":
       os.walk
           Directory tree generator.
 
-
-
 * Si todo lo anterior falla (y Google no tiene la respuesta)... 
   ¡no hay que desesperarse! Escribe a la lista de correo que se 
   ajuste a tu problema: obtendrás una rápida respuesta si defines correctamente
   tu problema. A menudo, expertos en `python científico` ofrecen explicaciones
   muy clarificadoras en las listas de correo.
 
-    * **Numpy discussion** (numpy-discussion@scipy.org): todo acerca de arrays
-      numpy, como manipularlos, preguntas sobre indexación, etc.
+  * **Numpy discussion** (numpy-discussion@scipy.org): todo acerca de arrays numpy, como manipularlos, preguntas sobre indexación, etc.
 
+  * **SciPy Users List** (scipy-user@scipy.org): cálculos científicos con Python, procesamiento de datos de alto nivel, en particular con el paquete scipy.
 
-    * **SciPy Users List** (scipy-user@scipy.org): cálculos científicos con Python, 
-      procesamiento de datos de alto nivel, en particular con el paquete scipy.
-
-    * matplotlib-users@lists.sourceforge.net para hacer gráficas con
-      matplotlib.                               
+  * matplotlib-users@lists.sourceforge.net para hacer gráficas con matplotlib.                               
                                              

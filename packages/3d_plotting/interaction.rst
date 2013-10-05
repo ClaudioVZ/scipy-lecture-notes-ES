@@ -7,7 +7,7 @@ Trabajo interactivo
     probablemente, modificar interactivamente los distintos settings.
 
 El "pipeline dialog"
-----------------------
+--------------------
 
 Pulsa sobre el botón 'Mayavi' en la escena para controlar las propiedades
 de los objetos mediante ventanas de diálogos.

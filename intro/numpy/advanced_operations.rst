@@ -17,25 +17,27 @@ Polinomios
 
 Numpy contiene polinomios en diferentes bases :
 
-Por ejemplo, :math:`3x^2 + 2x - 1`::
+Por ejemplo, :math:`3x^2 + 2x - 1`
 
-    >>> p = np.poly1d([3, 2, -1])
-    >>> p(0)
-    -1
-    >>> p.roots
-    array([-1.        ,  0.33333333])
-    >>> p.order
-    2
+.. code-block:: python
 
-::
+   >>> p = np.poly1d([3, 2, -1])
+   >>> p(0)
+   -1
+   >>> p.roots
+   array([-1.        ,  0.33333333])
+   >>> p.order
+   2
 
-    >>> x = np.linspace(0, 1, 20)
-    >>> y = np.cos(x) + 0.3*np.random.rand(20)
-    >>> p = np.poly1d(np.polyfit(x, y, 3))
+.. code-block:: python
 
-    >>> t = np.linspace(0, 1, 200)
-    >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+   >>> x = np.linspace(0, 1, 20)
+   >>> y = np.cos(x) + 0.3*np.random.rand(20)
+   >>> p = np.poly1d(np.polyfit(x, y, 3))
+
+   >>> t = np.linspace(0, 1, 200)
+   >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
+   [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/numpy_intro_9.py
 
@@ -48,27 +50,31 @@ Más polinomios (con más bases)
 Numpy tiene una interfaz para polinomios más sofisticada , que soporta
 por ejemplo bases de Chebyshev.
 
-:math:`3x^2 + 2x - 1`::
+:math:`3x^2 + 2x - 1`
 
-    >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coeficientes en orden diferente!
-    >>> p(0)
-    -1.0
-    >>> p.roots()
-    array([-1.        ,  0.33333333])
-    >>> p.degree()  # generalmente en polinomios no siempre muestra el 'orden'
-    2
+.. code-block:: python
 
-Ejemplo de uso de polinomios en bases de Chebyshev, para polinomios en el rango ``[-1, 1]``::
+   >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coeficientes en orden diferente!
+   >>> p(0)
+   -1.0
+   >>> p.roots()
+   array([-1.        ,  0.33333333])
+   >>> p.degree()  # generalmente en polinomios no siempre muestra el 'orden'
+   2
 
-    >>> x = np.linspace(-1, 1, 2000)
-    >>> y = np.cos(x) + 0.3*np.random.rand(2000)
-    >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
+Ejemplo de uso de polinomios en bases de Chebyshev, para polinomios en el rango ``[-1, 1]``
 
-    >>> t = np.linspace(-1, 1, 200)
-    >>> plt.plot(x, y, 'r.')   # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t, p(t), 'k-', lw=3)   # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
+.. code-block:: python
+
+   >>> x = np.linspace(-1, 1, 2000)
+   >>> y = np.cos(x) + 0.3*np.random.rand(2000)
+   >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
+
+   >>> t = np.linspace(-1, 1, 200)
+   >>> plt.plot(x, y, 'r.')   # doctest: +ELLIPSIS
+   [<matplotlib.lines.Line2D object at ...>]
+   >>> plt.plot(t, p(t), 'k-', lw=3)   # doctest: +ELLIPSIS
+   [<matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/numpy_intro_10.py
 
@@ -83,22 +89,22 @@ Archivos de texto
 Ejemplo: :download:`populations.txt <../../data/populations.txt>`:
 
 .. include:: ../../data/populations.txt
-    :end-line: 5
-    :literal:
+   :end-line: 5
+   :literal:
 
-::
+.. code-block:: python
 
-    >>> data = np.loadtxt('data/populations.txt')
-    >>> data    # doctest: +ELLIPSIS
-    array([[  1900.,  30000.,   4000.,  48300.],
-           [  1901.,  47200.,   6100.,  48200.],
-           [  1902.,  70200.,   9800.,  41500.],
-    ...
+   >>> data = np.loadtxt('data/populations.txt')
+   >>> data    # doctest: +ELLIPSIS
+   array([[  1900.,  30000.,   4000.,  48300.],
+          [  1901.,  47200.,   6100.,  48200.],
+          [  1902.,  70200.,   9800.,  41500.],
+   ...
 
-::
+.. code-block:: python
 
-    >>> np.savetxt('pop2.txt', data)
-    >>> data2 = np.loadtxt('pop2.txt')
+   >>> np.savetxt('pop2.txt', data)
+   >>> data2 = np.loadtxt('pop2.txt')
 
 .. note:: Si usted tiene un archivo de texto complicado, puede probar con:
 
@@ -110,49 +116,57 @@ Ejemplo: :download:`populations.txt <../../data/populations.txt>`:
 
    .. sourcecode:: ipython
 
-       In [1]: pwd      # muestra el directorio actual
-       '/home/user/stuff/2011-numpy-tutorial'
-       In [2]: cd ex
-       '/home/user/stuff/2011-numpy-tutorial/ex'
-       In [3]: ls
-       populations.txt	species.txt
+      In [1]: pwd      # muestra el directorio actual
+      '/home/user/stuff/2011-numpy-tutorial'
+      In [2]: cd ex
+      '/home/user/stuff/2011-numpy-tutorial/ex'
+      In [3]: ls
+      populations.txt	species.txt
 
 Imágenes
 ........
 
-Usando Matplotlib::
+Usando Matplotlib
 
-    >>> img = plt.imread('data/elephant.png')
-    >>> img.shape, img.dtype
-    ((200, 300, 3), dtype('float32'))
-    >>> plt.imshow(img)     # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
-    >>> plt.savefig('plot.png')
+.. code-block:: python
 
-    >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
+   >>> img = plt.imread('data/elephant.png')
+   >>> img.shape, img.dtype
+   ((200, 300, 3), dtype('float32'))
+   >>> plt.imshow(img)     # doctest: +ELLIPSIS
+   <matplotlib.image.AxesImage object at ...>
+   >>> plt.savefig('plot.png')
 
-Esto guarda solo un canal (de RGB)::
+   >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
 
-    >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+Esto guarda solo un canal (de RGB)
 
-Otras bibliotecas::
+.. code-block:: python
 
-    >>> from scipy.misc import imsave
-    >>> imsave('tiny_elephant.png', img[::6,::6])
-    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+   >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
+   <matplotlib.image.AxesImage object at ...>
+
+Otras bibliotecas
+
+.. code-block:: python
+
+   >>> from scipy.misc import imsave
+   >>> imsave('tiny_elephant.png', img[::6,::6])
+   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
+   <matplotlib.image.AxesImage object at ...>
 
 .. plot:: pyplots/numpy_intro_3.py
 
 Formato propio de Numpy
 .......................
 
-Numpy tiene su propio formato binario, no es portátil pero con eficiente E/S::
+Numpy tiene su propio formato binario, no es portátil pero con eficiente E/S
 
-    >>> data = np.ones((3, 3))
-    >>> np.save('pop.npy', data)
-    >>> data3 = np.load('pop.npy')
+.. code-block:: python
+
+   >>> data = np.ones((3, 3))
+   >>> np.save('pop.npy', data)
+   >>> data3 = np.load('pop.npy')
 
 Formatos bien conocidos (y más obscuros) de archivo
 ...................................................
@@ -167,7 +181,7 @@ Formatos bien conocidos (y más obscuros) de archivo
 .. topic:: Ejercicio: Archivos de datos de texto
    :class: green
 
-   Escribir un script en Python para cargar los datos de :download:`populations.txt <../../data/populations.txt>`:: y elimine la última columna y las primeras 5 filas. Guarde el pequeño conjunto de datos en ``pop2.txt``.
+   Escribir un script en Python para cargar los datos de :download:`populations.txt <../../data/populations.txt>` y elimine la última columna y las primeras 5 filas. Guarde el pequeño conjunto de datos en ``pop2.txt``.
 
 .. loadtxt, savez, load, fromfile, tofile
 
@@ -184,5 +198,5 @@ Formatos bien conocidos (y más obscuros) de archivo
 
 .. topic:: El interior de Numpy
 
-    Si está interesado en el funcionamiento interno de Numpy, hay una buena discusión en :ref:`advanced_numpy`.
+   Si está interesado en el funcionamiento interno de Numpy, hay una buena discusión en :ref:`advanced_numpy`.
 

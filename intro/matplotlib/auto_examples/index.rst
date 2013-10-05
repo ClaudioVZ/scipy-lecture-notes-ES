@@ -39,15 +39,15 @@ Examples
 
    :ref:`example_plot_antialiased.py`
 
-.. figure:: ./images/thumb/plot_axes-2.png
-   :target: ./plot_axes-2.html
-
-   :ref:`example_plot_axes-2.py`
-
 .. figure:: ./images/thumb/plot_axes.png
    :target: ./plot_axes.html
 
    :ref:`example_plot_axes.py`
+
+.. figure:: ./images/thumb/plot_axes_2.png
+   :target: ./plot_axes_2.html
+
+   :ref:`example_plot_axes_2.py`
 
 .. figure:: ./images/thumb/plot_bad.png
    :target: ./plot_bad.html
@@ -239,15 +239,15 @@ Examples
 
    :ref:`example_plot_plot.py`
 
-.. figure:: ./images/thumb/plot_plot3d-2.png
-   :target: ./plot_plot3d-2.html
-
-   :ref:`example_plot_plot3d-2.py`
-
 .. figure:: ./images/thumb/plot_plot3d.png
    :target: ./plot_plot3d.html
 
    :ref:`example_plot_plot3d.py`
+
+.. figure:: ./images/thumb/plot_plot3d_2.png
+   :target: ./plot_plot3d_2.html
+
+   :ref:`example_plot_plot3d_2.py`
 
 .. figure:: ./images/thumb/plot_plot3d_ex.png
    :target: ./plot_plot3d_ex.html
@@ -299,20 +299,20 @@ Examples
 
    :ref:`example_plot_solid_joinstyle.py`
 
-.. figure:: ./images/thumb/plot_subplot-grid.png
-   :target: ./plot_subplot-grid.html
+.. figure:: ./images/thumb/plot_subplot_grid.png
+   :target: ./plot_subplot_grid.html
 
-   :ref:`example_plot_subplot-grid.py`
+   :ref:`example_plot_subplot_grid.py`
 
-.. figure:: ./images/thumb/plot_subplot-horizontal.png
-   :target: ./plot_subplot-horizontal.html
+.. figure:: ./images/thumb/plot_subplot_horizontal.png
+   :target: ./plot_subplot_horizontal.html
 
-   :ref:`example_plot_subplot-horizontal.py`
+   :ref:`example_plot_subplot_horizontal.py`
 
-.. figure:: ./images/thumb/plot_subplot-vertical.png
-   :target: ./plot_subplot-vertical.html
+.. figure:: ./images/thumb/plot_subplot_vertical.png
+   :target: ./plot_subplot_vertical.html
 
-   :ref:`example_plot_subplot-vertical.py`
+   :ref:`example_plot_subplot_vertical.py`
 
 .. figure:: ./images/thumb/plot_text.png
    :target: ./plot_text.html

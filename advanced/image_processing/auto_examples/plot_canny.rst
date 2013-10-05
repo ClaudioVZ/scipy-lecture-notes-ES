@@ -5,8 +5,8 @@
 
 
 
-.. rst-class:: horizontal
-
+.. image:: images/plot_canny_1.png
+    :align: center
 
 
 **Python source code:** :download:`plot_canny.py <plot_canny.py>`

@@ -4,7 +4,7 @@ NumPy: creación y manipulación de datos numéricos
 
 :Autores: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and Pauli Virtanen
 
-.. .. contents:: Chapters contents
+.. .. contents:: Contenido
    :local:
    :depth: 4
 

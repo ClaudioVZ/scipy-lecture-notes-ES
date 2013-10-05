@@ -1,8 +1,7 @@
-Packages and applications
-===================================================================
+Paquetes y aplicaciones
+=======================
 
-This part of the *Scipy lecture notes* is dedicated to various scientific
-packages useful for extended needs.
+Esta parte de *Scipy lecture notes* está dedicado a diversos paquetes científicos útiles para diversas necesidades.
 
 |clear-floats|
 

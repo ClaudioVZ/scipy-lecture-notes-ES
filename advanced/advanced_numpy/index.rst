@@ -3,14 +3,13 @@
    >>> np.random.seed(0)
    >>> from matplotlib import pyplot as plt
 
-
 .. _advanced_numpy:
 
 ==============
 Numpy avanzado
 ==============
 
-:autor: Pauli Virtanen
+:Autor: Pauli Virtanen
 
 Numpy se encuentra en la base del montón de herramientas científicas de Python.
 Su propósito es simple: implementar operaciones eficientes sobre muchos
@@ -36,15 +35,17 @@ Este tutorial pretende cubrir:
 
 .. topic:: Preerequisitos
 
-    * Numpy (>= 1.2; preferiblemente versiones más nuevas...)
-    * Cython (>= 0.12, para el ejemplo con Ufunc)
-    * PIL (usado en un par de ejemplos)
+   * Numpy (>= 1.2; preferiblemente versiones más nuevas...)
+   * Cython (>= 0.12, para el ejemplo con Ufunc)
+   * PIL (usado en un par de ejemplos)
 
-En esta sección numpy será importado de la siguiente forma::
+En esta sección numpy será importado de la siguiente forma
 
-    >>> import numpy as np
+.. code-block:: python
 
-.. contents:: Chapter contents
+   >>> import numpy as np
+
+.. contents:: Contenido
    :local:
    :depth: 2
 

@@ -1,4 +1,4 @@
-Computación científica con herramientas y flujos de trabajo
+Herramientas y flujo de trabajo para computación científica
 ===========================================================
 
 :Autores: Fernando Pérez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
@@ -7,11 +7,11 @@ Computación científica con herramientas y flujos de trabajo
     .. image:: phd053104s.png
       :align: center
 
-¿Por qué Python?
-----------------
+Por qué Python?
+---------------
 
-¡Cuáles son las necesidades de los científicos?
-...............................................
+Cuáles son las necesidades de los científicos?
+..............................................
 
 * Obtener datos (simulación, experimentos)
 
@@ -46,12 +46,12 @@ Especificaciones
   de ejecución.
 
 * La idea es evitar tener que aprender un nuevo software para cada problema nuevo.
-  Un ambiente/lenguaje para todo, siempreque sea posible.
+  Un ambiente/lenguaje para todo, siempre que sea posible.
 
 Soluciones existentes
 .....................
 
-¿Qué soluciones usan los científicos para trabajar?
+Qué soluciones usan los científicos para trabajar?
 
 **Lenguajes compilados: C, C++, Fortran, etc.**
 
@@ -107,7 +107,7 @@ Soluciones existentes
     xmgrace para graficar curvas. Estos programas son muy poderosos, pero están
     restringidos a un solo tipo de uso, como por ejemplo para hacer gráficos.
 
-**¿Qué hay de Python?**
+**Qué hay de Python?**
 
 * Ventajas:
 
@@ -117,7 +117,7 @@ Soluciones existentes
   * Lenguaje bien pensado, lo que permite escribir código muy legible y bien
     estructurado: "escribimos el código que pensamos".
 
-  * Existen muchas bibliotecas para otras tareas, además de para cálculo científico
+  * Existen muchas bibliotecas para otras tareas, además de cálculo científico
     (administración de servidores web, acceso al puerto serie, etc.).
 
   * Software libre y de acceso abierto, ampliamente difundido con una
@@ -141,39 +141,35 @@ completo ambiente de desarrollo para cálculo científico:
 
 * **Python**, un lenguaje computacional genérico y moderno
 
-    * Lenguaje Python: tipos de datos (``string``, ``int``), control de flujo,
-      estructuras de datos (listas, diccionarios), patrones, etc.
+  * Lenguaje Python: tipos de datos (``string``, ``int``), control de flujo, estructuras de datos (listas, diccionarios), patrones, etc.
 
-    * Módulos de la biblioteca estándar.
+  * Módulos de la biblioteca estándar.
 
-    * Un gran número de módulos especializados o aplicaciones escritas en
-      Python: protocolos web, framework para aplicaciones web, etc. ... y
-      cálculo científico.
+  * Un gran número de módulos especializados o aplicaciones escritas en Python: protocolos web, framework para aplicaciones web, etc. ... y cálculo científico.
 
-    * Herramientas de desarrollo (pruebas automáticas, generación de
-      documentación)
+  * Herramientas de desarrollo (pruebas automáticas, generación de documentación)
 
   .. image:: snapshot_ipython.png
         :align: right
         :scale: 40
 
-* **IPython**, una **consola de Python** avanzada http://ipython.org/
+* **IPython**, una **consola avanzada de Python** http://ipython.org/
 
-* **Numpy** : proporciona poderosos objetos de **arrays numéricos** y rutinas
+* **Numpy**: proporciona poderosos objetos llamados **arreglos numéricos** y rutinas
   para manipularlos. http://www.numpy.org/
 
 ..
     >>> import numpy as np
     >>> np.random.seed(4)
 
-* **Scipy** : rutinas de alto nivel para procesamiento de datos.
+* **Scipy**: rutinas de alto nivel para procesamiento de datos.
   Optimización, regresión, interpolación, etc. http://www.scipy.org/
 
   .. image:: random_c.jpg
         :scale: 40
         :align: right
 
-* **Matplotlib** : visualización bidimensional, gráficos "listos para publicar"
+* **Matplotlib**: visualización bidimensional, gráficos "listos para publicar"
   http://matplotlib.sourceforge.net/
 
   |clear-floats|
@@ -182,14 +178,13 @@ completo ambiente de desarrollo para cálculo científico:
         :scale: 60
         :align: right
 
-* **Mayavi** : visualización tridimensional
+* **Mayavi**: visualización tridimensional
   http://code.enthought.com/projects/mayavi/
 
   |clear-floats|
 
-
-El flujo de trabajo interactivo: IPython y un editor de textos
---------------------------------------------------------------
+Flujo de trabajo interactivo: IPython y un editor de textos
+-----------------------------------------------------------
 
 **Trabajo interactivo para probar y entender algoritmos**: En esta
 sección, describiremos un flujo de trabajo interactivo con
@@ -199,15 +194,15 @@ entender algoritmos.
 Python es un lenguaje multipropósito. Como tal, no existe un ambiente
 bendito para trabajar ni hay una sola manera de usarlo. Aunque esto hace
 que sea más difícil para principiantes encontrar su propio camino, esto hace
-posible que Python sea usado para escribir programas, en servidores web o
+posible que Python sea usado para escribir programas en servidores web o
 dispositivos embebidos.
 
 .. note:: Documento de referencia para esta sección:
 
     **IPython user manual:** http://ipython.org/ipython-doc/dev/index.html
 
-Interacción en la línea de comandos
-...................................
+Interacción con la línea de comandos
+....................................
 
 Iniciar `ipython`:
 
@@ -235,12 +230,12 @@ Obteniendo ayuda usando el operador **?** después de un objeto:
 	end:  string appended after the last value, default a newline.
 
 
-Elaboración del algoritmo en un editor de textos
+Elaboración de algoritmos en un editor de textos
 ................................................
 
 Creamos un archivo `mi_fichero.py` en un editor de texto. En EPD (Enthought Python
 Distribution), puedes usar `Scite`, disponible en el menú de inicio. En
-Python(x,y) puedes usar Spyder. En Ubuntu, si todavía no tienes tu editor
+Python(x,y) puedes usar Spyder. En Ubuntu, si todavía no tienes un editor
 favorito, te aconsejamos instalar `Stani's Python editor`. En el archivo,
 agrega las siguientes líneas::
 
@@ -271,7 +266,7 @@ Ahora, puedes ejecutarlo en IPython y explorar las variables resultantes:
 
     * Un script no es reutilizable, las funciones sí.
 
-    * Pensar en términos de funcionas ayuda a dividir el problema en
+    * Pensar en términos de funciones ayuda a dividir el problema en
       pequeños bloques.
 
 
@@ -283,8 +278,7 @@ IPython, pero para que puedas iniciarte queremos darte una breve introducción a
 características útiles: *historial*, *funciones mágicas* y *autocompletado
 con tabulador*.
 
-Como una consola UNIX, IPython soporta comandos de historial. Teclea *arriba*
-y *abajo* para reutilizar los comandos anteriormente ejecutados:
+Al igual que una consola UNIX, IPython cuenta con un historial de comandos. Teclea *arriba* y *abajo* para reutilizar los comandos anteriormente ejecutados:
 
 .. sourcecode:: ipython
 
@@ -296,8 +290,8 @@ y *abajo* para reutilizar los comandos anteriormente ejecutados:
 
 IPython soporta las llamadas funciones *mágicas* anteponiendo a  un comando
 el caracter ``%``. Por ejemplo, las funciones ``run`` y ``whos`` de la
-sección anterior son funciones mágicas. Tened en cuenta que, el ajuste
-``automagic``, que está activado por defecto, te permite omitir el signo ``%``
+sección anterior son funciones mágicas. Tenga en cuenta que, el ajuste
+``automagic`` está activado por defecto, te permite omitir el signo ``%``
 predecesor al comando. De esta forma, puedes solo escribir la función
 mágica y funcionará.
 
@@ -319,8 +313,8 @@ Otras funciones mágicas útiles son:
       10000000 loops, best of 3: 39 ns per loop
 
 * ``%cpaste`` te permite pegar código, especialmente aquel que venga de un
-  sitio web que ha sido precedido por el prompt estándar de Python (o sea
-  ``>>>``) o con un prompt de IPython (por ejemplo: ``In [3]:``):
+  sitio web que proceda de la consola estándar de Python (o sea
+  ``>>>``) o de la consola IPython (por ejemplo: ``In [3]:``):
 
   .. sourcecode:: ipython
 

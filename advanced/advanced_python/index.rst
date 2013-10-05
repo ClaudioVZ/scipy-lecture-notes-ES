@@ -5,7 +5,7 @@
 ============================================================
 Expresiones avanzadas en python (Advanced Python Constructs)
 ============================================================
-:autor: Zbigniew Jędrzejewski-Szmek
+:Autor: Zbigniew Jędrzejewski-Szmek
 
 En este capítulo se tratan algunas características de Python que se 
 podrían considerar como avanzadas --- en el sentido en que no todos los lenguajes
@@ -35,8 +35,6 @@ sirven para resolver problemas reales y de que su uso es lo más simple posible.
 .. contents:: Contenidos del capítulo
    :local:
    :depth: 4
-
-
 
 Iteradores, expresiones generadoras y generadores
 ===============================================
