@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.5.11.29. Tránsito de avenidas en cauces naturales &mdash; Scipy lecture notes</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Scipy lecture notes" href="../../index.html" />
+    <link rel="up" title="1.5. Scipy: computación científica de alto nivel" href="../scipy.html" />
+    <link rel="next" title="1.5.11.30. Ajuste de curva de caudales" href="fit_flow_rate.html" />
+    <link rel="prev" title="1.5.11.28. Tránsito de avenidas en embalses" href="routing_reservoir.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="fit_flow_rate.html" title="1.5.11.30. Ajuste de curva de caudales"
+             accesskey="N">siguiente</a></li>
+        <li class="right" >
+          <a href="routing_reservoir.html" title="1.5.11.28. Tránsito de avenidas en embalses"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
+          <li><a href="../scipy.html" accesskey="U">1.5. Scipy: computación científica de alto nivel</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="transito-de-avenidas-en-cauces-naturales">
+<h1>1.5.11.29. Tránsito de avenidas en cauces naturales<a class="headerlink" href="#transito-de-avenidas-en-cauces-naturales" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Calcular cuál será el caudal máximo de la creciente a la salida del tramo.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="29%" />
+<col width="29%" />
+<col width="27%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">t (horas)</th>
+<th class="head">I observado (m^3/seg)</th>
+<th class="head">O observado (m^3/seg)</th>
+<th class="head">I entrada (m^3/seg)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>22</td>
+<td>22</td>
+<td>31</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>23</td>
+<td>21</td>
+<td>50</td>
+</tr>
+<tr class="row-even"><td>2</td>
+<td>35</td>
+<td>21</td>
+<td>86</td>
+</tr>
+<tr class="row-odd"><td>3</td>
+<td>71</td>
+<td>26</td>
+<td>123</td>
+</tr>
+<tr class="row-even"><td>4</td>
+<td>103</td>
+<td>34</td>
+<td>145</td>
+</tr>
+<tr class="row-odd"><td>5</td>
+<td>111</td>
+<td>44</td>
+<td>150</td>
+</tr>
+<tr class="row-even"><td>6</td>
+<td>109</td>
+<td>55</td>
+<td>144</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>100</td>
+<td>66</td>
+<td>128</td>
+</tr>
+<tr class="row-even"><td>8</td>
+<td>86</td>
+<td>75</td>
+<td>113</td>
+</tr>
+<tr class="row-odd"><td>9</td>
+<td>71</td>
+<td>82</td>
+<td>95</td>
+</tr>
+<tr class="row-even"><td>10</td>
+<td>59</td>
+<td>85</td>
+<td>79</td>
+</tr>
+<tr class="row-odd"><td>11</td>
+<td>47</td>
+<td>84</td>
+<td>65</td>
+</tr>
+<tr class="row-even"><td>12</td>
+<td>39</td>
+<td>80</td>
+<td>55</td>
+</tr>
+<tr class="row-odd"><td>13</td>
+<td>32</td>
+<td>73</td>
+<td>46</td>
+</tr>
+<tr class="row-even"><td>14</td>
+<td>28</td>
+<td>64</td>
+<td>40</td>
+</tr>
+<tr class="row-odd"><td>15</td>
+<td>24</td>
+<td>54</td>
+<td>35</td>
+</tr>
+<tr class="row-even"><td>16</td>
+<td>22</td>
+<td>44</td>
+<td>31</td>
+</tr>
+<tr class="row-odd"><td>17</td>
+<td>21</td>
+<td>36</td>
+<td>37</td>
+</tr>
+<tr class="row-even"><td>18</td>
+<td>20</td>
+<td>30</td>
+<td>25</td>
+</tr>
+<tr class="row-odd"><td>19</td>
+<td>19</td>
+<td>25</td>
+<td>24</td>
+</tr>
+<tr class="row-even"><td>20</td>
+<td>19</td>
+<td>22</td>
+<td>23</td>
+</tr>
+<tr class="row-odd"><td>21</td>
+<td>18</td>
+<td>19</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+<p><div style="clear: both"></div></p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="fit_flow_rate.html" title="1.5.11.30. Ajuste de curva de caudales"
+             >siguiente</a></li>
+        <li class="right" >
+          <a href="routing_reservoir.html" title="1.5.11.28. Tránsito de avenidas en embalses"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
+          <li><a href="../scipy.html" >1.5. Scipy: computación científica de alto nivel</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

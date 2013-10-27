@@ -49,5 +49,5 @@ sand mask grains that are smaller than 10 pixels. To do so, use
    .. _image-answers:
 
 Proposed solution
-....................
+.................
 

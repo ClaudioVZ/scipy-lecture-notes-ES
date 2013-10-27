@@ -1,0 +1,11 @@
+Solución tránsito de avenidas en cauces naturales
+-------------------------------------------------
+
+Método de Muskingum
+...................
+
+El método de Muskingum es un procedimiento de tránsito hidrológico que se usa
+comúnmente para manejar la relación caudal – almacenamiento en los cauces naturales.
+Este método modela el almacenamiento volumétrico de creciente en un tramo de un río
+mediante la combinación del almacenamiento de cuña y prisma.
+

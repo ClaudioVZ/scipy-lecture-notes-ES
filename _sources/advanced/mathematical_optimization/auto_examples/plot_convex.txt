@@ -12,12 +12,12 @@ Definition of a convex function
 
     *
 
-      .. image:: images/plot_convex_1.png
+      .. image:: images/plot_convex_2.png
             :scale: 50
 
     *
 
-      .. image:: images/plot_convex_2.png
+      .. image:: images/plot_convex_1.png
             :scale: 50
 
 

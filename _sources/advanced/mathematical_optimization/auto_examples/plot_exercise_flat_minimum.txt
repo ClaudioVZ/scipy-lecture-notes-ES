@@ -20,18 +20,8 @@ solution.
 
 
 
-.. rst-class:: horizontal
-
-
-    *
-
-      .. image:: images/plot_exercise_flat_minimum_0.png
-            :scale: 50
-
-    *
-
-      .. image:: images/plot_exercise_flat_minimum_1.png
-            :scale: 50
+.. image:: images/plot_exercise_flat_minimum_1.png
+    :align: center
 
 
 **Python source code:** :download:`plot_exercise_flat_minimum.py <plot_exercise_flat_minimum.py>`

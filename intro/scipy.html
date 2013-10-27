@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="top" title="Scipy lecture notes" href="../index.html" />
     <link rel="up" title="1. Iniciandose en computación científica con Python" href="index.html" />
-    <link rel="next" title="1.5.11.13. Maximum wind speed prediction at the Sprogø station" href="summary-exercises/stats-interpolate.html" />
+    <link rel="next" title="1.5.11.25. Maximum wind speed prediction at the Sprogø station" href="summary-exercises/stats-interpolate.html" />
     <link rel="prev" title="1.4. Matplotlib: Gráficas usando pylab" href="matplotlib/matplotlib.html" /> 
   </head>
   <body>
@@ -98,7 +98,7 @@
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="summary-exercises/stats-interpolate.html" title="1.5.11.13. Maximum wind speed prediction at the Sprogø station"
+          <a href="summary-exercises/stats-interpolate.html" title="1.5.11.25. Maximum wind speed prediction at the Sprogø station"
              accesskey="N">siguiente</a></li>
         <li class="right" >
           <a href="matplotlib/matplotlib.html" title="1.4. Matplotlib: Gráficas usando pylab"
@@ -380,7 +380,7 @@ La función <a class="reference external" href="http://docs.scipy.org/doc/scipy/
 <p>[<a class="reference external" href="../plot_directive/pyplots/fftpack_signals.py">source code</a>, <a class="reference external" href="../plot_directive/pyplots/fftpack_signals.hires.png">hires.png</a>, <a class="reference external" href="../plot_directive/pyplots/fftpack_signals.pdf">pdf</a>]</p>
 <a class="reference internal image-reference" href="../_images/fftpack_signals.png"><img alt="../_images/fftpack_signals.png" src="../_images/fftpack_signals.png" style="width: 308.0px; height: 252.0px;" /></a>
 <div class="topic">
-<p class="topic-title first"><a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/routines.fft.html#numpy.fft" title="(in NumPy v1.7)"><tt class="xref py py-obj docutils literal"><span class="pre">numpy.fft</span></tt></a></p>
+<p class="topic-title first"><cite>numpy.fft</cite></p>
 <p>Numpy también tiene una implementación de FFT (<a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/routines.fft.html#numpy.fft" title="(in NumPy v1.7)"><tt class="xref py py-mod docutils literal"><span class="pre">numpy.fft</span></tt></a>). Sin embargo, en general es preferible usar <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/fftpack.html#scipy.fftpack" title="(in SciPy v0.12)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.fftpack</span></tt></a>, ya que utiliza implementaciones subyacentes más eficientes.</p>
 </div>
 <div class="topic">
@@ -653,7 +653,7 @@ series de observaciones, que suponemos se generan a partir de una distribución 
 <p>Los resultados se muestran en la siguiente figura creada con Matplotlib:</p>
 <p>[<a class="reference external" href="../plot_directive/pyplots/scipy_interpolation.py">source code</a>, <a class="reference external" href="../plot_directive/pyplots/scipy_interpolation.hires.png">hires.png</a>, <a class="reference external" href="../plot_directive/pyplots/scipy_interpolation.pdf">pdf</a>]</p>
 <img alt="../_images/scipy_interpolation.png" src="../_images/scipy_interpolation.png" />
-<p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html#scipy.interpolate.interp2d" title="(in SciPy v0.12)"><tt class="xref py py-class docutils literal"><span class="pre">scipy.interpolate.interp2d</span></tt></a> es similar a <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d" title="(in SciPy v0.12)"><tt class="xref py py-class docutils literal"><span class="pre">scipy.interpolate.interp1d</span></tt></a>, pero para arreglos 2-D. Tenga en cuenta que para los valores <tt class="xref py py-obj docutils literal"><span class="pre">interp</span></tt>, el tiempo calculado debe permanecer dentro del intervalo de tiempo medido. Ver el sumario de ejercicios <a class="reference internal" href="summary-exercises/stats-interpolate.html#summary-exercise-stat-interp"><em>Maximum wind speed prediction at the Sprogø station</em></a> para un ejemplo más avanzado de interpolación con splines.</p>
+<p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp2d.html#scipy.interpolate.interp2d" title="(in SciPy v0.12)"><tt class="xref py py-class docutils literal"><span class="pre">scipy.interpolate.interp2d</span></tt></a> es similar a <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d" title="(in SciPy v0.12)"><tt class="xref py py-class docutils literal"><span class="pre">scipy.interpolate.interp1d</span></tt></a>, pero para arreglos 2-D. Tenga en cuenta que para los valores <cite>interp</cite>, el tiempo calculado debe permanecer dentro del intervalo de tiempo medido. Ver el sumario de ejercicios <a class="reference internal" href="summary-exercises/stats-interpolate.html#summary-exercise-stat-interp"><em>Maximum wind speed prediction at the Sprogø station</em></a> para un ejemplo más avanzado de interpolación con splines.</p>
 </div>
 <div class="section" id="integracion-numerica-scipy-integrate">
 <h2><a class="toc-backref" href="#id8">1.5.8. Integración numérica: <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/integrate.html#scipy.integrate" title="(in SciPy v0.12)"><tt class="xref py py-mod docutils literal"><span class="pre">scipy.integrate</span></tt></a></a><a class="headerlink" href="#integracion-numerica-scipy-integrate" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -755,7 +755,7 @@ la ecuación diferencial de segundo orden <tt class="docutils literal"><span cla
 <p>[<a class="reference external" href="../plot_directive/pyplots/demo_detrend.py">source code</a>, <a class="reference external" href="../plot_directive/pyplots/demo_detrend.hires.png">hires.png</a>, <a class="reference external" href="../plot_directive/pyplots/demo_detrend.pdf">pdf</a>]</p>
 <a class="reference internal image-reference" href="../_images/demo_detrend.png"><img alt="../_images/demo_detrend.png" src="../_images/demo_detrend.png" style="width: 308.0px; height: 252.0px;" /></a>
 </li>
-<li><p class="first"><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v0.12)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.signal.resample()</span></tt></a>: remuestrea una señal a <tt class="xref py py-obj docutils literal"><span class="pre">n</span></tt> puntos usando FFT.</p>
+<li><p class="first"><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.resample.html#scipy.signal.resample" title="(in SciPy v0.12)"><tt class="xref py py-func docutils literal"><span class="pre">scipy.signal.resample()</span></tt></a>: remuestrea una señal a <cite>n</cite> puntos usando FFT.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <div class="newline"></div><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <div class="newline"></div>
@@ -1013,15 +1013,19 @@ con el fin de modificar otras estructuras geométricas.</p>
 <p><strong>Ejercicios:</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="summary-exercises/stats-interpolate.html">1.5.11.13. Maximum wind speed prediction at the Sprogø station</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary-exercises/optimize-fit.html">1.5.11.14. Non linear least squares curve fitting: application to point extraction in topographical lidar data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="summary-exercises/image-processing.html">1.5.11.15. Image processing application: counting bubbles and unmolten grains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/stats-interpolate.html">1.5.11.25. Maximum wind speed prediction at the Sprogø station</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/optimize-fit.html">1.5.11.26. Non linear least squares curve fitting: application to point extraction in topographical lidar data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/image-processing.html">1.5.11.27. Image processing application: counting bubbles and unmolten grains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/routing_reservoir.html">1.5.11.28. Tránsito de avenidas en embalses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/routing_river_channel.html">1.5.11.29. Tránsito de avenidas en cauces naturales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/fit_flow_rate.html">1.5.11.30. Ajuste de curva de caudales</a></li>
 </ul>
 </div>
 <p><strong>Soluciones propuestas:</strong></p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="summary-exercises/answers_image_processing.html">1.5.11.16. Example of solution for the image processing exercise: unmolten grains in glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/answers_image_processing.html">1.5.11.31. Example of solution for the image processing exercise: unmolten grains in glass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary-exercises/answers_routing_river_channel.html">1.5.11.32. Solución tránsito de avenidas en cauces naturales</a></li>
 </ul>
 </div>
 <p><div style="clear: both"></div></p>
@@ -1037,7 +1041,7 @@ con el fin de modificar otras estructuras geométricas.</p>
       <h3>Navegación</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="summary-exercises/stats-interpolate.html" title="1.5.11.13. Maximum wind speed prediction at the Sprogø station"
+          <a href="summary-exercises/stats-interpolate.html" title="1.5.11.25. Maximum wind speed prediction at the Sprogø station"
              >siguiente</a></li>
         <li class="right" >
           <a href="matplotlib/matplotlib.html" title="1.4. Matplotlib: Gráficas usando pylab"

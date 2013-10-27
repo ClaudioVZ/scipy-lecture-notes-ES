@@ -160,7 +160,7 @@
 <ul class="simple">
 <li>Entrada, salida y presentación de imágenes</li>
 <li>Manipulación básica: recortar, girar, rotar, ...</li>
-<li>Filtrado de imágenes: reducción de ruido, enfoque/refinamiento (<tt class="xref py py-obj docutils literal"><span class="pre">sharpening</span></tt>)</li>
+<li>Filtrado de imágenes: reducción de ruido, enfoque/refinamiento (<cite>sharpening</cite>)</li>
 <li>Segmentación de imágenes: etiquetado de píxeles de acuerdo a los diferentes objetos a que puedan pertenecer</li>
 <li>Clasificación</li>
 <li>Extracción/identificación de patrones</li>
@@ -187,7 +187,7 @@
 </li>
 <li><a class="reference internal" href="#filtrado-de-imagenes" id="id6">Filtrado de imágenes</a><ul>
 <li><a class="reference internal" href="#desenfoque-suavizado" id="id7">Desenfoque/suavizado</a></li>
-<li><a class="reference internal" href="#enfoque-refinamiento-sharpening" id="id8">enfoque/refinamiento (<tt class="xref py py-obj docutils literal"><span class="pre">sharpening</span></tt>)</a></li>
+<li><a class="reference internal" href="#enfoque-refinamiento-sharpening" id="id8">enfoque/refinamiento (<cite>sharpening</cite>)</a></li>
 <li><a class="reference internal" href="#reduciendo-ruido" id="id9">Reduciendo ruido</a></li>
 <li><a class="reference internal" href="#morfologia-matematica" id="id10">Morfología matemática</a></li>
 </ul>
@@ -222,7 +222,7 @@
 <div class="newline"></div></pre></div>
 </div>
 <p>dtype es uint8 para imágenes de 8-bits (0-255)</p>
-<p>Abriendo archivos <tt class="xref py py-obj docutils literal"><span class="pre">raw</span></tt> (de cámara, imágenes 3-D)</p>
+<p>Abriendo archivos <cite>raw</cite> (de cámara, imágenes 3-D)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">)</span> <span class="c"># Creación de un fichero raw</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_from_raw</span><span class="o">.</span><span class="n">shape</span>
@@ -235,7 +235,7 @@
 <p>Necesitas saber la forma y el dtype (tipo de dato) de la imagen (de qué forma separar los bytes
 de datos).</p>
 <p>Para conjuntos de datos de gran tamaño se puede usar <tt class="docutils literal"><span class="pre">np.memmap</span></tt>, que
-sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear</span></tt> en memoria estos datos</p>
+sirve para <cite>mapear</cite> en memoria estos datos</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lena_memmap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">memmap</span><span class="p">(</span><span class="s">&#39;lena.raw&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -286,7 +286,7 @@ sirve para <tt class="xref py py-obj docutils literal"><span class="pre">mapear<
 <a class="reference external image-reference" href="auto_examples/plot_interpolation_lena.html"><img alt="../../_images/plot_interpolation_lena_1.png" src="../../_images/plot_interpolation_lena_1.png" style="width: 640.0px; height: 320.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_interpolation_lena.html#example-plot-interpolation-lena-py"><em>Python source code</em></a>]</p>
-<p>A veces, otros paquetes usan paquetes o <tt class="xref py py-obj docutils literal"><span class="pre">toolkits</span></tt> para visualización (GTK, Qt)</p>
+<p>A veces, otros paquetes usan paquetes o <cite>toolkits</cite> para visualización (GTK, Qt)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">scikits.image.io</span> <span class="kn">as</span> <span class="nn">im_io</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">im_io</span><span class="o">.</span><span class="n">use_plugin</span><span class="p">(</span><span class="s">&#39;gtk&#39;</span><span class="p">,</span> <span class="s">&#39;imshow&#39;</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">im_io</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
@@ -398,7 +398,7 @@ valores de los pixeles vecinos.</p>
 <p>[<a class="reference internal" href="auto_examples/plot_blur.html#example-plot-blur-py"><em>Python source code</em></a>]</p>
 </div>
 <div class="section" id="enfoque-refinamiento-sharpening">
-<h3><a class="toc-backref" href="#id8">2.6.4.2. enfoque/refinamiento (<tt class="xref py py-obj docutils literal"><span class="pre">sharpening</span></tt>)</a><a class="headerlink" href="#enfoque-refinamiento-sharpening" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2.6.4.2. enfoque/refinamiento (<cite>sharpening</cite>)</a><a class="headerlink" href="#enfoque-refinamiento-sharpening" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Enfocar una imagen borrosa</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">misc</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">lena</span> <span class="o">=</span> <span class="n">misc</span><span class="o">.</span><span class="n">lena</span><span class="p">()</span>
@@ -425,7 +425,7 @@ valores de los pixeles vecinos.</p>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">noisy</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">l</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
-<p>Un <strong>filtro gaussiano</strong> suaviza la imagen <tt class="xref py py-obj docutils literal"><span class="pre">eliminando</span></tt> el ruido... además de los bordes</p>
+<p>Un <strong>filtro gaussiano</strong> suaviza la imagen <cite>eliminando</cite> el ruido... además de los bordes</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gauss_denoised</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">gaussian_filter</span><span class="p">(</span><span class="n">noisy</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <div class="newline"></div></pre></div>
 </div>
@@ -708,7 +708,7 @@ etc.</p>
 <p>[<a class="reference internal" href="auto_examples/plot_clean_morpho.html#example-plot-clean-morpho-py"><em>Python source code</em></a>]</p>
 <div class="green topic">
 <p class="topic-title first"><strong>Ejercicio</strong></p>
-<p>Revisa que las operaciones de reconstrucción (erosión + propagación) produzcan un mejor resultado que apertura/cierre (<tt class="xref py py-obj docutils literal"><span class="pre">opening/closing</span></tt>)</p>
+<p>Revisa que las operaciones de reconstrucción (erosión + propagación) produzcan un mejor resultado que apertura/cierre (<cite>opening/closing</cite>)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">eroded_img</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_erosion</span><span class="p">(</span><span class="n">binary_img</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">reconstruct_img</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_propagation</span><span class="p">(</span><span class="n">eroded_img</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">binary_img</span><span class="p">)</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">reconstruct_img</span><span class="p">)</span>
@@ -871,7 +871,7 @@ etc.</p>
 <a class="reference external image-reference" href="auto_examples/plot_block_mean.html"><img alt="../../_images/plot_block_mean_1.png" src="../../_images/plot_block_mean_1.png" style="width: 350.0px; height: 350.0px;" /></a>
 </div>
 <p>[<a class="reference internal" href="auto_examples/plot_block_mean.html#example-plot-block-mean-py"><em>Python source code</em></a>]</p>
-<p>Cuando las regiones son bloques regulares, es más eficiente usar <tt class="xref py py-obj docutils literal"><span class="pre">stride</span> <span class="pre">tricks</span></tt> (<a class="reference internal" href="../advanced_numpy/index.html#stride-manipulation-label"><em>Example: fake dimensions with strides</em></a>).</p>
+<p>Cuando las regiones son bloques regulares, es más eficiente usar <cite>stride tricks</cite> (<a class="reference internal" href="../advanced_numpy/index.html#stride-manipulation-label"><em>Example: fake dimensions with strides</em></a>).</p>
 <p>Bloques no espaciados regularmente: promedio radial</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">sx</span><span class="p">,</span> <span class="n">sy</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">shape</span>
 <div class="newline"></div><span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ogrid</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">sx</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">sy</span><span class="p">]</span>

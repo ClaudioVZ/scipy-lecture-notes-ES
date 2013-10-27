@@ -771,6 +771,10 @@ El sumario de ejercicios utiliza principalmente Numpy, Scipy y Matplotlib. Se pr
        summary-exercises/optimize-fit.rst
        summary-exercises/image-processing.rst
        summary-exercises/answers_image_processing.rst
+       summary-exercises/routing_reservoir.rst
+       summary-exercises/routing_river_channel.rst
+       summary-exercises/answers_routing_river_channel.rst
+       summary-exercises/fit_flow_rate.rst
 
 .. only:: html
 
@@ -782,6 +786,9 @@ El sumario de ejercicios utiliza principalmente Numpy, Scipy y Matplotlib. Se pr
        summary-exercises/stats-interpolate.rst
        summary-exercises/optimize-fit.rst
        summary-exercises/image-processing.rst
+       summary-exercises/routing_reservoir.rst
+       summary-exercises/routing_river_channel.rst
+       summary-exercises/fit_flow_rate.rst
 
    **Soluciones propuestas:**
 
@@ -789,3 +796,4 @@ El sumario de ejercicios utiliza principalmente Numpy, Scipy y Matplotlib. Se pr
       :maxdepth: 1
 
       summary-exercises/answers_image_processing.rst
+      summary-exercises/answers_routing_river_channel.rst

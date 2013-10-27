@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.5.11.30. Ajuste de curva de caudales &mdash; Scipy lecture notes</title>
+    
+    <link rel="stylesheet" href="../../_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '2013.2 beta (euroscipy 2013)',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/copybutton.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <link rel="top" title="Scipy lecture notes" href="../../index.html" />
+    <link rel="up" title="1.5. Scipy: computación científica de alto nivel" href="../scipy.html" />
+    <link rel="next" title="1.5.11.31. Example of solution for the image processing exercise: unmolten grains in glass" href="answers_image_processing.html" />
+    <link rel="prev" title="1.5.11.29. Tránsito de avenidas en cauces naturales" href="routing_river_channel.html" /> 
+  </head>
+  <body>
+   <!-- Use the header to add javascript -->
+    
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    $(obj).find("p.summary").remove();
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
+	    }
+	    $(obj).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+	}
+    }
+    </script>
+
+    <script type="text/javascript">
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		$(this).find("p.summary").remove();
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
+		    }
+		    $(this).html('<p class="summary"><img src="../../_static/plus.png">' + content + '...</p>' + html);
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="answers_image_processing.html" title="1.5.11.31. Example of solution for the image processing exercise: unmolten grains in glass"
+             accesskey="N">siguiente</a></li>
+        <li class="right" >
+          <a href="routing_river_channel.html" title="1.5.11.29. Tránsito de avenidas en cauces naturales"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
+          <li><a href="../scipy.html" accesskey="U">1.5. Scipy: computación científica de alto nivel</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body">
+            
+  <div class="section" id="ajuste-de-curva-de-caudales">
+<h1>1.5.11.30. Ajuste de curva de caudales<a class="headerlink" href="#ajuste-de-curva-de-caudales" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>En un tramo de río se hicieron los siguientes aforos:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="34%" />
+<col width="25%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Fecha</th>
+<th class="head">H (m.)</th>
+<th class="head">Q (m^3/seg)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>12/oct/12</td>
+<td>1.4</td>
+<td>9.0</td>
+</tr>
+<tr class="row-odd"><td>20/oct/12</td>
+<td>0.8</td>
+<td>2.3</td>
+</tr>
+<tr class="row-even"><td>29/oct/12</td>
+<td>3.2</td>
+<td>70.0</td>
+</tr>
+<tr class="row-odd"><td>05/oct/12</td>
+<td>1.8</td>
+<td>17.0</td>
+</tr>
+<tr class="row-even"><td>16/oct/12</td>
+<td>1.5</td>
+<td>9.9</td>
+</tr>
+<tr class="row-odd"><td>05/nov/12</td>
+<td>2.6</td>
+<td>45.3</td>
+</tr>
+<tr class="row-even"><td>23/nov/12</td>
+<td>1.9</td>
+<td>19.0</td>
+</tr>
+<tr class="row-odd"><td>30/nov/12</td>
+<td>3.4</td>
+<td>89.5</td>
+</tr>
+<tr class="row-even"><td>01/dic/12</td>
+<td>2.1</td>
+<td>25.0</td>
+</tr>
+<tr class="row-odd"><td>18/dic/12</td>
+<td>1.9</td>
+<td>16.0</td>
+</tr>
+<tr class="row-even"><td>25/dic/12</td>
+<td>1.6</td>
+<td>18.0</td>
+</tr>
+<tr class="row-odd"><td>01/ene/13</td>
+<td>4.5</td>
+<td>120.0</td>
+</tr>
+<tr class="row-even"><td>15/ene/13</td>
+<td>2.9</td>
+<td>60.5</td>
+</tr>
+<tr class="row-odd"><td>29/ene/13</td>
+<td>3.1</td>
+<td>75.4</td>
+</tr>
+<tr class="row-even"><td>04/feb/13</td>
+<td>4.2</td>
+<td>128.0</td>
+</tr>
+<tr class="row-odd"><td>12/feb/13</td>
+<td>2.3</td>
+<td>37.7</td>
+</tr>
+<tr class="row-even"><td>23/feb/13</td>
+<td>1.4</td>
+<td>6.0</td>
+</tr>
+<tr class="row-odd"><td>02/mar/13</td>
+<td>4.8</td>
+<td>150.0</td>
+</tr>
+<tr class="row-even"><td>14/mar/13</td>
+<td>1.6</td>
+<td>12.0</td>
+</tr>
+<tr class="row-odd"><td>29/mar/13</td>
+<td>1.2</td>
+<td>7.0</td>
+</tr>
+</tbody>
+</table>
+<p>Ajustar usando las ecuaciones:</p>
+<ul class="simple">
+<li><img class="math" src="../../_images/math/39cd61f50bf12ce075e770f6203708ba9b5cabb5.png" alt="Q = aH^{b}" style="vertical-align: -6px"/></li>
+<li><img class="math" src="../../_images/math/f40408cd8c3fc7326a37ceca52623fb86e9303d8.png" alt="Q = a(H-b)^{c}" style="vertical-align: -7px"/></li>
+<li><img class="math" src="../../_images/math/bd445a1d7907ccb5d0b7e8cd5f2081fa607b3d67.png" alt="Q = a + bH + cH^{2}" style="vertical-align: -6px"/></li>
+</ul>
+<p><div style="clear: both"></div></p>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="answers_image_processing.html" title="1.5.11.31. Example of solution for the image processing exercise: unmolten grains in glass"
+             >siguiente</a></li>
+        <li class="right" >
+          <a href="routing_river_channel.html" title="1.5.11.29. Tránsito de avenidas en cauces naturales"
+             >anterior</a> |</li>
+        <li><a href="../../index.html">Scipy lecture notes</a> &raquo;</li>
+          <li><a href="../index.html" >1. Iniciandose en computación científica con Python</a> &raquo;</li>
+          <li><a href="../scipy.html" >1.5. Scipy: computación científica de alto nivel</a> &raquo;</li>
+     
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="$('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="../../_static/minus.png"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012,2013.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
